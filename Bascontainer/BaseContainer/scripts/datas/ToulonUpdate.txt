@@ -1,0 +1,61 @@
+--HN
+
+--Invisalign Adulte HN
+
+update base_semestre set id_acte_gestion = 117
+where base_semestre.id = (
+    select bs1.id from base_semestre bs1
+    inner join base_plan_traitements on base_plan_traitements.id = bs1.id_traitement
+    inner join base_propositions on base_propositions.id = base_plan_traitements.id_proposition
+    where base_propositions.etat = 1 and bs1.id=base_semestre.id and base_propositions.id_patient in (226,315,316,336,341,547,1018,1335,1537,1575,1698,1787,1804,1809,1828,1849,1865,1871,1881,2030,2038,2050,2133)
+);
+
+--Invisalign Teen (COMANDE Kelvin)
+
+update base_semestre set id_acte_gestion = 80
+where base_semestre.id = (
+    select bs1.id from base_semestre bs1
+    inner join base_plan_traitements on base_plan_traitements.id = bs1.id_traitement
+    inner join base_propositions on base_propositions.id = base_plan_traitements.id_proposition
+    where base_propositions.etat = 1  and id_acte_gestion = 81 and bs1.id=base_semestre.id and base_propositions.id_patient = 249
+);
+
+--Non HN
+
+
+
+
+--Invisalign Teen TO90
+
+update base_semestre set id_acte_gestion = 80
+where base_semestre.id = (
+    select bs1.id from base_semestre bs1
+    inner join base_plan_traitements on base_plan_traitements.id = bs1.id_traitement
+    inner join base_propositions on base_propositions.id = base_plan_traitements.id_proposition
+    inner join patient on patient.id_personne = base_propositions.id_patient and patient.id_statut = 15
+    where base_propositions.etat = 1 and id_acte_gestion = 82 and bs1.id=base_semestre.id
+);
+
+--Orthopedie
+
+update base_semestre set id_acte_gestion = 92
+where base_semestre.id = (
+    select bs1.id from base_semestre bs1
+    inner join base_plan_traitements on base_plan_traitements.id = bs1.id_traitement
+    inner join base_propositions on base_propositions.id = base_plan_traitements.id_proposition
+    inner join patient on patient.id_personne = base_propositions.id_patient and patient.id_statut = 16
+    where base_propositions.etat = 1 and id_acte_gestion = 82 and bs1.id=base_semestre.id
+);
+
+
+update base_paiementreel
+set BASE_PAIEMENTREEL.especesrecu = base_paiementreel.montant
+where BASE_PAIEMENTREEL.moyenpaiement=1 and BASE_PAIEMENTREEL.especesrecu=0;
+
+
+update base_paiementreel
+set BASE_PAIEMENTREEL.especesrecu = base_paiementreel.montant
+where BASE_PAIEMENTREEL.moyenpaiement=1 and BASE_PAIEMENTREEL.especesrecu is null;
+
+
+Actes Gestion ?

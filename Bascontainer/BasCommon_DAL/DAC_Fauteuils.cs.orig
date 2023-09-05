@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using FirebirdSql.Data.FirebirdClient;
+using System.Configuration;
+using BasCommon_BO;
+
+namespace BasCommon_DAL
+{
+    public static partial class DAC
+    {
+        public static DataTable getFauteuils()
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "select id_fauteuil, faut_libelle  from fauteuil order by faut_libelle";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                return dt;
+
+
+
+            }
+            catch (System.SystemException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+        }
+
+    }
+}

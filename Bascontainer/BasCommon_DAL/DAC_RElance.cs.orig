@@ -1,0 +1,132 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using FirebirdSql.Data.FirebirdClient;
+using System.Configuration;
+using BasCommon_BO;
+
+namespace BasCommon_DAL
+{
+    public static partial class DAC
+    {
+
+        public static Relance.ModeRelance GetStatusRelance(int IdPatient)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+
+
+                string selectQuery = "select";
+                selectQuery += " NIVEAU_RELANCE ";
+                selectQuery += " from BASE_RELANCE";
+                selectQuery += " where LATEST_FLAG='Y' and ID_PATIENT = @idpatient";
+
+
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                command.Parameters.AddWithValue("@idpatient", IdPatient);
+
+                object obj = command.ExecuteScalar();
+                if (obj != null)
+                    return (Relance.ModeRelance)(Convert.ToInt32(obj));
+                else
+                    return Relance.ModeRelance.Aucun;
+
+
+
+            }
+            catch (System.IndexOutOfRangeException e)
+            {
+                return Relance.ModeRelance.Aucun;
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+        }
+
+        public static void ChangeStatusRelance(int idpatient, Relance.ModeRelance niveau)
+        {
+            int Id = 0;
+
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+
+            string selectQueryId = "select max(Id)+1 as ID from BASE_RELANCE";
+            FbCommand commandid = new FbCommand(selectQueryId, connection, transaction);
+            object id = commandid.ExecuteScalar();
+            if (id == DBNull.Value)
+                Id = 1;
+            else
+                Id = Convert.ToInt32(id);
+
+
+            string selectQueryupd = "update BASE_RELANCE set LATEST_FLAG='N' where ID_PATIENT=@idpatient";
+            FbCommand commandupd = new FbCommand(selectQueryupd, connection, transaction);
+            commandupd.Parameters.AddWithValue("@idpatient", idpatient);
+
+            commandupd.ExecuteNonQuery();
+
+
+            try
+            {
+                string selectQuery = "insert into BASE_RELANCE (ID_PATIENT, ";
+                selectQuery += "                            DATE_EVENEMENT, ";
+                selectQuery += "                            LATEST_FLAG, ";
+                selectQuery += "                            NIVEAU_RELANCE,  ";
+                selectQuery += "                            ID)";
+                selectQuery += " values (@ID_PATIENT, ";
+                selectQuery += "                            @DATE_EVENEMENT, ";
+                selectQuery += "                            'Y', ";
+                selectQuery += "                            @NIVEAU_RELANCE,  ";
+                selectQuery += "                            @id)";
+
+
+
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                command.Parameters.AddWithValue("@ID_PATIENT", idpatient);
+                command.Parameters.AddWithValue("@DATE_EVENEMENT", DateTime.Now);
+                command.Parameters.AddWithValue("@NIVEAU_RELANCE", (int)niveau);
+                command.Parameters.AddWithValue("@id", Id);
+
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+
+            }
+            catch (System.SystemException ex)
+            {
+                transaction.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+        }
+
+
+    }
+}

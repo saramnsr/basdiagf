@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{763B2981-511B-447D-84F4-55916B5DB254}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BasCommon_BO</RootNamespace>
+    <AssemblyName>BasCommon_BO</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\BasCommon_BO.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\BasCommon_BO.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessObject.cs" />
+    <Compile Include="Acte.cs" />
+    <Compile Include="ActePG.cs" />
+    <Compile Include="ActePGPropose.cs" />
+    <Compile Include="Appareil.cs" />
+    <Compile Include="Appointement.cs" />
+    <Compile Include="Attribut.cs" />
+    <Compile Include="Attributes\PropertyDescription.cs" />
+    <Compile Include="AuxiliaireCtrl\Arc.cs" />
+    <Compile Include="AuxiliaireCtrl\Chainette.cs" />
+    <Compile Include="AuxiliaireCtrl\ElementAppareil.cs" />
+    <Compile Include="AuxiliaireCtrl\ElementDent.cs" />
+    <Compile Include="AuxiliaireCtrl\IElementAppareil.cs" />
+    <Compile Include="AuxiliaireCtrl\IElementDent.cs" />
+    <Compile Include="AuxiliaireCtrl\Kobayashi.cs" />
+    <Compile Include="AuxiliaireCtrl\Ligature.cs" />
+    <Compile Include="AuxiliaireCtrl\LigatureMetal.cs" />
+    <Compile Include="AuxiliaireCtrl\MiniVis.cs" />
+    <Compile Include="AuxiliaireCtrl\Ressort.cs" />
+    <Compile Include="AuxiliaireCtrl\TIM.cs" />
+    <Compile Include="Banque.cs" />
+    <Compile Include="BanqueDeRemise.cs" />
+    <Compile Include="BaseLog.cs" />
+    <Compile Include="BasForm.cs" />
+    <Compile Include="BordereauFinance.cs" />
+    <Compile Include="Caisse.cs" />
+    <Compile Include="Categorie.cs" />
+    <Compile Include="CodePrestation.cs" />
+    <Compile Include="CodesTraitement.cs" />
+    <Compile Include="CommClinique.cs" />
+    <Compile Include="CommonObjectif.cs" />
+    <Compile Include="Contact.cs" />
+    <Compile Include="ContactAdress.cs" />
+    <Compile Include="ContactLib.cs" />
+    <Compile Include="ControlFinancier.cs" />
+    <Compile Include="Correspondant.cs" />
+    <Compile Include="CustomStatusClinique.cs" />
+    <Compile Include="Devis.cs" />
+    <Compile Include="Echeance.cs" />
+    <Compile Include="Encaissement.cs" />
+    <Compile Include="EntentePrealable.cs" />
+    <Compile Include="EntiteJuridique.cs" />
+    <Compile Include="FamillesActe.cs" />
+    <Compile Include="Fauteuil.cs" />
+    <Compile Include="FeuilleDeSoin.cs" />
+    <Compile Include="InfoPatientComplementaire.cs" />
+    <Compile Include="LienCorrespondant.cs" />
+    <Compile Include="basePatient.cs" />
+    <Compile Include="lnkControlFinancier.cs" />
+    <Compile Include="ModeleDePropositions.cs" />
+    <Compile Include="Mutuelle.cs" />
+    <Compile Include="ObjImage.cs" />
+    <Compile Include="ObjSuivi.cs" />
+    <Compile Include="PaiementReel.cs" />
+    <Compile Include="PlanTraitementDEP.cs" />
+    <Compile Include="ProfilInternet.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="baseSmallPersonne.cs" />
+    <Compile Include="Proposition.cs" />
+    <Compile Include="PyxVitalWrapperConst.cs" />
+    <Compile Include="Recontact.cs" />
+    <Compile Include="RecontactLib.cs" />
+    <Compile Include="Relance.cs" />
+    <Compile Include="ScenarioCommclinique.cs" />
+    <Compile Include="Semestre.cs" />
+    <Compile Include="StatusCliniqueManuel.cs" />
+    <Compile Include="Surveillance.cs" />
+    <Compile Include="TemplateActePG.cs" />
+    <Compile Include="Traitement.cs" />
+    <Compile Include="TypePersonne.cs" />
+    <Compile Include="Utilisateur.cs" />
+    <Compile Include="Ville.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

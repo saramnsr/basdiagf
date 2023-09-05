@@ -1,0 +1,110 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using FirebirdSql.Data.FirebirdClient;
+using System.Configuration;
+using BasCommon_BO;
+
+
+namespace BasCommon_DAL
+{
+    public static partial class DAC
+    {
+
+        public static DataTable getUtilisateursInFauteuil(Fauteuil f, DateTime dte)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "select ID_USER from RH_BASE_AFFECT_FAUT_USER";
+                selectQuery += " where RH_BASE_AFFECT_FAUT_USER.id_fauteuil = @idfauteuil";
+                selectQuery += " and @dte between RH_BASE_AFFECT_FAUT_USER.affecte_from and RH_BASE_AFFECT_FAUT_USER.affecte_to";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                command.Parameters.AddWithValue("@idfauteuil", f.Id);
+                command.Parameters.AddWithValue("@dte", dte);
+
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+
+                return dt;
+
+            }
+            catch (System.SystemException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+
+
+        }
+
+
+
+        public static DataTable getUtilisateurs()
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "select u.util_actif,u.ID_ENTITYJURIDIQUE,u.DATEFINCONTRAT , tp.NOM as NOMTYPE, p.id_personne, pers_titre, profession, per_nom, per_prenom, per_genre, per_type, per_email,per_notes, per_poste, pcom, PER_TELPRINC,PER_ADR1,PER_ADR2,PER_VILLE,PER_CPOSTAL,u.DATEEMBAUCHE ";
+                selectQuery += " from personne p";
+                selectQuery += " inner join utilisateur u on u.id_personne = p.id_personne";
+                selectQuery += " inner join TYPE_PERS tp on tp.id_type = u.UTIL_TYPE";
+                selectQuery += " where UTIL_ACTIF='Y'";
+
+                selectQuery += " order by  per_nom, per_prenom";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+
+                return dt;
+
+            }
+            catch (System.SystemException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+
+
+        }
+        
+
+    }
+}

@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using BasCommon_BO;
+using BasCommon_BL;
+
+namespace BasCommon_BL.Builders
+{
+
+    public static class BuildUtilisateur
+    {
+
+        public static Utilisateur Build(DataRow r)
+        {
+
+            Utilisateur Ut = new Utilisateur();
+            Ut.Id = Convert.ToInt32(r["ID_PERSONNE"]);
+            Ut.Nom = Convert.ToString(r["PER_NOM"]).Trim();
+
+            Ut.DateFinContrat = r["DATEFINCONTRAT"] is DBNull ? null : (DateTime?)Convert.ToDateTime(r["DATEFINCONTRAT"]);
+            Ut.Actif = ((Convert.ToString(r["UTIL_ACTIF"]) == "Y") && ((Ut.DateFinContrat > DateTime.Now) || (Ut.DateFinContrat == null)));
+
+
+            //Ut.Actif = Convert.ToString(r["UTIL_ACTIF"]) == "Y";
+
+            Ut.Prenom = Convert.ToString(r["PER_PRENOM"]).Trim();
+
+            Ut.Mail = Convert.ToString(r["PER_EMAIL"]).Trim();
+
+
+            Ut.EntiteJuridique = r["ID_ENTITYJURIDIQUE"] is DBNull ? null : EntiteJuridiqueMgmt.getentite(Convert.ToInt32(r["ID_ENTITYJURIDIQUE"]));
+
+
+            Ut.Profession = Convert.ToString(r["PROFESSION"]).Trim();
+            Ut.Fonction = Convert.ToString(r["NOMTYPE"]).Trim();
+            Ut.Tel = Convert.ToString(r["PER_TELPRINC"]).Trim();
+
+            Ut.Adresse.Adress1 = Convert.ToString(r["PER_ADR1"]).Trim();
+            Ut.Adresse.Adress2 = Convert.ToString(r["PER_ADR2"]).Trim();
+            Ut.Adresse.CP = Convert.ToString(r["PER_CPOSTAL"]).Trim();
+            Ut.Adresse.Ville = Convert.ToString(r["PER_VILLE"]).Trim();
+
+            Ut.Civilite = Convert.ToString(r["PERS_TITRE"]).Trim();
+
+
+            return Ut;
+        }
+
+    }
+}

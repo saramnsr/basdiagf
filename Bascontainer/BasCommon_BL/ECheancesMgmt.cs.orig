@@ -1,0 +1,326 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using BasCommon_DAL;
+using BasCommon_BO;
+using System.Data;
+
+namespace BasCommon_BL
+{
+    public class EcheancesMgmt
+    {
+
+
+        public static void GetRepartitionPaiements(ref double PartPatient, ref double PartMutuelle, ref double PartBqe, List<Echeance> lstEcheances)
+        {
+
+            foreach (Echeance ec in lstEcheances)
+            {
+                switch (ec.payeur)
+                {
+                    case Echeance.typepayeur.Banque:
+                        PartBqe += ec.Montant;
+                        break;
+                    case Echeance.typepayeur.Mutuelle:
+                    case Echeance.typepayeur.Secu:
+                        PartMutuelle += ec.Montant;
+                        break;
+                    case Echeance.typepayeur.patient:
+                        PartPatient += ec.Montant;
+                        break;
+                }
+
+            }
+
+        }
+
+
+        public static List<Echeance> GetEcheanceAEncaisserParUnTiers()
+        {
+            DataTable dt = DAC.GetEcheanceAEncaisserParUnTiers();
+
+            List<Echeance> lst = new List<Echeance>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                Echeance ec = Builders.BuildEcheance.Build(r);
+                lst.Add(ec);
+            }
+
+            return lst;
+        }
+
+        public static List<Echeance> GetEcheanceAPrelever(DateTime dte1, DateTime dte2)
+        {
+            DataTable dt = DAC.GetEcheanceAPrelever(dte1, dte2);
+
+            List<Echeance> lst = new List<Echeance>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                Echeance ec = Builders.BuildEcheance.Build(r);
+                ec.patient = baseMgmtPatient.GetPatient(ec.IdPatient);
+                lst.Add(ec);
+            }
+
+            return lst;
+        }
+
+
+        public static List<Echeance> GetEcheances(Encaissement encaissement)
+        {
+
+            DataTable dt = DAC.getEcheances(encaissement);
+
+            List<Echeance> _listEcheances = new List<Echeance>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                Echeance ec = Builders.BuildEcheance.Build(r);
+                _listEcheances.Add(ec);
+            }
+
+            return _listEcheances;
+        }
+
+        public static List<Echeance> GetEcheances(PaiementReel pr)
+        {
+
+            DataTable dt = DAC.getEcheances(pr);
+
+            List<Echeance> _listEcheances = new List<Echeance>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                Echeance ec = Builders.BuildEcheance.Build(r);
+                _listEcheances.Add(ec);
+            }
+
+            return _listEcheances;
+        }
+
+
+
+        public static List<Echeance> GetEcheances(ActePG acte)
+        {
+             if (acte.patient==null)
+                  if (acte.patient==null)
+                        acte.patient = baseMgmtPatient.GetPatient(acte.IdPatient);
+            if (acte.patient.Echeances == null)
+                acte.patient.Echeances = GetEcheances(acte.patient);
+
+            List<Echeance> lst = new List<Echeance>();
+
+            foreach (Echeance e in acte.patient.Echeances)
+            {
+                if (e.IdActe == acte.Id)
+                {
+                    e.patient = acte.patient;
+                    lst.Add(e);
+                }
+            }
+
+
+            return lst;
+        }
+
+        public static List<Echeance> GetEcheances(basePatient pat)
+        {
+
+            DataTable dt = DAC.getEcheances(pat);
+
+            List<Echeance> _listEcheances = new List<Echeance>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                Echeance ec = Builders.BuildEcheance.Build(r);
+                ec.IdPatient = pat.Id;
+                _listEcheances.Add(ec);
+            }
+                        
+            return _listEcheances;
+        }
+
+
+        public static List<Echeance> GetEcheances(baseSmallPersonne pat)
+        {
+
+            DataTable dt = DAC.getEcheances(pat);
+
+            List<Echeance> _listEcheances = new List<Echeance>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                Echeance ec = Builders.BuildEcheance.Build(r);
+                ec.IdPatient = pat.Id;
+                _listEcheances.Add(ec);
+            }
+
+            return _listEcheances;
+        }
+
+
+        public static List<Echeance> GetEcheances(Correspondant ResponsableFi)
+        {
+
+            DataTable dt = DAC.getEcheances(ResponsableFi);
+
+            List<Echeance> _listEcheances = new List<Echeance>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                Echeance ec = Builders.BuildEcheance.Build(r);
+                _listEcheances.Add(ec);
+            }
+
+            return _listEcheances;
+        }
+
+
+
+        public static Double GetRestantDue(basePatient pat)
+        {
+
+            if (pat.Echeances == null)
+                pat.Echeances = GetEcheances(pat);
+
+           double restantdue = 0;
+           foreach (Echeance e in pat.Echeances)
+                if (e.ID_Encaissement < 0)
+                    restantdue += e.Montant;
+
+            return restantdue;
+
+        }
+
+        public static double GetSoldeARegler(basePatient pat)
+        {
+            return DAC.GetSoldeAReglerAvantLe(DateTime.Now, pat.Id);
+        }
+
+
+
+        public static List<Echeance> GetEcheancesARegler(basePatient pat)
+        {
+
+            if (pat.Echeances == null)
+                pat.Echeances = GetEcheances(pat);
+
+            List<Echeance> lst = new List<Echeance>();
+
+            foreach (Echeance e in pat.Echeances)
+            {
+                if ((e.ID_Encaissement < 0) && (e.DateEcheance != null) && (e.DateEcheance < DateTime.Now))
+                {
+                    e.patient = pat;
+                    lst.Add(e);
+                }
+            }
+
+
+            return lst;
+
+
+        }
+
+        public static Echeance GetNextEcheances(DateTime dte, basePatient pat)
+        {
+            if (pat.Echeances == null)
+                pat.Echeances = GetEcheances(pat);
+            Echeance selected = null;
+            DateTime dtemin = DateTime.MaxValue;
+
+            foreach (Echeance e in pat.Echeances)
+            {
+                if ((e.ID_Encaissement < 0) && (e.DateEcheance != null) && (e.DateEcheance > DateTime.Now) && (e.DateEcheance < dtemin))
+                {
+                    dtemin = e.DateEcheance.Value;
+                    selected = e;
+                }
+            }
+
+            selected.patient = pat;
+
+            return selected;
+
+        }
+
+
+        public static void InsertEcheance(Echeance echeance)
+        {
+            DAC.InsertEcheance(echeance);
+            if (echeance.patient == null) return;
+            if (echeance.patient.Echeances!=null)
+                echeance.patient.Echeances.Add(echeance);
+
+        }
+
+
+        public static void RedefinirEcheances(List<ActePG> actes, List<TempEcheanceDefinition> lstEch)
+        {
+
+            
+
+            List<Echeance> lstechs = new List<Echeance>();
+
+            foreach (ActePG acte in actes)
+            {
+                DeleteEcheances(acte);
+                if (acte.lstEcheances != null)
+                    for (int i = acte.lstEcheances.Count - 1; i >= 0; i--)
+                    {
+                        if (acte.lstEcheances[i].ID_Encaissement < 1)
+                            acte.lstEcheances.Remove(acte.lstEcheances[i]);
+                    }
+
+            }
+
+            foreach (TempEcheanceDefinition ted in lstEch)
+            {
+                if (ted.AlreadyPayed) continue;
+                Echeance NewEc = new Echeance();
+                NewEc.acte = ted.acte;
+                NewEc.DateEcheance = ted.DAteEcheance;
+                NewEc.patient = ted.acte.patient;
+                NewEc.IdPatient = ted.acte.IdPatient;
+                NewEc.Montant = ted.Montant;
+                NewEc.Libelle = ted.Libelle;
+                NewEc.ParPrelevement = ted.ParPrelevement;
+                NewEc.payeur = ted.payeur;
+                InsertEcheance(NewEc);
+                lstechs.Add(NewEc);
+                if (ted.acte.lstEcheances!=null)ted.acte.lstEcheances.Add(NewEc);
+
+            }
+            LogMgmt.ReEcheancement(-1, lstechs, actes);
+        }
+
+
+        public static void DeleteEcheances(ActePG acte)
+        {
+            DAC.DeleteEcheances(acte);
+            if (acte.patient == null) return;
+
+            
+            acte.lstEcheances = null;
+            
+        }
+
+        public static void DeleteEcheance(Echeance echeance)
+        {
+            DAC.DeleteEcheance(echeance);
+
+            
+
+        }
+
+        public static void UpdateEcheance(Echeance echeance)
+        {
+            DAC.UpdateEcheance(echeance);
+
+
+        }
+
+    }
+}

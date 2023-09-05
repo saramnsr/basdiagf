@@ -1,0 +1,27 @@
+CREATE TABLE BAS_ECHEANCES_DEVIS (
+    ID              INTEGER NOT NULL,
+    ID_SEM_PROPOSE  INTEGER NOT NULL,
+    MONTANT         DOUBLE PRECISION NOT NULL,
+    DTEECHEANCE     TIMESTAMP,
+    LIBELLE         VARCHAR(100) NOT NULL,
+    PARPRELEVEMENT  CHAR(5) DEFAULT 'False' NOT NULL,
+    TYPEPAYEUR      SMALLINT DEFAULT 0 NOT NULL
+);
+
+ALTER TABLE BAS_ECHEANCES_DEVIS ADD CONSTRAINT PK_BAS_ECHEANCES_DEVIS PRIMARY KEY (ID);
+
+
+
+-- Ajout infos bancaire du patient
+alter table patient add NOM_BANQUE char(20);
+alter table patient add CODE_BANQUE char(5);
+alter table patient add CODE_GUICHET char(5);
+alter table patient add NUM_COMPTE char(11);
+alter table patient add CLE_RIB char(2);
+
+-- Ajout du numéro émetteur (NNE) pour les comptes ISFESO
+alter table banque add NUM_NNE char(6);
+
+-- INFO
+-- ID_BANQUE_REMISE de la table BASE_PAIEMENTREEL correspondra au COD_BAN (codeBanque sur 5 chiffres) du compte ISFESO
+-- NUMA_BAN ? (pas utilisé pour la génération des fichiers bancaires CFONB)

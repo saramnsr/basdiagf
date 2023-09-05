@@ -1,0 +1,913 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8CB2A63C-249C-4DEA-BFE1-E60AA116725E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BaseCommonControls</RootNamespace>
+    <AssemblyName>BaseCommonControls</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;GENEVE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\BaseCommonControls.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\BaseCommonControls.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BasCommon_DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\x86\Debug\BasCommon_DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Externals\Office\Microsoft.mshtml.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Users\TEKLEND\Downloads\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Visual Studio Tools for Office\PIA\Office14\Microsoft.Office.Interop.Outlook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Word\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Word.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 11.0\ReportViewer\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mysql.data">
+      <HintPath>C:\Users\TEKLEND\Desktop\mysql.data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\x86\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WizardBase">
+      <HintPath>..\..\BasePractice\BASEPractice\Ctrls\WizardBase\obj\x86\Debug\WizardBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="bin\Debug\DataSetTK.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetTK.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddDents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddDents.Designer.cs">
+      <DependentUpon>frmAddDents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdditionnalColumns.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BAS\usrChoixPatient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BAS\usrChoixPatient.Designer.cs">
+      <DependentUpon>usrChoixPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BAS\WizardPraticienAssistantes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BAS\WizardPraticienAssistantes.Designer.cs">
+      <DependentUpon>WizardPraticienAssistantes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChoiceMedical.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChoiceMedical.Designer.cs">
+      <DependentUpon>ChoiceMedical.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChoixDentRsx.Designer.cs">
+      <DependentUpon>ChoixDentRsx.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ChoixDents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChoixDents.Designer.cs">
+      <DependentUpon>ChoixDents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChoixPatient\FrmChoixPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChoixPatient\FrmChoixPatient.Designer.cs">
+      <DependentUpon>FrmChoixPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ColumnsForSynthese.cs" />
+    <Compile Include="CommonActions.cs" />
+    <Compile Include="frmChoixCabinet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChoixCabinet.Designer.cs">
+      <DependentUpon>frmChoixCabinet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNewActesTraiement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNewActesTraiement.Designer.cs">
+      <DependentUpon>FrmNewActesTraiement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CtrlEspacement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlEspacement.Designer.cs">
+      <DependentUpon>CtrlEspacement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetTK.cs">
+      <DependentUpon>DataSetTK.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSetTK.Designer.cs">
+      <DependentUpon>DataSetTK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetTK2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetTK.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FrmActeTraitement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmActeTraitement.Designer.cs">
+      <DependentUpon>FrmActeTraitement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmChoiceMateriel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChoiceMateriel.Designer.cs">
+      <DependentUpon>FrmChoiceMateriel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmChoisxDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChoisxDate.Designer.cs">
+      <DependentUpon>FrmChoisxDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmChoixActes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChoixActes.Designer.cs">
+      <DependentUpon>FrmChoixActes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmChoixAutrePersonne.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChoixAutrePersonne.Designer.cs">
+      <DependentUpon>FrmChoixAutrePersonne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmChoixCorrespondantParSpe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChoixCorrespondantParSpe.designer.cs">
+      <DependentUpon>FrmChoixCorrespondantParSpe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CtrlRIB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlRIB.Designer.cs">
+      <DependentUpon>CtrlRIB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="documentsToPrint\ListControlEcheances.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="documentsToPrint\ListControlPrelevement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="documentsToPrint\ListControlTiers.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="documentsToPrint\ListControlVirement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ExcelExport\ExportExcel.cs" />
+    <Compile Include="FrmAddCodeComptable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddCodeComptable.Designer.cs">
+      <DependentUpon>FrmAddCodeComptable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAddEcheance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddEcheance.Designer.cs">
+      <DependentUpon>FrmAddEcheance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmChoixDents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChoixDents.Designer.cs">
+      <DependentUpon>FrmChoixDents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRmChoixPraticienAssForCom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRmChoixPraticienAssForCom.Designer.cs">
+      <DependentUpon>FRmChoixPraticienAssForCom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmChooseCodeCompta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChooseCodeCompta.Designer.cs">
+      <DependentUpon>frmChooseCodeCompta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRmCreateEch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRmCreateEch.Designer.cs">
+      <DependentUpon>FRmCreateEch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDents.Designer.cs">
+      <DependentUpon>FrmDents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDetailDevisALaCarte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDetailDevisALaCarte.Designer.cs">
+      <DependentUpon>FrmDetailDevisALaCarte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDetailLigneTraitement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDetailLigneTraitement.Designer.cs">
+      <DependentUpon>FrmDetailLigneTraitement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmEditTempEcheanceDef.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEditTempEcheanceDef.Designer.cs">
+      <DependentUpon>FrmEditTempEcheanceDef.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmFinancement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmFinancement.Designer.cs">
+      <DependentUpon>FrmFinancement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmImpression.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmImpression.Designer.cs">
+      <DependentUpon>FrmImpression.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLocalisationAnatomique.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLocalisationAnatomique.Designer.cs">
+      <DependentUpon>FrmLocalisationAnatomique.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNewActes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNewActes.Designer.cs">
+      <DependentUpon>FrmNewActes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPointage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPointage.Designer.cs">
+      <DependentUpon>FrmPointage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRepartition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRepartition.Designer.cs">
+      <DependentUpon>FrmRepartition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRistourne.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRistourne.Designer.cs">
+      <DependentUpon>FrmRistourne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRistourneActeTraitement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRistourneActeTraitement.Designer.cs">
+      <DependentUpon>FrmRistourneActeTraitement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSpecialite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSpecialite.Designer.cs">
+      <DependentUpon>FrmSpecialite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmString.designer.cs">
+      <DependentUpon>FrmString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAtaGridViewPrinter.cs" />
+    <Compile Include="DEPCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DEPCtrl.Designer.cs">
+      <DependentUpon>DEPCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="documentsToPrint\BordereauRemise.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="documentsToPrint\ListControleCB.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="documentsToPrint\DocumentFeuilleDeSoin.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="documentsToPrint\EntentePrealable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="documentsToPrint\PrinterBound.cs" />
+    <Compile Include="FrmAccessREquest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAccessREquest.Designer.cs">
+      <DependentUpon>FrmAccessREquest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAddContact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddContact.designer.cs">
+      <DependentUpon>FrmAddContact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCategories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCategories.Designer.cs">
+      <DependentUpon>FrmCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmChoixCorrespondant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChoixCorrespondant.designer.cs">
+      <DependentUpon>FrmChoixCorrespondant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmChooseCategorie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChooseCategorie.Designer.cs">
+      <DependentUpon>FrmChooseCategorie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDate.designer.cs">
+      <DependentUpon>FrmDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDEP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDEP.Designer.cs">
+      <DependentUpon>FrmDEP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmEditCaisse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEditCaisse.Designer.cs">
+      <DependentUpon>FrmEditCaisse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEditCorrespondant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditCorrespondant.designer.cs">
+      <DependentUpon>frmEditCorrespondant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmEditMutuelle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEditMutuelle.Designer.cs">
+      <DependentUpon>FrmEditMutuelle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLnkCorrespondant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLnkCorrespondant.Designer.cs">
+      <DependentUpon>FrmLnkCorrespondant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPlanTraitementDEP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPlanTraitementDEP.designer.cs">
+      <DependentUpon>frmPlanTraitementDEP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTexte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTexte.designer.cs">
+      <DependentUpon>FrmTexte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUpdateTarifProposition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUpdateTarifProposition.Designer.cs">
+      <DependentUpon>FrmUpdateTarifProposition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWizardCourrierForSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWizardCourrierForSummary.Designer.cs">
+      <DependentUpon>FrmWizardCourrierForSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWizardDevisALaCarte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWizardDevisALaCarte.Designer.cs">
+      <DependentUpon>FrmWizardDevisALaCarte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRmWizardNewComm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRmWizardNewComm.Designer.cs">
+      <DependentUpon>FRmWizardNewComm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRmWizardNewComment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRmWizardNewComment.Designer.cs">
+      <DependentUpon>FRmWizardNewComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRmWizardNewRDV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRmWizardNewRDV.Designer.cs">
+      <DependentUpon>FRmWizardNewRDV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWizardPropositions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWizardPropositions.Designer.cs">
+      <DependentUpon>FrmWizardPropositions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingCircle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LoadingCircle.designer.cs">
+      <DependentUpon>LoadingCircle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Notes\ucNotes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Notes\ucNotes.designer.cs">
+      <DependentUpon>ucNotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SlidingBtn\AbstractRender.cs" />
+    <Compile Include="SlidingBtn\BASButton.cs" />
+    <Compile Include="SlidingBtn\FrmSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SlidingBtn\FrmSelection.Designer.cs">
+      <DependentUpon>FrmSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SlidingBtn\SlidingList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SlidingBtn\SlidingList.Designer.cs">
+      <DependentUpon>SlidingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SlidingBtn\SlindingBtn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SlidingBtn\SlindingBtn.Designer.cs">
+      <DependentUpon>SlindingBtn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SlidingBtn\StandardRenderer.cs" />
+    <Compile Include="TreeViewIcon\AbstractTreeViewRenderer.cs" />
+    <Compile Include="TreeViewIcon\GraphicUtils.cs" />
+    <Compile Include="TreeViewIcon\NoScrollBarListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TreeViewIcon\SelectionFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TreeViewIcon\SelectionFrm.Designer.cs">
+      <DependentUpon>SelectionFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreeViewIcon\StandardTreeViewRenderer.cs" />
+    <Compile Include="TreeViewIcon\trButton.cs" />
+    <Compile Include="TreeViewIcon\TreeViewIcon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TreeViewIcon\TreeViewIcon.Designer.cs">
+      <DependentUpon>TreeViewIcon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreeViewIcon\TreeViewIconCbx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TreeViewIcon\TreeViewIconCbx.designer.cs">
+      <DependentUpon>TreeViewIconCbx.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmAddDents.resx">
+      <DependentUpon>frmAddDents.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BAS\usrChoixPatient.resx">
+      <DependentUpon>usrChoixPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BAS\WizardPraticienAssistantes.resx">
+      <DependentUpon>WizardPraticienAssistantes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChoiceMedical.resx">
+      <DependentUpon>ChoiceMedical.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChoixDentRsx.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ChoixDentRsx.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChoixDents.resx">
+      <DependentUpon>ChoixDents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChoixPatient\FrmChoixPatient.resx">
+      <DependentUpon>FrmChoixPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChoixCabinet.resx">
+      <DependentUpon>frmChoixCabinet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNewActesTraiement.resx">
+      <DependentUpon>FrmNewActesTraiement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmActeTraitement.resx">
+      <DependentUpon>FrmActeTraitement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmChoisxDate.resx">
+      <DependentUpon>FrmChoisxDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDents.resx">
+      <DependentUpon>FrmDents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLocalisationAnatomique.resx">
+      <DependentUpon>FrmLocalisationAnatomique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNewActes.resx">
+      <DependentUpon>FrmNewActes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRmWizardNewComm.resx">
+      <DependentUpon>FRmWizardNewComm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRmWizardNewRDV.resx">
+      <DependentUpon>FRmWizardNewRDV.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="ReportTK-santeclaire.rdlc" />
+    <EmbeddedResource Include="ReportTK-RCC-CMUC.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CtrlEspacement.resx">
+      <DependentUpon>CtrlEspacement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmChoiceMateriel.resx">
+      <DependentUpon>FrmChoiceMateriel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmChoixActes.resx">
+      <DependentUpon>FrmChoixActes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmChoixAutrePersonne.resx">
+      <DependentUpon>FrmChoixAutrePersonne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmChoixCorrespondantParSpe.resx">
+      <DependentUpon>FrmChoixCorrespondantParSpe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CtrlRIB.resx">
+      <DependentUpon>CtrlRIB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAddCodeComptable.resx">
+      <DependentUpon>FrmAddCodeComptable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAddEcheance.resx">
+      <DependentUpon>FrmAddEcheance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmChoixDents.resx">
+      <DependentUpon>FrmChoixDents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRmChoixPraticienAssForCom.resx">
+      <DependentUpon>FRmChoixPraticienAssForCom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChooseCodeCompta.resx">
+      <DependentUpon>frmChooseCodeCompta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRmCreateEch.resx">
+      <DependentUpon>FRmCreateEch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDetailDevisALaCarte.resx">
+      <DependentUpon>FrmDetailDevisALaCarte.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDetailLigneTraitement.resx">
+      <DependentUpon>FrmDetailLigneTraitement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEditTempEcheanceDef.resx">
+      <DependentUpon>FrmEditTempEcheanceDef.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmFinancement.resx">
+      <DependentUpon>FrmFinancement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmImpression.resx">
+      <DependentUpon>FrmImpression.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPointage.resx">
+      <DependentUpon>FrmPointage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRepartition.resx">
+      <DependentUpon>FrmRepartition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRistourne.resx">
+      <DependentUpon>FrmRistourne.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRistourneActeTraitement.resx">
+      <DependentUpon>FrmRistourneActeTraitement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSpecialite.resx">
+      <DependentUpon>FrmSpecialite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmString.resx">
+      <DependentUpon>FrmString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DEPCtrl.resx">
+      <DependentUpon>DEPCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAccessREquest.resx">
+      <DependentUpon>FrmAccessREquest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAddContact.resx">
+      <DependentUpon>FrmAddContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCategories.resx">
+      <DependentUpon>FrmCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmChoixCorrespondant.resx">
+      <DependentUpon>FrmChoixCorrespondant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmChooseCategorie.resx">
+      <DependentUpon>FrmChooseCategorie.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDate.resx">
+      <DependentUpon>FrmDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDEP.resx">
+      <DependentUpon>FrmDEP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEditCaisse.resx">
+      <DependentUpon>FrmEditCaisse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditCorrespondant.resx">
+      <DependentUpon>frmEditCorrespondant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEditMutuelle.resx">
+      <DependentUpon>FrmEditMutuelle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPlanTraitementDEP.resx">
+      <DependentUpon>frmPlanTraitementDEP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTexte.resx">
+      <DependentUpon>FrmTexte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUpdateTarifProposition.resx">
+      <DependentUpon>FrmUpdateTarifProposition.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWizardCourrierForSummary.resx">
+      <DependentUpon>FrmWizardCourrierForSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWizardDevisALaCarte.resx">
+      <DependentUpon>FrmWizardDevisALaCarte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRmWizardNewComment.resx">
+      <DependentUpon>FRmWizardNewComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWizardPropositions.resx">
+      <DependentUpon>FrmWizardPropositions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Notes\ucNotes.resx">
+      <DependentUpon>ucNotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTK-CMUC.rdlc" />
+    <EmbeddedResource Include="ReportTK-contention.rdlc" />
+    <EmbeddedResource Include="ReportTK-invisalign.rdlc" />
+    <EmbeddedResource Include="ReportTK.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SlidingBtn\FrmSelection.resx">
+      <DependentUpon>FrmSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SlidingBtn\SlidingList.resx">
+      <DependentUpon>SlidingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SlidingBtn\SlindingBtn.resx">
+      <DependentUpon>SlindingBtn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeViewIcon\SelectionFrm.resx">
+      <DependentUpon>SelectionFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeViewIcon\TreeViewIcon.resx">
+      <DependentUpon>TreeViewIcon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeViewIcon\TreeViewIconCbx.resx">
+      <DependentUpon>TreeViewIconCbx.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="bin\Debug\DataSetTK.xsc">
+      <DependentUpon>DataSetTK.xsd</DependentUpon>
+    </None>
+    <None Include="bin\Debug\DataSetTK.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetTK.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="bin\Debug\DataSetTK.xss">
+      <DependentUpon>DataSetTK.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetTK.xsc">
+      <DependentUpon>DataSetTK.xsd</DependentUpon>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DataSetTK.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetTK2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DataSetTK.xss">
+      <DependentUpon>DataSetTK.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\FSVerso.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FSRecto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DEPRecto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DEPVerso.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\101184-bouton-remise-pdn1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trashbin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trashbin.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AdulteEnfant.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\denture mixte.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SchemaDentaire.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Espacement.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Espacement1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BasCommon_BL\BasCommon_BL.csproj">
+      <Project>{582662f6-833c-46b9-8236-4ed765a707ec}</Project>
+      <Name>BasCommon_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BasCommon_BO\BasCommon_BO.csproj">
+      <Project>{763b2981-511b-447d-84f4-55916b5db254}</Project>
+      <Name>BasCommon_BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FirebirdSql.Data.FirebirdClient\FirebirdSql.Data.FirebirdClient.csproj">
+      <Project>{326a24f9-6259-45db-835c-18db80728460}</Project>
+      <Name>FirebirdSql.Data.FirebirdClient</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GoSign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nextB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

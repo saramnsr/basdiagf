@@ -1,0 +1,426 @@
+﻿﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using BasCommon_BO;
+using BasCommon_BL;
+using Newtonsoft.Json.Linq;
+
+namespace BasCommon_BL.Builders
+{
+
+    public static class BuildComClinique
+    {
+
+
+        public static CommDentAExtraire BuildCommDentAExtraire(DataRow r)
+        {
+            CommDentAExtraire com = new CommDentAExtraire();
+            com.dents = Convert.ToString(r["DENTS"]);
+            com.IdComm = Convert.ToInt32(r["id_comm"]);
+
+            return com;
+        }
+
+        public static CommAutrePersonne BuildCommAutrePersonne(DataRow r)
+        {
+            CommAutrePersonne com = new CommAutrePersonne();
+            com.IdCorrespondant = Convert.ToInt32(r["ID_CORRESPONDANT"]);
+            com.Nom = Convert.ToString(r["per_nom"]).Trim();
+            com.Prenom = Convert.ToString(r["per_prenom"]).Trim();
+            com.IdComm = Convert.ToInt32(r["id_comm"]);
+
+            return com;
+        }
+
+
+        public static CommPhoto BuildCommPhotos(DataRow r)
+        {
+            CommPhoto com = new CommPhoto();
+
+            com.typephoto = (CommPhoto.TypePhoto)Convert.ToInt32(r["TYPEPHOTO"]);
+            com.IdComm = Convert.ToInt32(r["id_comm"]);
+            return com;
+        }
+
+        public static CommRadio BuildCommRadio(DataRow r)
+        {
+            CommRadio com = new CommRadio();
+
+            com.typeradio = (CommRadio.TypeRadio)Convert.ToInt32(r["TYPERADIO"]);
+            com.IdComm = Convert.ToInt32(r["id_comm"]);
+            return com;
+        }
+
+        public static CommActes BuildCommActesJson(JObject r)
+        {
+            CommActes com = new CommActes();
+
+            com.IdActe = Convert.ToInt32(r["id_acte"]);
+
+
+            com.IdComm = Convert.ToInt32(r.GetValue("id_COMM"));
+            com.ShortLib = Convert.ToString(r.GetValue("acte")["shortlib"]);
+            com.LibActe = Convert.ToString(r.GetValue("acte")["acte_LIBELLE"]);
+            com.acte_couleur = r.GetValue("acte")["acte_COULEUR"] == null ? System.Drawing.Color.Black : System.Drawing.ColorTranslator.FromWin32(Convert.ToInt32(r.GetValue("acte")["acte_COULEUR"]));
+            com.acte_durestd = Convert.ToInt32(r.GetValue("acte")["acte_DURESTD"]);
+            com.Qte = Convert.ToInt32(r["qte"]);
+            com.prix_acte = Convert.ToDouble(r["montantavantremise"]);
+            com.prix_traitement = Convert.ToDouble(r["montant"]);
+            com.LibActe_facture = Convert.ToString(r.GetValue("acte")["acte_LIBELLE_FACTURE"]);
+            com.LibActe_estimation = Convert.ToString(r.GetValue("acte")["acte_LIBELLE_ESTIMATION"]);
+            string a = Convert.ToString(r["type_ACTE_SUPP"]);
+
+            com.typeActeSupp = a;
+            try
+            {
+                com.desactive = r["desactive"].ToString() == String.Empty ? false : Convert.ToBoolean(Convert.ToInt32(r["desactive"]));
+            }
+            catch (Exception e)
+            {
+                com.desactive = r["desactive"].ToString() == String.Empty ? false : Convert.ToBoolean(Convert.ToString(r["desactive"]));
+
+            }
+            com.cotation = Convert.ToString(r.GetValue("acte")["cotation"]).Trim();
+            com.coefficient = Convert.ToInt32(r.GetValue("acte")["coefficient"]);
+            com.nomenclature = Convert.ToString(r.GetValue("acte")["nomenclature"]).Trim();
+            com.rabais = r["rabais"].ToString() == "" ? 0 : Convert.ToInt32(r["rabais"]);
+            com.nombre_points = Convert.ToString(r.GetValue("acte")["nombre_POINTS"]);
+            com.echeancestemp = r["rabais"].ToString() == "" ? 0 : Convert.ToInt32(r["echeance"]);
+            // com.idencaissement = r["ID_ENCAISSEMENT"] is DBNull ? 0 : Convert.ToInt32(r["ID_ENCAISSEMENT"]);
+
+            return com;
+        }
+
+
+
+
+
+
+        public static CommMateriel BuildCommMateriel(DataRow r)
+        {
+            CommMateriel com = new CommMateriel();
+
+            com.IdBaseProduit = r["ID_BASEPRODUIT"] is DBNull ? -1 : Convert.ToInt32(r["ID_BASEPRODUIT"]);
+            com.Libelle = Convert.ToString(r["MATERIEL_LIBELLE"]).Trim();
+            com.Qte = Convert.ToInt32(r["QTE"]);
+            com.ShortLib = Convert.ToString(r["SHORTLIB"]).Trim();
+            com.IdComm = Convert.ToInt32(r["id_comm"]);
+            com.idMateriel = Convert.ToInt32(r["id_materiel"]);
+            com.materiel_couleur = r["materiel_couleur"] is DBNull ? System.Drawing.Color.Black : System.Drawing.ColorTranslator.FromWin32(Convert.ToInt32(r["materiel_couleur"]));
+            com.prix_materiel = r["MONTANTAVANTREMISE"] is DBNull ? 0 : Convert.ToDouble(r["MONTANTAVANTREMISE"]);
+            com.prix_materiel_traitement = r["MONTANT"] is DBNull ? 0 : Convert.ToDouble(r["MONTANT"]);
+            com.echeancestemp = r["ECHEANCE"] is DBNull ? -1 : Convert.ToInt32(r["ECHEANCE"]);
+            try
+            {
+                com.desactive = r["desactive"].ToString() == String.Empty ? false : Convert.ToBoolean(Convert.ToInt32(r["desactive"]));
+            }
+            catch (Exception e)
+            {
+                com.desactive = r["desactive"].ToString() == String.Empty ? false : Convert.ToBoolean(Convert.ToString(r["desactive"]));
+
+            }
+            com.idencaissement = r["ID_ENCAISSEMENT"] is DBNull ? 0 : Convert.ToInt32(r["ID_ENCAISSEMENT"]);
+            com.rabais = r["rabais"] is DBNull ? 0 : Convert.ToInt32(r["rabais"]);
+            return com;
+        }
+
+        public static CommMateriel BuildCommMaterielJson(JObject r)
+        {
+            CommMateriel com = new CommMateriel();
+
+            com.IdBaseProduit = Convert.ToInt32(r["id_BASEPRODUIT"]);
+            com.idMateriel = Convert.ToInt32(r["id_MATERIEL"]);
+            Materiel a = MaterielsMgmt.Materiels.Find(w => w.id_materiel == com.idMateriel);
+            if (a != null)
+            {
+                com.Libelle = a.materiel_libelle;
+                com.ShortLib = a.materiel_shortlib;
+                com.materiel_couleur = a.materiel_couleur;
+
+            }
+
+            com.Qte = Convert.ToInt32(r["qte"]);
+
+            com.IdComm = r["id_COMM"].ToString() == "" ? -1 : Convert.ToInt32(r["id_COMM"]);
+
+            com.prix_materiel = r["montantavantremise"].ToString() == "" ? 0 : Convert.ToDouble(r["montantavantremise"]);
+            com.prix_materiel_traitement = r["montant"].ToString() == "" ? 0 : Convert.ToDouble(r["montant"]);
+            com.echeancestemp = r["rabais"].ToString() == "" ? 0 : Convert.ToInt32(r["echance"]);
+            try
+            {
+                com.desactive = r["desactive"].ToString() == "" ? false : Convert.ToBoolean(Convert.ToInt32(r["desactive"]));
+            }
+            catch (Exception e)
+            {
+                com.desactive = r["desactive"].ToString() == "" ? false : Convert.ToBoolean(Convert.ToString(r["desactive"]));
+            }
+
+            com.idencaissement = r["id_ENCAISSEMENT"].ToString() == "" ? -1 : Convert.ToInt32(r["id_ENCAISSEMENT"]);
+            com.rabais = r["rabais"].ToString() == "" ? 0 : Convert.ToInt32(r["rabais"]);
+            return com;
+        }
+        public static CommClinique BuildCommCliniqueJson(JObject r)
+        {
+            double prix = 0;
+            CommClinique com = new CommClinique();
+
+            com.Id = Convert.ToInt32(r.GetValue("id"));
+            com.IdPraticien = r.GetValue("id_PRATICIEN").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_PRATICIEN"));
+            com.IdAssistante = r.GetValue("id_ASSISTANTE").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_ASSISTANTE"));
+            com.IdSecretaire = r.GetValue("id_SECRETAIRE").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_SECRETAIRE"));
+            com.IdActe = r.GetValue("id_ACTE").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_ACTE"));
+            com.Hygiene = r.GetValue("hygiene").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("hygiene"));
+            com.IdRDV = r.GetValue("id_RDV").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_RDV"));
+            com.IdPatient = r.GetValue("id_PATIENT").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_PATIENT"));
+            // com.date = r.GetValue("date_COMM").ToString() == String.Empty ? null : (DateTime?)Convert.ToDateTime(r.GetValue("date_COMM"));
+            com.Commentaire = Convert.ToString(r.GetValue("commentaires"));
+            com.CommentaireAFaire = Convert.ToString(r.GetValue("commentairesafairr"));
+            com.NbJours = r.GetValue("nbjours").ToString() == "" ? 0 : Convert.ToInt32(r.GetValue("nbjours"));
+            com.NbMois = r.GetValue("nbmois").ToString() == "" ? 0 : Convert.ToInt32(r.GetValue("nbmois"));
+            com.IdScenario = r.GetValue("id_SCENARIO").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_SCENARIO"));
+            com.etat = r.GetValue("etat").ToString() == "" ? (com.date == null ? CommClinique.EtatCommentaire.Prevus : CommClinique.EtatCommentaire.Termine) : (CommClinique.EtatCommentaire)Convert.ToInt32(r.GetValue("etat"));
+            com.DatePrevisionnnelle = r.GetValue("dateprevisionnelle").ToString() == "" ? null : (DateTime?)Convert.ToDateTime(r.GetValue("dateprevisionnelle"));
+            try
+            {
+                com.desactive = r["desactive"].ToString() == "" ? false : Convert.ToBoolean(Convert.ToInt32(r["desactive"]));
+            }
+            catch (Exception e)
+            {
+                com.desactive = r["DESACTIVE"] == null ? false : Convert.ToBoolean(Convert.ToString(r["DESACTIVE"]));
+            }
+            com.isfulltime = r["isfulltime"].ToString() == "" ? false : Convert.ToBoolean(Convert.ToInt32(r["isfulltime"]));
+
+            com.IdSemestre = r.GetValue("id_SEMESTRE").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_SEMESTRE"));
+            com.IdParentComment = r.GetValue("id_PARENTCOMMENT").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_PARENTCOMMENT"));
+            com.IsDateDeRef = Convert.ToString(r.GetValue("isdatederef")) == "T" || Convert.ToString(r.GetValue("isdatederef")) == "Y";
+            try
+            {
+                com.isfulltime = r["isfulltime"].ToString() == "" ? false : Convert.ToBoolean(Convert.ToInt32(r["isfulltime"]));
+            }
+            catch (Exception e)
+            {
+                com.desactive = r["isfulltime"] == null ? false : Convert.ToBoolean(Convert.ToString(r["isfulltime"]));
+            }
+            
+            com.modecreation= String.IsNullOrEmpty(r.GetValue("modecreation").ToString()) ? CommClinique.ModeCreation.Auto : (CommClinique.ModeCreation)Convert.ToInt32(r.GetValue("modecreation"));
+            
+            
+            com.rabais = r.GetValue("rabais").ToString() == "" ? 0 : Convert.ToInt32(r.GetValue("rabais"));
+            com.dents = r.GetValue("dents")==null || r.GetValue("dents").ToString() == "" ? "" : Convert.ToString(r.GetValue("dents"));
+
+            //com.echeancestemp = MgmtDevis.get_tempecheancescc_TK(com);
+
+            // foreach (BaseTempEcheanceDefinition bted in com.echeancestemp)
+            // {
+            //     prix = prix + bted.Montant;
+            // }
+            com.echeancestemp = new List<TempEcheanceDefinition>();
+            com.ActesSupp = new List<CommActes>();
+            com.Radios = new List<CommActes>();
+            com.photos = new List<CommActes>();
+            com.prix = prix;
+            com.praticien = UtilisateursMgt.getUtilisateur(com.IdPraticien);
+            com.Assistante = UtilisateursMgt.getUtilisateur(com.IdAssistante);
+
+            com.Acte = com.IdActe < 1 ? null : BasCommon_BL.ActesMgmt.Actes.Find(x => x.id_acte == com.IdActe);
+            if (com.Acte != null) com.Acte.Clone();
+                        
+            com.prix_traitement = r.GetValue("montant").ToString() == "" ? 0 : Convert.ToDouble(r.GetValue("montant"));
+            
+            if(com.Acte != null)
+                com.Acte.quantite = String.IsNullOrEmpty(r["qte_ACTE"].ToString())  ? "0" : r["qte_ACTE"].ToString();
+            
+            com.idNumLogiciel = r.GetValue("idnumlogiciel").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("idnumlogiciel"));
+            com.idDroit = r.GetValue("id_DROIT").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_DROIT"));
+            com.idGauche = r.GetValue("id_GAUCHE").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_GAUCHE"));
+            com.echeance = r.GetValue("echeance").ToString() == "" ? 0 : Convert.ToInt32(r.GetValue("echeance"));
+            com.idTour = r.GetValue("id_TOUR").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_TOUR"));
+            com.idTim = r.GetValue("id_TIM").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_TIM"));
+            com.idChgt = r.GetValue("id_CHGT").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_CHGT"));
+            com.idBlanchiment = r.GetValue("id_BLANCHIMENT").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_BLANCHIMENT"));
+            com.idDiaporama = r.GetValue("id_DIAPORAMA").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_DIAPORAMA"));
+            com.idAccelerateur = r.GetValue("id_ACCELERATEUR").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("id_ACCELERATEUR"));
+            com.iDPortGouttier = r.GetValue("idPort")==null || r.GetValue("idPort").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("idPort"));
+
+            com.Vu = Convert.ToString(r.GetValue("vu")).Trim();
+            com.Donne = Convert.ToString(r.GetValue("donne")).Trim();
+
+            com.Materiels = new List<CommMateriel>();
+            //MgmtCommentairesFaitAFaire.GetMateriels(com);
+            return com;
+        }
+        public static RappelleActe BuildRappelActe(JObject r)
+        {
+            RappelleActe com = new RappelleActe();
+
+            com.idRdv = Convert.ToInt32(r.GetValue("id"));
+            com.idPatient = r.GetValue("idPatient").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("idPatient"));
+            com.patient = r.GetValue("patient").ToString() == "" ? "" : Convert.ToString(r.GetValue("patient"));
+            com.datePrevisionnel = Convert.ToDateTime(r.GetValue("datePrevesionnel"));
+
+            com.idActe = r.GetValue("idActe").ToString() == "" ? -1 : Convert.ToInt32(r.GetValue("idActe"));
+          
+            com.acte =  BasCommon_BL.ActesMgmt.Actes.Find(x => x.id_acte == com.idActe);
+            return com;
+        }
+        public static CommClinique BuildCommClinique(DataRow r)
+        {
+            double prix = 0;
+            CommClinique com = new CommClinique();
+
+
+            com.Id = Convert.ToInt32(r["ID"]);
+            com.IdPraticien = r["ID_PRATICIEN"] is DBNull ? -1 : Convert.ToInt32(r["ID_PRATICIEN"]);
+            com.IdAssistante = r["ID_ASSISTANTE"] is DBNull ? -1 : Convert.ToInt32(r["ID_ASSISTANTE"]);
+            com.IdSecretaire = r["ID_SECRETAIRE"] is DBNull ? -1 : Convert.ToInt32(r["ID_SECRETAIRE"]);
+            com.IdActe = r["ID_ACTE"] is DBNull ? -1 : Convert.ToInt32(r["ID_ACTE"]);
+            com.Hygiene = r["Hygiene"] is DBNull ? -1 : Convert.ToInt32(r["Hygiene"]);
+            com.IdRDV = r["ID_RDV"] is DBNull ? -1 : Convert.ToInt32(r["ID_RDV"]);
+            com.IdPatient = r["ID_PATIENT"] is DBNull ? -1 : Convert.ToInt32(r["ID_PATIENT"]);
+            com.date = r["DATE_COMM"] == DBNull.Value ? null : (DateTime?)Convert.ToDateTime(r["DATE_COMM"]);
+            com.Commentaire = Convert.ToString(r["COMMENTAIRES"]);
+            com.CommentaireAFaire = r["COMMENTAIRESAFAIRE"] is DBNull ? "" : Convert.ToString(r["COMMENTAIRESAFAIRE"]);
+            com.Hygiene = r["Hygiene"] is DBNull ? -1 : Convert.ToInt32(r["Hygiene"]);
+            com.NbJours = r["NBJOURS"] is DBNull ? 0 : Convert.ToInt32(r["NBJOURS"]);
+            com.NbMois = r["NBMOIS"] is DBNull ? 0 : Convert.ToInt32(r["NBMOIS"]);
+            com.IdScenario = r["Id_Scenario"] is DBNull ? -1 : Convert.ToInt32(r["Id_Scenario"]);
+            com.etat = r["Etat"] is DBNull ? (com.date == null ? CommClinique.EtatCommentaire.Prevus : CommClinique.EtatCommentaire.Termine) : (CommClinique.EtatCommentaire)Convert.ToInt32(r["Etat"]);
+            com.DatePrevisionnnelle = r["DATEPREVISIONNELLE"] is DBNull ? null : (DateTime?)Convert.ToDateTime(r["DATEPREVISIONNELLE"]);
+            try
+            {
+                com.desactive = r["DESACTIVE"] is DBNull ? false : Convert.ToBoolean(Convert.ToInt32(r["DESACTIVE"]));
+            }
+            catch (Exception e)
+            {
+                com.desactive = r["DESACTIVE"] is DBNull ? false : Convert.ToBoolean(Convert.ToString(r["DESACTIVE"]));
+            }
+            com.IdSemestre = r["Id_Semestre"] is DBNull ? -1 : Convert.ToInt32(r["Id_Semestre"]);
+            com.IdParentComment = r["Id_ParentComment"] is DBNull ? -1 : Convert.ToInt32(r["Id_ParentComment"]);
+            com.IsDateDeRef = r["IsDateDeRef"] is DBNull ? false : Convert.ToString(r["IsDateDeRef"]) == "T" || Convert.ToString(r["IsDateDeRef"]) == "Y";
+            com.modecreation = r["modecreation"] is DBNull ? CommClinique.ModeCreation.Auto : (CommClinique.ModeCreation)Convert.ToInt32(r["modecreation"]);
+            com.rabais = r["rabais"] is DBNull ? 0 : Convert.ToInt32(r["rabais"]);
+            com.isfulltime = r["isfulltime"] is DBNull ? false : Convert.ToString(r["isfulltime"]) == "T" || Convert.ToString(r["isfulltime"]) == "Y";
+
+            com.echeancestemp = MgmtDevis.get_tempecheancescc_TK(com);
+
+            foreach (BaseTempEcheanceDefinition bted in com.echeancestemp)
+            {
+                prix = prix + bted.Montant;
+            }
+            com.prix = prix;
+            com.praticien = UtilisateursMgt.getUtilisateur(com.IdPraticien);
+            com.Assistante = UtilisateursMgt.getUtilisateur(com.IdAssistante);
+            com.Acte = (Acte)BasCommon_BL.ActesMgmt.getActe(com.IdActe).Clone();
+            //com.Acte.prix_acte = r["MONTANTAVANTREMISE"] is DBNull ? 0 : Convert.ToDouble(r["MONTANTAVANTREMISE"]);
+            //       com.ActesSupp = MgmtCommentairesFaitAFaire.GetActesSupp_tk(com.Id,com.IdPatient, "");
+            // com.Radios = MgmtCommentairesFaitAFaire.GetActesSupp_tk(com.Id, com.IdPatient, "R");
+            MgmtCommentairesFaitAFaire.GetActesSupp(com, "P");
+            MgmtCommentairesFaitAFaire.GetActesSupp(com, "R");
+            MgmtCommentairesFaitAFaire.GetActesSupp(com);
+            //  MgmtCommentairesFaitAFaire.GetCommCliniqueAutrePersonne(com);
+            //MgmtCommentairesFaitAFaire.GetCommDentAExtraire(com);
+            com.prix_traitement = r["MONTANT"] is DBNull ? 0 : Convert.ToDouble(r["MONTANT"]);
+            com.Acte.quantite = r["QTE_ACTE"] is DBNull ? "0" : Convert.ToString(r["QTE_ACTE"]);
+            com.echeance = r["ECHEANCE"] is DBNull ? 0 : Convert.ToInt32(r["ECHEANCE"]);
+            com.idTour = r["id_tour"] is DBNull ? 0 : Convert.ToInt32(r["id_tour"]);
+            com.idTim = r["id_tim"] is DBNull ? 0 : Convert.ToInt32(r["id_tim"]);
+            com.idChgt = r["id_chgt"] is DBNull ? 0 : Convert.ToInt32(r["id_chgt"]);
+            com.idNumLogiciel = r["idNumLogiciel"] is DBNull ? 0 : Convert.ToInt32(r["idNumLogiciel"]);
+            com.idDroit = r["id_droit"] is DBNull ? 0 : Convert.ToInt32(r["id_droit"]);
+            com.idGauche = r["id_gauche"] is DBNull ? 0 : Convert.ToInt32(r["id_gauche"]);
+            com.idBlanchiment = r["id_blanchiment"] is DBNull ? 0 : Convert.ToInt32(r["id_blanchiment"]);
+            com.idDiaporama = r["id_diaporama"] is DBNull ? 0 : Convert.ToInt32(r["id_diaporama"]);
+            com.idAccelerateur = r["id_accelerateur"] is DBNull ? 0 : Convert.ToInt32(r["id_accelerateur"]);
+            com.Vu = Convert.ToString(r["Vu"]).Trim();
+            com.Donne = Convert.ToString(r["DONNE"]).Trim();
+
+            MgmtCommentairesFaitAFaire.GetMateriels(com);
+            return com;
+        }
+
+        public static CommActes BuildCommActes(JObject obj)
+        {
+            //CommClinique cc = BasCommon_BL.MgmtCommentairesFaitAFaire.GetCommCliniqueByID(com.IdComm);
+
+
+            CommActes com = new CommActes();
+
+            com.IdComm = obj["idComm"].ToString() == "" ? -1 : Convert.ToInt32(obj["idComm"]);
+            com.IdActe = Convert.ToInt32(obj["idActe"]);
+            com.idencaissement = obj["idEncaissement"].ToString() == "" ? -1 : Convert.ToInt32(obj["idEncaissement"]);
+            com.echeancestemp = obj["idEcheance"].ToString() == "" ? -1 : Convert.ToInt32(obj["idEcheance"]);
+
+            Acte a = BasCommon_BL.ActesMgmt.Actes.Find(x => x.id_acte == com.IdActe);
+
+            if (a != null)
+            {
+                com.LibActe = a.acte_libelle;
+                com.LibActe_estimation = a.acte_libelle_estimation;
+                com.acte_couleur = a.acte_couleur;
+                com.acte_durestd = a.acte_durestd;
+                com.LibActe_facture = a.acte_libelle_facture;
+                com.cotation = a.cotation;
+                com.coefficient = a.coefficient;
+                com.nomenclature = a.nomenclature;
+                com.nombre_points = a.nombre_points;
+
+            }
+
+            com.Qte = obj["quantite"] == null || obj["quantite"].ToString() == "" ? 0 : Convert.ToInt32(obj["quantite"]);
+            com.prix_acte = obj["montantAvantRemise"] == null || obj["montantAvantRemise"].ToString() == "" ? 0 : Convert.ToDouble(obj["montantAvantRemise"]);
+            try
+            {
+                com.desactive = obj["desactive"] == null || obj["desactive"].ToString() == "" ? false : Convert.ToBoolean(Convert.ToInt32(obj["desactive"]));
+            }
+            catch (Exception e)
+            {
+                com.desactive = obj["desactive"] == null || obj["desactive"].ToString() == "" ? false : Convert.ToBoolean(Convert.ToString(obj["desactive"]));
+            }
+            com.rabais = obj["rabais"] == null || obj["rabais"].ToString() == "" ? 0 : Convert.ToInt32(obj["rabais"]);
+            com.prix_traitement = obj["montant"] == null || obj["montant"].ToString() == "" ? 0 : Convert.ToDouble(obj["montant"]);
+
+            return com;
+
+        }
+
+        public static CommActes BuildCommActes(DataRow r)
+        {
+            CommActes com = new CommActes();
+
+            com.IdActe = Convert.ToInt32(r["id_acte"]);
+
+
+            com.IdComm = Convert.ToInt32(r["id_comm"]);
+            com.ShortLib = Convert.ToString(r["SHORTLIB"]);
+            com.LibActe = Convert.ToString(r["ACTE_LIBELLE"]);
+            com.acte_couleur = r["acte_couleur"] is DBNull ? System.Drawing.Color.Black : System.Drawing.ColorTranslator.FromWin32(Convert.ToInt32(r["acte_couleur"]));
+            com.acte_durestd = r["acte_durestd"] is DBNull ? 0 : Convert.ToInt32(r["acte_durestd"]);
+            com.Qte = r["QTE"] is DBNull ? 1 : Convert.ToInt32(r["QTE"]);
+            com.prix_acte = r["MONTANTAVANTREMISE"] is DBNull ? 0 : Convert.ToDouble(r["MONTANTAVANTREMISE"]);
+            com.prix_traitement = r["MONTANT"] is DBNull ? 0 : Convert.ToDouble(r["MONTANT"]);
+            com.LibActe_facture = r["ACTE_LIBELLE_FACTURE"] is DBNull ? "" : Convert.ToString(r["ACTE_LIBELLE_FACTURE"]);
+            com.LibActe_estimation = r["ACTE_LIBELLE_ESTIMATION"] is DBNull ? "" : Convert.ToString(r["ACTE_LIBELLE_ESTIMATION"]);
+            try
+            {
+                com.desactive = r["DESACTIVE"] is DBNull ? false : Convert.ToBoolean(Convert.ToInt32(r["DESACTIVE"]));
+            }
+            catch (Exception e)
+            {
+                com.desactive = r["DESACTIVE"] is DBNull ? false : Convert.ToBoolean(Convert.ToString(r["DESACTIVE"]));
+
+            }
+            com.cotation = r["COTATION"] is DBNull ? "" : Convert.ToString(r["COTATION"]).Trim();
+            com.coefficient = r["COEFFICIENT"] is DBNull ? -1 : Convert.ToInt32(r["COEFFICIENT"]);
+            com.nomenclature = r["nomenclature"] is DBNull ? "" : Convert.ToString(r["nomenclature"]).Trim();
+            com.rabais = r["rabais"] is DBNull ? 0 : Convert.ToInt32(r["rabais"]);
+            com.nombre_points = r["NOMBRE_POINTS"] is DBNull ? "0" : Convert.ToString(r["NOMBRE_POINTS"]);
+            com.echeancestemp = r["ECHEANCE"] is DBNull ? 1 : Convert.ToInt32(r["ECHEANCE"]);
+            // com.idencaissement = r["ID_ENCAISSEMENT"] is DBNull ? 0 : Convert.ToInt32(r["ID_ENCAISSEMENT"]);
+
+            return com;
+        }
+
+    }
+}

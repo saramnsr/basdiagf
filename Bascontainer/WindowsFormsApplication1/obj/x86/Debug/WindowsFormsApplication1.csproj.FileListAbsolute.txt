@@ -1,0 +1,33 @@
+C:\Dev\Bascontainer_v14\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Dev\Bascontainer_v14\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Dev\Bascontainer_v14\WindowsFormsApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Dev\Bascontainer_v14\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+C:\Dev\Bascontainer_v14\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Dev\Bascontainer_v14\WindowsFormsApplication1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Dev\Bascontainer_v14\WindowsFormsApplication1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Dev\Bascontainer_v14\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.exe
+C:\Dev\Bascontainer_v14\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.pdb
+E:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+E:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+E:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+E:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+E:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+E:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+E:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.exe
+E:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.pdb
+D:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+D:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+D:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+D:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+D:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+D:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+D:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.exe
+D:\BaseSmile\BaseSmile\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.pdb
+D:\Basmile Mysql\Bascontainer\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+D:\Basmile Mysql\Bascontainer\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+D:\Basmile Mysql\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+D:\Basmile Mysql\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+D:\Basmile Mysql\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+D:\Basmile Mysql\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+D:\Basmile Mysql\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.exe
+D:\Basmile Mysql\Bascontainer\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.pdb

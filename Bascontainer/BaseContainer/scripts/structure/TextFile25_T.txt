@@ -1,0 +1,1055 @@
+CREATE TABLE BAS_CODE_COMPTABLE (
+    CODECOMPTA CHAR(6) NOT NULL,
+    LIBELLE_COMPTA VARCHAR(300) NOT NULL);
+
+delete from bas_code_comptable;
+insert into bas_code_comptable (codecompta, libelle_compta) values ('10', 'Capital et réserve');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('101', 'Capital ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1011', 'Capital souscrit non appelé.');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1012', 'Capital souscrit appelé non versé');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1013', 'Capital souscrit appelé versé');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('10131', 'Capital non amorti');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('10132', 'Capital amorti');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1018', 'Capital souscrit soumis à des réglementation particulière');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('104', 'Primes liées au capital social');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1041', 'Primes d''émission');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1042', 'Primes de fusion');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1043', 'Primes d''apport');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1044', 'Primes de conversion obligatoires en action');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1045', 'bons de souscription d''actions ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('105', 'Écart de réévaluation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1051', 'Réserve spécial de réévaluation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1052', 'Écart de réévaluation libre ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1053', 'Réserve de réévaluation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1055', 'Écart de réévaluation ( autres opérations légale)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1057', 'Autres écart de réévaluation en France');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1058', 'Autres écart de réévaluation à l''étranger');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('106', 'Réserve');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1061', 'Réserve légale');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('10611', 'Réserve légale proprement dite');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('10612', 'Plus-value nette à long termes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1062', 'Réserve indisponible');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1063', 'Réserve statutaire ou contractuelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1064', 'Réserve réglementé');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('10641', 'Plus-value nette à long thermes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('10643', 'Réserve consécutive à l''octroi de subvention d''investissement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('10648', 'Autre réserve réglementé');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1068', 'Autre réserve');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('10681', 'Réserve de propre assureur');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('10688', 'Réserve diverses');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('107', 'Écart d''équivalence');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('108', 'Compte d''exploitation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('109', 'Actionnaire:capital souscrit non appelé');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('11', 'Report à nouveau (solde créditeur ou débiteur)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('110', 'Report à nouveau solde créditeur');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('119', 'Report à nouveau solde débiteur');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('12', 'Résultat de l''exercice (bénéfice ou perte)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('120', 'Résultat de l''exercice bénéfice ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('129', 'Résultat de l''exercice perte');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('13', 'Subvention d''investissement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('131', 'Subvention d''équipement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1311', 'État');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1312', 'Région');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1313', 'Département');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1314', 'Communes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1315', 'Collectivité publique');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1316', 'Entreprise publique');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1317', 'Entreprise et organisme privé');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1318', 'Autre');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('138', 'Autre subvention d''investissement (même ventilation que celle du compte 131)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('139', 'Subvention d''investissement inscrite au compte de résultat');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1391', 'Subvention d''équipement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('13911', 'État');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('13912', 'Région');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('13913', 'Département');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('13914', 'Communes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('13915', 'Collectivité publique');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('13916', 'Entreprise publique');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('13917', 'Entreprise et organisme privé');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('13918', 'Autre');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1398', 'Autre subvention d''investissement (même ventilation que celle du compte 1391)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('14', 'Provision réglementé');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('142', 'Provision réglementé relative aux immobilisations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1423', 'Provision pour reconstruction des gisement miniers et pétroliers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1424', 'Provision pour investissement participation des salariés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('143', 'Provision réglementé relative aux stock');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1431', 'Hausse des prix');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1432', 'Fluctuation des cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('144', 'Provision réglementées relatives aux autre éléments de l''actif');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('145', 'Amortissements dérogatoires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('146', 'Provision spéciale de réévaluation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('147', 'Plue values réinvesties');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('148', 'Autres provision réglementées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('15', 'Provision pour risques et charge');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('151', 'Provision pour risques');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1511', 'Provision pour litige');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1512', 'Provision pour garanties données aux clients');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1513', 'Provision pour perte sur marchés à terme');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1514', 'Provisions pour amendes et pénalités');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1515', 'Provision pour perte de change');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1516', 'Provision pour perte sur un contrat');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1518', 'Autres provisions pour risques');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('153', 'Provisions pour pensions et obligations similaires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('154', 'Provisions pour restructurations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('155', 'Provisions pour impôts ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('156', 'Provisions pour renouvellement des immobilisations (entreprise concessionnaire)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('157', 'Provisions pour charges à repartir sur plusieurs exercices');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1572', 'Provisions grosses réparations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('158', 'Autres provisions pour charges');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1581', 'Provisions pour remises en état');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('16', 'Emprunts et dettes assimilées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('161', 'Emprunts obligataires convertibles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('163', 'Autre emprunts obligataires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('164', 'Emprunts auprès des établissements de crédit');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('165', 'Dépôts et cautionnements reçus');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1651', 'Dépôts');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1655', 'Cautionnement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('166', 'Participation des salariés aux résultats');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1661', 'Comptes bloqués');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('1662', 'Fonds de participation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('20', 'Immobilisations incorporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('201', 'Frais d''établissement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2011', 'Frais de constitution');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2012', 'Frais de premier établissement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('20121', 'Frais de prospection');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('20122', 'Frais de publicité');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2013', 'Frais d''augmentation de capital et opérations diverses (fusion scission transformation)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('203', 'Frais de recherche et développement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('205', 'Concessions et droit similaires, brevets, licences, marque,procédés, logiciels, droit et valeur similaire');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('206', 'Droit au bail');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('207', 'Fond de commercial');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('208', 'Autres immobilisations incorporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21', 'Immobilisation corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('211', 'Terrains');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2111', 'Terrain nus');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2112', 'Terrains aménagés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2113', 'Sous sols et sur sols');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2114', 'Terrain de gisement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21141', 'Carrières');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2115', 'Terrains bâtis');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21151', 'Ensembles immobiliers industriels (A,B,…)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21155', 'Ensembles immobiliers administratifs et commerciaux  (A,B,…)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21158', 'Autres ensembles immobiliers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('211581', 'Affectés aux opérations professionnelles (A,B…)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('211588', 'Affectés aux opérations non professionnelles (A,B…)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2116', 'Compte d''ordre sur immobilisation (art 6 du décret n° 78-737 du 11 juillet 1978)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('212', 'Agencements et aménagements de terrain (même ventilation que celle du compte 211)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('213', 'Constructions');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21311', 'Assembles immobiliers industriels (A,B..)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21315', 'Ensembles immobiliers administratifs et commerciaux (A,B..)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21318', 'Autres ensembles immobiliers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('213181', 'Affecté aux opérations professionnelles (A,B…)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('213188', 'Affecté aux opérations non professionnelles (A,B…)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2135', 'Installations générales Agencement Aménagements des constructions (même ventilation que celle du compte 2131)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2138', 'Ouvrages d''infrastructure');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21381', 'Voies de terre');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21382', 'Voies de fer');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21383', 'Voie d''eau');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21384', 'Barrages');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21385', 'Pistes d''aérodromes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('214', 'Construction sur sol d''autrui (même ventilation que celle du compte 213)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('215', 'Installations techniques, matériels et outillages industriels');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2151', 'Installations complexes spécialisé');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21511', 'Sur sol propre');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21514', 'Sur sol d''autrui');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2153', 'Installation à caractère spécifique');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21531', 'Sur sol propre');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('21534', 'sur sol d''autrui');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2154', 'Matériel industriel');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2155', 'Outillage industriel');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2157', 'Agencement et aménagement du matériel et outillage industriels');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('218', 'Autres immobilisations corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2181', 'Installations générales, agencement aménagement divers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2182', 'Matériel de transport');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2183', 'Matériel de bureau et matériel informatique');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2184', 'Mobilier');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2185', 'Cheptel');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2186', 'Emballages récupérables');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('22', 'Immobilisations mises en concession');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('23', 'Immobilisation en-cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('231', 'Immobilisations corporelles en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2312', 'Terrains');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2313', 'Constructions');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2315', 'Installations techniques, matériels et outillages industriels');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2318', 'Autres immobilisations corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('232', 'Immobilisations incorporelles en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('237', 'Avance et acomptes versés sur immobilisation incorporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('238', 'Avance et acomptes versés sur commandes d''immobilisations corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2382', 'Terrains');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2383', 'Constructions');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2385', 'Installations techniques, matériels et outillages industriels');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2388', 'Autres immobilisations corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('25', 'Parts dans des entreprises liées et créances sur des entreprises liées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('26', 'Participations et créances rattachées à des participations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('261', 'Titre de participation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2611', 'Actions');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2618', 'Autres titres');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('266', 'Autres formes de participation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('267', 'Créances rattachées à des participations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2671', 'Créances rattachées à des participations groupe');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2674', 'Créances rattachées à des participations hors groupe');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2675', 'Versement représentatifs d''apports non capitalisés (appel de fond)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2676', 'Avance consolidable');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2677', 'Autres créances rattachées à des participations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2678', 'Intérêts courus');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('268', 'Créances rattachées à des sociétés en participation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2681', 'Principal');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2688', 'Intérêts courus');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('269', 'Versement restant à effectuer sur titres de participation non libérés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('27', 'Autres immobilisations financière');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('271', 'Titres immobilisés autre que des titres immobilisés de l''activité de porte feuille (droit de propriété)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2711', 'Actions');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2718', 'Autres titres');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('272', 'Titres immobilisés(droit de créance)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2721', 'Obligation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2722', 'Bons');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('273', 'Titres immobilisés de l''activité de port feuille');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('274', 'Prêt');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2741', 'Prêt participatif');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2742', 'Prêt aux associés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2743', 'Prêt aux personnel');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2748', 'Autre prêt');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('275', 'Dépôt et cautionnement versés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2751', 'Dépôt');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2755', 'Cautionnements');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('276', 'Autre créance immobilisée');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2761', 'Créances divers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2768', 'Intérêts courus');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('27682', 'Sur  titres immobilisés (droit de créance)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('27684', 'Sur prêt');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('27685', 'Sur dépôts et cautionnements');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('27688', 'Sur créances diverses');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('277', '(Actions propres ou parts propres)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2771', 'Actions propres ou parts propres');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2772', 'Actions propres ou parts propres en voie d''annulation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('279', 'Versement restant à affecter sur titre immobilisé non libellé');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('28', 'Amortissement des immobilisations ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('280', 'Amortissement des immobilisations incorporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2801', 'Frais d''établissement (même ventilation que celle du compte 201)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2803', 'Frais de recherche et de développement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2805', 'Concessions et droits similaire, brevets, licences, logiciels,droits et valeurs similaires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2807', 'Fond commercial');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2808', 'Autre immobilisation incorporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('281', 'Amortissement des immobilisations corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2811', 'Terrain de gisement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2812', 'Agencement, aménagement de terrains(même ventilation que celle du compte 212)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2813', 'Construction (même ventilation que celle du compte 213)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2814', 'Construction sur sol d''autrui (même ventilation que celle du compte(214)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2815', 'Installation technique, matériel et outillage industriel (m^me ventilation que celle du compte 215)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2818', 'Autres immobilisation corporelle (même ventilation que celle du compte 218)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('282', 'Amortissement des immobilisation mises en concession');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('29', 'Provisions pour dépréciation des immobilisations ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('290', 'Provisions pour dépréciation des immobilisations incorporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2905', 'Marque, procédé et similaire');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2906', 'Droit au bail');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2907', 'Fond commercial');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2908', 'Autre immobilisation incorporel');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('291', 'Provision pour dépréciation des immobilisation corporelles (même ventilation que celle du compte 21)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2911', 'Terrain (autre que terrain de gisement)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('292', 'Provision pour dépréciation des immobilisation mise en concession');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('293', 'Provision pour dépréciation des immobilisation en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2931', 'Immobilisation corporelle en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2932', 'Immobilisation incorporelle en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('296', 'Provision pour dépréciation des participations et créance rattachées à des participations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2961', 'Titres de participations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2966', 'Autre formes de participations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2967', 'Créance rattachées à des participations (même ventilation que celle du compte 267)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2968', 'Créance rattachées à des société en participation (même ventilation que celle que le compte 268)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('297', 'Provision pour dépréciation des autres immobilisation financières');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2971', 'Titres immobilisé autre que les titres immobilisés de l''activité de port feuille droit de propriété (même ventilation que celle du compte 271)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2972', 'Titre immobilisés droit de créance (même ventilation que celle du compte 272)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2973', 'Titre immobilisés de l''activité portefeuille');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2974', 'Prêt (même ventilation que celle du compte 274)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2975', 'Dépôt et cautionnement versés (même ventilation que celle du compte 275)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('2976', 'Autres créances immobilisées (même ventilation que celle du compte 276)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('31', 'Matières premières et fournitures');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('311', 'Matières (groupe A)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('312', 'Matières (groupe B)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('317', 'Fournitures A, B, C');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('32', 'Autres approvisionnements');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('321', 'Matières consommables');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3211', 'Matières (groupe C)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3212', 'Matières (groupe D)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('322', 'Fournitures et consommables');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3221', 'Combustibles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3222', 'Produits d''entretien');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3223', 'Fournitures d''atelier et d''usine');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3224', 'Fournitures de magasin');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3225', 'Fourniture de bureau');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('326', 'Emballages');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3261', 'Emballages perdus');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3265', 'Emballages récupérables non identifiables');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3267', 'Emballage à usage mixte');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('33', 'En cours de production de biens');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('331', 'Produits en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3311', 'Produits en cours P1');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3312', 'Produits en cours P2');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('335', 'Travaux en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3351', 'Travaux en cours P1');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3352', 'Travaux en cours P2');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('34', 'En cours de production de services');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('341', 'Étude en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3411', 'Étude en cours E1');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3412', 'Étude en cours E2');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('345', 'Prestation de service en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3451', 'Prestation de service S1');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3452', 'Prestation de service S2');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('35', 'Stock de produits');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('351', 'Produits intermédiaires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3511', 'Produits intermédiaires ou groupe A');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3512', 'Produits intermédiaires ou groupe B');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('355', 'Produits fini ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3551', 'produits fini ou groupe A');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3552', 'produits fini ou groupe B');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('358', 'Produits résiduels ( ou matière de récupération)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3581', 'Déchets');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3585', 'Rebuts');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3586', 'Matière de récupération');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('36', 'Compte à ouvrir, le cas échéant, sous l''intitulé "stock provenant d''immobilisation"');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('37', 'Stock de marchandise');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('371', 'Marchandise groupe A');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('372', 'Marchandise groupe B');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('38', 'Lorsque l''entité tient un inventaire permanent en comptabilité générale, le compte 38');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('', 'Peut être utilisé pour comptabiliser les stocks en voie d''acheminement, mis en dépôt');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('', 'ou donnés en consignation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('39', 'Provision pour dépréciation des stocks en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('391', 'Provision pour dépréciation des matière première (et fournitures)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3911', 'Matières (groupe A)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3912', 'Matières (groupe B)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3917', 'Fournitures A, B, C');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('392', 'Provision pour dépréciation des autres approvisionnement ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3921', 'Matière consommable (même ventilation que celle du compte  321)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3922', 'Fournitures consommables (même ventilation que celle du compte  322)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3926', 'Emballage (même ventilation que celle du compte 326)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('393', 'Provision pour dépréciation des en cours de production de bien');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3931', 'Produits en cours (même ventilation que celle du compte 331)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3935', 'Travaux en cours (même ventilation que celle du compte 335)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('394', 'Provision pour dépréciation des en cours de production de services');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3941', 'Étude en cours (même ventilation que celle du compte 341)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3945', 'Prestation de service en cours (même ventilation que celle que le compte 345)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('395', 'Provision pour dépréciation des stocks produits');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3951', 'Produits intermédiaires (même ventilation que celle du compte 351)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3955', 'Produits fini ( même ventilation que celle du compte 355)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('397', 'Provision pour dépréciation des stocks de marchandises');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('3971', 'Marchandise groupe A');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('397', 'Marchandise groupe B');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('411', 'Compte Client');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4287', 'Produits à recevoir');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('43', 'Sécurité sociale et autres organismes sociaux');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('431', 'Sécurité sociale ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('437', 'Autre organismes sociaux');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('438', 'Organismes sociaux charges à payer et produits à recevoir');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4382', 'Charges sociales sur congés payer');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4386', 'Autre charges à payer');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4387', 'Produits à recevoir');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44', 'État et autres collectivités publiques');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('441', 'État subventions à recevoir');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4411', 'Subventions d''investissement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4417', 'Subventions d''exploitation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4418', 'Subventions d''équilibre');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4419', 'Avances sur subventions');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('442', 'État impôts et taxes recouvrables sur des tiers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4424', 'Obligataires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4425', 'Associés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('443', 'opérations particulières avec l''état les collectivités publiques les organismes internationaux');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4431', 'Créance sue l''état résultant de la suppression de la règle du décalage d''un mois en matière de TVA');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4438', 'Intérêts courus sur créances figurant au compte 4431');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('444', 'État impôts sur les bénéfices');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('445', 'État taxes sur le chiffre d''affaires ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4452', 'TVA intracommunautaire');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4455', 'Taxes sur le chiffre d''affaires à décaisser');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44551', 'TVA à décaisser');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44558', 'Taxes assimilées à la TVA');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4456', 'Taxe sur le chiffre d''affaire déductible');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44562', 'TVA sur immobilisation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44563', 'TVA transférée par d''autre entreprises');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44566', 'TVA sur autre biens et services');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44567', 'Crédit de TVA à reporter');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44568', 'Taxes assimilées à la TVA');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4457', 'Taxe sur le chiffre d''affaire collecté par l''entreprise');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44571', 'TVA collectée');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44578', 'Taxes assimilées à la TVA');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4458', 'Taxes sur le chiffre d''affaires à régulariser ou en attente');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44581', 'Acompte régime simplifié d''imposition');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44582', 'Acompte régime du forfait');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44583', 'Remboursement de taxes sur le chiffre d''affaires demandé');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44584', 'TVA récupérée d''avance');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44586', 'Taxes sur le chiffre d''affaire sur facture non parvenues');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('44587', 'Taxes sur le chiffre d''affaire sur facture à établir');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('446', 'Obligations cautionnées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('447', 'Autres impôts taxes et versement assimilés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('448', 'État charges à payer et produits à recevoir');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4482', 'Charges fiscales sur congés à payer');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4486', 'Charges à payer');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4487', 'Produits à recevoir');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('45', 'Groupes et associés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('451', 'Groupes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('455', 'Associés comptes courants');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4551', 'Principal');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4558', 'Intérêts courus ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('456', 'Associés opération sur le capital');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4561', 'Associés comptes d''apport en société');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('45611', 'Apport en nature');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('45615', 'Apport en numéraire');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4562', 'Apporteurs capital appelé non versé');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('45621', 'Actionnaires capital souscrit et appelé non versé');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('45625', 'Associés capital souscrit et appelé non versé');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4563', 'Associés versement reçus sur augmentation de capital');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4564', 'Associés versements anticipés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4566', 'Actionnaires défaillants');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('456', 'Associés capital à rembourser');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('457', 'Associés dividendes à payer');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('458', 'Associés opération faites en commun et en GIE');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4581', 'Opération courantes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4588', 'Intérêts courus');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('46', 'Débiteurs divers et créditeurs divers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('462', 'Créances sur sessions d''immobilisations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('464', 'Dettes sue acquisitions de valeurs mobilières de placement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('465', 'Créances sur  cession de valeurs mobilières de placement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('467', 'Autre comptes débiteurs ou créditeurs');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('468', 'Divers charges à payer et produits à recevoir');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4686', 'Charges à payer');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4687', 'Produits à recevoir');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('47', 'Compte transitoires un d''attente');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('471', 'Compte d''attente');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('472', 'Compte d''attente');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('473', 'Compte d''attente');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('474', 'Compte d''attente');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('475', 'Compte d''attente');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('476', 'Différences de conversion actif');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4761', 'Diminution des créances');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4762', 'Augmentation des dettes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4768', 'Différence compensées par couverture de charge');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('477', 'Différence de convention passif');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4771', 'Augmentations des créances');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4772', 'Diminutions des dettes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4778', 'Différence compensées par couverture de change');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('478', 'Autre comptes transitoires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('48', 'Compte de régularisation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('481', 'Charges à repartir sur plusieurs exercices');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4811', 'Charges différées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4812', 'Frais d''acquisition des immobilisations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4816', 'Frais d''émission des emprunts');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4818', 'Charges à étaler');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('486', 'Charges constatées d''avance');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('487', 'Produits constatés d''avance');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('488', 'Compte de répartition périodique des charges et des produits');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4886', 'Charges');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4887', 'Produits');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('49', 'Provisions pour dépréciation des comptes de tiers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('491', 'Provisions pour dépréciation des comptes clients');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('495', 'Provisions pour dépréciation des comptes du groupe et des associés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4951', 'Compte du groupe');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4955', 'Compte courants des associés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4958', 'Opéra Opérations faites en commun et en GIE');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('496', 'Provisions pour dépréciation des comptes de débiteurs divers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4962', 'Créances sur cessions d''immobilisations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4965', 'Créances sur cessions de valeurs mobilières de placement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('4967', 'Autres comptes débiteurs');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('50', 'Valeurs mobilières de placement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('501', 'Part dans des entreprises liées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('502', 'Action propre');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('503', 'Action  ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5031', 'Titre cotés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5035', 'Titre non cotés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('504', 'Autre titre conférant un droit de propriété');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('505', 'Obligations et bons émis par la société et rattaché par elle');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('506', 'Obligations  ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5061', 'Titres cotés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5065', 'Titres non cotés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('507', 'Bons du trésor et bons de caisse à court terme');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('508', 'Autre s valeurs mobilières de placement et autres créances assimilées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5081', 'Autres valeurs mobilières');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5082', 'Bons de souscription');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5088', 'Intérêts courus sur obligations, bons et valeurs assimilées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('509', 'Versements restant à effectuer sur valeurs mobilières de placement non libérées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('51', 'Banques, établissement financier et assimilés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('511', 'Valeurs à l''encaissement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5111', 'Coupons échus à l''encaissement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5112', 'Chèque à encaisser');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5113', 'Effets à l''encaissement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5114', 'Effets à l''escompte');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('512', 'Banque  ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5121', 'Compte en monnaie nationale');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5124', 'Compte en devises');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('514', 'Chèque postaux');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('515', 'Caisse du trésor et des établissements publics');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('516', 'Société de bourse');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('517', 'Autre organismes financiers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('518', 'Intérêts courus ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5181', 'Intérêts courus à payer');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5188', 'Intérêts courus à recevoir');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('519', 'Concours bancaires courants');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5191', 'Crédit de mobilisation de créances commercial (CMCC)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5193', 'Mobilisation de créances nées à l''étranger');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5198', 'Intérêts courus sur concours bancaires courants');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('52', 'Instrument de trésorerie');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('53', 'Caisse  ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('531', 'Caisse siège social');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5311', 'Caisse en monnaie nationale');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5314', 'Caisse en devise');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('532', 'Caisse succursale (ou usine A)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('533', 'Caisse succursale (ou usine B)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('54', 'Régies d''avances et accréditifs');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('58', 'Virement internes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('59', 'Provisions pour dépréciation des comptes financiers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('590', 'Provisions pour dépréciation des valeur mobilières de placement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5903', 'Actions');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5904', 'Autre titre conférant un droit de propriété');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5906', 'Obligations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('5908', 'Autre valeurs mobilière de placement et créances assimilées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('60', 'Achats sauf 603');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('601', 'Achats stockés matières premières et fournitures');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6011', 'Matières (ou groupe)A');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6012', 'Matières (ou groupe)B');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6017', 'Fournitures (A,B,C)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('602', 'Achats stockés autres approvisionnements');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6021', 'Matières consommables');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('60211', 'Matières (ou groupe)C');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('60212', 'Matières (ou groupe)D');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6022', 'Fournitures consommables');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('60221', 'Combustibles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('60222', 'Produits d''entretien');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('60223', 'Fournitures d''atelier et d''usine');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('60224', 'Fournitures de magasin');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('60225', 'Fournitures de bureau');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6026', 'Emballages');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('60261', 'Emballages perdus');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('60265', 'Emballages récupérables non identifiables');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('60267', 'Emballages à usage mixte');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('603', 'Variation des stocks (approvisionnement et marchandises)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6031', 'Variation des stocks de matières premières  ( et fournitures)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6032', 'Variation des stocks des autres approvisionnements');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6037', 'Variation des stock de marchandises');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('604', 'Achats d''études et prestations de services');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('605', 'Achats de matériel, équipements et travaux');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('606', 'Achats non stockés de matières et fournitures');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6061', 'Fournitures non stockables (eau énergie…)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6063', 'Fournitures d''entretien et de petit équipement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6064', 'Fournitures administratives');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6068', 'Autres matières et fournitures');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('607', 'Achats de marchandises');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6071', 'Marchandise (ou groupe)A');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6072', 'Marchandise (ou groupe)A');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('608', 'Compte réservé, le cas échéant, à la récapitulation des frais accessoires incorporés aux achats');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('609', 'Rabais remises ristournes obtenus sur achats');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6091', 'De matières premières et fournitures');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6092', 'D''autre approvisionnements stockés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6094', 'D''études et de prestation de services');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6095', 'De matériel équipements et travaux');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6096', 'D''approvisionnements non stockés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6097', 'De marchandises');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6098', 'Rabais remises ristournes non affectés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('61/62', 'Autres charges externes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('61', 'services extérieurs');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('611', 'sous traitante générale');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('612', 'Redevance de crédit-bail');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6122', 'Crédit-bail mobilier');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6125', 'Crédit-bail immobilier');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('613', 'Locations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6132', 'Locations immobilières ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6135', 'Locations mobilières');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6136', 'malis sur emballages');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('614', 'Charges locatives et de copropriété');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('615', 'Entretien et réparations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6152', 'Sur biens immobiliers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6155', 'Sur biens mobiliers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6156', 'Maintenance');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('616', 'Primes d''assurances');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6161', 'Multirisques');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6162', 'Assurances obligatoires dommage construction');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6163', 'Assurance transport');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('61636', 'Sur achats');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('61636', 'Sur ventes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('61638', 'Sur autres biens');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6164', 'Risques d''exploitation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6165', 'Insolvabilité clients');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('617', 'Études de recherches');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('618', 'Divers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6181', 'Documentation générale');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6183', 'Documentation technique');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6185', 'Frais de colloques, séminaires, conférences');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('619', 'Rabais, remises et ristournes obtenus sur service extérieurs');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('62', 'Autres services extérieurs');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('621', 'Personnel extérieur à l''entreprise');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6211', 'Personnel intérimaire');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6214', 'Personnel détaché ou prêté à l''entreprise');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('622', 'Rémunérations d''intérimaires et honoraires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6221', 'Commissions et courtages sur achats');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6222', 'Commissions et courtages sur ventes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6224', 'Rémunérations transitaires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6225', 'Rémunération d''affacturage');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6226', 'Honoraires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6227', 'Frais d''actes et de contentieux');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6228', 'Divers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('623', 'Publicité, publications relations publiques');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6231', 'Annonces et insertions');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6232', 'Échantillons');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6233', 'Foires et expositions');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6234', 'Cadeaux à la clientèle');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6235', 'Primes  ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6236', 'Catalogues et imprimés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6237', 'Publications');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6238', 'Divers (pourboires, dons, courants…)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('624', 'Transports de biens et transports collectifs du personnel');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6241', 'Transports sur achats');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6242', 'Transports sur ventes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6243', 'Transports entre établissements ou chantiers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6244', 'Transports administratifs');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6247', 'Transports collectifs du personnel');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6248', 'Divers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('625', 'Déplacements , missions et réceptions');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6251', 'Voyages de déplacements');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6255', 'Frais de déménagement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6256', 'Missions ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6257', 'Réceptions');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('626', 'Frais postaux et télécommunications');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('627', 'Services bancaires et assimilés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6271', 'Frais sur titres (achat, vente ,garde)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6272', 'Commissions et frais sur émission d''emprunts');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6275', 'Frais sur effets');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6276', 'Location de coffres');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6278', 'Autres frais et commissions sur prestations de services');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('628', 'Divers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6281', 'Concours divers (cotisation…)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6284', 'Frais de recrutement de personnel');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('629', 'Rabais remises ristournes obtenus sur autres services extérieurs');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('63', 'Impôts, taxes et versements assimilés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('631', 'Impôts, taxes et versements assimilés sur rémunérations(administrations des impôts)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6311', 'Taxe sur les salaires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6312', 'Taxes d''apprentissage');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6313', 'Participation des employeurs à la formation professionnelle continue');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6314', 'Cotisation pour défaut d''investissement obligatoire dans la construction');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6318', 'Autres');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('633', 'Impôts, taxes et versements assimilés sur rémunérations (Autres organismes)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6331', 'Versement de transport');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6332', 'Allocation logement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6333', 'Participations des employeurs à la formation professionnelle continue');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6334', 'Participations des employeurs à l''effort de construction');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6335', 'Versements libératoires ouvrant droit à l''exonération de la taxe d''apprentissage');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6338', 'Autres');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('635', 'Autres impôts, taxes et versements assimilés sur rémunérations(administrations des impôts)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6351', 'Impôts directs (sauf impôts sur les bénéfices)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('63511', 'Taxe professionnelle');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('63512', 'Taxes foncières');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('63513', 'Autres impôts locaux');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('63514', 'Taxes sur les véhicules des sociétés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6352', 'Taxes sur le chiffre d''affaires non récupérables');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6353', 'Impôts indirects');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6354', 'Droits d''enregistrement et de timbre');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('63541', 'Droits de mutation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6358', 'Autres droits');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('637', 'Autres impôts, taxes et versements assimilés sur rémunérations (Autres organismes)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6371', 'Contribution sociale de solidarité à la charge des sociétés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6372', 'Taxes perçues par les organismes publics internationaux');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6374', 'Impôts et taxes exigibles à l''étranger');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6378', 'Taxes diverses');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('64', 'Charges de personnel');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('641', 'Rémunérations du personnel');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6411', 'Salaires, appointements');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6412', 'Congés payés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6413', 'Primes et gratifications');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6414', 'Indemnités et avantages divers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6415', 'Supplément familial');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('644', 'Rémunération du travail de l''exploitant');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('645', 'Charges de sécurité sociale et de prévoyance');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6451', 'Cotisation à l''URSSAF');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6452', 'Cotisations aux  mutuelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6453', 'Cotisations  aux caisse de retraites');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6454', 'Cotisation aux ASSEDIC');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6458', 'Cotisation aux autres organismes sociaux');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('646', 'Cotisation sociales personnelles de l''exploitant');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('647', 'Autre charges sociaux');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6471', 'Prestation directes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6472', 'Versements aux comités d''entreprise et d''établissement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6473', 'Versement aux comités d''hygiène et de sécurité');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6474', 'Versement aux autre œuvres sociales');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6475', 'Médecine du travail, pharmacie');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('648', 'Autre charges de personnel');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('65', 'Autres charges de gestion courante');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('651', 'Redevances pour concessions, brevets, licences,marques, procédés, logiciels,droits et valeurs similaires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6511', 'Redevances pour concessions, brevets, licences,marques, procédés, logiciels');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6516', 'Droits d''auteur et de reproduction');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6518', 'Autres droits et valeurs similaires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('653', 'Jetons de présence');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('654', 'Perte sur créances irrécouvrables');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6541', 'Créances de l''exercice');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6544', 'Créances des exercice antérieurs');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('655', 'Quote part de résultat sur opérations faites en commun');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6551', 'Quote part bénéfice transférée (comptabilité du gérant)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6555', 'Quote part de perte supportée (comptabilité des associés non gérants)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('658', 'Charges divers de gestion courante');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('66', 'Charges financières');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('661', 'Charges d''intérêts');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6611', 'Intérêt des emprunts et dettes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('66116', 'Des emprunts et dettes assimilées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('66117', 'des dettes rattachées à des participations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6615', 'Intérêt des comptes courants et des dépôts créditeurs');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6616', 'Intérêts bancaires et sur opérations de financement (escompte)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6617', 'Intérêts des obligation cautionnées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6618', 'Intérêts des autres dettes ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('66181', 'Des dettes commerciales');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('66188', 'Des dettes diverses');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('664', 'Pertes sur créances liées à des participations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('665', 'Escomptes accordés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('666', 'Pertes de change');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('667', 'Charges nettes sur cessions de valeurs mobilières de placement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('668', 'Autres charges financières');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('67', 'Charges exceptionnelles sur opérations de gestion');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('671', 'Charges exceptionnelles sur opérations de gestion');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6711', 'Pénalités sur marchés (et débits payer sur achats et ventes)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6712', 'Pénalités, amendes fiscales et pénales');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6713', 'Dons, libéralités');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6714', 'Créances devenues irrécouvrables dans l''exercice');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6715', 'Subventions accordées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6717', 'Rappels d''impôts (autres qu''impôts sur les bénéfices)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6718', 'Autre charges exceptionnelles sur opérations de gestion');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('672', 'Compte à la disposition des entités pour enregistrer, en cours d''exercice les charges sur exercice antérieur');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('675', 'Valeur comptable des éléments d''actif cédés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6751', 'Immobilisations incorporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6752', 'Immobilisations corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6756', 'Immobilisations financières');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6758', 'Autres éléments d''actif');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('678', 'Autres charges exceptionnelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6781', 'Malis provenant de clause d''indexation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6782', 'Lots');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6783', 'Malis provenant du rachat par l''entreprise d''actions et d''obligations émises par elle-même');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6788', 'Charges exceptionnelles diverses');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('68', 'Dotations aux amortissements et aux provisions');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('681', 'Dotations aux amortissements et aux provisions charges d''exploitation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6811', 'Dotations aux amortissements sur immobilisations incorporelles et corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('68111', 'Dotations aux amortissement incorporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('68112', 'Dotations aux amortissement corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6812', 'Dotations aux amortissement des charges d''exploitation à répartir');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6815', 'Dotations aux provisions pour risque et charges d''exploitation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6816', 'Dotations aux provisions pour dépréciation des immobilisations incorporelles et corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('68161', 'Immobilisations incorporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('68162', 'Immobilisations corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6817', 'Dotations aux  provisions pour dépréciation des actifs circulants');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('68173', 'Stocks en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('68174', 'Créances');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('686', 'Dotations aux au amortissements et provisions  charges financière');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6861', 'Dotations aux amortissements des primes de remboursement des obligations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6865', 'Dotations aux au provisions pour risque et charges financières');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6866', 'Dotation aux provisions pour dépréciation des éléments financiers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('68662', 'Immobilisations financières');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('68665', 'Valeurs mobilière de placement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6868', 'Autres dotations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('687', 'Dotations aux amortissements et aux provisions charges exceptionnelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6871', 'Dotations aux amortissements exceptionnelles des immobilisations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6872', 'Dotations aux provisions réglementées (immobilisations)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('68725', 'Amortissement dérogatoires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6873', 'Dotations aux provisions réglementées (stocks)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6874', 'Dotations aux autres provisions réglementées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6875', 'Dotation pour risques et charges exceptionnels');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6876', 'Dotations aux provisions pour dépréciation exceptionnelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('69', 'Participations des salariés impôts sur les bénéfices et assimilés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('691', 'Participation des salariés aux résultats');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('695', 'Impôts sur les bénéfices');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6951', 'Impôts due en France');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6952', 'Contribution additionnelle à l''impôt sur les bénéfices');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6954', 'Impôts dus à l''étranger');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('696', 'Supplément d''impôt sur les sociétés lié aux distributions');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('697', 'Imposition forfaitaire annuelle des sociétés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('698', 'Intégration fiscale');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6981', 'Intégration fiscale charges');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('6989', 'Intégration fiscale produits');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('699', 'Produits reports en arrière des déficits');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('70', 'Ventes de produits fabriques, prestation de services, marchandises');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('701', 'Ventes de produits finis');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7011', 'Produits finis(ou groupe A)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7012', 'Produits finis (ou groupe B)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('702', 'Ventes de produits intermédiaires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('703', 'Ventes de produits résiduels');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('704', 'Travaux');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7041', 'Travaux de catégorie (ou activité A)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7042', 'Travaux de catégorie (ou activité B)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('705', 'Études');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('706', 'Prestations de services');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('707', 'Ventes de marchandises');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7071', 'Marchandises (ou groupe A)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7072', 'Marchandises (ou groupe B)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('708', 'Produits des activités annexes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7081', 'Produits des services exploités dans l''intérêt du personnel');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7082', 'Commissions et courtages');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7083', 'Locations diverses');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7084', 'Mises à disposition de personnel facturée');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7085', 'Ports et frais accessoires facturés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7086', 'Bonis sur reprise d''emballages consignés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7087', 'Bonification obtenues des clients et primes sur ventes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7088', 'Autres produits d''activités annexes (cessions d''approvisionnements)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('709', 'Rabais, remise et ristournes accordés par l''entreprise');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7091', 'Sur ventes de produits finis');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7092', 'Sur ventes de produits intermédiaires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7094', 'Sur travaux');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7095', 'Sur études');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7096', 'Sur prestations de services');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7097', 'Sur ventes de marchandises');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7098', 'Sur produits des activités annexes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('71', 'Production stockée (ou déstockage)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('713', 'Variation des stocks (en cours de production, produits)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7133', 'Variation des en cours de production de biens');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('71331', 'Produits en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('71335', 'Travaux en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7134', 'Variation des en cours de production de services');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('71341', 'Études en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('71345', 'Prestation de services en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7135', 'Variation de stock produits');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('71351', 'Produits intermédiaires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('71355', 'Produits finis');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('71358', 'Produits résiduels');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('72', 'Production immobilisée');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('721', 'Immobilisations incorporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('722', 'Immobilisation corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('74', 'Subventions d''exploitation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('75', 'Autres<produits de gestion courante');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('751', 'Redevances pour concessions, brevets, licences, marques, procédés, logiciels, droits et valeurs similaires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7511', 'Redevances pour concessions, brevets, licences, marques, procédés, logiciels');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7516', 'Droits d''auteur et de reproduction');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7518', 'Autres droits et valeur similaires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('752', 'Revenus des immeubles non affectés à des activités professionnelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('753', 'Jetons de présence et rémunérations d''administrateurs, gérants…');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('754', 'Ristournes perçues des coopératives (provenant des excédents)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('755', 'Quotes- parts de résultat sur opérations faites en commun');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7551', 'Quote parts de pertes transférée (comptabilité de gérant)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7555', 'Quote part de bénéfice attribuée (comptabilité des associés non gérants)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('758', 'Produit divers de gestion courante');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('76', 'Produits financiers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('761', 'Produits de participations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7611', 'Revenus des titres de participation,');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7616', 'Revenus sur autres formes de participation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7617', 'Revenus des créances rattachées à des participations');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('762', 'Produits sur autres immobilisations financières');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7621', 'Revenus des titres immobilisés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7626', 'Revenus des prêts');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7627', 'Revenus des créances immobilisées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('763', 'Revenus des autres créances');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7631', 'Revenus des créances commerciales');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7638', 'Revenus des créances divers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('764', 'Revenus des valeurs mobilière de placement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('765', 'Escomptes obtenus');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('766', 'Gains de changes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('767', 'Produits net sur cessions de valeurs mobilière de placement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('768', 'Autres produits financiers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('77', 'Produits exceptionnels');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('771', 'Produits exceptionnels sur opérations de gestion');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7711', 'Dédits et pénalités perçus sur achats et sur ventes');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7713', 'Libéralités reçues');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7714', 'Rentrées sur créances amorties');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7715', 'Subventions d''équilibre');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7717', 'Dégrèvements d''impôts autres que d''impôts sur les bénéfices');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7718', 'Autres produits exceptionnels sur opérations de gestions');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('772', '(Compte à la disposition des entités pour enregistrer, en cours d''exercice, les produits sur exercices antérieurs)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('775', 'Produits de cessions d''éléments d''actif');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7751', 'Immobilisations incorporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7752', 'Immobilisation corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7756', 'Immobilisations financière');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7758', 'Autres éléments d''actif');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('777', 'Quote part des subventions d''investissement virés au résultat de l''exercice');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('778', 'Autres produits exceptionnels ');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7781', 'Bonis provenant de clause d''indexation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7782', 'Lots');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7783', 'Bonis provenant du rachat par l''entreprise d''actions et d''obligations émises par elle-même');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7788', 'Produits exceptionnels divers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('78', 'Reprise sur amortissement et provisions');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('781', 'Reprise sur amortissement et provisions (à inscrire dans les produits d''exploitation)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7811', 'Reprises sur amortissements des immobilisations incorporelles et corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('78111', 'Immobilisations incorporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('78112', 'Immobilisation corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7815', 'Reprises sur provisions pour risques et charges d''exploitation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7816', 'Reprises  sur provisions pour dépréciation des immobilisations incorporelles et corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('78161', 'Immobilisations incorporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('78162', 'Immobilisation corporelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7817', 'Reprises sur provisions pour dépréciation des actifs circulants');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('78173', 'Stock et en cours');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('78174', 'Créances');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('786', 'Reprises sur provisions ( à inscrire dans les produits financier)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7865', 'Reprises sur provisions pour risques et charges financières');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7866', 'Reprises sur provisions pour dépréciation des éléments financiers');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('78662', 'Immobilisations financières');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('78665', 'Valeurs mobilières de placement');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('787', 'Reprises sur provisions (à inscrire dans les produits exceptionnels)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7872', 'Reprises sur provisions réglementées (immobilisations)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('78725', 'Amortissements dérogatoires');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('78726', 'Provisions spéciale de réévaluation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('78727', 'Plus values réinvesties');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7873', 'Reprises sur provisions réglementées (stock)');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7874', 'Reprises sur autres provisions réglementées');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7875', 'Reprises sur provisions pour risques et charges exceptionnels');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('7876', 'Reprises sur provisions pour dépréciations exceptionnelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('79', 'Transferts de charges');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('791', 'Transferts de charges d''exploitation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('796', 'Transferts de charges financières');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('797', 'Transferts de charges exceptionnelles');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('80', 'Engagement donnés par l''entité');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('801', 'Engagement donnés par l''entité');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('8011', 'Aval, cautions , garanties');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('8014', 'Effets circulant sous l''endos de l''entité');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('8016', 'Redevances crédit bail restant à courir');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('80161', 'Crédit bail mobilier');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('80162', 'Crédit bail immobilier');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('8018', 'Autres engagements donnés');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('802', 'Engagements reçus par l''entité');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('8021', 'Aval, cautions , garanties');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('8024', 'Créances escomptes non échues');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('8026', 'Engagement reçus pour utilisation en crédit bail');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('80261', 'Crédit bail mobilier');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('80265', 'Crédit bail immobilier');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('8028', 'Autres engagements reçus');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('809', 'Contrepartie des engagements');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('8081', 'Contrepartie 801');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('8092', 'Contrepartie 802');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('88', 'Résultats en instance d''affectation');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('89', 'Bilan');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('890', 'Bilan d''ouverture');
+insert into bas_code_comptable (codecompta, libelle_compta) values ('891', 'Bilan de clôture');
+
+
+
+CREATE TABLE BAS_COMPTA_JOURNAL (
+    NUMJOURNAL CHAR(5) NOT NULL,
+    LIBELLE VARCHAR(100) NOT NULL);
+
+ALTER TABLE BAS_COMPTA_JOURNAL
+ADD CONSTRAINT PK_BAS_COMPTA_JOURNAL
+PRIMARY KEY (NUMJOURNAL);
+
+INSERT INTO BAS_COMPTA_JOURNAL (NUMJOURNAL, LIBELLE) VALUES ('60   ', 'Achat');
+INSERT INTO BAS_COMPTA_JOURNAL (NUMJOURNAL, LIBELLE) VALUES ('70   ', 'Vente');
+INSERT INTO BAS_COMPTA_JOURNAL (NUMJOURNAL, LIBELLE) VALUES ('OD   ', 'Op diverse');
+INSERT INTO BAS_COMPTA_JOURNAL (NUMJOURNAL, LIBELLE) VALUES ('BQ   ', 'Banque');
+INSERT INTO BAS_COMPTA_JOURNAL (NUMJOURNAL, LIBELLE) VALUES ('CA   ', 'Caisse');
+
+COMMIT WORK;
+
+CREATE TABLE DEVISE (
+    CODE CHAR(3) NOT NULL,
+    LIBELLE VARCHAR(200) NOT NULL,
+    COURS DOUBLE PRECISION NOT NULL,
+    DATECOURS TIMESTAMP NOT NULL);
+
+ALTER TABLE DEVISE
+ADD CONSTRAINT PK_DEVISE
+PRIMARY KEY (CODE);
+
+
+INSERT INTO DEVISE (CODE, LIBELLE, COURS, DATECOURS) VALUES ('CHF', 'Franc Suisse', 1.06, '25-MAR-2013 11:38:56');
+INSERT INTO DEVISE (CODE, LIBELLE, COURS, DATECOURS) VALUES ('EUR', 'Euro', 1, '25-MAR-2013 11:37:09');
+INSERT INTO DEVISE (CODE, LIBELLE, COURS, DATECOURS) VALUES ('USD', 'US Dollar', 1.3, '25-MAR-2013 11:37:46');
+
+
+CREATE TABLE BAS_COMPTA_PIECE (
+    ID INTEGER NOT NULL,
+    NUMJOURNAL CHAR(5) NOT NULL,
+    DEVISE CHAR(3) NOT NULL,
+    DATEOPERATION TIMESTAMP NOT NULL,
+    NUMSAISIE INTEGER NOT NULL,
+    NUMPIECE CHAR(20) NOT NULL,
+	DATEECHEANCE TIMESTAMP,
+    LIBELLE VARCHAR(500));
+
+ALTER TABLE BAS_COMPTA_PIECE
+ADD CONSTRAINT PK_BAS_COMPTA_PIECE
+PRIMARY KEY (ID);
+
+CREATE TABLE BAS_COMPTA_TAXEVALEURAJOUTEE (
+    CODE CHAR(5) NOT NULL,
+    LIBELLE VARCHAR(200) NOT NULL,
+    TAUX NUMERIC(3,2) NOT NULL);
+
+ALTER TABLE BAS_COMPTA_TAXEVALEURAJOUTEE
+ADD CONSTRAINT PK_BAS_COMPTA_TAXEVALEURAJOUTEE
+PRIMARY KEY (CODE);
+
+
+
+INSERT INTO BAS_COMPTA_TAXEVALEURAJOUTEE (CODE, LIBELLE, TAUX) VALUES ('V0', 'Ventes Exonerées de TVA', 0);
+
+INSERT INTO BAS_COMPTA_TAXEVALEURAJOUTEE (CODE, LIBELLE, TAUX) VALUES ('V5', 'TVA Collecté à 5,5%', 5.5);
+INSERT INTO BAS_COMPTA_TAXEVALEURAJOUTEE (CODE, LIBELLE, TAUX) VALUES ('V2', 'TVA Collecté à 2,1%', 2.1);
+INSERT INTO BAS_COMPTA_TAXEVALEURAJOUTEE (CODE, LIBELLE, TAUX) VALUES ('V7', 'TVA collecté à 7%', 7);
+INSERT INTO BAS_COMPTA_TAXEVALEURAJOUTEE (CODE, LIBELLE, TAUX) VALUES ('V19', 'TVA Collecté à 19,6%', 19.6);
+
+INSERT INTO BAS_COMPTA_TAXEVALEURAJOUTEE (CODE, LIBELLE, TAUX) VALUES ('A5F', 'TVA deductible à 5,5% Facture', 5.5);
+INSERT INTO BAS_COMPTA_TAXEVALEURAJOUTEE (CODE, LIBELLE, TAUX) VALUES ('A2F', 'TVA deductible à 2,1% Facture', 2.1);
+INSERT INTO BAS_COMPTA_TAXEVALEURAJOUTEE (CODE, LIBELLE, TAUX) VALUES ('A7F', 'TVA deductible à 7% Facture', 7);
+INSERT INTO BAS_COMPTA_TAXEVALEURAJOUTEE (CODE, LIBELLE, TAUX) VALUES ('A19F', 'TVA deductible à 19,6% Facture', 19.6);
+
+
+CREATE TABLE BAS_COMPTA_ECRITURE (
+    ID INTEGER NOT NULL,
+    CODECOMPTA CHAR(6) NOT NULL,
+    ID_PIECE_COMPTA INTEGER NOT NULL,
+    ID_TAXEVALEURAJOUTEE CHAR(5),
+    DEBIT NUMERIC(15,2),
+    CREDIT NUMERIC(15,2),
+    LIBELLE VARCHAR(200) NOT NULL);
+
+ALTER TABLE BAS_COMPTA_ECRITURE
+ADD CONSTRAINT PK_BAS_COMPTA_ECRITURE
+PRIMARY KEY (ID);
+
+
+
+
+CREATE TABLE BAS_COMPTA_MDL_PIECE (
+    ID INTEGER NOT NULL,
+    LIBELLEMDL VARCHAR(500) NOT NULL,
+    NUMJOURNAL CHAR(5) NOT NULL,
+    DEVISE CHAR(3) NOT NULL,
+    NUMPIECE CHAR(20) NOT NULL,
+	Organisation CHAR(250),
+    LIBELLE VARCHAR(500));
+
+ALTER TABLE BAS_COMPTA_MDL_PIECE
+ADD CONSTRAINT PK_BAS_COMPTA_PIECE
+PRIMARY KEY (ID);
+
+
+CREATE TABLE BAS_COMPTA_MDL_ECRITURE (
+    ID INTEGER NOT NULL,
+    CODECOMPTA CHAR(6) NOT NULL,
+    ID_MDL_PIECE_COMPTA INTEGER NOT NULL,
+    ID_TAXEVALEURAJOUTEE CHAR(5),
+    DEBIT DOUBLE PRECISION,
+    CREDIT DOUBLE PRECISION,
+    LIBELLE VARCHAR(200) NOT NULL);
+
+ALTER TABLE BAS_COMPTA_ECRITURE
+ADD CONSTRAINT PK_BAS_COMPTA_ECRITURE
+PRIMARY KEY (ID);
+
+
+ALTER TABLE BANQUE
+ADD JOURNALCOMPTABLE CHAR(5);
+
+ALTER TABLE BANQUE
+ADD COMPTECOMPTABLE CHAR(6);
+
+ALTER TABLE BANQUE
+ADD CODEPAYS CHAR(4);
+
+ALTER TABLE BANQUE
+ADD CODEBIC CHAR(11);
+
+
+
+INSERT INTO BAS_COMPTA_JOURNAL (NUMJOURNAL, LIBELLE) 
+SELECT COD_BAN,LIB_BAN FROM BANQUE;
+
+UPDATE BANQUE SET JOURNALCOMPTABLE = COD_BAN;
+
+create generator gen_row_01;
+UPDATE BANQUE
+SET COMPTECOMPTABLE = '51200'||gen_id(gen_row_01, 1);
+drop generator gen_row_01;
+
+insert into bas_code_comptable 
+select COMPTECOMPTABLE,LIB_BAN from banque;
+
+
+
+ALTER TABLE BASE_ACCESS
+ADD STATUS_CLINIQUE CHAR(1);
+
+//Passer script insert

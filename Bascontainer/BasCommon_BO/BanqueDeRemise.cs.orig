@@ -1,0 +1,160 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace BasCommon_BO
+{
+    public class BanqueDeRemise
+    {
+
+        public override string ToString()
+        {
+            return Code.Trim() + ":" + Libelle.Trim();
+        }
+
+
+        private string _NumCle;
+        public string NumCle
+        {
+            get
+            {
+                return _NumCle;
+            }
+            set
+            {
+                _NumCle = value;
+            }
+        }
+
+        private string _NumGui;
+        public string NumGui
+        {
+            get
+            {
+                return _NumGui;
+            }
+            set
+            {
+                _NumGui = value;
+            }
+        }
+
+        private string _NumCPT;
+        public string NumCPT
+        {
+            get
+            {
+                return _NumCPT;
+            }
+            set
+            {
+                _NumCPT = value;
+            }
+        }
+
+        private string _Titulaire;
+        public string Titulaire
+        {
+            get
+            {
+                return _Titulaire;
+            }
+            set
+            {
+                _Titulaire = value;
+            }
+        }
+
+        private string _NumA;
+        public string NumA
+        {
+            get
+            {
+                return _NumA;
+            }
+            set
+            {
+                _NumA = value;
+            }
+        }
+
+        private string _Ville;
+        public string Ville
+        {
+            get
+            {
+                return _Ville;
+            }
+            set
+            {
+                _Ville = value;
+            }
+        }
+
+        private string _CodePostal;
+        public string CodePostal
+        {
+            get
+            {
+                return _CodePostal;
+            }
+            set
+            {
+                _CodePostal = value;
+            }
+        }
+
+        private string _AddrBAN2;
+        public string AddrBAN2
+        {
+            get
+            {
+                return _AddrBAN2;
+            }
+            set
+            {
+                _AddrBAN2 = value;
+            }
+        }
+
+        private string _AddrBAN1;
+        public string AddrBAN1
+        {
+            get
+            {
+                return _AddrBAN1;
+            }
+            set
+            {
+                _AddrBAN1 = value;
+            }
+        }
+
+        private string _Libelle;
+        public string Libelle
+        {
+            get
+            {
+                return _Libelle;
+            }
+            set
+            {
+                _Libelle = value;
+            }
+        }
+
+        private string _Code;
+        public string Code
+        {
+            get
+            {
+                return _Code;
+            }
+            set
+            {
+                _Code = value;
+            }
+        }
+    }
+}

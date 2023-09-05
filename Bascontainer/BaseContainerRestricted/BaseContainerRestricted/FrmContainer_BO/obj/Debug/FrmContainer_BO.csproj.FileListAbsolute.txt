@@ -1,0 +1,7 @@
+D:\BAS_SVN2\Bascontainer\BaseContainerRestricted\BaseContainerRestricted\FrmContainer_BO\bin\Debug\FrmContainer_BO.dll
+D:\BAS_SVN2\Bascontainer\BaseContainerRestricted\BaseContainerRestricted\FrmContainer_BO\bin\Debug\FrmContainer_BO.pdb
+D:\BAS_SVN2\Bascontainer\BaseContainerRestricted\BaseContainerRestricted\FrmContainer_BO\bin\Debug\BasCommon_BO.dll
+D:\BAS_SVN2\Bascontainer\BaseContainerRestricted\BaseContainerRestricted\FrmContainer_BO\bin\Debug\BasCommon_BO.pdb
+D:\BAS_SVN2\Bascontainer\BaseContainerRestricted\BaseContainerRestricted\FrmContainer_BO\obj\Debug\FrmContainer_BO.csprojResolveAssemblyReference.cache
+D:\BAS_SVN2\Bascontainer\BaseContainerRestricted\BaseContainerRestricted\FrmContainer_BO\obj\Debug\FrmContainer_BO.dll
+D:\BAS_SVN2\Bascontainer\BaseContainerRestricted\BaseContainerRestricted\FrmContainer_BO\obj\Debug\FrmContainer_BO.pdb

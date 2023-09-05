@@ -1,0 +1,299 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using FirebirdSql.Data.FirebirdClient;
+using System.Configuration;
+using BasCommon_BO;
+
+namespace BasCommon_DAL
+{
+    #region Contact
+
+
+    public static partial class DAC
+    {
+        
+
+        public static DataTable getContactsOf(int Id)
+        {
+
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "SELECT";
+                selectQuery += " id,";
+                selectQuery += " contacttype,";
+                selectQuery += " \"VALUE\",";
+                selectQuery += " libelle,";
+                selectQuery += " pref_order,";
+                selectQuery += " Adr1,";
+                selectQuery += " Adr2,";
+                selectQuery += " CodePostal,";
+                selectQuery += " Ville,";
+                selectQuery += " PAYS,";
+                selectQuery += " id_personne,";
+                selectQuery += " ID_CONTACTLIBELLE";
+
+                selectQuery += " FROM CONTACT ";
+                selectQuery += " where id_personne=@id_personne";
+
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("@id_personne", Id);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                return ds.Tables[0];
+
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+        }
+
+        public static DataTable getContactLib()
+        {
+
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "select ID, ";
+                selectQuery += "LIBELLE, ";
+                selectQuery += "TYPECONTACT, ";
+                selectQuery += "TYPEAFFECTATION, ";
+                selectQuery += "PRIORITE ";
+                selectQuery += "FROM BASE_CONTACTLIBELLE ";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+
+                return ds.Tables[0];
+
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+        }
+
+        public static void InsertContactTo(Contact contact)
+        {
+
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+                string selectQuery = "select MAX(id)+1 as NEWID from contact";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                object o = command.ExecuteScalar();
+
+                int Id = o is DBNull?1:Convert.ToInt32(o);
+                
+
+                selectQuery = "insert into contact (id, ";
+                selectQuery += "                      ID_CONTACTLIBELLE, ";
+                selectQuery += "                      contacttype, ";
+                selectQuery += "                      \"VALUE\", ";
+                selectQuery += "                      pref_order, ";
+                selectQuery += "                      Adr1, ";
+                selectQuery += "                      Adr2, ";
+                selectQuery += "                      CodePostal, ";
+                selectQuery += "                      Ville, ";
+                selectQuery += "                      PAYS,";
+                selectQuery += "                      id_personne)";
+                selectQuery += " values (@id, ";
+                selectQuery += "         @ID_CONTACTLIBELLE, ";
+                selectQuery += "         @contacttype, ";
+                selectQuery += "         @VALUE, ";
+                selectQuery += "         @pref_order, ";
+                selectQuery += "         @Adr1, ";
+                selectQuery += "         @Adr2, ";
+                selectQuery += "         @CodePostal, ";
+                selectQuery += "         @Ville, ";
+                selectQuery += "         @PAYS,";
+                selectQuery += "         @id_personne)";
+
+
+                command.CommandText = selectQuery;
+
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@id", Id);
+                command.Parameters.AddWithValue("@contacttype", contact.TypeContact);
+                command.Parameters.AddWithValue("@ID_CONTACTLIBELLE", contact.Libelle == null ? DBNull.Value : (object)contact.Libelle.Id);
+                command.Parameters.AddWithValue("@VALUE", contact.Value);
+                command.Parameters.AddWithValue("@pref_order", contact.prefOrder);
+
+                command.Parameters.AddWithValue("@Adr1", contact.adresse == null ? DBNull.Value : (object)contact.adresse.Adr1);
+                command.Parameters.AddWithValue("@Adr2", contact.adresse == null ? DBNull.Value : (object)contact.adresse.Adr2);
+                command.Parameters.AddWithValue("@CodePostal", contact.adresse == null ? DBNull.Value : (object)contact.adresse.CodePostal);
+                command.Parameters.AddWithValue("@Ville", contact.adresse == null ? DBNull.Value : (object)contact.adresse.Ville);
+                command.Parameters.AddWithValue("@PAYS", contact.adresse == null ? DBNull.Value : (object)contact.adresse.Pays);
+                
+                command.Parameters.AddWithValue("@id_personne", contact.IdPersonne);
+
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+
+            }
+
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+        }
+
+        public static void UpdateContactTo(Contact contact)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "update contact set ";
+                selectQuery += " contacttype = @contacttype,";
+                selectQuery += " contact.\"VALUE\" = @value,";
+                selectQuery += " contact.ID_CONTACTLIBELLE = @ID_CONTACTLIBELLE,";
+                //selectQuery += " is_main = @is_main,";
+                selectQuery += " Adr1 = @Adr1,";
+                selectQuery += " Adr2 = @Adr2,";
+                selectQuery += " CodePostal = @CodePostal,";
+                selectQuery += " Ville = @Ville,";
+                selectQuery += " PAYS = @PAYS";
+                selectQuery += " where (id_personne = @id_personne) ";
+                selectQuery += " and (id = @id_contact) ";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.CommandText = selectQuery;
+
+                command.Parameters.AddWithValue("@id_personne", contact.IdPersonne);
+                command.Parameters.AddWithValue("@id_contact", contact.Id);
+                command.Parameters.AddWithValue("@contacttype", contact.TypeContact);
+                command.Parameters.AddWithValue("@value", contact.Value);
+                command.Parameters.AddWithValue("@ID_CONTACTLIBELLE", contact.Libelle == null ? DBNull.Value : (object)contact.Libelle.Id);
+                command.Parameters.AddWithValue("@Adr1", contact.adresse == null ? DBNull.Value : (object)contact.adresse.Adr1);
+                command.Parameters.AddWithValue("@Adr2", contact.adresse == null ? DBNull.Value : (object)contact.adresse.Adr2);
+                command.Parameters.AddWithValue("@CodePostal", contact.adresse == null ? DBNull.Value : (object)contact.adresse.CodePostal);
+                command.Parameters.AddWithValue("@Ville", contact.adresse == null ? DBNull.Value : (object)contact.adresse.Ville);
+                command.Parameters.AddWithValue("@PAYS", contact.adresse == null ? DBNull.Value : (object)contact.adresse.Pays);
+                /*
+                if (contact.isMain)
+                    command.Parameters.AddWithValue("@is_main", 'T');
+
+                if (!contact.isMain)
+                    command.Parameters.AddWithValue("@is_main", 'F');
+                */
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+        }
+        
+        public static void deleteContactFromId(int id)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "DELETE from CONTACT WHERE CONTACT.ID = @ID";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.CommandType = CommandType.Text;
+                command.Parameters.AddWithValue("@ID", id);
+
+                command.ExecuteNonQuery();
+
+                selectQuery = "DELETE from CONTACT WHERE CONTACT.ID = @ID";
+
+                command.CommandText = selectQuery;
+                command.CommandType = CommandType.Text;
+                command.Parameters.AddWithValue("@ID", id);
+
+                command.ExecuteNonQuery();
+
+
+                transaction.Commit();
+
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+        }
+       
+    #endregion
+    }
+
+
+
+
+}

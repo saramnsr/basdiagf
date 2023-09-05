@@ -1,0 +1,334 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using BasCommon_BO;
+using BasCommon_DAL;
+
+namespace BasCommon_BL
+{
+    public static class baseMgmtPatient
+    {
+
+        
+
+        public static void UpdatePercentageMutuelle(basePatient pat)
+        {
+            DAC.UpdatePercentageMutuelle(pat);
+        }
+
+        public static void AgeToDate(DateTime d2, DateTime datenaiss, out int years, out int months, out int days)
+        {
+
+            DateTime d1 = datenaiss;
+
+            if (d1 < d2)
+            {
+                DateTime d3 = d2;
+                d2 = d1;
+                d1 = d3;
+            }
+
+            months = 12 * (d1.Year - d2.Year) + (d1.Month - d2.Month);
+
+
+            if (d1.Day < d2.Day)
+            {
+                months--;
+                days = DateTime.DaysInMonth(d2.Year, d2.Month) - d2.Day + d1.Day;
+            }
+            else
+            {
+                days = d1.Day - d2.Day;
+            }
+
+            years = months / 12;
+            months -= years * 12;
+        }
+
+
+        
+
+        public static List<baseSmallPersonne> getRestrictedPatientsInAttente()
+        {
+            List<baseSmallPersonne> lst = new List<baseSmallPersonne>();
+            DataTable dt = DAC.getPatientsInAttente();
+
+            foreach (DataRow r in dt.Rows)
+                lst.Add(BasCommon_BL.Builders.BuildSmallPersonne.Build(r));
+
+
+            return lst;
+
+        }
+
+        public static List<baseSmallPersonne> getRestrictedPatientsInAttenteFor(Fauteuil f)
+        {
+            List<baseSmallPersonne> lst = new List<baseSmallPersonne>();
+            DataTable dt = DAC.getPatientsInAttenteFor(f);
+
+            foreach (DataRow r in dt.Rows)
+            {
+                int idfauteuil = r["ID_FAUTEUIL"] is DBNull ? -1 : Convert.ToInt32(r["ID_FAUTEUIL"]);
+                if (idfauteuil == f.Id) lst.Add(BasCommon_BL.Builders.BuildSmallPersonne.Build(r));
+            }
+            return lst;
+
+        }
+
+
+        public static void AffectRepertoireToPatient(basePatient pat)
+        {
+            string rep = DAC.getOldRepertoireName(pat.Id);
+            pat.Repertoire = rep;
+        }
+
+
+        public static void setPersonnesAContacter(basePatient patient)
+        {
+            DAC.setPersonnesAContacter(patient);
+        }
+
+
+        public static List<baseSmallPersonne> getRestrictedPatients(string param)
+        {
+            List<baseSmallPersonne> lst = new List<baseSmallPersonne>();
+            foreach (baseSmallPersonne pat in baseMgmtPatient.getAllPatients())
+            {
+
+                if (pat.Nom.ToUpper().StartsWith(param.ToUpper()))
+                    lst.Add(pat);
+            }
+            return lst;
+
+        }
+
+        
+        public static List<baseSmallPersonne> getRestrictedPatients(string param,bool usePatientOrthalis)
+        {
+            List<baseSmallPersonne> lst = new List<baseSmallPersonne>();
+            foreach (baseSmallPersonne pat in baseMgmtPatient.getAllPatients(usePatientOrthalis))
+            {
+
+                if (pat.Nom.ToUpper().StartsWith(param.ToUpper()))
+                    lst.Add(pat);
+            }
+            return lst;
+
+        }
+
+
+        public static List<baseSmallPersonne> getFamillyMembers(basePatient p)
+        {
+            List<baseSmallPersonne> lst = new List<baseSmallPersonne>();
+            DataTable dt = DAC.getPatientsFamillyMembers(p);
+
+            foreach (DataRow r in dt.Rows)
+                lst.Add(BasCommon_BL.Builders.BuildSmallPersonne.Build(r));
+
+
+            return lst;
+
+        }
+
+        public static void setinfocomplementaire(InfoPatientComplementaire nfo)
+        {
+            DAC.setinfocomplementaire(nfo);
+
+        }
+
+        public static List<LienCorrespondant> getPersonnesAContacter(basePatient patient)
+        {
+            List<LienCorrespondant> lst = new List<LienCorrespondant>();
+            DataTable dt;
+
+            dt = DAC.getPersonnesAContacter(patient);
+
+            foreach (DataRow r in dt.Rows)
+            {
+                lst.Add(Builders.BuildLienCorrespondant.Build(r));
+            }
+            return lst;
+        }
+
+
+
+        public static void FillInfocomplementaire(basePatient pat)
+        {
+            pat.infoscomplementaire = getinfocomplementaire(pat.Id);
+            
+
+        }
+
+        public static InfoPatientComplementaire getinfocomplementaire(int Idpat)
+        {
+            DataRow dr = DAC.getinfocomplementaire(Idpat);
+            if (dr != null)
+                return Builders.BuildInfoPatientComplementaire.Build(dr);
+            else
+                return null;
+
+
+        }
+
+
+
+        public static void setRisques(basePatient patient)
+        {
+            DAC.setRisques(patient);
+
+        }
+
+        public static void getRisques(basePatient pat)
+        {
+            pat.Risques = DAC.getRisques(pat);
+
+
+        }
+
+
+        public static Relance.ModeRelance GetStatusRelance(int Idpatient)
+        {
+            return DAC.GetStatusRelance(Idpatient);
+        }
+
+        public static void ChangerStatusRelance(int Idpatient, Relance.ModeRelance Niveau)
+        {
+            DAC.ChangeStatusRelance(Idpatient, Niveau);
+        }
+
+        public static int GetNextNumDossier()
+        {
+            return DAC.GetNextNumDossier();
+        }
+
+        
+
+        public static void SavePatient(basePatient patient)
+        {
+            if (patient.Id <1)
+            {
+                DAC.InsertPatient(patient);
+            }
+            else
+            {
+                DAC.UpdatePatient(patient);
+            }
+        }
+
+
+
+        public static void FillContacts(basePatient co)
+        {
+            co.contacts = MgmtContact.getContactsOf(co.Id);
+
+            foreach (Contact c in co.contacts)
+            {
+                if ((c.TypeContact == Contact.ContactType.Adresse) && (co.MainAdresse == null))
+                {
+                    co.MainAdresse = c;
+                }
+
+                if ((c.TypeContact == Contact.ContactType.Mail) && (co.MainMail == null))
+                {
+                    co.MainMail = c;
+                }
+
+                if ((c.TypeContact == Contact.ContactType.Telephone) && (co.MainTel == null))
+                {
+                    co.MainTel = c;
+                }
+
+                if ((c.TypeContact == Contact.ContactType.Fax) && (co.MainFax == null))
+                {
+                    co.MainFax = c;
+                }
+            }
+        }
+
+
+        public static List<baseSmallPersonne> getAllPatients(bool usePatientsOrthalis)
+        {
+            DataTable dt = BasCommon_DAL.DAC.getAllPatients(usePatientsOrthalis);
+            List<baseSmallPersonne> lst = new List<baseSmallPersonne>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                baseSmallPersonne p = Builders.BuildSmallPersonne.Build(dr);
+                lst.Add(p);
+            }
+
+            return lst;
+        }
+
+        public static List<baseSmallPersonne> getAllPatients()
+        {
+            DataTable dt = BasCommon_DAL.DAC.getAllPatients(true);
+            List<baseSmallPersonne> lst = new List<baseSmallPersonne>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                baseSmallPersonne p = Builders.BuildSmallPersonne.Build(dr);
+                lst.Add(p);
+            }
+
+            return lst;
+        }
+
+        public static basePatient GetPatient(int id)
+        {
+            DataRow r = BasCommon_DAL.DAC.getPatient(id);
+
+            return Builders.BuildPatient.Build(r);
+        }
+
+        public static baseSmallPersonne GetsmallPatient(int id)
+        {
+            DataRow r = BasCommon_DAL.DAC.getSmallPersonneFromId(id); ;
+
+            return Builders.BuildSmallPersonne.Build(r);
+        }
+
+        public static List<baseSmallPersonne> GetPatientFromName(string name)
+        {
+            List<baseSmallPersonne> lst = new List<baseSmallPersonne>();
+
+            foreach (baseSmallPersonne bp in baseMgmtPatient.getAllPatients())
+            {
+
+                if (bp.Nom.ToUpperInvariant().Contains(name.ToUpperInvariant()))
+                    lst.Add(bp);
+            }
+            return lst;
+        }
+
+
+
+        public static bool IsCMU(basePatient CurrentPatient)
+        {
+
+            if ((CurrentPatient.mutuelle > 0) && (CurrentPatient.Mutuelle == null))
+                CurrentPatient.Mutuelle = MutuelleMgmt.getMutuelle(CurrentPatient.mutuelle);
+            if ((CurrentPatient.IdCaisse > 0) && (CurrentPatient.caisse == null))
+                CurrentPatient.caisse = CaissesManager.getCaisse(CurrentPatient.IdCaisse);
+
+
+           
+            return ((CurrentPatient.Mutuelle!=null && CurrentPatient.Mutuelle.IsCMU) || (CurrentPatient.caisse!=null && CurrentPatient.caisse.IsCMU));
+        }
+
+        public static bool IsTierPayant(basePatient CurrentPatient)
+        {
+
+            if ((CurrentPatient.mutuelle > 0) && (CurrentPatient.Mutuelle == null))
+                CurrentPatient.Mutuelle = MutuelleMgmt.getMutuelle(CurrentPatient.mutuelle);
+            if ((CurrentPatient.IdCaisse > 0) && (CurrentPatient.caisse == null))
+                CurrentPatient.caisse = CaissesManager.getCaisse(CurrentPatient.IdCaisse);
+
+
+
+            return (CurrentPatient.Mutuelle != null && CurrentPatient.Mutuelle.IsTiersPayant);
+        }
+    }
+}

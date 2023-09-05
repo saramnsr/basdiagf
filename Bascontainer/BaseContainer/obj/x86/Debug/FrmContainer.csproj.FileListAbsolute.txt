@@ -1,0 +1,61 @@
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\DataSetTK.xsc
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\DataSetTK.xsd
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\DataSetTK.xss
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\FondEcran2.png
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\FondEcran.png
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\FrmContainer.exe.config
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\FrmContainer.exe
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\FrmContainer.pdb
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\BasCommon_BL.dll
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\BasCommon_BO.dll
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\BaseCommonControls.dll
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\FrmContainer_BL.dll
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\FrmContainer_BO.dll
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\WizardBase.dll
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\Newtonsoft.Json.dll
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\BasCommon_DAL.dll
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\Ionic.Zip.dll
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\MySql.Data.dll
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\Interop.SHDocVw.dll
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\FrmContainer_DAL.dll
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\BasCommon_BL.pdb
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\BasCommon_BO.pdb
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\BaseCommonControls.pdb
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\FrmContainer_BL.pdb
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\FrmContainer_BO.pdb
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\WizardBase.pdb
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\BasCommon_DAL.pdb
+D:\Basmile Mysql\Bascontainer\BaseContainer\bin\Debug\FrmContainer_DAL.pdb
+D:\Basmile Mysql\Bascontainer\BaseContainer\obj\x86\Debug\FrmContainer.csprojResolveAssemblyReference.cache
+D:\Basmile Mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmChoixBanque.resources
+D:\Basmile Mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmContainer.resources
+D:\Basmile Mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmRecontactMgmt.resources
+D:\Basmile Mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmScreenChild.resources
+D:\Basmile Mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmAdminGestion.resources
+D:\Basmile Mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmListesAssistante.resources
+D:\Basmile Mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+D:\Basmile Mysql\Bascontainer\BaseContainer\obj\x86\Debug\FrmContainer.csproj.GenerateResource.Cache
+D:\Basmile Mysql\Bascontainer\BaseContainer\obj\x86\Debug\FrmContainer.exe
+D:\Basmile Mysql\Bascontainer\BaseContainer\obj\x86\Debug\FrmContainer.pdb
+D:\D\basmile mysql\Bascontainer\BaseContainer\bin\Debug\FrmContainer.exe.config
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\bin\Debug\FrmContainer.exe.config
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\FrmContainer.csprojResolveAssemblyReference.cache
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmChoixBanque.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmContainer.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmRecontactMgmt.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmScreenChild.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmAdminGestion.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmListesAssistante.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\FrmContainer.csproj.GenerateResource.Cache
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\bin\Debug\FrmContainer.exe.config
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\FrmContainer.csprojResolveAssemblyReference.cache
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmChoixBanque.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmContainer.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmRecontactMgmt.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmScreenChild.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmAdminGestion.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.FrmListesAssistante.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseContainer\obj\x86\Debug\FrmContainer.csproj.GenerateResource.Cache

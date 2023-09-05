@@ -1,0 +1,540 @@
+<AggDocumentLetter.AggDocumentLetterV2>
+  <OffSetY>-856</OffSetY>
+  <pages>
+    <AggDocumentLetter.BO.AggPage>
+      <TextMgmt>
+        <LstCodeClass>
+          <AggDocumentLetter.BO.CodeClass>
+            <name />
+            <StartPos>24</StartPos>
+            <EndPos>27</EndPos>
+            <CodeSource>return NomCorrespondant</CodeSource>
+          </AggDocumentLetter.BO.CodeClass>
+          <AggDocumentLetter.BO.CodeClass>
+            <name>Block1</name>
+            <StartPos>29</StartPos>
+            <EndPos>34</EndPos>
+            <CodeSource>return PrenomCorrespondant</CodeSource>
+          </AggDocumentLetter.BO.CodeClass>
+          <AggDocumentLetter.BO.CodeClass>
+            <name>Block2</name>
+            <StartPos>45</StartPos>
+            <EndPos>52</EndPos>
+            <CodeSource>return Adresse1Correspondant</CodeSource>
+          </AggDocumentLetter.BO.CodeClass>
+          <AggDocumentLetter.BO.CodeClass>
+            <name>Block3</name>
+            <StartPos>63</StartPos>
+            <EndPos>70</EndPos>
+            <CodeSource>return Adresse2Correspondant</CodeSource>
+          </AggDocumentLetter.BO.CodeClass>
+          <AggDocumentLetter.BO.CodeClass>
+            <name />
+            <StartPos>81</StartPos>
+            <EndPos>83</EndPos>
+            <CodeSource>return CodePostalCorrespondant</CodeSource>
+          </AggDocumentLetter.BO.CodeClass>
+          <AggDocumentLetter.BO.CodeClass>
+            <name>Block5</name>
+            <StartPos>85</StartPos>
+            <EndPos>89</EndPos>
+            <CodeSource>return VilleCorrespondant</CodeSource>
+          </AggDocumentLetter.BO.CodeClass>
+          <AggDocumentLetter.BO.CodeClass>
+            <name>Block6</name>
+            <StartPos>114</StartPos>
+            <EndPos>126</EndPos>
+            <CodeSource>return DateTime.Now.ToString("dd MMMM yyyy")</CodeSource>
+          </AggDocumentLetter.BO.CodeClass>
+          <AggDocumentLetter.BO.CodeClass>
+            <name>Block7</name>
+            <StartPos>133</StartPos>
+            <EndPos>152</EndPos>
+            <CodeSource>string val = "";
+if ((TutoiementCorrespondant=="TU")&amp;&amp;(GenreCorrespondant=="M"))
+	val = "Cher " + PrenomCorrespondant;
+if ((TutoiementCorrespondant=="TU")&amp;&amp;(GenreCorrespondant=="F"))
+	val =  "Chere " + PrenomCorrespondant;	
+if ((TutoiementCorrespondant=="VOUS")&amp;&amp;(GenreCorrespondant=="F"))
+	val =  "Chere amie";
+if ((TutoiementCorrespondant=="VOUS")&amp;&amp;(GenreCorrespondant=="M"))
+	val =  "Cher ami";
+return val;</CodeSource>
+          </AggDocumentLetter.BO.CodeClass>
+          <AggDocumentLetter.BO.CodeClass>
+            <name>Block8</name>
+            <StartPos>202</StartPos>
+            <EndPos>212</EndPos>
+            <CodeSource>if (GenrePatient=="M")
+		return "le patient";
+else
+		return "la patiente";</CodeSource>
+          </AggDocumentLetter.BO.CodeClass>
+          <AggDocumentLetter.BO.CodeClass>
+            <name />
+            <StartPos>214</StartPos>
+            <EndPos>216</EndPos>
+            <CodeSource>return NomPatient</CodeSource>
+          </AggDocumentLetter.BO.CodeClass>
+          <AggDocumentLetter.BO.CodeClass>
+            <name />
+            <StartPos>218</StartPos>
+            <EndPos>223</EndPos>
+            <CodeSource>return PrenomPatient</CodeSource>
+          </AggDocumentLetter.BO.CodeClass>
+          <AggDocumentLetter.BO.CodeClass>
+            <name />
+            <StartPos>225</StartPos>
+            <EndPos>231</EndPos>
+            <CodeSource>if (GenrePatient=="M")
+		return "âgé";
+else
+		return "âgée";</CodeSource>
+          </AggDocumentLetter.BO.CodeClass>
+          <AggDocumentLetter.BO.CodeClass>
+            <name />
+            <StartPos>236</StartPos>
+            <EndPos>238</EndPos>
+            <CodeSource>return AgePatient</CodeSource>
+          </AggDocumentLetter.BO.CodeClass>
+        </LstCodeClass>
+        <SDBoundRectangle>
+          <Top>1082,52</Top>
+          <Left>40</Left>
+          <Width>713,7008</Width>
+          <Height>1042,52</Height>
+        </SDBoundRectangle>
+        <PrGrstyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Justify</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Justify</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+          <AggDocumentLetter.BO.ParaGrStyle>
+            <Leading>1</Leading>
+            <FirstLeftPadding>0</FirstLeftPadding>
+            <OtherLeftPadding>20</OtherLeftPadding>
+            <RightPadding>0</RightPadding>
+            <AfterSpacing>1</AfterSpacing>
+            <Halign>Left</Halign>
+          </AggDocumentLetter.BO.ParaGrStyle>
+        </PrGrstyle>
+        <LstRtfClass />
+        <DefaultPrGrstyle>
+          <Leading>1</Leading>
+          <FirstLeftPadding>0</FirstLeftPadding>
+          <OtherLeftPadding>20</OtherLeftPadding>
+          <RightPadding>0</RightPadding>
+          <AfterSpacing>1</AfterSpacing>
+          <Halign>Left</Halign>
+        </DefaultPrGrstyle>
+        <Text>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+									NOM  PRENOM
+									Adresse1
+									Adresse2
+									CP  Ville
+
+
+
+									Bandol, le date du jour
+
+
+
+			Cher correspondant,
+
+			Nous avons terminé la phase orthodontique de la patiente NOM Prénom âgé(e)  de xx. .
+
+			Le traitement s'est bien déroulé et a permis de rééquilibrer l'occlusion tout en respectant le visage et l'individualité
+	   de l'enfant (ci-joint les photographies avant et après).
+
+			Reste la contention que nous gardons au maximum à la mandibule par fil collé et en haut avec une gouttière amovible.
+
+			Nous conseillons au patient de vous visiter régulièrement pour contrôler l'évolution de l'état bucco-dentaire et de nous consulter s'il devait s'apercevoir de modifications de l'alignement obtenu et restons à sa disposition comme à la vôtre.
+
+			En vous remerciant de votre confiance.</Text>
+        <Defaultstyle>
+          <SerializableBackGroundColor>16777215</SerializableBackGroundColor>
+          <SerializableColor>-16777216</SerializableColor>
+          <font>
+            <Size>12</Size>
+            <Name>Garamond</Name>
+            <Style>Regular</Style>
+            <Unit>Point</Unit>
+            <GdiCharSet>1</GdiCharSet>
+            <GdiVerticalFont>False</GdiVerticalFont>
+            <Bold>False</Bold>
+            <Italic>False</Italic>
+            <Underline>False</Underline>
+          </font>
+        </Defaultstyle>
+      </TextMgmt>
+      <PrinterName />
+      <PrinterBacName />
+      <PaperSize />
+      <margins>
+        <Left>40</Left>
+        <Right>40</Right>
+        <Bottom>40</Bottom>
+        <Top>40</Top>
+      </margins>
+      <Controls>
+        <AggDocumentLetter.BO.AggImageCtrl Type="AggDocumentLetter.BO.AggImageCtrl,BASLetter_Ctrl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <BorderColor>-16777216</BorderColor>
+          <BorderWidth>0</BorderWidth>
+          <FiligraneAlignement>BottomCenter</FiligraneAlignement>
+          <CodeSource>return ""+NomPraticien+".jpg";
+return "";</CodeSource>
+          <FiligraneFile />
+          <IsStatic>True</IsStatic>
+          <rotation>0</rotation>
+          <Image>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</Image>
+          <KeepAspectRatio>True</KeepAspectRatio>
+          <rotationInBmpX>123,5</rotationInBmpX>
+          <rotationInBmpY>126,5</rotationInBmpY>
+          <OffSetPtX>185,790945385722</OffSetPtX>
+          <OffSetPtY>-8,30854716377257</OffSetPtY>
+          <zoom>0,790513833992095</zoom>
+          <ZOrder>0</ZOrder>
+          <IsLock>True</IsLock>
+          <Name>control 0</Name>
+          <PositionY>940</PositionY>
+          <PositionX>0</PositionX>
+          <Height>180</Height>
+          <Width>780</Width>
+        </AggDocumentLetter.BO.AggImageCtrl>
+        <AggDocumentLetter.BO.AggImageCtrl Type="AggDocumentLetter.BO.AggImageCtrl,BASLetter_Ctrl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <BorderColor>-16777216</BorderColor>
+          <BorderWidth>0</BorderWidth>
+          <FiligraneAlignement>BottomCenter</FiligraneAlignement>
+          <CodeSource>return "pied"+NomPraticien+".jpg";
+return "";</CodeSource>
+          <FiligraneFile />
+          <IsStatic>True</IsStatic>
+          <rotation>0</rotation>
+          <Image>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</Image>
+          <KeepAspectRatio>True</KeepAspectRatio>
+          <rotationInBmpX>123,5</rotationInBmpX>
+          <rotationInBmpY>126,5</rotationInBmpY>
+          <OffSetPtX>-23,5</OffSetPtX>
+          <OffSetPtY>-26,5</OffSetPtY>
+          <zoom>0,790513833992095</zoom>
+          <ZOrder>0</ZOrder>
+          <IsLock>True</IsLock>
+          <Name>control 1</Name>
+          <PositionY>0</PositionY>
+          <PositionX>0</PositionX>
+          <Height>90</Height>
+          <Width>780</Width>
+        </AggDocumentLetter.BO.AggImageCtrl>
+      </Controls>
+      <Name>Page 1</Name>
+      <Height>1122,51977539063</Height>
+      <Width>793,700805664063</Width>
+    </AggDocumentLetter.BO.AggPage>
+  </pages>
+</AggDocumentLetter.AggDocumentLetterV2>

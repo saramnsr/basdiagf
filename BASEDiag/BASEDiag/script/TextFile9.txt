@@ -1,0 +1,394 @@
+CREATE TABLE BAS_COMMONDIAG (
+    ID INTEGER NOT NULL,
+    LIBELLE VARCHAR(500));
+    
+alter table BAS_COMMONDIAG
+add constraint PK_BAS_COMMONDIAG
+primary key (ID);
+
+CREATE TABLE BAS_COMMONOBJECTIF (
+    ID INTEGER NOT NULL,
+    LIBELLE VARCHAR(500));
+    
+alter table BAS_COMMONOBJECTIF
+add constraint PK_BAS_COMMONOBJECTIF
+primary key (ID);
+
+
+ALTER TABLE BAS_COMMONDIAG
+ADD CATEGORIE VARCHAR(200) CHARACTER SET ISO8859_1 
+COLLATE FR_FR ;
+
+
+ALTER TABLE BAS_COMMONOBJECTIF
+ADD DESCRIPTION VARCHAR(1000) CHARACTER SET ISO8859_1 
+COLLATE FR_FR ;
+
+CREATE TABLE BAS_COMMONDIAG_COMMONOBJ (
+    ID_DIAG INTEGER NOT NULL,
+    ID_OBJ INTEGER NOT NULL,
+    DESCRIPTION VARCHAR(1000));
+
+
+
+CREATE TABLE BAS_COMMONOBJECTIF_APPAREIL (
+    ID_OBJECTIF  INTEGER NOT NULL,
+    ID_APPAREIL  INTEGER NOT NULL,
+    DESCRIPTION  VARCHAR(1000)
+);
+
+
+insert into bas_commondiag (id, libelle,categorie) values (1, 'Diminution de l''étage inférieur','De Face');
+insert into bas_commondiag (id, libelle,categorie) values (2, 'Effondrement de l''étage inférieur','De Face');
+insert into bas_commondiag (id, libelle,categorie) values (3, 'Augmentation de l''étage inférieur','De Face');
+insert into bas_commondiag (id, libelle,categorie) values (4, 'Déviation du menton','De Face');
+insert into bas_commondiag (id, libelle,categorie) values (5, 'Déviation de la lèvre inférieure','De Face');
+insert into bas_commondiag (id, libelle,categorie) values (6, 'Rétroposition du menton','De Profil');
+insert into bas_commondiag (id, libelle,categorie) values (7, 'Proversion du menton','De Profil');
+insert into bas_commondiag (id, libelle,categorie) values (8, 'Rétroposition de la lèvre inférieure','De Profil');
+insert into bas_commondiag (id, libelle,categorie) values (9, 'Proversion de la lèvre inférieure','De Profil');
+insert into bas_commondiag (id, libelle,categorie) values (10, 'Rétroposition de la lèvre supérieure','De Profil');
+insert into bas_commondiag (id, libelle,categorie) values (11, 'Proversion de la lèvre supérieure','De Profil');
+insert into bas_commondiag (id, libelle,categorie) values (12, 'Rétroposition de l''incisive inférieure','De Profil');
+insert into bas_commondiag (id, libelle,categorie) values (13, 'Proversion de l''incisive inférieure','De Profil');
+insert into bas_commondiag (id, libelle,categorie) values (14, 'Une classe I','Téléradiographique');
+insert into bas_commondiag (id, libelle,categorie) values (15, 'Une classe II','Téléradiographique');
+insert into bas_commondiag (id, libelle,categorie) values (16, 'Une classe III','Téléradiographique');
+insert into bas_commondiag (id, libelle,categorie) values (17, 'Hyperdivergence','Téléradiographique');
+insert into bas_commondiag (id, libelle,categorie) values (18, 'Hypodivergence','Téléradiographique');
+insert into bas_commondiag (id, libelle,categorie) values (19, 'Manque de place pour l''évolution des germes','Panoramique');
+insert into bas_commondiag (id, libelle,categorie) values (20, 'Classe dentaire molaire I','Alvéolodentaire');
+insert into bas_commondiag (id, libelle,categorie) values (21, 'Classe dentaire molaire II','Alvéolodentaire');
+insert into bas_commondiag (id, libelle,categorie) values (22, 'Classe dentaire molaire III','Alvéolodentaire');
+insert into bas_commondiag (id, libelle,categorie) values (23, 'Classe dentaire canine I','Alvéolodentaire');
+insert into bas_commondiag (id, libelle,categorie) values (24, 'Classe dentaire canine II','Alvéolodentaire');
+insert into bas_commondiag (id, libelle,categorie) values (25, 'Classe dentaire canine III','Alvéolodentaire');
+insert into bas_commondiag (id, libelle,categorie) values (26, 'DDD','Alvéolodentaire');
+insert into bas_commondiag (id, libelle,categorie) values (27, 'DDM','Alvéolodentaire');
+insert into bas_commondiag (id, libelle,categorie) values (28, 'Interposition linguale antérieure','Fonctionnel');
+insert into bas_commondiag (id, libelle,categorie) values (29, 'Interposition linguale postérieur','Fonctionnel');
+insert into bas_commondiag (id, libelle,categorie) values (30, 'Interposition linguale antéro-postérieure','Fonctionnel');
+insert into bas_commondiag (id, libelle,categorie) values (31, 'Interposition linguale et labiale','Fonctionnel');
+insert into bas_commondiag (id, libelle,categorie) values (32, 'Langue basse','Fonctionnel');
+insert into bas_commondiag (id, libelle,categorie) values (33, 'Sourire étroit','Esthetique');
+insert into bas_commondiag (id, libelle,categorie) values (34, 'Sourire large','Esthetique');
+insert into bas_commondiag (id, libelle,categorie) values (35, 'Sourire gingival inférieur','Esthetique');
+insert into bas_commondiag (id, libelle,categorie) values (36, 'Sourire gingival supérieur','Esthetique');
+insert into bas_commondiag (id, libelle,categorie) values (37, 'Sourire labial','Esthetique');
+
+
+
+insert into bas_commonobjectif (id, libelle, description) values (1, 'Egression molaires du haut', '');
+insert into bas_commonobjectif (id, libelle, description) values (2, 'Egression molaires du bas', '');
+insert into bas_commonobjectif (id, libelle, description) values (3, 'Egression molaires haut et bas', '');
+insert into bas_commonobjectif (id, libelle, description) values (4, 'Ne rien faire', '');
+insert into bas_commonobjectif (id, libelle, description) values (5, 'Chirurgie d’épaction', '');
+insert into bas_commonobjectif (id, libelle, description) values (6, 'Genioplastie fonctionnel', '');
+insert into bas_commonobjectif (id, libelle, description) values (7, 'Chirurgie d’impaction et/ou Dérotation mandibulaire', '');
+insert into bas_commonobjectif (id, libelle, description) values (8, 'Stimuler la croissance maxillaire', '');
+insert into bas_commonobjectif (id, libelle, description) values (9, 'Changer la forme de l’arcade maxillaire', '');
+insert into bas_commonobjectif (id, libelle, description) values (10, 'Chirurgie de disjonction maxillaire et/ou centrage mandibulaire', '');
+insert into bas_commonobjectif (id, libelle, description) values (11, 'Libérer la croissance mandibulaire', '');
+insert into bas_commonobjectif (id, libelle, description) values (12, 'Stimuler la croissance mandibulaire', '');
+insert into bas_commonobjectif (id, libelle, description) values (13, 'Réculer les dents maxillaires', '');
+insert into bas_commonobjectif (id, libelle, description) values (14, 'Chirurgie d’avancée mandibulaire et/ou recul maxillaire', '');
+insert into bas_commonobjectif (id, libelle, description) values (15, 'Vestibuler les incisives inférieures', '');
+insert into bas_commonobjectif (id, libelle, description) values (16, 'Libérer la croissance maxillaire', '');
+insert into bas_commonobjectif (id, libelle, description) values (17, 'Stimuler la croissance maxillaire', '');
+insert into bas_commonobjectif (id, libelle, description) values (18, 'Reculer les dents mandibulaires', '');
+insert into bas_commonobjectif (id, libelle, description) values (19, 'Chirurgie de recul mandibulaire et/ou d’avancée maxillaire', '');
+insert into bas_commonobjectif (id, libelle, description) values (20, 'Vestibuler les dents maxillaires', '');
+insert into bas_commonobjectif (id, libelle, description) values (21, 'Palatoverser les dents supérieures par distalisation', '');
+insert into bas_commonobjectif (id, libelle, description) values (22, 'Palatoverser par expansion', '');
+insert into bas_commonobjectif (id, libelle, description) values (23, 'Linguoverser les incisives inférieures', '');
+insert into bas_commonobjectif (id, libelle, description) values (24, 'Stripping', '');
+insert into bas_commonobjectif (id, libelle, description) values (25, 'Extraction d’une incisive inférieure', '');
+insert into bas_commonobjectif (id, libelle, description) values (26, 'Libérer la croissance pour augmenter la place', '');
+insert into bas_commonobjectif (id, libelle, description) values (27, 'Reformer l''arcade', '');
+insert into bas_commonobjectif (id, libelle, description) values (28, 'Extraction des dents définitives', '');
+insert into bas_commonobjectif (id, libelle, description) values (29, 'Forcer la croissance maxillaire', '');
+insert into bas_commonobjectif (id, libelle, description) values (30, 'Expansion assistée par la chirurgie', '');
+insert into bas_commonobjectif (id, libelle, description) values (31, 'Ingression des incisives supérieure', '');
+insert into bas_commonobjectif (id, libelle, description) values (32, 'Botox', '');
+insert into bas_commonobjectif (id, libelle, description) values (33, 'Chirurgie d’abaissement de la lèvre supérieure', '');
+insert into bas_commonobjectif (id, libelle, description) values (34, 'Chirurgie pour Sourire Gingival', '');
+insert into bas_commonobjectif (id, libelle, description) values (35, 'Ingression des incisives inférieures', '');
+insert into bas_commonobjectif (id, libelle, description) values (36, 'Egression des incisives supérieures', '');
+
+
+
+
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (1, 1, 'Egression molaires du haut');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (1, 2, 'Egression molaires du bas');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (1, 3, 'Egression molaires haut et bas');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (1, 4, 'Ne rien faire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (1, 5, 'Chirurgie d’épaction pour augmenter l’étage inférieur');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (2, 1, 'Egression molaires du haut');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (2, 2, 'Egression molaires du bas');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (2, 3, 'Egression molaires haut et bas');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (2, 4, 'Ne rien faire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (2, 5, 'Chirurgie d’épaction pour augmenter l’étage inférieur');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (3, 1, 'Egression molaires du haut');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (3, 2, 'Egression molaires du bas');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (3, 3, 'Egression molaires haut et bas');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (3, 4, 'Ne rien faire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (3, 6, 'Genioplastie fonctionnel');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (3, 7, 'Chirurgie d’impaction et/ou Dérotation mandibulaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (4, 8, 'Stimuler la croissance maxillaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (4, 9, 'Changer la forme de l’arcade maxillaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (4, 4, 'Ne rien faire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (4, 10, 'Chirurgie de disjonction maxillaire et/ou centrage mandibulaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (5, 8, 'Stimuler la croissance maxillaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (5, 9, 'Changer la forme de l’arcade maxillaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (5, 4, 'Ne rien faire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (5, 10, 'Chirurgie de disjonction maxillaire et/ou centrage mandibulaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (6, 11, 'Libérer la croissance mandibulaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (6, 12, 'Stimuler la croissance mandibulaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (6, 13, 'Réculer les dents maxillaires');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (6, 4, 'Ne rien faire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (6, 14, 'Chirurgie d’avancée mandibulaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (8, 11, 'Libérer la croissance mandibulaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (8, 12, 'Stimuler la croissance mandibulaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (8, 13, 'Réculer les dents maxillaires');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (8, 15, 'Vestibuler les incisives inférieures');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (8, 4, 'Ne rien faire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (8, 14, 'Chirurgie d’avancée mandibulaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (9, 16, 'Libérer la croissance maxillaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (9, 17, 'Stimuler la croissance maxillaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (9, 18, 'Reculer les dents mandibulaires');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (9, 4, 'Ne rien faire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (9, 19, 'Chirurgie de recul mandibulaire et/ou d’avancée maxillaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (10, 16, 'Libérer la croissance maxillaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (10, 17, 'Stimuler la croissance maxillaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (10, 20, 'Vestibuler les dents maxillaires');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (10, 4, 'Ne rien faire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (10, 19, 'Chirurgie de recul mandibulaire et/ou d’avancée maxillaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (11, 21, 'Palatoverser les dents supérieures par distalisation');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (11, 22, 'Palatoverser par expansion');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (11, 11, 'Libérer la croissance mandibulaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (11, 12, 'Stimuler la croissance mandibulaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (11, 4, 'Ne rien faire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (11, 14, 'Chirurgie d’avancée mandibulaire et/ou recul maxillaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (12, 15, 'Vestibuler l’incisives inférieures');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (13, 23, 'Linguoverser les incisives inférieures');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (26, 24, 'Stripping');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (26, 25, 'Extraction d’une incisive inférieure');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (27, 26, 'Libérer la croissance pour augmenter la place');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (27, 27, 'Reformer l''arcade pour avoir plus de place');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (27, 28, 'Extraction des dents définitives');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (27, 24, 'Stripping');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (33, 8, 'Stimuler la croissance maxillaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (33, 29, 'Forcer la croissance maxillaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (33, 30, 'Expansion assistée par la chirurgie');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (33, 9, 'Changer la forme de l’arcade maxillaire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (33, 4, 'Ne rien faire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (35, 35, 'Ingression des incisives inférieures');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (35, 34, 'Chirurgie pour Sourire Gingival');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (35, 4, 'Ne rien faire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (36, 31, 'Ingression des incisives supérieure');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (36, 32, 'Botox');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (36, 7, 'Chirurgie d’impaction');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (36, 33, 'Chirurgie d’abaissement de la lèvre supérieure');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (37, 1, 'Egression molaires du haut');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (37, 2, 'Egression molaires du bas');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (37, 31, 'Ingression des incisives supérieure');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (37, 36, 'Egression des incisives supérieures');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (37, 4, 'Ne rien faire');
+insert into bas_commondiag_commonobj (id_diag, id_obj, description)
+values (37, 5, 'Chirurgie d’épaction');
+
+
+
+delete from base_acte_appareil;
+
+insert into base_acte_appareil (id, libelle, code, infodep, risques) values (1, 'RCC', 'RCC', 'appareillage  maxillaire  type  plaque  palatine  de  schwartz  modifié + réévaluation  DDM  et  dysmorphoses  et  décision  traitement  multibague', 'tâches sur les dents, allergies, Manque de résultats si pas bien porté');
+insert into base_acte_appareil (id, libelle, code, infodep, risques) values (2, 'Masque de DELAIRE', 'MD', 'Masque de DELAIRE + réévaluation  DDM  et  dysmorphoses  et  décision  traitement  multibague', 'Manque de résultats si pas bien porté, Allergies front menton');
+insert into base_acte_appareil (id, libelle, code, infodep, risques) values (3, 'ASI', 'ASI', 'éventuellement  activateur  nocturne + réévaluation  DDM  et  dysmorphoses  et  décision  traitement  multibague', 'Manque de résultats si pas bien porté');
+insert into base_acte_appareil (id, libelle, code, infodep, risques) values (4, 'Quad''Helix', 'QH', 'Quad''hélix + Multibagues haut et bas , nivellement , coordination', '');
+insert into base_acte_appareil (id, libelle, code, infodep, risques) values (5, 'Disjoncteur', 'DISJ', 'Disjonction maxillaire', '');
+insert into base_acte_appareil (id, libelle, code, infodep, risques) values (6, 'Arc Lingual', 'AL', '', 'tâches sur les dents, caries, ryzalises, allergies');
+insert into base_acte_appareil (id, libelle, code, infodep, risques) values (7, 'Chirurgie', 'CHIR', 'Traitement  ortho-chirurgical', '');
+insert into base_acte_appareil (id, libelle, code, infodep, risques) values (8, 'InvisalignTeen', 'INVIT', 'technique  de  dépacement  par  gouttières  thermoformées  amovibles  averc  éventuelle  finition  multibague', '');
+insert into base_acte_appareil (id, libelle, code, infodep, risques) values (9, 'Multibague', 'MB', 'Multibagues haut et bas , nivellement , coordination', '');
+
+
+
+
+
+
+
+delete from bas_commonobjectif_appareil;
+
+insert into bas_commonobjectif_appareil (id_objectif, id_appareil, description) values (1, 1,'');
+insert into bas_commonobjectif_appareil (id_objectif, id_appareil, description) values (2, 1,'');
+insert into bas_commonobjectif_appareil (id_objectif, id_appareil, description) values (3, 4,'');
+insert into bas_commonobjectif_appareil (id_objectif, id_appareil, description) values (4, 9,'');
+insert into bas_commonobjectif_appareil (id_objectif, id_appareil, description) values (5, 7,'');
+insert into bas_commonobjectif_appareil (id_objectif, id_appareil, description) values (6, 2,'');
+insert into bas_commonobjectif_appareil (id_objectif, id_appareil, description) values (7, 5,'');
+insert into bas_commonobjectif_appareil (id_objectif, id_appareil, description) values (8, 8,'');
+insert into bas_commonobjectif_appareil (id_objectif, id_appareil, description) values (9, 7,'');
+insert into bas_commonobjectif_appareil (id_objectif, id_appareil, description) values (10, 1,'');
+
+
+
+
+
+ALTER TABLE BASE_PROPOSITIONS DROP TARIF;
+
+
+ALTER TABLE BASE_ACTE_GESTION
+ADD PHASE SMALLINT;
+
+
+CREATE TABLE BAS_APPAREIL_ACTEGESTION (
+    ID_APPAREIL INTEGER NOT NULL,
+    ID_ACTE INTEGER NOT NULL);
+
+
+ALTER TABLE BASE_PROPOSITIONS DROP RISQUES;
+
+
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (8,45);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (8,46);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (8,47);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (8,48);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (8,49);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (8,50);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (8,51);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (8,52);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (8,53);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (8,54);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (8,55);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (8,79);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (8,80);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (9,81);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (9,82);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (9,83);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (9,84);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (9,85);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (9,86);
+
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (5,92);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (5,93);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (3,92);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (3,93);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (2,92);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (2,93);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (1,92);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (1,93);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (6,92);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (6,93);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (4,92);
+insert into bas_appareil_actegestion (id_appareil, id_acte) values (4,93);
+
+
+ALTER TABLE BASE_ACTE_GESTION ADD ID_ACTE_ORTHALIS INTEGER;
+
+
+CREATE TABLE BASE_PLAN_TRAITEMENTS (
+    ID INTEGER NOT NULL,
+    NBSURVEILLANCE INTEGER,
+    ISREMBOURSABLE CHAR(5),
+    ID_PROPOSITION INTEGER,
+    ID_ACTE_GESTION INTEGER,
+    PARTSECU NUMERIC(15,2),
+    TARIFTOTAL NUMERIC(15,2),
+    TARIFSEMESTRE NUMERIC(15,2),
+    ID_APPAREIL INTEGER,
+    ID_PATIENT INTEGER);
+    
+alter table BASE_PLAN_TRAITEMENTS
+add constraint PK_BASE_PLAN_TRAITEMENTS
+primary key (ID);
+
+
+ALTER TABLE BASE_PLAN_TRAITEMENTS
+ADD SEMESTRES VARCHAR(100);
+
+
+CREATE TABLE BASE_SELECTED_OBJECTIFS (
+    ID_COMMONOBJECTIF INTEGER NOT NULL,
+    ID_PATIENT INTEGER NOT NULL,
+    REMARQUES VARCHAR(1000));
+
+CREATE TABLE BASE_SELECTED_APPAREIL (
+    ID_COMMONAPPAREIL INTEGER NOT NULL,
+    ID_PATIENT INTEGER NOT NULL,
+    REMARQUES VARCHAR(1000));

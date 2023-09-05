@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using FirebirdSql.Data.FirebirdClient;
+using System.Configuration;
+using BasCommon_BO;
+
+namespace BasCommon_DAL
+{
+    public static partial class DAC
+    {
+
+        public static DataTable getPlanTraitementsDEP()
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+
+
+                string selectQuery = "select";
+                selectQuery += " ID_KEY,";
+                selectQuery += " LIBELLE";
+                selectQuery += " from PARAMTRAIT";
+
+
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+                return dt;
+
+            }
+            catch (System.IndexOutOfRangeException e)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+        }
+
+
+    }
+}

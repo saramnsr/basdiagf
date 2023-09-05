@@ -1,0 +1,795 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using BasCommon_BO;
+using System.Data;
+using BasCommon_DAL;
+
+namespace BasCommon_BL
+{
+    public static class ActesPGMgmt
+    {
+
+        public static List<ActePG> GetActesPG(Semestre s)
+        {
+
+            List<ActePG> _listActe = new List<ActePG>();
+
+
+            DataTable dt = DAC.getActesPG(s);
+
+            _listActe = new List<ActePG>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                ActePG acte = Builders.BuildActePG.Build(r);                
+                _listActe.Add(acte);
+            }
+
+            return _listActe;
+
+        }
+
+
+        public static List<ActePG> GetActesPG(basePatient pat)
+        {
+
+             List<ActePG> _listActe = new List<ActePG>();
+
+
+                DataTable dt = DAC.getActesPGByPAtient(pat.Id);
+
+                _listActe = new List<ActePG>();
+
+                foreach (DataRow r in dt.Rows)
+                {
+                    ActePG acte = Builders.BuildActePG.Build(r);
+                    /*
+                    if (acte.Id_DEP > 0)
+                    {
+
+                        EntentePrealable ep = MgmtDemandeEntente.GetEntente(acte.Id_DEP, pat.Id);
+                        if (ep != null)
+                        {
+                            ep.idPatient = pat.Id;
+                            acte.DEPAssocier = ep;
+                        }
+                    }
+                     */
+                    _listActe.Add(acte);
+                }
+
+                return _listActe;
+
+        }
+
+        
+        /*
+        public static List<ActePG> GetActesPG(Semestre s)
+        {
+            List<ActePG> lst = GetActesPG
+            foreach (ActePG actepg in CachesMgmt.GetActesPG(s.Parent.Parent.IdPatient, true))
+            {
+                if (actepg.IdSemestrePlanGestionAssocie == s.Id)
+                    lst.Add(actepg);
+
+            }
+
+            return lst;
+        }
+
+        public static List<ActePG> GetActesPG(Surveillance s)
+        {
+            List<ActePG> lst = new List<ActePG>();
+            foreach (ActePG actepg in CachesMgmt.GetActesPG(s.Semestre.Parent.Parent.IdPatient, true))
+            {
+                if (actepg.IdSurvPlanGestionAssocie == s.Id)
+                    lst.Add(actepg);
+
+            }
+
+            return lst;
+        }
+        */
+        
+
+        public static ActePG GetActesPG(int id)
+        {
+           
+            DataRow dr = DAC.getActesPG(id);
+            if (dr == null) return null;
+            ActePG acte = Builders.BuildActePG.Build(dr);
+
+            return acte;
+        }
+
+
+
+        public static double GetSolde(Semestre s)
+        {
+
+
+            return DAC.getSolde(s);
+        }
+
+
+        public static double GetSolde(Surveillance s)
+        {
+
+
+            return DAC.getSolde(s);
+        }
+
+        public static double GetSolde(ActePG acte)
+        {
+            return DAC.getSolde(acte);
+        }
+
+        public static ActePG GetCurrentActePG(basePatient pat)
+        {
+
+            if (pat.ActesPG == null)
+                pat.ActesPG = GetActesPG(pat);
+            foreach (ActePG actepg in pat.ActesPG)
+            {
+                if (((actepg.NbMois == null) ||
+               (actepg.DateExecution.AddDays(actepg.NbJours.Value).AddMonths(actepg.NbMois.Value) > DateTime.Now)) &&
+               (actepg.DateExecution < DateTime.Now))
+                    return actepg;
+
+            }
+
+
+
+            return null;
+
+
+        }
+
+        public static void RemoveDEPReference(int IdDEP)
+        {
+            DAC.RemoveDEPReference(IdDEP);
+        }
+
+        public static void AddDEPReference(EntentePrealable ep, ActePG acte)
+        {
+            DAC.AddDEPReference(ep.IdModele, acte.Id);
+            acte.Id_DEP = ep.IdModele;
+            acte.DEPAssocier = ep;
+        }
+
+
+        public static DateTime? getDateFinTraitement(basePatient pat)
+        {
+
+            DateTime? dte = null;
+            if (pat.ActesPG == null)
+                pat.ActesPG = GetActesPG(pat);
+            foreach (ActePG actepg in pat.ActesPG)
+            {
+                DateTime? dteFin = actepg.NbMois == null ? null : (DateTime?)actepg.DateExecution.AddDays(actepg.NbJours.Value).AddMonths(actepg.NbMois.Value);
+
+                if (dteFin == null) return null;
+
+                if ((dte == null) || (dte.Value < dteFin))
+                    dte = dteFin;
+
+            }
+            return dte;
+
+
+        }
+
+        public static ActePG GetNextActe(basePatient pat)
+        {
+
+            if (pat.ActesPG == null)
+                pat.ActesPG = GetActesPG(pat);
+
+            ActePG selected = null;
+            DateTime dtemin = DateTime.MaxValue;
+
+            foreach (ActePG e in pat.ActesPG)
+            {
+                if ((e.DateExecution > DateTime.Now) && (e.DateExecution < dtemin))
+                {
+                    dtemin = e.DateExecution;
+                    selected = e;
+                }
+            }
+
+            return selected;
+        }
+
+        public static ActePG GetNextActeWithFS(basePatient pat)
+        {
+            if (pat.ActesPG == null)
+                pat.ActesPG = GetActesPG(pat);
+
+            ActePG selected = null;
+            DateTime dtemin = DateTime.MaxValue;
+
+            foreach (ActePG e in pat.ActesPG)
+            {
+                if ((e.Id_FS < 0) && (e.NeedFSE) && (e.DateExecution > DateTime.Now) && (e.DateExecution < dtemin))
+                {
+                    dtemin = e.DateExecution;
+                    selected = e;
+                }
+            }
+
+            return selected;
+
+
+        }
+
+        public static ActePG GetNextActeWithDEP(basePatient pat)
+        {
+            if (pat.ActesPG == null)
+                pat.ActesPG = GetActesPG(pat);
+
+            ActePG selected = null;
+            DateTime dtemin = DateTime.MaxValue;
+
+            foreach (ActePG e in pat.ActesPG)
+            {
+                if ((e.Id_DEP < 0) && (e.NeedDEP) && (e.DateExecution > DateTime.Now) && (e.DateExecution < dtemin))
+                {
+                    dtemin = e.DateExecution;
+                    selected = e;
+                }
+            }
+
+            return selected;
+
+
+        }
+
+
+        public static ActePG GetCurrentActeWithDEP(basePatient pat)
+        {
+
+            if (pat.ActesPG == null)
+                pat.ActesPG = GetActesPG(pat);
+
+            foreach (ActePG actepg in pat.ActesPG)
+            {
+
+                if ((actepg.NeedDEP) && (actepg.Id_DEP <= 0) && (actepg.DateExecution < DateTime.Now))
+                    return actepg;
+
+            }
+
+
+
+            return null;
+
+
+        }
+
+        public static ActePG GetCurrentActeWithFS(basePatient pat)
+        {
+
+            if (pat.ActesPG == null)
+                pat.ActesPG = GetActesPG(pat);
+
+            foreach (ActePG actepg in pat.ActesPG)
+            {
+                if (((actepg.NbMois == null) ||
+               (actepg.DateExecution.AddDays(actepg.NbJours.Value).AddMonths(actepg.NbMois.Value) > DateTime.Now)) &&
+               (actepg.DateExecution < DateTime.Now) &&
+                    (actepg.NeedFSE) &&
+                    (actepg.Id_FS < 0))
+                    return actepg;
+
+            }
+
+
+
+            return null;
+
+
+        }
+
+
+        public static DateTime? getDateDebutTraitement(basePatient pat)
+        {
+            DateTime? dte = null;
+            if (pat.ActesPG == null)
+                pat.ActesPG = GetActesPG(pat);
+            foreach (ActePG actepg in pat.ActesPG)
+            {
+                if ((dte == null) || (actepg.DateExecution < dte))
+                    dte = actepg.DateExecution;
+
+            }
+            return dte;
+
+
+        }
+
+
+        public static void RepartitionSecuMutPatient(ActePG a, bool IsCMU, double PercentMutuelle, out double totalSecu, out double totalMutuelle, out double totalPatient)
+        {
+            totalSecu = 0;
+            totalMutuelle = 0;
+            totalPatient = 0;
+
+            double GrandTotal = 0;
+
+            
+                GrandTotal += a.Montant_Honoraire;
+
+                if (IsCMU && a.prestation.Code != "HN")
+                {
+                    totalSecu += Math.Round(a.Template.Code.Valeur * a.Template.Coeff, 2);
+                    totalMutuelle += Math.Round((a.Montant_Honoraire - totalSecu), 2);
+                    if (totalMutuelle < 0) totalMutuelle = 0;
+                    totalPatient = 0;
+                }
+                else
+                {
+                    if (PercentMutuelle > 0 && a.prestation.Code != "HN")
+                    {
+                        totalSecu += 0;
+                        totalMutuelle += Math.Round(Math.Min(a.Montant_Honoraire, (a.Template.Code.Valeur * a.Template.Coeff) * PercentMutuelle), 2);
+                        totalPatient = Math.Round(a.Montant_Honoraire - (totalSecu + totalMutuelle), 2);
+                    }
+                    else
+                    {
+                        totalSecu += 0;
+                        totalMutuelle += 0;
+                        totalPatient = a.Montant_Honoraire;
+                    }
+                }
+            
+        }
+
+
+        public static void RepartitionSecuMutPatient(List<ActePG> actespg, bool IsCMU, double PercentMutuelle, out double totalSecu, out double totalMutuelle, out double totalPatient)
+        {
+            totalSecu = 0;
+            totalMutuelle = 0;
+            totalPatient = 0;
+
+            double GrandTotal = 0;
+
+            foreach (ActePG a in actespg)
+            {
+                GrandTotal += a.Montant_Honoraire;
+
+                double s, m, p;
+
+
+                RepartitionSecuMutPatient(a, IsCMU, PercentMutuelle, out s, out m, out p);
+
+
+
+                totalSecu += s;
+                totalMutuelle += m;
+                totalPatient += p;
+            }
+        }
+
+
+        public static string GetActesFormatPyxVital(List<ActePG> lst, bool AccidentDroitCommun, bool IsALD)
+        {
+            string resultat = "[Prestation]\r\n";
+            string tmp = "";
+
+            resultat += "Date=";
+            foreach (ActePG acte in lst)
+            {
+                DateTime dte = acte.DateExecution.AddMonths(acte.NbMois.Value).AddDays(acte.NbJours.Value);
+                if (tmp != "") tmp += "+";
+                tmp += dte.ToString("dd/MM/yy");
+            }
+            resultat += tmp + "\r\n";
+
+
+            /*
+            resultat += "Prescription=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+                tmp += acte.DateExecution.ToString("dd/MM/yy");
+            }
+            resultat += tmp + "\r\n";
+            */
+
+
+            tmp = "";
+
+            resultat += "Quantite=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+                tmp += acte.Quantite <= 0 ? "1" : acte.Quantite.ToString();
+            }
+            resultat += tmp + "\r\n";
+
+
+            //Format NGAP
+            tmp = "";
+            resultat += "Code=";
+            foreach (ActePG acte in lst)
+            {
+
+                double depassement = acte.Montant_Honoraire - (acte.Template.Coeff * acte.prestation.Valeur * acte.Quantite);
+
+
+                if (tmp != "") tmp += "+";
+                tmp += acte.prestation.Code;
+
+            }
+            resultat += tmp + "\r\n";
+
+
+
+            //Format CCAM
+            //resultat += "Code=CCAM\r\n";
+            //resultat += "Code_CCAM=" +  + "\r\n";
+            //resultat += "Code_extdoc_CCAM=" +  + "\r\n";
+            //resultat += "Code_compl_CCAM=" +  + "\r\n";
+            //resultat += "Modificateurs_CCAM=" +  + "\r\n";
+            //resultat += "Code_suppl_CCAM=" +  + "\r\n";
+
+
+            tmp = "";
+            resultat += "Coefficient=";
+            foreach (ActePG acte in lst)
+            {
+
+                double depassement = acte.Montant_Honoraire - (acte.Template.Coeff * acte.prestation.Valeur * acte.Quantite);
+
+
+                if (tmp != "") tmp += "+";
+                tmp += acte.Template.Coeff.ToString();
+
+
+
+            }
+            resultat += tmp + "\r\n";
+
+
+            //resultat += "Acte_multiple" +  + "\r\n";
+
+
+            tmp = "";
+            resultat += "RMO=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+
+                switch (acte.rno)
+                {
+                    case PyxVitalWrapperConst.RNO.R: tmp += "R"; break;
+                    case PyxVitalWrapperConst.RNO.HR: tmp += "HR"; break;
+                    case PyxVitalWrapperConst.RNO.Néant: tmp += "Néant"; break;
+                }
+
+            }
+            resultat += tmp + "\r\n";
+
+
+
+
+            tmp = "";
+            resultat += "Montant_honoraires=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+                tmp += acte.Montant_Honoraire.ToString("####.00", System.Globalization.CultureInfo.InvariantCulture);
+            }
+            resultat += tmp + "\r\n";
+
+
+
+
+            tmp = "";
+            resultat += "Qualificatif_depense=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+
+
+                switch (acte.motifdepassement)
+                {
+                    case PyxVitalWrapperConst.Qualificatif_depense.D: tmp += "D"; break;
+                    case PyxVitalWrapperConst.Qualificatif_depense.E: tmp += "E"; break;
+                    case PyxVitalWrapperConst.Qualificatif_depense.F: tmp += "F"; break;
+                    case PyxVitalWrapperConst.Qualificatif_depense.G: tmp += "G"; break;
+                    case PyxVitalWrapperConst.Qualificatif_depense.N: tmp += "N"; break;
+                    case PyxVitalWrapperConst.Qualificatif_depense.Néant: tmp += "Néant"; break;
+                }
+
+
+            }
+            resultat += tmp + "\r\n";
+
+
+
+
+            tmp = "";
+            resultat += "Domicile=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+                tmp += acte.domicile == PyxVitalWrapperConst.Domicile.O ? "O" : "N";
+            }
+            resultat += tmp + "\r\n";
+
+
+
+            resultat += "Accident=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+                tmp += (acte.accident == PyxVitalWrapperConst.Accident.O) || AccidentDroitCommun ? "O" : "N";
+            }
+            resultat += tmp + "\r\n";
+
+
+
+
+
+
+            tmp = "";
+            resultat += "D_JF=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+                tmp += acte.DimancheEtJF == PyxVitalWrapperConst.DimancheEtJF.O ? "O" : "N";
+            }
+            resultat += tmp + "\r\n";
+
+            tmp = "";
+            resultat += "Nuit=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+                tmp += acte.nuit == PyxVitalWrapperConst.Nuit.O ? "O" : "N";
+            }
+            resultat += tmp + "\r\n";
+
+            tmp = "";
+            resultat += "Urgence=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+                tmp += acte.urgence == PyxVitalWrapperConst.Urgence.O ? "O" : "N";
+            }
+            resultat += tmp + "\r\n";
+
+
+            tmp = "";
+            resultat += "Numero_dent=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+                tmp += acte.numdent == "" ? "Néant" : acte.numdent;
+            }
+            resultat += tmp + "\r\n";
+
+
+
+            //resultat += "Denombrement=" +  + "\r\n";
+            //resultat += "Code_affine=" +  + "\r\n";
+
+
+            tmp = "";
+            resultat += "Exoneration=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+
+                switch (acte.Exoneration)
+                {
+                    //case PyxVitalWrapperConst.Exoneration.Ex11: tmp += "11"; break;
+                    case PyxVitalWrapperConst.Exoneration.Ex13: tmp += "13"; break;
+                    case PyxVitalWrapperConst.Exoneration.Ex15: tmp += "15"; break;
+                    //case PyxVitalWrapperConst.Exoneration.Ex21: tmp += "21"; break;
+                    // case PyxVitalWrapperConst.Exoneration.Ex9: tmp += "9"; break;
+                    case PyxVitalWrapperConst.Exoneration.Ex17: tmp += "17"; break;
+                    case PyxVitalWrapperConst.Exoneration.Ex19: tmp += "19"; break;
+                    case PyxVitalWrapperConst.Exoneration.ExNéant: tmp += "Néant"; break;
+                }
+
+
+            }
+            resultat += tmp + "\r\n";
+
+
+            tmp = "";
+            resultat += "ALD=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+                tmp += (acte.ald == PyxVitalWrapperConst.ALD.O) || IsALD ? "O" : "N";
+            }
+            resultat += tmp + "\r\n";
+
+
+            tmp = "";
+            resultat += "DEP=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+                tmp += acte.DEPAssocier != null ? "O" : "N";
+            }
+            resultat += tmp + "\r\n";
+
+
+            tmp = "";
+            resultat += "Date_DEP=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+                tmp += acte.DEPAssocier != null ? acte.DEPAssocier.dateProposition.ToString("dd/MM/yy") : DateTime.Now.ToString("dd/MM/yy");
+            }
+            resultat += tmp + "\r\n";
+
+            //0 = Pas de reponse dans les temps
+            //4 = Réponse favorable
+            //5 = Urgence
+            //? = Refus
+            tmp = "";
+            resultat += "Code_accord_DEP=";
+            foreach (ActePG acte in lst)
+            {
+                if (tmp != "") tmp += "+";
+                if (acte.DEPAssocier != null)
+                {
+                    switch (acte.DEPAssocier.CodeAccordDEP)
+                    {
+                        case PyxVitalWrapperConst.CodeAccordDEP.Ac0: resultat += "0"; break;
+                        case PyxVitalWrapperConst.CodeAccordDEP.Ac4: resultat += "4"; break;
+                        case PyxVitalWrapperConst.CodeAccordDEP.Ac5: resultat += "5"; break;
+                        case PyxVitalWrapperConst.CodeAccordDEP.Neant: resultat += "Néant"; break;
+                        case PyxVitalWrapperConst.CodeAccordDEP.Refus: resultat += "?"; break;
+                    }
+                }
+                else
+                    tmp += "Néant";
+            }
+            resultat += tmp + "\r\n";
+
+
+
+            return resultat;
+
+        }
+
+        public static void InsertActePG(ActePG acte)
+        {
+            LogMgmt.AjoutActe(acte.IdPatient, -1, acte);
+            DAC.InsertActePG(acte);
+
+            if ((acte.patient != null) && (acte.patient != null) && (acte.patient.ActesPG != null))
+                acte.patient.ActesPG.Add(acte);
+
+        }
+
+
+        public static List<Echeance> InsertActePGWithEcheance(ActePG acte)
+        {
+
+            List<Echeance> result = new List<Echeance>();
+
+            Echeance ech = new Echeance();
+            ech.acte = acte;
+            if (acte.DateExecution != null)
+            {
+                if (acte.NbMois == null)
+                    ech.DateEcheance = null;
+                else
+                    ech.DateEcheance = acte.DateExecution.AddMonths(acte.NbMois.Value).AddDays(acte.NbJours.Value);
+            }
+            ech.patient = acte.patient;
+            ech.Libelle = acte.Libelle;
+            ech.Montant = acte.Montant_Honoraire;
+            ech.ParPrelevement = false;
+
+            
+
+
+
+            LogMgmt.AjoutActe(acte.IdPatient, -1, acte);
+            DAC.InsertActePG(acte);
+
+            if ((acte.patient!=null) && (acte.patient!=null) &&(acte.patient.ActesPG != null))
+                acte.patient.ActesPG.Add(acte);
+
+            if (baseMgmtPatient.IsCMU(acte.patient))
+            {
+                ech.Libelle = acte.Libelle + " [Part Secu]";
+                ech.payeur = Echeance.typepayeur.Secu;
+                ech.Montant = acte.Template.Coeff * acte.prestation.Valeur;
+
+                DAC.InsertEcheance(ech);
+
+                Echeance echmut = new Echeance();
+
+                echmut.acte = acte;
+                echmut.DateEcheance = ech.DateEcheance;
+                echmut.payeur = Echeance.typepayeur.Mutuelle;
+                
+                echmut.patient = ech.patient;
+                echmut.Libelle = acte.Libelle + " [Part Mutuelle]";
+                echmut.Montant = acte.Montant_Honoraire - ech.Montant;
+                echmut.ParPrelevement = false;
+
+                DAC.InsertEcheance(echmut);
+
+                if ((acte.patient != null) && (acte.patient != null) && (acte.patient.Echeances != null))
+                {
+                    acte.patient.Echeances.Add(ech);
+                    acte.patient.Echeances.Add(echmut);
+                    result.Add(ech);
+                    result.Add(echmut);
+                }
+
+            }
+            else
+            {
+                DAC.InsertEcheance(ech);
+
+                if ((acte.patient != null) && (acte.patient != null) && (acte.patient.Echeances != null))
+                    acte.patient.Echeances.Add(ech);
+                result.Add(ech);
+            }
+
+            return result;
+
+
+        }
+
+        public static void DeleteActePG(ActePG acte)
+        {
+
+            if (acte.PaimentEtat >= ActePG.etatpaiement.Partiel)
+                throw new System.Exception("L'acte à été soldé\nSuppression impossible");
+
+            if (acte.DEPAssocier != null)
+                throw new System.Exception("Une Demande d'entente à été réalisée\nSuppression impossible");
+
+            if (acte.FeuilleDeSoinAssocier != null)
+                throw new System.Exception("Une Feuille de soin à été réalisée\nSuppression impossible");
+
+            LogMgmt.SuppressionActe(acte.IdPatient, -1, acte);
+            DAC.DeleteActePGAndEcheance(acte);
+
+
+
+            if ((acte.patient != null) && (acte.patient != null) && (acte.patient.ActesPG != null))
+            {
+                for (int i = acte.patient.ActesPG.Count - 1; i >= 0; i--)
+                    if (acte.patient.ActesPG[i].Id == acte.Id)
+                        acte.patient.ActesPG.Remove(acte.patient.ActesPG[i]);
+            }
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+        public static void UpdateActePG(ActePG Newacte, ActePG Oldacte)
+        {
+
+            LogMgmt.ModificationActe(Newacte.IdPatient, -1, Oldacte, Newacte);
+            DAC.UpdateActePG(Newacte);
+
+
+
+        }
+    }
+}

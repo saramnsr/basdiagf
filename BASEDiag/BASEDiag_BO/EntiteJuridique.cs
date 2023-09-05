@@ -1,0 +1,89 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace BASEDiag_BO
+{
+    public class EntiteJuridique
+    {
+
+        private string _CodePostal;
+        public string CodePostal
+        {
+            get
+            {
+                return _CodePostal;
+            }
+            set
+            {
+                _CodePostal = value;
+            }
+        }
+
+        private string _Ville;
+        public string Ville
+        {
+            get
+            {
+                return _Ville;
+            }
+            set
+            {
+                _Ville = value;
+            }
+        }
+
+        private string _Adresse2;
+        public string Adresse2
+        {
+            get
+            {
+                return _Adresse2;
+            }
+            set
+            {
+                _Adresse2 = value;
+            }
+        }
+
+        private string _Adresse1;
+        public string Adresse1
+        {
+            get
+            {
+                return _Adresse1;
+            }
+            set
+            {
+                _Adresse1 = value;
+            }
+        }
+
+        private string _Nom;
+        public string Nom
+        {
+            get
+            {
+                return _Nom;
+            }
+            set
+            {
+                _Nom = value;
+            }
+        }
+
+        private int _Id = -1;
+        public int Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                _Id = value;
+            }
+        }
+    }
+}

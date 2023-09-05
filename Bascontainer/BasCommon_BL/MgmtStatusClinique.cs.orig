@@ -1,0 +1,96 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using BasCommon_BO;
+using BasCommon_DAL;
+
+namespace BasCommon_BL
+{
+    public static class StatusCliniqueManuelMgmt
+    {
+
+        private static List<StatusCliniqueManuel> _status = null;
+        public static List<StatusCliniqueManuel> status
+        {
+            get
+            {
+                if (_status == null) _status = getStatus();
+                return _status;
+            }
+            set
+            {
+                _status = value;
+            }
+        }
+
+
+        private static List<StatusCliniqueManuel> getStatus()
+        {
+            DataTable dt = DAC.getStatus();
+
+            List<StatusCliniqueManuel> lst = new List<StatusCliniqueManuel>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                StatusCliniqueManuel scm = Builders.BuildStatusCliniqueManuel.Build(dr);
+                lst.Add(scm);
+
+            }
+            return lst;
+        }
+
+
+
+        public static StatusCliniqueManuel GetStatus(int id)
+        {
+            foreach (StatusCliniqueManuel scm in status)
+                if (scm.Id == id)
+                    return scm;
+
+            return null;
+        }
+
+
+
+
+        public static List<CustomStatusClinique> getCurrentCustomStatusCliniqueFromIdPersonne(int id)
+        {
+            List<CustomStatusClinique> lst = new List<CustomStatusClinique>();
+            DataTable dt;
+
+            dt = DAC.getCurrentCustomStatusCliniqueFromIdPersonne(id);
+
+            foreach (DataRow r in dt.Rows)
+            {
+                lst.Add(Builders.BuildCustomStatusClinique.Build(r));
+            }
+            return lst;
+        }
+
+        public static List<CustomStatusClinique> GetCustomStatusCliniqueFromIdPersonne(int id)
+        {
+            List<CustomStatusClinique> lst = new List<CustomStatusClinique>();
+            DataTable dt;
+
+            dt = DAC.getCustomStatusCliniqueFromIdPersonne(id);
+
+            foreach (DataRow r in dt.Rows)
+            {
+                lst.Add(Builders.BuildCustomStatusClinique.Build(r));
+            }
+            return lst;
+        }
+
+        public static void UpdateCategorieBeToWas(CustomStatusClinique custo)
+        {
+            DAC.updateCustomStatusCliniqueBeToWas(custo);
+        }
+
+        public static void UpdateCategorieWasToBe(CustomStatusClinique custo)
+        {
+            DAC.updateCustomStatusCliniqueWasToBe(custo);
+        }
+    }
+}

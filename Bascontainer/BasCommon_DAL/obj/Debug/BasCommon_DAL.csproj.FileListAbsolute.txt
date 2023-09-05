@@ -1,0 +1,15 @@
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_DAL\bin\Debug\BasCommon_DAL.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_DAL\bin\Debug\BasCommon_DAL.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_DAL\bin\Debug\BasCommon_BO.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_DAL\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_DAL\bin\Debug\mysql.data.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_DAL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_DAL\bin\Debug\BasCommon_BL.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_DAL\bin\Debug\Ionic.Zip.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_DAL\bin\Debug\Interop.SHDocVw.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_DAL\bin\Debug\FirebirdSql.Data.FirebirdClient.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_DAL\bin\Debug\BasCommon_BO.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_DAL\bin\Debug\BasCommon_BL.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_DAL\obj\Debug\BasCommon_DAL.csprojResolveAssemblyReference.cache
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_DAL\obj\Debug\BasCommon_DAL.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_DAL\obj\Debug\BasCommon_DAL.pdb

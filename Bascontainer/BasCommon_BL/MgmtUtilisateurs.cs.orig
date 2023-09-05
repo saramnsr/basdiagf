@@ -1,0 +1,125 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using BasCommon_BO;
+using BasCommon_DAL;
+
+namespace BasCommon_BL
+{
+    public static class UtilisateursMgt
+    {
+        private static List<Utilisateur> _utilisateurs;
+        public static List<Utilisateur> utilisateurs
+        {
+            get
+            {
+                if (_utilisateurs != null)
+                    return _utilisateurs;
+                else
+                    return getUtilisateurs();
+            }
+
+        }
+
+
+
+        
+
+
+        public static List<Utilisateur> Assistantes
+        {
+            get
+            {
+                List<Utilisateur> lst = new List<Utilisateur>();
+
+                foreach (Utilisateur u in UtilisateursMgt.utilisateurs)
+                    if (u.Actif)
+                    {
+                        if (u.Fonction != "Praticien")
+                            lst.Add(u);
+                    }
+
+                return lst;
+            }
+            
+        }
+
+        public static List<Utilisateur> Praticiens
+        {
+            get
+            {
+                List<Utilisateur> lst = new List<Utilisateur>();
+
+                foreach (Utilisateur u in UtilisateursMgt.utilisateurs)
+                    if (u.Actif)
+                    {
+                        if (u.Fonction == "Praticien")
+                            lst.Add(u);
+                    }
+
+                return lst;
+            }
+
+        }
+
+        
+
+
+        public static void ForceRefreshUserList()
+        {
+            _utilisateurs.Clear();
+            getUtilisateurs();
+        }
+
+        private static List<Utilisateur> getUtilisateurs()
+        {
+
+            DataTable dt = DAC.getUtilisateurs();
+
+            _utilisateurs = new List<Utilisateur>();
+
+            foreach (DataRow r in dt.Rows)
+                _utilisateurs.Add(Builders.BuildUtilisateur.Build(r));
+
+
+            return _utilisateurs;
+        }
+
+
+        public static Utilisateur getUtilisateur(int Id)
+        {
+            foreach (Utilisateur ut in utilisateurs)
+                if (ut.Id == Id) return ut;
+
+            return null;
+        }
+
+        public static Utilisateur getUtilisateur(string nom)
+        {
+            foreach (Utilisateur ut in utilisateurs)
+                if (ut.Nom.ToUpper() == nom.ToUpper()) return ut;
+
+            return null;
+        }
+
+        public static List<Utilisateur> getUtilisateurInFauteuil(Fauteuil f, DateTime dte)
+        {
+
+           List<Utilisateur> res = new List<Utilisateur>();
+           if (f == null) return res;
+
+            DataTable dt = DAC.getUtilisateursInFauteuil(f, dte);
+
+            
+            foreach (DataRow r in dt.Rows)
+                foreach (Utilisateur u in utilisateurs)
+                    if (Convert.ToInt32(r["ID_USER"]) == u.Id)
+                        res.Add(u);
+
+            return res;
+        }
+
+    }
+}

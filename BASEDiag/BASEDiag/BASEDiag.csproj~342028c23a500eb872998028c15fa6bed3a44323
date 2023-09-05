@@ -1,0 +1,1176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{69D5B147-FAEB-4BB1-9B9E-199C96BAF94A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BASEDiag</RootNamespace>
+    <AssemblyName>BASEDiag</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AntiGrain.NET, Version=2.3.8.4, Culture=neutral, PublicKeyToken=7344997cc606b490">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Externals\AntiGrain.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Debug, Version=1.5.0.0, Culture=neutral, PublicKeyToken=1ebae9b942ed9798, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Externals\Common.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Drawing.Agg, Version=1.5.0.0, Culture=neutral, PublicKeyToken=1ebae9b942ed9798, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Externals\Common.Drawing.Agg.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Drawing.Platform, Version=1.5.0.0, Culture=neutral, PublicKeyToken=1ebae9b942ed9798, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Externals\Common.Drawing.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.IO, Version=1.5.0.0, Culture=neutral, PublicKeyToken=1ebae9b942ed9798, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Externals\Common.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.OpenType, Version=1.5.0.0, Culture=neutral, PublicKeyToken=1ebae9b942ed9798, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Externals\Common.OpenType.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Support.Events, Version=1.5.0.0, Culture=neutral, PublicKeyToken=1ebae9b942ed9798, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Externals\Common.Support.Events.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.83.1.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Externals\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\teklend\Desktop\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\teklend\Desktop\Microsoft.ReportViewer.DataVisualization.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\teklend\Desktop\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 11.0\ReportViewer\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\teklend\Desktop\Microsoft.SqlServer.Types.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ctrls\AnOccDroit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\AnOccDroit.Designer.cs">
+      <DependentUpon>AnOccDroit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\AnOccFace.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\AnOccFace.Designer.cs">
+      <DependentUpon>AnOccFace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\AnOccGauche.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\AnOccGauche.Designer.cs">
+      <DependentUpon>AnOccGauche.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\Ctrl9a99ans.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\Ctrl9a99ans.Designer.cs">
+      <DependentUpon>Ctrl9a99ans.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\frmPlanTraitementDEP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrls\frmPlanTraitementDEP.Designer.cs">
+      <DependentUpon>frmPlanTraitementDEP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\IPhoneCtrls\GraphicsUtils.cs" />
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneButton\IPhoneButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneButton\IPhoneButton.Designer.cs">
+      <DependentUpon>IPhoneButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneComboBox\frmComboChoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneComboBox\frmComboChoice.Designer.cs">
+      <DependentUpon>frmComboChoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneComboBox\IPhoneComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneComboBox\IPhoneComboBox.Designer.cs">
+      <DependentUpon>IPhoneComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneComboBox\IPhoneComboBoxBtn.cs" />
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneListBox\IPhoneListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneListBox\IPhoneListBox.Designer.cs">
+      <DependentUpon>IPhoneListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneListBox\IPhoneListBoxBtn.cs" />
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneWizard\AbstractIPhoneBtnRenderer.cs" />
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneWizard\AnimationThread.cs" />
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneWizard\IPhoneBtnRenderer.cs" />
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneWizard\IphoneLetterBtnRenderer.cs" />
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneWizard\IPhoneWizard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneWizard\IPhoneWizard.Designer.cs">
+      <DependentUpon>IPhoneWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneWizard\IphoneWizardQuestionBtn.cs" />
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneWizard\IPhoneWizardQuestions.cs" />
+    <Compile Include="Ctrls\IPhoneCtrls\IPhoneWizard\IQuestionnaire.cs" />
+    <Compile Include="Ctrls\CheckBoxComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ctrls\CheckBoxComboBox.designer.cs">
+      <DependentUpon>CheckBoxComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\GripBounds.cs" />
+    <Compile Include="Ctrls\Popup.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ctrls\Popup.Designer.cs">
+      <DependentUpon>Popup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\PopupComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ctrls\PopupComboBox.Designer.cs">
+      <DependentUpon>PopupComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCorrespondant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCorrespondant.designer.cs">
+      <DependentUpon>FrmCorrespondant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDate.Designer.cs">
+      <DependentUpon>FrmDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDevisManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDevisManager.Designer.cs">
+      <DependentUpon>FrmDevisManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmEditMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEditMail.designer.cs">
+      <DependentUpon>FrmEditMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmEspacesDent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEspacesDent.Designer.cs">
+      <DependentUpon>FrmEspacesDent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmExportInvisalign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExportInvisalign.Designer.cs">
+      <DependentUpon>FrmExportInvisalign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLittleWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLittleWizard.Designer.cs">
+      <DependentUpon>FrmLittleWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmModelesParametre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmModelesParametre.Designer.cs">
+      <DependentUpon>FrmModelesParametre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNbSemPoseApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNbSemPoseApp.Designer.cs">
+      <DependentUpon>FrmNbSemPoseApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPrinterSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPrinterSetting.Designer.cs">
+      <DependentUpon>FrmPrinterSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPrinterSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPrinterSettings.Designer.cs">
+      <DependentUpon>FrmPrinterSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmQuickView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmQuickView.Designer.cs">
+      <DependentUpon>FrmQuickView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectResume.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectResume.Designer.cs">
+      <DependentUpon>frmSelectResume.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSpecialistes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSpecialistes.Designer.cs">
+      <DependentUpon>FrmSpecialistes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTarifModification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTarifModification.Designer.cs">
+      <DependentUpon>FrmTarifModification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWizardCourrierForSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWizardCourrierForSummary.Designer.cs">
+      <DependentUpon>FrmWizardCourrierForSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\SoundLike.cs" />
+    <Compile Include="Ctrls\SuggestBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\SuggestBox.designer.cs">
+      <DependentUpon>SuggestBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmFindCorrespondant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmFindCorrespondant.Designer.cs">
+      <DependentUpon>FrmFindCorrespondant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRisques.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRisques.Designer.cs">
+      <DependentUpon>FrmRisques.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\AbstractRenderer.cs" />
+    <Compile Include="Ctrls\EasyTrackBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\EasyTrackBar.designer.cs">
+      <DependentUpon>EasyTrackBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\StandardRenderer.cs" />
+    <Compile Include="Ctrls\TreeViewIconCbx\NoScrollBarListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ctrls\TreeViewIconCbx\SelectionFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ctrls\TreeViewIconCbx\SelectionFrm.Designer.cs">
+      <DependentUpon>SelectionFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\TreeViewIconCbx\TreeViewIconCbx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\TreeViewIconCbx\TreeViewIconCbx.Designer.cs">
+      <DependentUpon>TreeViewIconCbx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmChoixFauteuil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChoixFauteuil.Designer.cs">
+      <DependentUpon>FrmChoixFauteuil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDuree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDuree.Designer.cs">
+      <DependentUpon>FrmDuree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLastSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLastSummary.Designer.cs">
+      <DependentUpon>FrmLastSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmObjTrmnt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmObjTrmnt.Designer.cs">
+      <DependentUpon>FrmObjTrmnt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAddRisquesPerso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddRisquesPerso.Designer.cs">
+      <DependentUpon>FrmAddRisquesPerso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWizardDevis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWizardDevis.Designer.cs">
+      <DependentUpon>FrmWizardDevis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\AbstractTreeViewRenderer.cs" />
+    <Compile Include="Ctrls\AggBtnCtn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\AggBtnCtn.Designer.cs">
+      <DependentUpon>AggBtnCtn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\Analyse1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\Analyse1.Designer.cs">
+      <DependentUpon>Analyse1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\Analyse7.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\Analyse7.Designer.cs">
+      <DependentUpon>Analyse7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\BarrePatient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\BarrePatient.Designer.cs">
+      <DependentUpon>BarrePatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\Analyse2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\Analyse2.Designer.cs">
+      <DependentUpon>Analyse2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\ChoixDentRsx.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChoixDentRsx.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\ChoixDents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\ChoixDents.Designer.cs">
+      <DependentUpon>ChoixDents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\Analyse62.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\Analyse62.Designer.cs">
+      <DependentUpon>Analyse62.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\GeomTools.cs" />
+    <Compile Include="Ctrls\GraphicUtils.cs" />
+    <Compile Include="Ctrls\IAnalyse.cs" />
+    <Compile Include="Ctrls\ImageCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\ImageCtrl.Designer.cs">
+      <DependentUpon>ImageCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\ImageCtrlAgg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\ImageCtrlAgg.Designer.cs">
+      <DependentUpon>ImageCtrlAgg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrls\StandardTreeViewRenderer.cs" />
+    <Compile Include="Ctrls\ToolStripPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ctrls\trButton.cs" />
+    <Compile Include="Ctrls\TreeViewIcon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrls\TreeViewIcon.Designer.cs">
+      <DependentUpon>TreeViewIcon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsToPrint\EntentePrealable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FirstScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FirstScreen.Designer.cs">
+      <DependentUpon>FirstScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAnalyse1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAnalyse1.Designer.cs">
+      <DependentUpon>FrmAnalyse1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAnalyse2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAnalyse2.Designer.cs">
+      <DependentUpon>FrmAnalyse2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAnalyse3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAnalyse3.Designer.cs">
+      <DependentUpon>FrmAnalyse3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAnalyse4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAnalyse4.Designer.cs">
+      <DependentUpon>FrmAnalyse4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAnalyse5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAnalyse5.Designer.cs">
+      <DependentUpon>FrmAnalyse5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAnalyse6.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAnalyse6.Designer.cs">
+      <DependentUpon>FrmAnalyse6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAnalyse7.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAnalyse7.Designer.cs">
+      <DependentUpon>FrmAnalyse7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAnalyse8.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAnalyse8.Designer.cs">
+      <DependentUpon>FrmAnalyse8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPreAnalyse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPreAnalyse.Designer.cs">
+      <DependentUpon>FrmPreAnalyse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProperties.Designer.cs">
+      <DependentUpon>FrmProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWizardCourrier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWizardCourrier.Designer.cs">
+      <DependentUpon>FrmWizardCourrier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWizardInvisalign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWizardInvisalign.Designer.cs">
+      <DependentUpon>FrmWizardInvisalign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWizardPrescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWizardPrescription.designer.cs">
+      <DependentUpon>FrmWizardPrescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OLEServer.cs" />
+    <Compile Include="PrinterBounds.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Ctrls\AnOccDroit.resx">
+      <DependentUpon>AnOccDroit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\AnOccFace.resx">
+      <DependentUpon>AnOccFace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\AnOccGauche.resx">
+      <DependentUpon>AnOccGauche.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\Ctrl9a99ans.resx">
+      <DependentUpon>Ctrl9a99ans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\frmPlanTraitementDEP.resx">
+      <DependentUpon>frmPlanTraitementDEP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\IPhoneCtrls\IPhoneButton\IPhoneButton.resx">
+      <DependentUpon>IPhoneButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\IPhoneCtrls\IPhoneComboBox\frmComboChoice.resx">
+      <DependentUpon>frmComboChoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\IPhoneCtrls\IPhoneComboBox\IPhoneComboBox.resx">
+      <DependentUpon>IPhoneComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\IPhoneCtrls\IPhoneListBox\IPhoneListBox.resx">
+      <DependentUpon>IPhoneListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\IPhoneCtrls\IPhoneWizard\IPhoneWizard.resx">
+      <DependentUpon>IPhoneWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCorrespondant.resx">
+      <DependentUpon>FrmCorrespondant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDate.resx">
+      <DependentUpon>FrmDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDevisManager.resx">
+      <DependentUpon>FrmDevisManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEditMail.resx">
+      <DependentUpon>FrmEditMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEspacesDent.resx">
+      <DependentUpon>FrmEspacesDent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExportInvisalign.resx">
+      <DependentUpon>FrmExportInvisalign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLittleWizard.resx">
+      <DependentUpon>FrmLittleWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmModelesParametre.resx">
+      <DependentUpon>FrmModelesParametre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNbSemPoseApp.resx">
+      <DependentUpon>FrmNbSemPoseApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPrinterSetting.resx">
+      <DependentUpon>FrmPrinterSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPrinterSettings.resx">
+      <DependentUpon>FrmPrinterSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmQuickView.resx">
+      <DependentUpon>FrmQuickView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectResume.resx">
+      <DependentUpon>frmSelectResume.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSpecialistes.resx">
+      <DependentUpon>FrmSpecialistes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTarifModification.resx">
+      <DependentUpon>FrmTarifModification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWizardCourrierForSummary.resx">
+      <DependentUpon>FrmWizardCourrierForSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\SuggestBox.resx">
+      <DependentUpon>SuggestBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmFindCorrespondant.resx">
+      <DependentUpon>FrmFindCorrespondant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRisques.resx">
+      <DependentUpon>FrmRisques.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\EasyTrackBar.resx">
+      <DependentUpon>EasyTrackBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\TreeViewIconCbx\SelectionFrm.resx">
+      <DependentUpon>SelectionFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\TreeViewIconCbx\TreeViewIconCbx.resx">
+      <DependentUpon>TreeViewIconCbx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmChoixFauteuil.resx">
+      <DependentUpon>FrmChoixFauteuil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDuree.resx">
+      <DependentUpon>FrmDuree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLastSummary.resx">
+      <DependentUpon>FrmLastSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmObjTrmnt.resx">
+      <DependentUpon>FrmObjTrmnt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAddRisquesPerso.resx">
+      <DependentUpon>FrmAddRisquesPerso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWizardDevis.resx">
+      <DependentUpon>FrmWizardDevis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\AggBtnCtn.resx">
+      <DependentUpon>AggBtnCtn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\Analyse7.resx">
+      <DependentUpon>Analyse7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\BarrePatient.resx">
+      <DependentUpon>BarrePatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\ChoixDentRsx.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ChoixDentRsx.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\ChoixDents.resx">
+      <DependentUpon>ChoixDents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\ImageCtrl.resx">
+      <DependentUpon>ImageCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\ImageCtrlAgg.resx">
+      <DependentUpon>ImageCtrlAgg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrls\TreeViewIcon.resx">
+      <DependentUpon>TreeViewIcon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FirstScreen.resx">
+      <DependentUpon>FirstScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAnalyse1.resx">
+      <DependentUpon>FrmAnalyse1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAnalyse2.resx">
+      <DependentUpon>FrmAnalyse2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAnalyse3.resx">
+      <DependentUpon>FrmAnalyse3.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAnalyse4.resx">
+      <DependentUpon>FrmAnalyse4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAnalyse5.resx">
+      <DependentUpon>FrmAnalyse5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAnalyse6.resx">
+      <DependentUpon>FrmAnalyse6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAnalyse7.resx">
+      <DependentUpon>FrmAnalyse7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAnalyse8.resx">
+      <DependentUpon>FrmAnalyse8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPreAnalyse.resx">
+      <DependentUpon>FrmPreAnalyse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProperties.resx">
+      <DependentUpon>FrmProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWizardCourrier.resx">
+      <DependentUpon>FrmWizardCourrier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWizardInvisalign.resx">
+      <DependentUpon>FrmWizardInvisalign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWizardPrescription.resx">
+      <DependentUpon>FrmWizardPrescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.manifest" />
+    <None Include="script\App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Remoting\Reseau.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Bascontainer\BasCommon_BL\BasCommon_BL.csproj">
+      <Project>{582662F6-833C-46B9-8236-4ED765A707EC}</Project>
+      <Name>BasCommon_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Bascontainer\BasCommon_BO\BasCommon_BO.csproj">
+      <Project>{763B2981-511B-447D-84F4-55916B5DB254}</Project>
+      <Name>BasCommon_BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Bascontainer\BaseCommonControls\BaseCommonControls.csproj">
+      <Project>{8CB2A63C-249C-4DEA-BFE1-E60AA116725E}</Project>
+      <Name>BaseCommonControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BASEDiag_BL\BASEDiag_BL.csproj">
+      <Project>{54FB615B-BF1E-4573-BE96-9E40D796D951}</Project>
+      <Name>BASEDiag_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BASEDiag_BO\BASEDiag_BO.csproj">
+      <Project>{9F4D1AC2-9585-4630-B15A-87CC8BC270F4}</Project>
+      <Name>BASEDiag_BO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SchemaDentaire.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EtageInf_Augmentation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EtageInf_Effondrement.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EtageInf_Diminution.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SourireDentaire_Etroit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SourireDentaire_Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SourireDentaire_Normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TriangleGauche.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TriangleBiLa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TriangleDroit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Classe_I.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Classe_II.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Classe_III.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Supraclusion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Infraclusion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ArticuleInv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ArticuleInvDroit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ArticuleInvGauche.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\InterposLingAnt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\InterposLingPost.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DysharmonieHB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FormeEnU.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FormeEnV.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LangueBas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FreinLabial.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DDD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DDM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SourireGingivalSup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SourireGingivalInf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SourireLabial.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Retro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Normo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HypoDiv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NormoDiv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HyperDiv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EtageInf_Normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TriangleAucun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ArticuleInvAucun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OcclusionNormal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SourireNormal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Patient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MasqueFacial.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AnalyseSourire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Occlusal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Profil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arcades.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sourire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\radio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pano.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SourireOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AnalyseSourireNOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AnalyseSourireOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ArcadesNOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ArcadesOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MasqueFacialNOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MasqueFacialOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OcclusalNOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OcclusalOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PanoNOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PanoOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProfilNOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProfilOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RadioNOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RadioOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SourireNOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PreAnalyse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\InterposLingNormal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Multiscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DEPVerso.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CourriersSpecialiste.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Ctrls\IPhoneCtrls\IPhoneWizard.rar" />
+    <None Include="Resources\denture mixte.jpg" />
+    <None Include="Resources\AdulteEnfant.jpg" />
+    <None Include="Resources\changeecran.png" />
+    <None Include="Resources\ArticuleInvSaut.png" />
+    <None Include="Resources\1Phase.png" />
+    <None Include="Resources\1PhasePediatrie.png" />
+    <None Include="Resources\1Semestre.png" />
+    <None Include="Resources\2Phases.png" />
+    <None Include="Resources\2Semestres.png" />
+    <None Include="Resources\3 Semestres.png" />
+    <None Include="Resources\4Semestres.png" />
+    <None Include="Resources\5 Semestres.png" />
+    <None Include="Resources\6Semestres.png" />
+    <None Include="Resources\ArcLingual.png" />
+    <None Include="Resources\23.png" />
+    <None Include="Resources\32.png" />
+    <None Include="Resources\Cantilever.png" />
+    <None Include="Resources\Bleu.png" />
+    <None Include="Resources\ARC.png" />
+    <None Include="Resources\ASI.png" />
+    <Content Include="logo.ico" />
+    <None Include="Resources\ArticuleInvAnterieur.png" />
+    <Content Include="Resources\check.png" />
+    <None Include="Resources\DentsDefinitives.png" />
+    <None Include="Resources\DentsSagesses.png" />
+    <None Include="Resources\DentsAutres.png" />
+    <None Include="Resources\ClasseI.png" />
+    <None Include="Resources\ClasseII.png" />
+    <None Include="Resources\ClasseIII.png" />
+    <None Include="Resources\DemBL.png" />
+    <Content Include="Resources\DEPRecto.png" />
+    <None Include="Resources\quitter.jpg" />
+    <None Include="Resources\suivante.jpg" />
+    <None Include="Resources\précédente.jpg" />
+    <None Include="Resources\FreinLingual.png" />
+    <None Include="Resources\LateroDeviationDroit.png" />
+    <None Include="Resources\LateroDeviationGauche.png" />
+    <None Include="Resources\Interogation.png" />
+    <None Include="Resources\Imprimer.png" />
+    <None Include="Resources\MasqueDelaire.png" />
+    <None Include="Resources\RCC.png" />
+    <None Include="Resources\QuadHelix.png" />
+    <None Include="Resources\MultiBagues.png" />
+    <None Include="Resources\Invisalign.png" />
+    <None Include="Resources\MultibagueMetal.png" />
+    <None Include="Resources\MultibagueCeramique.png" />
+    <None Include="Resources\Jour.png" />
+    <None Include="Resources\Nuit.png" />
+    <None Include="Resources\InvLite.png" />
+    <None Include="Resources\InvFull.png" />
+    <None Include="Resources\InvTeen.png" />
+    <None Include="Resources\GBE.png" />
+    <None Include="Resources\PlanMolaire.png" />
+    <None Include="Resources\PRI.png" />
+    <None Include="Resources\Friels.png" />
+    <None Include="Resources\GrilleAntiPouce.png" />
+    <None Include="Resources\Jaune.png" />
+    <None Include="Resources\Paillettes.png" />
+    <None Include="Resources\Lingual.png" />
+    <None Include="Resources\Disjoncteur.png" />
+    <None Include="Resources\EspacesDents.png" />
+    <None Include="Resources\EnvoyeVersBASPhoto.png" />
+    <Content Include="Resources\retour.jpg" />
+    <None Include="Resources\retour.png" />
+    <None Include="Resources\TIM.png" />
+    <None Include="Resources\VerinMedian.png" />
+    <None Include="Resources\VerinReculPost.png" />
+    <None Include="Resources\Vert.png" />
+    <None Include="Resources\Rose.png" />
+    <None Include="Resources\Transparent.png" />
+    <None Include="Resources\Risques.png" />
+    <Content Include="script\TextFile1.txt" />
+    <Content Include="script\TextFile10.txt" />
+    <Content Include="script\TextFile11.txt" />
+    <Content Include="script\TextFile12.txt" />
+    <Content Include="script\TextFile13.txt" />
+    <Content Include="script\TextFile14.txt" />
+    <Content Include="script\TextFile15.txt" />
+    <Content Include="script\TextFile16.txt" />
+    <Content Include="script\TextFile17.txt" />
+    <Content Include="script\TextFile18.txt" />
+    <Content Include="script\TextFile19.txt" />
+    <Content Include="script\TextFile2.txt" />
+    <Content Include="script\TextFile3.txt" />
+    <Content Include="script\TextFile4.txt" />
+    <Content Include="script\TextFile5.txt" />
+    <Content Include="script\TextFile6.txt" />
+    <Content Include="script\TextFile7.txt" />
+    <Content Include="script\TextFile8.txt" />
+    <Content Include="script\TextFile9.txt" />
+    <Content Include="script\tmp.txt" />
+    <None Include="Resources\NoText.png" />
+    <None Include="Properties\DataSources\BASEDiag.Ctrls.DEPCtrl.datasource" />
+    <None Include="Properties\DataSources\BASEDiag_BO.EntentePrealable.datasource" />
+    <None Include="Resources\Previous.png" />
+    <None Include="Resources\Next.png" />
+    <None Include="Resources\Resultats.png" />
+    <None Include="Resources\Endoalveolie.png" />
+    <None Include="Resources\exoalveolie.png" />
+    <None Include="Resources\Exognatie.png" />
+    <None Include="Resources\Endognatie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

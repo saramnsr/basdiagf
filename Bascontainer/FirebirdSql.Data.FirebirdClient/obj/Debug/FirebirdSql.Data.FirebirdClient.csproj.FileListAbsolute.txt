@@ -1,0 +1,35 @@
+D:\BAS_SVN2\Bascontainer\FirebirdSql.Data.FirebirdClient\bin\Debug\FirebirdSql.Data.FirebirdClient.dll.config
+D:\BAS_SVN2\Bascontainer\FirebirdSql.Data.FirebirdClient\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+D:\BAS_SVN2\Bascontainer\FirebirdSql.Data.FirebirdClient\bin\Debug\FirebirdSql.Data.FirebirdClient.pdb
+D:\BAS_SVN2\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Data.FirebirdClient.csprojResolveAssemblyReference.cache
+D:\BAS_SVN2\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Resources.isc_error_msg.resources
+D:\BAS_SVN2\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Resources.sqlstate_mapping.resources
+D:\BAS_SVN2\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Data.FirebirdClient.csproj.GenerateResource.Cache
+D:\BAS_SVN2\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Data.FirebirdClient.dll
+D:\BAS_SVN2\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Data.FirebirdClient.pdb
+D:\Bas_SVN\Bascontainer\FirebirdSql.Data.FirebirdClient\bin\Debug\FirebirdSql.Data.FirebirdClient.dll.config
+D:\Bas_SVN\Bascontainer\FirebirdSql.Data.FirebirdClient\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+D:\Bas_SVN\Bascontainer\FirebirdSql.Data.FirebirdClient\bin\Debug\FirebirdSql.Data.FirebirdClient.pdb
+D:\Bas_SVN\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Data.FirebirdClient.csprojResolveAssemblyReference.cache
+D:\Bas_SVN\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Resources.isc_error_msg.resources
+D:\Bas_SVN\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Resources.sqlstate_mapping.resources
+D:\Bas_SVN\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Data.FirebirdClient.csproj.GenerateResource.Cache
+D:\Bas_SVN\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Data.FirebirdClient.dll
+D:\Bas_SVN\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Data.FirebirdClient.pdb
+E:\BaseSmile\BaseSmile\Bascontainer\FirebirdSql.Data.FirebirdClient\bin\Debug\FirebirdSql.Data.FirebirdClient.dll.config
+E:\BaseSmile\BaseSmile\Bascontainer\FirebirdSql.Data.FirebirdClient\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+E:\BaseSmile\BaseSmile\Bascontainer\FirebirdSql.Data.FirebirdClient\bin\Debug\FirebirdSql.Data.FirebirdClient.pdb
+E:\BaseSmile\BaseSmile\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Data.FirebirdClient.csprojResolveAssemblyReference.cache
+E:\BaseSmile\BaseSmile\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Resources.isc_error_msg.resources
+E:\BaseSmile\BaseSmile\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Resources.sqlstate_mapping.resources
+E:\BaseSmile\BaseSmile\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Data.FirebirdClient.csproj.GenerateResource.Cache
+E:\BaseSmile\BaseSmile\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Data.FirebirdClient.dll
+E:\BaseSmile\BaseSmile\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Data.FirebirdClient.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\FirebirdSql.Data.FirebirdClient\bin\Debug\FirebirdSql.Data.FirebirdClient.dll.config
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\FirebirdSql.Data.FirebirdClient\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\FirebirdSql.Data.FirebirdClient\bin\Debug\FirebirdSql.Data.FirebirdClient.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Resources.isc_error_msg.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Resources.sqlstate_mapping.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Data.FirebirdClient.csproj.GenerateResource.Cache
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Data.FirebirdClient.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\FirebirdSql.Data.FirebirdClient\obj\Debug\FirebirdSql.Data.FirebirdClient.pdb

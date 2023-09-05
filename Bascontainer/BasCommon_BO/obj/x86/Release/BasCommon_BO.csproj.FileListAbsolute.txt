@@ -1,0 +1,12 @@
+D:\basmile mysql\Bascontainer\BasCommon_BO\bin\x86\Release\BasCommon_BO.dll
+D:\basmile mysql\Bascontainer\BasCommon_BO\bin\x86\Release\BasCommon_BO.pdb
+D:\basmile mysql\Bascontainer\BasCommon_BO\bin\x86\Release\Newtonsoft.Json.dll
+D:\basmile mysql\Bascontainer\BasCommon_BO\obj\x86\Release\BasCommon_BO.dll
+D:\basmile mysql\Bascontainer\BasCommon_BO\obj\x86\Release\BasCommon_BO.pdb
+D:\basmile mysql\Bascontainer\BasCommon_BO\obj\x86\Release\BasCommon_BO.csprojResolveAssemblyReference.cache
+D:\D\basmile mysql\Bascontainer\BasCommon_BO\bin\x86\Release\BasCommon_BO.dll
+D:\D\basmile mysql\Bascontainer\BasCommon_BO\bin\x86\Release\BasCommon_BO.pdb
+D:\D\basmile mysql\Bascontainer\BasCommon_BO\bin\x86\Release\Newtonsoft.Json.dll
+D:\D\basmile mysql\Bascontainer\BasCommon_BO\obj\x86\Release\BasCommon_BO.csprojResolveAssemblyReference.cache
+D:\D\basmile mysql\Bascontainer\BasCommon_BO\obj\x86\Release\BasCommon_BO.dll
+D:\D\basmile mysql\Bascontainer\BasCommon_BO\obj\x86\Release\BasCommon_BO.pdb

@@ -1,0 +1,106 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Data;
+using System.Text;
+using BasCommon_BO;
+using BasCommon_DAL;
+
+namespace BasCommon_BL
+{
+    public static class MgmtBordereauFinance
+    {
+
+
+
+        public static void Validate(BordereauFinance bf)
+        {
+            DAC.validateBordereau(bf);
+        }
+
+
+        public static List<PaiementReel> GetPaiementsCBToCheck()
+        {
+            List<PaiementReel> resultats = new List<PaiementReel>();
+            DataTable dt = DAC.GetPaiementsCBToCheck();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                PaiementReel pr = Builders.BuildPaiementReel.Build(dr);
+                resultats.Add(pr);
+            }
+
+            return resultats;
+        }
+
+        public static List<BordereauFinance> GetBordereauToCheck()
+        {
+            List<BordereauFinance> resultats = new List<BordereauFinance>();
+            DataTable dt = DAC.GetBordereauToCheck();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                BordereauFinance bf = Builders.BuildBordereauFinance.Build(dr);
+                resultats.Add(bf);
+            }
+
+            return resultats;
+        }
+
+        public static List<BordereauFinance> CreateBordereaux(List<PaiementReel> paiements, 
+                                                                ControlFinancier ctrlfinance)
+        {
+
+            List<BordereauFinance> resultats = new List<BordereauFinance>();
+            Dictionary<BanqueDeRemise, List<PaiementReel>> dico = new Dictionary<BanqueDeRemise, List<PaiementReel>>();
+
+
+            foreach (PaiementReel pr in paiements)
+            {
+                if (pr.BanqueDeRemise == null)
+                    throw new System.Exception("Le paiement de " + pr.payeur + " n'a pas de banque de remise");
+                if (!dico.ContainsKey(pr.BanqueDeRemise))
+                    dico.Add(pr.BanqueDeRemise, new List<PaiementReel>());
+
+                dico[pr.BanqueDeRemise].Add(pr);
+            }
+
+            int i = 1;
+            foreach (KeyValuePair<BanqueDeRemise, List<PaiementReel>> kv in dico)
+            {
+                BordereauFinance bf = new BordereauFinance();
+                bf.BanqueDeRemise = kv.Key;
+
+                int nb = 0;
+                double total = 0;
+                bf.paiements = new List<PaiementReel>();
+                foreach (PaiementReel pr in kv.Value)
+                {
+                    nb++;
+                    total+=pr.Montant;
+                    bf.paiements.Add(pr);
+                }
+                bf.Montant = total;
+                bf.NbCheques = nb;
+                bf.NumBordereau = DateTime.Now.ToString("ddMMyyyyHHmmss")+i.ToString();
+                bf.DateRemise = DateTime.Now;
+                bf.Controlfinance = ctrlfinance;
+                resultats.Add(bf);
+                i++;
+                
+            }
+
+            return resultats;
+        }
+
+        public static void Insert(BordereauFinance bf)
+        {
+           DAC.InsertBordereaufinance(bf);
+
+            
+        }
+
+       
+
+    }
+}

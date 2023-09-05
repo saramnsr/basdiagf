@@ -1,0 +1,17 @@
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\bin\Debug\BasCommon_BL.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\bin\Debug\BasCommon_BL.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\bin\Debug\BasCommon_BO.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\bin\Debug\BasCommon_DAL.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\bin\Debug\Ionic.Zip.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\bin\Debug\mysql.data.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\bin\Debug\Interop.SHDocVw.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\bin\Debug\BasCommon_BO.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\bin\Debug\BasCommon_DAL.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\bin\Debug\FirebirdSql.Data.FirebirdClient.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\obj\Debug\BasCommon_BL.csprojResolveAssemblyReference.cache
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\obj\Debug\Interop.SHDocVw.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\obj\Debug\BasCommon_BL.csproj.ResolveComReference.cache
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\obj\Debug\BasCommon_BL.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BasCommon_BL\obj\Debug\BasCommon_BL.pdb

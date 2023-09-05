@@ -1,0 +1,637 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="4Semestres" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\4Semestres.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OcclusalOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OcclusalOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EtageInf_Normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EtageInf_Normal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InterposLingAnt1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InterposLingAnt.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Transparent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Transparent.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OcclusalNOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OcclusalNOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TriangleGauche" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TriangleGauche.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\quitter.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Supraclusion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Supraclusion.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Disjoncteur" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Disjoncteur.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MultibagueCeramique" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MultibagueCeramique.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="retour1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\retour.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DentsAutres" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DentsAutres.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Retro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Retro.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InterposLingPost1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InterposLingPost.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Nuit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Nuit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MasqueFacialOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MasqueFacialOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InterposLingPost" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InterposLingPost.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LangueBas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LangueBas.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="d3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\d.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RespBucc11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RespBucc1.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ProfilOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ProfilOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VerinReculPost" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VerinReculPost.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RespExc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RespExc.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DentsSagesses" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DentsSagesses.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArcadesNOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArcadesNOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LateroFct1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LateroFct.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Next" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\suivante.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PanoNOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PanoNOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="6Semestres" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\6Semestres.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lingual" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Lingual.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DDM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DDM.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FreinLingual" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FreinLingual.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RespBucc1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RespBucc1.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pro.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1Phase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1Phase.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LateroDeviationGauche" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LateroDeviationGauche.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Jour" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jour.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DEPRecto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DEPVerso.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="prev" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\prev.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Endoalveolie" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Endoalveolie.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DysharmonieHB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DysharmonieHB.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OcclusionNormal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OcclusionNormal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AZ.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FonctionnelNOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FonctionnelNOK.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="d2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\d.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InterposLingAnt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InterposLingAnt.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VerinMedian" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VerinMedian.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="printButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\printButton.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GoSign" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GoSign.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InvTeen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InvTeen.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlanMolaire" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlanMolaire.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TriangleDroit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TriangleDroit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SourireDentaire_Large" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SourireDentaire_Large.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Risques" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Risques.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QuadHelix" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QuadHelix.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Interogation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Interogation.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FormeEnU" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FormeEnU.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MasqueDelaire" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MasqueDelaire.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NoText" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NoText.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Classe_III" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Classe_III.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SourireNormal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SourireNormal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SourireLabial" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SourireLabial.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Transparent1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Transparent.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ClasseIII" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ClasseIII.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Infraclusion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Infraclusion.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Fonctionnel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fonctionnel.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ProfilNOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ProfilNOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Classe_II" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Classe_II.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="3 Semestres" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3 Semestres.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Rose.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SourireDentaire_Etroit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SourireDentaire_Etroit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AZ1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AZ.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GBE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GBE.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LateroDeviationDroit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LateroDeviationDroit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="d1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\d.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TriangleAucun" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TriangleAucun.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="5 Semestres" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\5 Semestres.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AnalyseSourireNOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AnalyseSourireNOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArticuleInvAnterieur" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArticuleInvAnterieur.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AnalyseSourire" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AnalyseSourire.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SourireNOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SourireNOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Exognatie" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Exognatie.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EtageInf_Augmentation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EtageInf_Augmentation.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Profil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Profil.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InterposLingNormal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InterposLingNormal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="2Phases" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2Phases.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DentsDefinitives" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DentsDefinitives.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1Semestre" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1Semestre.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SourireOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SourireOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LateroFct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LateroFct.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PRI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PRI.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HyperDiv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HyperDiv.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AZ2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AZ.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MasqueFacial" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MasqueFacial.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RCC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RCC.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Resultats" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Resultats.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AnalyseSourireOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AnalyseSourireOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="23" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\23.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DemBL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DemBL.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Previous" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\précédente.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Friels" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Friels.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DDD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DDD.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FonctionnelOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FonctionnelOK.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NormoDiv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NormoDiv.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Endognatie" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Endognatie.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="radio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\radio.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Normo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Normo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GrilleAntiPouce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GrilleAntiPouce.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Jaune" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jaune.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Vert" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Vert.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Imprimer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Imprimer.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ClasseII" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ClasseII.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DEPVerso" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DEPRecto.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EnvoyeVersBASPhoto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EnvoyeVersBASPhoto.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nextB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nextB.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArticuleInvGauche" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArticuleInvGauche.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArcadesOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArcadesOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Paillettes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Paillettes.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArticuleInv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArticuleInv.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FormeEnV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FormeEnV.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Invisalign" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Invisalign.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LateroFct2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LateroFct.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="home" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\home.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EtageInf_Diminution" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EtageInf_Diminution.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Occlusal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Occlusal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RadioOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RadioOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MultiBagues" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MultiBagues.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EspacesDents" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EspacesDents.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ClasseI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ClasseI.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Arcades" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Arcades.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InvLite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InvLite.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EtageInf_Effondrement" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EtageInf_Effondrement.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArticuleInvSaut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArticuleInvSaut.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FreinLabial" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FreinLabial.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SourireGingivalInf" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SourireGingivalInf.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="exoalveolie" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\exoalveolie.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1PhasePediatrie" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1PhasePediatrie.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Patient" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Patient.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Profil1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Profil.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ASI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ASI.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MasqueFacialNOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MasqueFacialNOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Sourire" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sourire.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PanoOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PanoOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PreAnalyse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PreAnalyse.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pano" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pano.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cantilever" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cantilever.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArcLingual" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArcLingual.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ARC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ARC.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SourireDentaire_Normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SourireDentaire_Normal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HypoDiv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HypoDiv.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="2Semestres" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2Semestres.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InvFull" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InvFull.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="changeecran" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\changeecran.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bleu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bleu.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\e.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SourireGingivalSup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SourireGingivalSup.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RadioNOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RadioNOK.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Multiscreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Multiscreen.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="check" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\check.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArticuleInvDroit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArticuleInvDroit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TIM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TIM.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MultibagueMetal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MultibagueMetal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TriangleBiLa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TriangleBiLa.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Classe_I" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Classe_I.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NonCorrFonct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NonCorrFonct.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArticuleInvAucun" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArticuleInvAucun.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NonCorrFonct1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NonCorrFonct.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="latero" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\latero.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NONcorres" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NONcorres.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>

@@ -1,0 +1,9 @@
+CREATE TABLE BAS_INVI_ENBOUCHE (
+    ID             INTEGER NOT NULL,
+    DATEDEBUT      TIMESTAMP,
+    DATEFIN        TIMESTAMP,
+    NUMALIGNEUR    integer, 
+    ID_PATIENT     INTEGER,
+    HAUT           SMALLINT,
+    BAS            SMALLINT
+);

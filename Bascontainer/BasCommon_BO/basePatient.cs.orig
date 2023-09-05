@@ -1,0 +1,1411 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Configuration;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using BasCommon_BO.ElementsEnBouche.BO;
+
+namespace BasCommon_BO
+{
+
+    public class basePatient : baseSmallPersonne
+    {
+        public enum StatusClinique
+        {
+            NouveauPatient,
+            PasPret,
+            EnAttente,
+            EnAttenteAcceptationDevis,
+            EnAttenteDevisSigne,
+            EnTraitement,
+            EnSurveillance,
+            EnContention,
+            EnArchive,
+            Abandon,
+            Transfert,
+            Inconnue
+
+        }
+
+
+     
+        private bool _publication;
+        public bool publication
+        {
+            get
+            {
+                return _publication;
+            }
+            set
+            {
+                _publication = value;
+            }
+        }
+
+        private int _Idprofile;
+        public int Idprofile
+        {
+            get
+            {
+                return _Idprofile;
+            }
+            set
+            {
+                _Idprofile = value;
+            }
+        }
+
+        private string _password;
+        public string password
+        {
+            get
+            {
+                if (_password == "") _password = Nom + Id.ToString();
+                return _password;
+            }
+            set
+            {
+                _password = value;
+            }
+        }
+
+        private string _IOlogin;
+        public string IOlogin
+        {
+            get
+            {
+                if (_IOlogin == "") _IOlogin = Nom;
+                return _IOlogin;
+            }
+            set
+            {
+                _IOlogin = value;
+            }
+        }
+
+        private Caisse _caisse;
+        public Caisse caisse
+        {
+            get
+            {
+                return _caisse;
+            }
+            set
+            {
+                _caisse = value;
+            }
+        }
+
+        private Mutuelle _Mutuelle;
+        public Mutuelle Mutuelle
+        {
+            get
+            {
+                return _Mutuelle;
+            }
+            set
+            {
+                _Mutuelle = value;
+            }
+        }
+
+
+        private List<FeuilleDeSoin> _FeuillesDeSoins = null;
+        public List<FeuilleDeSoin> FeuillesDeSoins
+        {
+            get
+            {
+                return _FeuillesDeSoins;
+            }
+            set
+            {
+                _FeuillesDeSoins = value;
+            }
+        }
+
+        private List<EntentePrealable> _ententesPrealable = null;
+        public List<EntentePrealable> ententesPrealable
+        {
+            get
+            {
+                return _ententesPrealable;
+            }
+            set
+            {
+                _ententesPrealable = value;
+            }
+        }
+
+        private List<Devis> _devis = null;
+        public List<Devis> devis
+        {
+            get
+            {
+                return _devis;
+            }
+            set
+            {
+                _devis = value;
+            }
+        }
+
+        
+        string _repertoire = "";
+        public string Repertoire
+        {
+            get
+            {
+                if (!System.IO.Directory.Exists(RepertoireImage + "\\" + _repertoire))
+                {
+                    _repertoire = Nom.ToUpper() + " " + Prenom.ToUpper() + " " + (DateNaissance).ToString("ddMMyyyy");
+                    if (!System.IO.Directory.Exists(RepertoireImage + "\\" + _repertoire))
+                    {
+                        _repertoire = Nom.ToUpper() + " " + Prenom.ToUpper() + " 00000000";
+                        if (!System.IO.Directory.Exists(RepertoireImage + "\\" + _repertoire))
+                        {
+                            _repertoire = Nom.ToUpper() + " " + Prenom.ToUpper();
+                            if (!System.IO.Directory.Exists(RepertoireImage + "\\" + _repertoire))
+                            {
+                                _repertoire = Nom.ToUpper() + " " + Prenom.ToUpper() + " " + (DateNaissance).ToString("MMddyyyy");
+                                if (!System.IO.Directory.Exists(RepertoireImage + "\\" + _repertoire))
+                                {
+                                    _repertoire = Nom.ToUpper() + " " + Prenom.ToUpper() + " " + DateNaissance.ToString("ddMMyyyy");
+                                    if (!System.IO.Directory.Exists(RepertoireImage + "\\" + _repertoire))
+                                    {
+                                        _repertoire = Nom.ToUpper() + " " + Prenom.ToUpper() + " " + DateNaissance.ToString("MMddyyyy");
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                return _repertoire;
+            }
+            set
+            {
+                _repertoire = value;
+            }
+        }
+
+        public static string RepertoireImage
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["PHOTO_FOLDER_PATH"];
+            }
+        }
+
+
+
+
+        private List<PaiementReel> _PaiementReels = null;
+        public List<PaiementReel> PaiementReels
+        {
+            get
+            {
+                return _PaiementReels;
+            }
+            set
+            {
+                _PaiementReels = value;
+            }
+        }
+
+        private List<Encaissement> _Encaissements = null;
+        public List<Encaissement> Encaissements
+        {
+            get
+            {
+                return _Encaissements;
+            }
+            set
+            {
+                _Encaissements = value;
+            }
+        }
+
+
+        private List<Echeance> _Echeances;
+        public List<Echeance> Echeances
+        {
+            get
+            {
+                return _Echeances;
+            }
+            set
+            {
+                _Echeances = value;
+            }
+        }
+
+        private List<ActePG> _ActesPG = null;
+        public List<ActePG> ActesPG
+        {
+            get
+            {
+                return _ActesPG;
+            }
+            set
+            {
+                _ActesPG = value;
+            }
+        }
+
+        public string ToShortString()
+        {
+            return Nom + " " + Prenom.Substring(0, 1) + ".";
+        }
+
+        public override string ToString()
+        {
+            return Nom + " " + Prenom;
+        }
+
+        public enum Sexe
+        {
+            Masculin,
+            Feminin,
+            NonDefini
+        }
+
+
+        private List<ObjImage> _lstObjFrmKitView;
+        public List<ObjImage> lstObjFrmKitView
+        {
+            get
+            {
+                return _lstObjFrmKitView;
+            }
+            set
+            {
+                _lstObjFrmKitView = value;
+            }
+        }
+
+        private Relance.ModeRelance _StatusRelance = Relance.ModeRelance.Undefined;
+        public Relance.ModeRelance StatusRelance
+        {
+            get
+            {
+                return _StatusRelance;
+            }
+            set
+            {
+                _StatusRelance = value;
+            }
+        }
+
+
+        private List<ObjSuivi> _suivisBaseLabo = null;
+        public List<ObjSuivi> suivisBaseLabo
+        {
+            get
+            {
+                return _suivisBaseLabo;
+            }
+            set
+            {
+                _suivisBaseLabo = value;
+            }
+        }
+
+        private List<IElementDent> _ElementsEnBouche = null;
+        public List<IElementDent> ElementsEnBouche
+        {
+            get
+            {
+                return _ElementsEnBouche;
+            }
+            set
+            {
+                _ElementsEnBouche = value;
+            }
+        }
+
+        private List<IElementAppareil> _AppareilsEnBouche = null;
+        public List<IElementAppareil> AppareilsEnBouche
+        {
+            get
+            {
+                return _AppareilsEnBouche;
+            }
+            set
+            {
+                _AppareilsEnBouche = value;
+            }
+        }
+
+
+        private List<CommClinique> _commentairesClinique = null;
+        public List<CommClinique> commentairesClinique
+        {
+            get
+            {
+                return _commentairesClinique;
+            }
+            set
+            {
+                _commentairesClinique = value;
+            }
+        }
+
+        private string _CasierInvisalign;
+        public string CasierInvisalign
+        {
+            get
+            {
+                return _CasierInvisalign;
+            }
+            set
+            {
+                _CasierInvisalign = value;
+            }
+        }
+
+
+        
+
+        private InfoPatientComplementaire _infoscomplementaire = null;
+        public InfoPatientComplementaire infoscomplementaire
+        {
+            get
+            {
+                return _infoscomplementaire;
+            }
+            set
+            {
+                _infoscomplementaire = value;
+            }
+        }
+
+
+        private List<CommonObjectif> _SelectedObjectifs = new List<CommonObjectif>();
+        public List<CommonObjectif> SelectedObjectifs
+        {
+            get
+            {
+                return _SelectedObjectifs;
+            }
+            set
+            {
+                _SelectedObjectifs = value;
+            }
+        }
+
+        
+
+
+        private List<LienCorrespondant> _PersonnesAContacter = null;
+        public List<LienCorrespondant> PersonnesAContacter
+        {
+            get
+            {
+                return _PersonnesAContacter;
+            }
+            set
+            {
+                _PersonnesAContacter = value;
+            }
+        }
+
+
+
+        private bool _ResumeQ1CSHasBeenLoaded;
+        public bool ResumeQ1CSIsLoaded
+        {
+            get
+            {
+                return _ResumeQ1CSHasBeenLoaded;
+            }
+        }
+
+        private string _ResumeQ1CS;
+        public string ResumeQ1CS
+        {
+            get
+            {
+                return _ResumeQ1CS;
+            }
+            set
+            {
+                _ResumeQ1CS = value;
+                _ResumeQ1CSHasBeenLoaded = true;
+            }
+        }
+
+
+
+        private int? _PourcentageMutuelle;
+        public int? PourcentageMutuelle
+        {
+            get
+            {
+                return _PourcentageMutuelle;
+            }
+            set
+            {
+                _PourcentageMutuelle = value;
+            }
+        }
+
+        private string _numMoulage;
+        public string numMoulage
+        {
+            get
+            {
+                return _numMoulage;
+            }
+            set
+            {
+                _numMoulage = value;
+            }
+        }
+
+        public void AgeToDate(DateTime d2, out int years, out int months, out int days)
+        {
+
+            DateTime d1 = DateNaissance;
+
+            if (d1 < d2)
+            {
+                DateTime d3 = d2;
+                d2 = d1;
+                d1 = d3;
+            }
+
+            months = 12 * (d1.Year - d2.Year) + (d1.Month - d2.Month);
+
+
+            if (d1.Day < d2.Day)
+            {
+                months--;
+                days = DateTime.DaysInMonth(d2.Year, d2.Month) - d2.Day + d1.Day;
+            }
+            else
+            {
+                days = d1.Day - d2.Day;
+            }
+
+            years = months / 12;
+            months -= years * 12;
+        }
+
+
+        private string _Allergie = "";
+        public string Allergie
+        {
+            get
+            {
+                return _Allergie;
+            }
+            set
+            {
+                _Allergie = value;
+            }
+        }
+
+        private int m_Id;
+        private string m_Nom;
+        private string m_Prenom;
+        private int m_Dossier;
+
+        
+
+        private string m_Profession;
+
+        private DateTime m_DateNaissance;
+
+
+
+        private List<LienCorrespondant> _RecoBy;
+        public List<LienCorrespondant> RecoBy
+        {
+            get
+            {
+                if (m_Correspondants == null) return null;
+                List<LienCorrespondant> lst = new List<LienCorrespondant>();
+                foreach (LienCorrespondant lc in m_Correspondants)
+                {
+                    if (lc.TypeDeLien == "Rc")
+                    {
+                        lst.Add( lc);
+                    }
+                }
+                return lst;
+            }
+        }
+
+        private List<LienCorrespondant> m_Correspondants = null;
+        public List<LienCorrespondant> Correspondants
+        {
+            get { return m_Correspondants; }
+            set { m_Correspondants = value; }
+        }
+
+
+        public LienCorrespondant Assurepar
+        {
+            get
+            {
+                foreach (LienCorrespondant lc in Correspondants)
+                {
+                    if (lc.IsAssure)
+                        return lc;
+                }
+                return null;
+            }
+
+        }
+
+        public LienCorrespondant Dentiste
+        {
+            get
+            {
+                foreach (LienCorrespondant lc in Correspondants)
+                {
+                    if (lc.IsDentiste)
+                        return lc;
+                }
+                return null;
+            }
+
+        }
+
+
+
+
+        public int mutuelle
+        {
+            get
+            {
+                foreach (LienCorrespondant lc in Correspondants)
+                {
+                    if (lc.IsMutuelle)
+                        return lc.IdCorrespondance;
+                }
+                return -1;
+            }
+
+        }
+
+        public LienCorrespondant ResponsableFinancier
+        {
+            get
+            {
+                foreach (LienCorrespondant lc in Correspondants)
+                {
+                    if (lc.IsPayeur)
+                        return lc;
+                }
+                return null;
+            }
+
+        }
+
+        public LienCorrespondant RepresentantLegal
+        {
+            get
+            {
+                foreach (LienCorrespondant lc in Correspondants)
+                {
+                    if (lc.IsRepresentantLegal)
+                        return lc;
+                }
+                return null;
+            }
+
+        }
+
+        
+
+        public LienCorrespondant RecomandePar
+        {
+            get
+            {
+                foreach (LienCorrespondant lc in Correspondants)
+                {
+                    if (lc.IsRecomande)
+                        return lc;
+                }
+                return null;
+            }
+
+        }
+
+        public int IdCaisse
+        {
+            get
+            {
+                foreach (LienCorrespondant lc in Correspondants)
+                {
+                    if (lc.IsCaisse)
+                        return lc.IdCorrespondance;
+                }
+                return -1;
+            }
+
+        }
+        
+        private string _Traitement;
+        public string Traitement
+        {
+            get
+            {
+                return _Traitement;
+            }
+            set
+            {
+                _Traitement = value;
+            }
+        }
+
+        private string _Objectif;
+        public string Objectif
+        {
+            get
+            {
+                return _Objectif;
+            }
+            set
+            {
+                _Objectif = value;
+            }
+        }
+
+
+        private string _CommentApparreil;
+        public string CommentApparreil
+        {
+            get
+            {
+                return _CommentApparreil;
+            }
+            set
+            {
+                _CommentApparreil = value;
+            }
+        }
+
+        private string _Diagnostic;
+        public string Diagnostic
+        {
+            get
+            {
+                return _Diagnostic;
+            }
+            set
+            {
+                _Diagnostic = value;
+            }
+        }
+
+        private bool _Tutoiement;
+        public bool Tutoiement
+        {
+            get
+            {
+                return _Tutoiement;
+            }
+            set
+            {
+                _Tutoiement = value;
+            }
+        }
+        
+        Sexe m_Genre;
+        public Sexe Genre
+        {
+            get { return m_Genre; }
+            set { m_Genre = value; }
+        }
+
+        string m_Civilite;
+        public string Civilite
+        {
+            get { return m_Civilite; }
+            set { m_Civilite = value; }
+        }
+
+        public string Profession
+        {
+            get { return m_Profession; }
+            set { m_Profession = value; }
+        }
+
+        public int Id
+        {
+            get { return m_Id; }
+            set { m_Id = value; }
+        }
+
+
+
+        private int _Appareil;
+        public int Appareil
+        {
+            get
+            {
+                return _Appareil;
+            }
+            set
+            {
+                _Appareil = value;
+            }
+        }
+
+        private Recontact _recontact = null;
+        public Recontact recontact
+        {
+            get
+            {
+                return _recontact;
+            }
+            set
+            {
+                _recontact = value;
+            }
+        }
+
+        private StatusCliniqueManuel _statusManuel;
+        public StatusCliniqueManuel statusManuel
+        {
+            get
+            {
+                return _statusManuel;
+            }
+            set
+            {
+                _statusManuel = value;
+            }
+        }
+
+        private DateTime? _DateAbandon;
+        public DateTime? DateAbandon
+        {
+            get
+            {
+                return _DateAbandon;
+            }
+            set
+            {
+                _DateAbandon = value;
+            }
+        }
+        
+        
+        private StatusClinique _statusClinique;
+        public StatusClinique statusClinique
+        {
+            get
+            {
+                return _statusClinique;
+            }
+            set
+            {
+                _statusClinique = value;
+            }
+        }
+
+        private string _Moulage;
+        public string Moulage
+        {
+            get
+            {
+                return _Moulage;
+            }
+            set
+            {
+                _Moulage = value;
+            }
+        }
+
+
+
+
+
+        private Correspondant.EnumPrefCom _PrefCom = Correspondant.EnumPrefCom.unknown;
+        public Correspondant.EnumPrefCom PrefCom
+        {
+            get
+            {
+                return _PrefCom;
+            }
+            set
+            {
+                _PrefCom = value;
+            }
+        }
+
+
+
+
+        private string _Notes;
+        public string Notes
+        {
+            get
+            {
+                return _Notes;
+            }
+            set
+            {
+                _Notes = value;
+            }
+        }
+
+
+        public int Dossier
+        {
+            get { return m_Dossier; }
+            set { m_Dossier = value; }
+        }
+
+        private string _NomJF;
+        public string NomJF
+        {
+            get
+            {
+                return _NomJF;
+            }
+            set
+            {
+                _NomJF = value;
+            }
+        }
+
+        public string Nom
+        {
+            get { return m_Nom; }
+            set { m_Nom = value; }
+        }
+
+        public string Prenom
+        {
+            get { return m_Prenom; }
+            set { m_Prenom = value; }
+        }
+
+        public DateTime DateNaissance
+        {
+            get { return m_DateNaissance; }
+            set { m_DateNaissance = value; }
+        }
+
+        private string m_NumSecu;
+        public string NumSecu
+        {
+            get { return m_NumSecu; }
+            set { m_NumSecu = value; }
+        }
+        
+        public string Age()
+        {
+            return AgeAt(DateTime.Now);
+        }
+
+        public string AgeAt(DateTime dte)
+        {
+            int years, months, days;
+            DateDiff(dte, this.DateNaissance, out years, out months, out days);
+
+            string r = years.ToString() + " ans";
+            if (months > 0) r += " et " + months.ToString() + " mois";
+            return r;
+        }
+
+
+        private static int GetDaysInMonth(int year, int month)
+        {
+            // this is also available from Calendar class,
+            // but just as easy to do ourselves
+
+            if (month < 1 || month > 12)
+            {
+                throw new ArgumentException("month value must be from 1-12");
+            }
+
+            // 1 2 3 4 5 6 7 8 9 10 11 12
+            int[] days = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+            if (((year / 400 * 400) == year) ||
+            (((year / 4 * 4) == year) && (year % 100 != 0)))
+            {
+                days[2] = 29;
+            }
+
+            return days[month];
+        }
+
+
+        private static void DateDiff(DateTime d1, DateTime d2,
+        out int years, out int months, out int days)
+        {
+            // compute & return the difference of two dates,
+            // returning years, months & days
+            // d1 should be the larger (newest) of the two dates
+            //
+            //
+            // y m d
+            // 3/10/2005 <-- 3/10/2005 0 0 0
+            // 3/10/2005 <-- 3/09/2005 0 0 1
+            // 3/10/2005 <-- 3/01/2005 0 0 9
+            // 3/10/2005 <-- 2/28/2005 0 0 10
+            // 3/10/2005 <-- 2/11/2005 0 0 27
+            // 3/10/2005 <-- 2/10/2005 0 1 0
+            // 3/10/2005 <-- 2/09/2005 0 1 1
+            // 3/10/2005 <-- 7/20/1969 35 7 21
+
+            // we want d1 to be the larger (newest) date
+            // flip if we need to
+
+            if (d1 < d2)
+            {
+                DateTime d3 = d2;
+                d2 = d1;
+                d1 = d3;
+            }
+
+            // compute difference in total months
+            months = 12 * (d1.Year - d2.Year) + (d1.Month - d2.Month);
+
+            // based upon the 'days',
+            // adjust months & compute actual days difference
+            if (d1.Day < d2.Day)
+            {
+                months--;
+                days = GetDaysInMonth(d2.Year, d2.Month) - d2.Day + d1.Day;
+            }
+            else
+            {
+                days = d1.Day - d2.Day;
+            }
+
+            // compute years & actual months
+            years = months / 12;
+            months -= years * 12;
+
+            //Debug.WriteLine(string.Format("{0} <-- {1} {2,2} {3,2} {4,2}",d1.ToShortDateString(),d2.ToShortDateString(),year s,months,days));
+        }
+
+        public int AgeNbYears
+        {
+            get
+            {
+                // Age théorique
+                int age = DateTime.Now.Year - m_DateNaissance.Year;
+
+
+                // Date de l'anniversaire de cette année
+                DateTime DateAnniv =
+                      new DateTime(DateTime.Now.Year, m_DateNaissance.Month, m_DateNaissance.Day);
+
+
+                // Si pas encore passé, retirer 1 an
+                if (DateAnniv > DateTime.Now)
+                    age--;
+
+                return age;
+
+            }
+        }
+
+        public basePatient()
+        { }
+
+        private List<string> _Risques = null;
+        public List<string> Risques
+        {
+            get
+            {
+                return _Risques;
+            }
+            set
+            {
+                _Risques = value;
+            }
+        }
+
+
+        #region Images
+
+
+        private bool _ImagesHasBeenLoaded;
+        public bool ImagesHasBeenLoaded
+        {
+            get
+            {
+                return _ImagesHasBeenLoaded;
+            }
+            
+        }
+
+        private string _Img_Rad_Face;
+        public string Img_Rad_Face
+        {
+            get
+            {
+                return _Img_Rad_Face;
+            }
+            set
+            {
+                _Img_Rad_Face = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+
+        private string _Img_Rad_Pano;
+        public string Img_Rad_Pano
+        {
+            get
+            {
+                return _Img_Rad_Pano;
+            }
+            set
+            {
+                _Img_Rad_Pano = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Rad_Profile;
+        public string Img_Rad_Profile
+        {
+            get
+            {
+                return _Img_Rad_Profile;
+            }
+            set
+            {
+                _Img_Rad_Profile = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Ext_Face;
+        public string Img_Ext_Face
+        {
+            get
+            {
+                return _Img_Ext_Face;
+            }
+            set
+            {
+                _Img_Ext_Face = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Ext_Profile;
+        public string Img_Ext_Profile
+        {
+            get
+            {
+                return _Img_Ext_Profile;
+            }
+            set
+            {
+                _Img_Ext_Profile = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Ext_Profile_Sourire;
+        public string Img_Ext_Profile_Sourire
+        {
+            get
+            {
+                return _Img_Ext_Profile_Sourire;
+            }
+            set
+            {
+                _Img_Ext_Profile_Sourire = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Ext_Face_Sourire;
+        public string Img_Ext_Face_Sourire
+        {
+            get
+            {
+                return _Img_Ext_Face_Sourire;
+            }
+            set
+            {
+                _Img_Ext_Face_Sourire = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Ext_Sourire;
+        public string Img_Ext_Sourire
+        {
+            get
+            {
+                return _Img_Ext_Sourire;
+            }
+            set
+            {
+                _Img_Ext_Sourire = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Int_Droit;
+        public string Img_Int_Droit
+        {
+            get
+            {
+                return _Img_Int_Droit;
+            }
+            set
+            {
+                _Img_Int_Droit = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Int_SurPlomb;
+        public string Img_Int_SurPlomb
+        {
+            get
+            {
+                return _Img_Int_SurPlomb;
+            }
+            set
+            {
+                _Img_Int_SurPlomb = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+
+
+        private string _Img_Int_Gauche;
+        public string Img_Int_Gauche
+        {
+            get
+            {
+                return _Img_Int_Gauche;
+            }
+            set
+            {
+                _Img_Int_Gauche = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Int_Face;
+        public string Img_Int_Face
+        {
+            get
+            {
+                return _Img_Int_Face;
+            }
+            set
+            {
+                _Img_Int_Face = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _MImg_Int_Gauche;
+        public string MImg_Int_Gauche
+        {
+            get
+            {
+                return _MImg_Int_Gauche;
+            }
+            set
+            {
+                _MImg_Int_Gauche = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Int_Max;
+        public string Img_Int_Max
+        {
+            get
+            {
+                return _Img_Int_Max;
+            }
+            set
+            {
+                _Img_Int_Max = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Int_Man;
+        public string Img_Int_Man
+        {
+            get
+            {
+                return _Img_Int_Man;
+            }
+            set
+            {
+                _Img_Int_Man = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Moul_Droit;
+        public string Img_Moul_Droit
+        {
+            get
+            {
+                return _Img_Moul_Droit;
+            }
+            set
+            {
+                _Img_Moul_Droit = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Moul_Face;
+        public string Img_Moul_Face
+        {
+            get
+            {
+                return _Img_Moul_Face;
+            }
+            set
+            {
+                _Img_Moul_Face = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Moul_Gauche;
+        public string Img_Moul_Gauche
+        {
+            get
+            {
+                return _Img_Moul_Gauche;
+            }
+            set
+            {
+                _Img_Moul_Gauche = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Moul_Max;
+        public string Img_Moul_Max
+        {
+            get
+            {
+                return _Img_Moul_Max;
+            }
+            set
+            {
+                _Img_Moul_Max = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+
+        private string _Img_Moul_Man;
+        public string Img_Moul_Man
+        {
+            get
+            {
+                return _Img_Moul_Man;
+            }
+            set
+            {
+                _Img_Moul_Man = value;
+                _ImagesHasBeenLoaded = true;
+            }
+        }
+        //Images
+
+         
+        //
+        #endregion
+
+
+        private double? _Solde;
+        public double? Solde
+        {
+            get
+            {
+                return _Solde;
+            }
+            set
+            {
+                _Solde = value;
+            }
+        }
+
+
+
+        private bool _NextRDVWasLoaded = false;
+        public bool NextRDVWasLoaded
+        {
+            get
+            {
+                return _NextRDVWasLoaded;
+            }
+
+        }
+
+        private RHAppointment _NextRDV;
+        public RHAppointment NextRDV
+        {
+            get
+            {
+                return _NextRDV;
+            }
+            set
+            {
+                _NextRDVWasLoaded = true;
+                _NextRDV = value;
+            }
+        }
+
+        private bool _LastRDVWasLoaded = false;
+        public bool LastRDVWasLoaded
+        {
+            get
+            {
+                return _LastRDVWasLoaded;
+            }
+            
+        }
+
+        private RHAppointment _LastRDV;
+        public RHAppointment LastRDV
+        {
+            get
+            {
+                return _LastRDV;
+            }
+            set
+            {
+                _LastRDVWasLoaded = true;
+                _LastRDV = value;
+            }
+        }
+
+
+        private List<Proposition> _propositions;
+        public List<Proposition> propositions
+        {
+            get
+            {
+                return _propositions;
+            }
+            set
+            {
+                _propositions = value;
+            }
+        }
+        
+    }
+}

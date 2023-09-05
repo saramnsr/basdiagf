@@ -1,0 +1,50 @@
+CREATE TABLE BASE_DEPENSE (
+    ID INTEGER NOT NULL,
+    DATE_DEPENSE TIMESTAMP NOT NULL,
+    DATE_VALEURBQUE TIMESTAMP NOT NULL,
+    CODE_DEPENSE VARCHAR(10),
+    MONTANT DOUBLE PRECISION NOT NULL,
+    MODE_REGLEMENT VARCHAR(20),
+    id_entityjuridique INTEGER NOT NULL,
+    id_banque_remise CHAR(10) NOT NULL,
+    DETAILS VARCHAR(100));
+    
+alter table BASE_DEPENSE
+add constraint PK_BASE_DEPENSE
+primary key (ID);
+
+
+CREATE trigger depense_bi0 for BASE_DEPENSE
+active before insert position 0
+AS
+begin
+  insert into bas_suivicompte (id,
+                             id_entite, 
+                             ID_BANQUE,
+                             libelle,
+                             dateCabinet,
+                             dateBanque,
+                             recette,
+                             depense, 
+                             id_paiement, 
+                             id_depense)
+values (GEN_ID(GEN_SUIVICOMPTE,1),
+        NEW.id_entityjuridique,
+        NEW.id_banque_remise,
+        NEW.DETAILS,
+        NEW.DATE_DEPENSE,
+        NEW.DATE_VALEURBQUE,
+        NULL,
+        NEW.montant,
+        NULL,
+        NEW.id);
+end;
+
+
+CREATE TRIGGER depense_bu0  for BASE_DEPENSE
+active before update position 0
+AS
+begin
+  update bas_suivicompte set dateBanque  = NEW.DATE_VALEURBQUE
+  where bas_suivicompte.id_depense = new.id;
+end;

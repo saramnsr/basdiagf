@@ -1,0 +1,142 @@
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.csprojResolveAssemblyReference.cache
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.frmAddDents.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.BAS.usrChoixPatient.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.BAS.WizardPraticienAssistantes.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.ChoiceMedical.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.ChoixDentRsx.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.ChoixDents.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoixPatient.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.frmChoixCabinet.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmNewActesTraitement.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmActeTraitement.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoisxDate.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmDents.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmLocalisationAnatomique.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmNewActe.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FRmWizardNewComm.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FRmWizardNewRDV.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.Properties.Resources.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.CtrlEspacement.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoiceMateriel.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoixActes.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoixAutrePersonne.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoixCorrespondantParSpe.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.CtrlRIB.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmAddCodeComptable.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmAddEcheance.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoixDents.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FRmChoixPraticienAssForCom.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.frmChooseCodeCompta.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FRmCreateEch.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmDetailDevisALaCarte.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmDetailLigneTraitement.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmEditTempEcheanceDef.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmFinancement.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmImpression.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmPointage.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmRepartition.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmRistourne.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmRistourneActeTraitement.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmSpecialite.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmString.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.Ctrls.DEPCtrl.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmAccessREquest.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.frmAddContact.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmCategories.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoixCorrespondant.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChooseCategorie.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmDate.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmDEP.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmEditCaisse.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.frmEditCorrespondant.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmEditMutuelle.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.Ctrls.frmPlanTraitementDEP.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmTexte.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmUpdateTarifProposition.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmWizardCourrierForSummary.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmWizardDevisALaCarte.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FRmWizardNewComment.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmWizardPropositions.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.ucNotes.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.Resource.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmSelection.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.SlidingList.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.SlindingBtn.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.SelectionFrm.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.Ctrls.TreeViewIcon.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.TreeViewIconCbx.resources
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.csproj.GenerateResource.Cache
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\RdlCompile.cache
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\RdlCompile.compiled
+C:\Users\DELL\Desktop\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.csprojResolveAssemblyReference.cache
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.frmAddDents.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.BAS.usrChoixPatient.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.BAS.WizardPraticienAssistantes.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.ChoiceMedical.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.ChoixDentRsx.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.ChoixDents.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoixPatient.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.frmChoixCabinet.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmNewActesTraitement.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmActeTraitement.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoisxDate.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmDents.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmLocalisationAnatomique.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmNewActe.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FRmWizardNewComm.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FRmWizardNewRDV.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.Properties.Resources.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.CtrlEspacement.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoiceMateriel.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoixActes.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoixAutrePersonne.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoixCorrespondantParSpe.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.CtrlRIB.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmAddCodeComptable.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmAddEcheance.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoixDents.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FRmChoixPraticienAssForCom.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.frmChooseCodeCompta.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FRmCreateEch.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmDetailDevisALaCarte.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmDetailLigneTraitement.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmEditTempEcheanceDef.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmFinancement.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmImpression.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmPointage.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmRepartition.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmRistourne.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmRistourneActeTraitement.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmSpecialite.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmString.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.Ctrls.DEPCtrl.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmAccessREquest.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.frmAddContact.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmCategories.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChoixCorrespondant.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmChooseCategorie.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmDate.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmDEP.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmEditCaisse.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.frmEditCorrespondant.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmEditMutuelle.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.Ctrls.frmPlanTraitementDEP.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmTexte.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmUpdateTarifProposition.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmWizardCourrierForSummary.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmWizardDevisALaCarte.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FRmWizardNewComment.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmWizardPropositions.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.ucNotes.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.Resource.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.FrmSelection.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.SlidingList.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.SlindingBtn.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.SelectionFrm.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.Ctrls.TreeViewIcon.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.TreeViewIconCbx.resources
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.csproj.GenerateResource.Cache
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\RdlCompile.cache
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\RdlCompile.compiled
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\Bascontainer\BaseCommonControls\obj\Debug\BaseCommonControls.dll

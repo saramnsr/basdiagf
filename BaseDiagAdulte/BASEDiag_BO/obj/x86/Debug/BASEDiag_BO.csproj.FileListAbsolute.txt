@@ -1,0 +1,57 @@
+D:\Basmile Mysql\Basmile Mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BASEDiag_BO.dll
+D:\Basmile Mysql\Basmile Mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BASEDiag_BO.pdb
+D:\Basmile Mysql\Basmile Mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_BO.dll
+D:\Basmile Mysql\Basmile Mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\Newtonsoft.Json.dll
+D:\Basmile Mysql\Basmile Mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_BO.pdb
+D:\Basmile Mysql\Basmile Mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.csprojResolveAssemblyReference.cache
+D:\Basmile Mysql\Basmile Mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.dll
+D:\Basmile Mysql\Basmile Mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.pdb
+D:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BASEDiag_BO.dll
+D:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BASEDiag_BO.pdb
+D:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_BO.dll
+D:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\Newtonsoft.Json.dll
+D:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_BO.pdb
+D:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.csprojResolveAssemblyReference.cache
+D:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.dll
+D:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.pdb
+C:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BASEDiag_BO.dll
+C:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BASEDiag_BO.pdb
+C:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_BO.dll
+C:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\Newtonsoft.Json.dll
+C:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_BO.pdb
+C:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.csprojResolveAssemblyReference.cache
+C:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.dll
+C:\basmile mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.pdb
+D:\D\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BASEDiag_BO.dll
+D:\D\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BASEDiag_BO.pdb
+D:\D\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_BO.dll
+D:\D\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\Newtonsoft.Json.dll
+D:\D\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_BO.pdb
+D:\D\basmile mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.csprojResolveAssemblyReference.cache
+D:\D\basmile mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.dll
+D:\D\basmile mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.pdb
+C:\Users\ADMIN\Desktop\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BASEDiag_BO.dll
+C:\Users\ADMIN\Desktop\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BASEDiag_BO.pdb
+C:\Users\ADMIN\Desktop\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_BO.dll
+C:\Users\ADMIN\Desktop\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\Newtonsoft.Json.dll
+C:\Users\ADMIN\Desktop\basmile mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_BO.pdb
+C:\Users\ADMIN\Desktop\basmile mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.csprojResolveAssemblyReference.cache
+C:\Users\ADMIN\Desktop\basmile mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.dll
+C:\Users\ADMIN\Desktop\basmile mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BASEDiag_BO.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BASEDiag_BO.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_BO.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_BL.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_DAL.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\Ionic.Zip.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\MySql.Data.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\Interop.SHDocVw.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\FirebirdSql.Data.FirebirdClient.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_BO.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_BL.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\BasCommon_DAL.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\FirebirdSql.Data.FirebirdClient.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.csprojResolveAssemblyReference.cache
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.dll
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\obj\x86\Debug\BASEDiag_BO.pdb
+C:\Users\Sarra\Desktop\Basmile app\basmile-desktop-MultiCabinet-mysql\BaseDiagAdulte\BASEDiag_BO\bin\x86\Debug\Newtonsoft.Json.dll

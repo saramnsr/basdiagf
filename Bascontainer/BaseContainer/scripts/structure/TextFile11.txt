@@ -1,0 +1,117 @@
+ALTER TABLE BASE_ECHEANCE
+ADD PARVIREMENT CHAR(5);
+
+
+
+
+CREATE INDEX BASE_COMM_PHOTOS_IDX1
+ON BASE_COMM_PHOTOS (ID_COMM);
+
+CREATE INDEX BASE_COMM_AEXTRAIRE_IDX1
+ON BASE_COMM_AEXTRAIRE (ID_COMM);
+
+CREATE INDEX BASE_COMM_AUTREPERS_IDX1
+ON BASE_COMM_AUTREPERS (ID_COMM);
+
+CREATE INDEX BASE_COMM_MAT_IDX1
+ON BASE_COMM_MAT (ID_COMM);
+
+CREATE INDEX BASE_COMM_RADIOS_IDX1
+ON BASE_COMM_RADIOS (ID_COMM);
+
+
+
+CREATE TABLE BAS_SUIVICOMPTE (
+    ID INTEGER NOT NULL,
+    ID_ENTITE INTEGER NOT NULL,
+    ID_BANQUE CHAR(10) NOT NULL,
+    LIBELLE VARCHAR(100),
+    dateCabinet TIMESTAMP,
+	dateBanque TIMESTAMP,
+    RECETTE DOUBLE PRECISION,
+    DEPENSE DOUBLE PRECISION,
+    ID_PAIEMENT INTEGER,
+    ID_DEPENSE INTEGER);
+	
+	
+alter table BAS_SUIVICOMPTE
+add constraint PK_BAS_SUIVICOMPTE
+primary key (ID);
+
+
+CREATE GENERATOR GEN_SUIVICOMPTE;
+
+SET GENERATOR GEN_SUIVICOMPTE TO 1;
+
+
+CREATE trigger base_paiementreel_bi0 for base_paiementreel
+active before insert position 0
+AS
+begin
+  insert into bas_suivicompte (id,
+                             id_entite, 
+                             ID_BANQUE,
+                             libelle,
+                             dateCabinet,
+                             dateBanque,
+                             recette,
+                             depense, 
+                             id_paiement, 
+                             id_depense)
+values (GEN_ID(GEN_SUIVICOMPTE,1),
+        NEW.id_entityjuridique,
+        NEW.id_banque_remise,
+        'Encaissement patient',
+        NEW.dateencaissement,
+        NEW.datevaleurbanque,
+        NEW.montant,
+        NULL,
+        NEW.id,
+        NULL);
+end;
+
+
+
+
+CREATE trigger base_paiementreel_bu0 for base_paiementreel
+active before update position 0
+AS
+begin
+  update bas_suivicompte set dateBanque  = NEW.datevaleurbanque
+  where bas_suivicompte.id_paiement = new.id;
+end;
+
+
+
+insert into bas_suivicompte (id,
+                             id_entite, 
+                             ID_BANQUE,
+                             libelle,
+                             dateCabinet,
+                             dateBanque,
+                             recette,
+                             depense, 
+                             id_paiement, 
+                             id_depense)
+select
+       GEN_ID(GEN_SUIVICOMPTE,1),
+       base_paiementreel.id_entityjuridique,
+       base_paiementreel.id_banque_remise,
+       'Encaissement patient ',
+       base_paiementreel.dateencaissement,
+       base_paiementreel.datevaleurbanque,
+       base_paiementreel.montant,
+       NULL,
+       base_paiementreel.id,
+       NULL
+       from base_paiementreel
+       where base_paiementreel.id_banque_remise is not null
+       and base_paiementreel.id_entityjuridique is not null;
+
+
+ALTER TABLE MUTUELLE
+ADD NEEDORDER CHAR(5);
+
+ALTER TABLE CAISSE
+ADD NEEDORDER CHAR(5);	   
+

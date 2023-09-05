@@ -1,0 +1,97 @@
+﻿ALTER TABLE ENVOI_ENTENTE
+ADD ID INTEGER;
+
+CREATE GENERATOR ENVOI_ENTENTE_ID_GEN;
+SET GENERATOR ENVOI_ENTENTE_ID_GEN TO 1;
+
+UPDATE ENVOI_ENTENTE SET ID = GEN_ID(ENVOI_ENTENTE_ID_GEN, 1 );
+
+ALTER TABLE MODELE_ENTENTE
+ADD ID INTEGER;
+
+CREATE GENERATOR MODELE_ENTENTE_ID_GEN;
+SET GENERATOR MODELE_ENTENTE_ID_GEN TO 1;
+
+UPDATE MODELE_ENTENTE SET ID = GEN_ID(MODELE_ENTENTE_ID_GEN, 1 );
+
+
+
+CREATE TABLE BASEDIAG_DIAGNOSTIC (
+ID INTEGER NOT NULL,
+DateResume TIMESTAMP,
+ID_PATIENT INTEGER,
+DeviationLevreInf DOUBLE PRECISION,
+DeviationMenton DOUBLE PRECISION,
+EtageInf INTEGER,
+sourireDentaire INTEGER,
+DiagAlveolaire INTEGER,
+TNL INTEGER,
+DecalageInterIncisiveDG INTEGER,
+DecalageInterIncisiveHB INTEGER,
+ClasseCanD INTEGER,
+ClasseCanG INTEGER,
+ClasseMolD INTEGER,
+ClasseMolG INTEGER,
+SensTransvMand INTEGER,
+SensTransvMax INTEGER,
+DiagMand INTEGER,
+DiagMax INTEGER,
+OcclusionInverse INTEGER,
+OcclusionValue INTEGER,
+OcclusionFace INTEGER,
+InterpositonLingual INTEGER,
+FormeArcade INTEGER,
+SurplombValue INTEGER,
+FreinLabial INTEGER,
+LangueBasse INTEGER,
+DDD INTEGER,
+DDM INTEGER,
+SourireGingivalSup INTEGER,
+LabialValue INTEGER,
+GingivalInfValue INTEGER,
+GingivalSupValue INTEGER,
+SourireGingivalInf INTEGER,
+SourireLabial INTEGER,
+InclinaisonIncisiveSupValue DOUBLE PRECISION,
+IncisiveSuperieur INTEGER,
+Menton INTEGER,
+LevreInferieur INTEGER,
+LevreSuperieur INTEGER,
+SensSagittalMandBasal INTEGER,
+SensSagittalMaxBasal INTEGER,
+IncisiveInferieur INTEGER,
+SensSagittal INTEGER,
+SensVertical INTEGER,
+laterodeviation INTEGER,
+EvolGermesDesDentsSur VARCHAR(200),
+EvolGermesDesDents INTEGER,
+DentsDeSagesse VARCHAR(200),
+DentsSurnumeraires VARCHAR(200),
+DentsIncluses VARCHAR(200),
+Agenesie VARCHAR(200),
+Img_Rad_Face VARCHAR(1000),
+Img_Rad_Pano VARCHAR(1000),
+Img_Rad_Profile VARCHAR(1000),
+Img_Ext_Face VARCHAR(1000),
+Img_Ext_Profile VARCHAR(1000),
+Img_Ext_Profile_Sourire VARCHAR(1000),
+Img_Ext_Face_Sourire VARCHAR(1000),
+Img_Ext_Sourire VARCHAR(1000),
+Img_Int_Droit VARCHAR(1000),
+Img_Int_SurPlomb VARCHAR(1000),
+Img_Int_Face VARCHAR(1000),
+Img_Int_Gauche VARCHAR(1000),
+Img_Int_Max VARCHAR(1000),
+Img_Int_Man VARCHAR(1000),
+Img_Moul_Droit VARCHAR(1000),
+Img_Moul_Face VARCHAR(1000),
+Img_Moul_Gauche VARCHAR(1000),
+Img_Moul_Max VARCHAR(1000),
+Img_Moul_Man VARCHAR(1000));
+
+
+alter table BASEDIAG_DIAGNOSTIC
+add constraint PK_BASEDIAG_DIAGNOSTIC
+primary key (ID);
+
+

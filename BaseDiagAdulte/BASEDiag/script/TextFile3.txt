@@ -1,0 +1,91 @@
+CREATE TABLE BASEDIAG_INFOCOMPLEMENTAIRE (
+    IDPATIENT INTEGER NOT NULL,
+    DUREETRTMT INTEGER,
+    ASSISTANTE_RESP INTEGER,
+    PRATICIEN_RESP INTEGER);
+
+
+CREATE TABLE BASEDIAG_TYPEDEVIS (
+    ID INTEGER NOT NULL,
+    LIBELLE VARCHAR(100) NOT NULL,
+    CATEGORIE SMALLINT);
+alter table BASEDIAG_TYPEDEVIS
+add constraint PK_BASEDIAG_TYPEDEVIS
+primary key (ID);
+
+
+CREATE TABLE BASEDIAG_DEVIS (
+    ID                         INTEGER NOT NULL,
+    ID_PATIENT                 INTEGER NOT NULL,
+    TYPE_DEVIS                 INTEGER NOT NULL,
+    DATEPROPOSITION            TIMESTAMP,
+    DATESIGNATURE              TIMESTAMP,
+    MONTANT_DEVIS              DOUBLE PRECISION,
+    DUREE_DEVIS                INTEGER,
+    OPT_FACETTE                SMALLINT,
+    OPT_KIT_ECLAIR             SMALLINT,
+    OPT_KIT_TRACTION           SMALLINT,
+    OPT_CONT_BAS_1ARC          SMALLINT,
+    OPT_CONT_BAS_2ARC          SMALLINT,
+    OPT_CONT_BAS_JEU          SMALLINT,
+    OPT_CONT_VIVERA_1ARC       SMALLINT,
+    OPT_CONT_VIVERA_2ARC       SMALLINT,
+    OPT_CONT_VIVERA_JEU       SMALLINT,
+    OPT_CONT_FILMETAL_1ARC		   SMALLINT,
+    OPT_CONT_FILMETAL_2ARC		   SMALLINT,
+    OPT_CONT_FILOR_1ARC			   SMALLINT,
+    OPT_CONT_FILOR_2ARC			   SMALLINT,
+    OPT_CONT_FILFIBRE_1ARC		   SMALLINT,
+    OPT_CONT_FILFIBRE_2ARC		SMALLINT,
+    OPT_NBMINIVIS              INTEGER
+);
+    
+alter table BASEDIAG_DEVIS
+add constraint PK_BASEDIAG_DEVIS
+primary key (ID);
+
+
+insert into basediag_typedevis (id, libelle,categorie) values (-1, 'Inconnue',-1);
+insert into basediag_typedevis (id, libelle,categorie) values (0, 'sucette',1);
+insert into basediag_typedevis (id, libelle,categorie) values (1, 'orthopédique',2);
+insert into basediag_typedevis (id, libelle,categorie) values (2, 'orthodontique bagues metal',3);
+insert into basediag_typedevis (id, libelle,categorie) values (3, 'orthodontique bagues ceramiques',3);
+insert into basediag_typedevis (id, libelle,categorie) values (4, 'orthodontique invisalign',3);
+insert into basediag_typedevis (id, libelle,categorie) values (5, 'Traitement d’alignement par gouttière BAlginsmile®',4);
+insert into basediag_typedevis (id, libelle,categorie) values (6, 'Traitement d’alignement de canine à canine* haut ou bas',4);
+insert into basediag_typedevis (id, libelle,categorie) values (7, 'Traitement d’alignement de canine à canine* haut et bas  ',4);
+insert into basediag_typedevis (id, libelle,categorie) values (8, 'Traitement d’alignement partiel ',4);
+insert into basediag_typedevis (id, libelle,categorie) values (9, 'Traitement d’alignement complet (2 arcades)  ',4);
+insert into basediag_typedevis (id, libelle,categorie) values (10, 'Traitement d’orthodontie (2 arcades) avec correction de l’occlusion',4);
+insert into basediag_typedevis (id, libelle,categorie) values (11, 'Traitement d’orthodontie (2 arcades) avec élastiques de tractions ',4);
+insert into basediag_typedevis (id, libelle,categorie) values (12, 'Traitement d’orthodontie avec Disjonction chirurgical',4);
+insert into basediag_typedevis (id, libelle,categorie) values (13, 'Traitement d’orthodontie pour une préparation d’une Chirurgie orthognathique',4);
+insert into basediag_typedevis (id, libelle,categorie) values (14, 'Disjoncteur maxillaire sur bagues',4);
+insert into basediag_typedevis (id, libelle,categorie) values (15, 'gouttière chirurgicale et préparation de la chirurgie',4);
+insert into basediag_typedevis (id, libelle,categorie) values (16, 'Finition post-chirurgicale',4);
+
+
+CREATE TABLE BASE_HISTO_COURRIER (
+    ID INTEGER NOT NULL,
+    DATE_ENVOIS TIMESTAMP,
+    APERCUS BLOB SUB_TYPE 0 SEGMENT SIZE 80,
+    FICHIER VARCHAR(100),
+    TYPEENVOIS SMALLINT,
+     TAG VARCHAR(50));
+    
+alter table BASE_HISTO_COURRIER
+add constraint PK_BASE_HISTO_COURRIER
+primary key (ID);
+
+
+CREATE TABLE BASE_COURRIER_ATTRIBUTS (
+    ID INTEGER NOT NULL,
+    ID_HISTO_COURRIER INTEGER NOT NULL,
+    NOM_ATTRIBUT VARCHAR(100) NOT NULL,
+    VALUE_ATTRIBUT VARCHAR(4000));
+    
+    
+alter table BASE_COURRIER_ATTRIBUTS
+add constraint PK_BASE_COURRIER_ATTRIBUTS
+primary key (ID);
+

@@ -1,0 +1,620 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using BasCommon_DAL;
+using BasCommon_BO;
+using System.Data;
+
+namespace BasCommon_BL
+{
+    public class MgmtEncaissement
+    {
+
+
+        public static List<int> GetListPatientsAffectedByPaiement(PaiementReel pmt)
+        {
+            return DAC.GetListPatientsAffectedByPaiement(pmt);
+        }
+
+        public static void Delete(Encaissement encaissement)
+        {
+            LogMgmt.SuppressionEncaissement(encaissement.IdPatient, -1, encaissement);
+            DAC.DeleteEncaissement(encaissement, true);
+
+            if ((encaissement.patient != null) && (encaissement.patient.Echeances != null))
+            {
+
+
+                foreach (Echeance e in encaissement.patient.Echeances)
+                {
+                    if (e.ID_Encaissement == encaissement.Id)
+                        e.ID_Encaissement = -1;
+                }
+
+
+
+                if ((encaissement.patient != null) && (encaissement.patient.PaiementReels != null))
+                {
+                    List<PaiementReel> lst = encaissement.patient.PaiementReels;
+                    for (int i = lst.Count - 1; i >= 0; i--)
+                        if (encaissement.IdPaiementReel == lst[i].Id)
+                            encaissement.patient.PaiementReels.Remove(lst[i]);
+
+
+                }
+
+                if ((encaissement.patient != null) && (encaissement.patient.Encaissements != null))
+                {
+                    encaissement.patient.Encaissements.Remove(encaissement);
+                }
+
+            }
+        }
+
+
+
+
+        public static void EffectuerEncaissements(List<Encaissement> encaissmeents)
+        {
+
+
+            foreach (Encaissement ec in encaissmeents)
+            {
+
+                if (ec.paiementreel.BanqueDeRemise == null)
+                {
+                    if (ec.paiementreel.EntiteJuridique.ComptesBancaire == null)
+                        ec.paiementreel.EntiteJuridique.ComptesBancaire = BanqueMgmt.getBanquesDeRemise(ec.paiementreel.EntiteJuridique);
+
+                    ec.paiementreel.BanqueDeRemise = ec.paiementreel.EntiteJuridique.ComptesBancaire.Count == 0 ? null : ec.paiementreel.EntiteJuridique.ComptesBancaire[0];
+                }
+
+
+                if (ec.paiementreel.Id == -1)
+                {
+                    DAC.InsertPaiementReel(ec.paiementreel);
+
+                    if ((ec.patient!=null)&&(ec.patient.PaiementReels!=null))
+                        ec.patient.PaiementReels.Add(ec.paiementreel);
+                }
+
+                if (ec.Id == -1)
+                {
+                    LogMgmt.AjoutEncaissement(ec.IdPatient, -1, ec);
+                    DAC.InsertEncaissement(ec);
+
+                    if ((ec.patient != null) && (ec.patient.Encaissements != null))
+                        ec.patient.Encaissements.Add(ec);
+                }
+            }
+
+        }
+
+
+        public static void EffectuerUnEncaissement(PaiementReel pr, List<Encaissement> encaissmeents)
+        {
+                       
+
+            if (pr.BanqueDeRemise == null)
+            {
+                if (pr.EntiteJuridique.ComptesBancaire == null)
+                    pr.EntiteJuridique.ComptesBancaire = BanqueMgmt.getBanquesDeRemise(pr.EntiteJuridique);
+
+                pr.BanqueDeRemise = pr.EntiteJuridique.ComptesBancaire.Count==0 ? null : pr.EntiteJuridique.ComptesBancaire[0];
+            }
+
+            if (pr.EspecesMisEncaisse > 0)
+                MgmtMvtCaisse.AddMvtCaisse(pr.EspecesMisEncaisse, null);
+
+            if (pr.Id == -1)
+            {
+                DAC.InsertPaiementReel(pr);
+
+                foreach (Encaissement e in encaissmeents)
+                    if ((e.patient != null) && (e.patient.PaiementReels != null))
+                        e.patient.PaiementReels.Add(pr);
+            }
+
+            foreach (Encaissement ec in encaissmeents)
+            {
+                if (ec.Id == -1)
+                {
+                    LogMgmt.AjoutEncaissement(ec.IdPatient, -1, ec);
+                    DAC.InsertEncaissement(ec);
+
+                   if ((ec.patient != null) && (ec.patient.Encaissements != null))
+                       ec.patient.Encaissements.Add(ec);
+                }
+            }
+
+        }
+
+
+
+        public static void UpdateEncaissement(Encaissement encaissement)
+        {
+            DAC.UpdateEncaissement(encaissement);
+        }
+
+
+        public static void UpdatePaiementReel(PaiementReel paiementreel)
+        {
+            DAC.UpdatePaiementReel(paiementreel);
+        }
+
+
+        public static void Prelever(Echeance ech, BanqueDeRemise bqe)
+        {
+
+            if (!ech.ParPrelevement) return;
+
+            PaiementReel pr = new PaiementReel();
+
+            pr.MontantRemis = ech.Montant;
+            pr.Montant = ech.Montant;
+            pr.DateRemiseEnBanque = DateTime.Now;
+            pr.DateEcheance = DateTime.Now;
+            pr.DateEncaissement = DateTime.Now;
+            pr.EstRemisEnBanque = PaiementReel.RemisEnBanque.Oui;
+            pr.BanqueDeRemise = bqe;
+            pr.typeencaissement = PaiementReel.TypeEncaissement.Prelevement;
+            pr.payeur = ech.patient.ToString();
+
+
+            InfoPatientComplementaire nfo = baseMgmtPatient.getinfocomplementaire(ech.IdPatient);
+            if (nfo.PraticienResponsable != null)
+                pr.EntiteJuridique = nfo.PraticienResponsable.EntiteJuridique;
+
+
+
+
+            List<Encaissement> lst = new List<Encaissement>();
+            Encaissement ec = new Encaissement();
+            ec.paiementreel = pr;
+            ec.IdPatient = ech.IdPatient;
+            ec.MontantEncaisse = ech.Montant;
+            lst.Add(ec);
+
+
+
+            MgmtEncaissement.EffectuerUnEncaissement(pr, lst);
+
+
+
+            ech.encaissement = ec;
+
+            EcheancesMgmt.UpdateEcheance(ech);
+            LogMgmt.Prelever(-1, -1, pr);
+
+        }
+
+        public static void Virement(Echeance ech, BanqueDeRemise bqe)
+        {
+
+
+            PaiementReel pr = new PaiementReel();
+
+            pr.MontantRemis = ech.Montant;
+            pr.Montant = ech.Montant;
+            pr.DateRemiseEnBanque = DateTime.Now;
+            pr.DateEcheance = DateTime.Now;
+            pr.DateEncaissement = DateTime.Now;
+            pr.EstRemisEnBanque = PaiementReel.RemisEnBanque.Oui;
+            pr.BanqueDeRemise = bqe;
+            pr.typeencaissement = PaiementReel.TypeEncaissement.Virement;
+            pr.Mutuelle = ech.mutuelle;
+
+
+            InfoPatientComplementaire nfo = baseMgmtPatient.getinfocomplementaire(ech.IdPatient);
+            if (nfo.PraticienResponsable != null)
+                pr.EntiteJuridique = nfo.PraticienResponsable.EntiteJuridique;
+
+            if (ech.payeur == Echeance.typepayeur.Banque)
+                pr.payeur = "Banque";
+            if (ech.payeur == Echeance.typepayeur.Mutuelle)
+                pr.payeur = ech.mutuelle.ToString();
+            if (ech.payeur == Echeance.typepayeur.Secu)
+                pr.payeur = "Secu";
+
+            List<Encaissement> lst = new List<Encaissement>();
+            Encaissement ec = new Encaissement();
+            ec.paiementreel = pr;
+            ec.IdPatient = ech.IdPatient;
+            ec.MontantEncaisse = ech.Montant;
+            lst.Add(ec);
+
+
+
+            MgmtEncaissement.EffectuerUnEncaissement(pr, lst);
+
+
+
+            ech.encaissement = ec;
+
+            EcheancesMgmt.UpdateEcheance(ech);
+            LogMgmt.Virement(-1, -1, pr, ech);
+
+        }
+
+
+        public static void RemiseEnBanque(PaiementReel paiementreel, BanqueDeRemise bqe)
+        {
+
+            paiementreel.DateRemiseEnBanque = DateTime.Now;
+            paiementreel.EstRemisEnBanque = PaiementReel.RemisEnBanque.Oui;
+            paiementreel.MontantRemis = paiementreel.Montant;
+            paiementreel.Status = PaiementReel.statusEncaissement.Remis;
+            paiementreel.BanqueDeRemise = bqe;
+
+            LogMgmt.RemiseEnBanque(-1, -1, paiementreel);
+
+            DAC.UpdatePaiementReel(paiementreel);
+        }
+
+
+        public static void ModifierDateEcheance(int IdPatient, PaiementReel paiementreel, DateTime nouvelleDate)
+        {
+            DateTime olddte = paiementreel.DateEcheance;
+            paiementreel.DateEcheance = nouvelleDate;
+            LogMgmt.ModifierDateEcheance(IdPatient, -1, paiementreel, olddte);
+
+            DAC.UpdatePaiementReel(paiementreel);
+        }
+
+       
+        
+
+        public static List<Encaissement> GetEncaissementsARemettreEnBanque()
+        {
+            DataTable dt = DAC.GetEncaissementsARemettreEnBanque();
+
+            List<Encaissement> lst = new List<Encaissement>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                Encaissement ec = Builders.BuildEncaissement.Build(r);
+                lst.Add(ec);
+
+            }
+
+            return lst;
+        }
+
+
+
+
+        public static Encaissement GetEncaissement(int Id)
+        {
+            DataRow dr = DAC.GetEncaissement(Id);
+
+            if (dr == null) return null;
+            Encaissement ec = Builders.BuildEncaissement.Build(dr);
+
+            return ec;
+        }
+
+
+
+        /*
+        public static List<PaiementReel> GetPaiementReelsDuJour(PaiementReel.TypeEncaissement type)
+        {
+            DataTable dt = DAC.GetPaiementReelsDuJour(type);
+
+            Dictionary<int, PaiementReel> dico = new Dictionary<int, PaiementReel>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                PaiementReel ec = Builders.BuildPaiementReel.Build(r);
+
+
+                if (dico.ContainsKey(ec.Id))
+                {
+                    dico[ec.Id].Patients += " + " + ec.Patients;
+
+                    foreach (int i in ec.lstpatient)
+                        dico[ec.Id].lstpatient.Add(i);
+                }
+                else
+                {
+                    dico.Add(ec.Id, ec);
+                }
+
+
+            }
+            List<PaiementReel> lst = new List<PaiementReel>();
+
+            foreach (KeyValuePair<int, PaiementReel> kv in dico)
+                lst.Add(kv.Value);
+
+            return lst;
+        }
+        */
+
+
+
+        public static List<PaiementReel> GetCBOuAMEXDuJour()
+        {
+            DataTable dt = DAC.GetCBDuJour(PaiementReel.TypeEncaissement.CB, DateTime.Now.Date.AddDays(-1), DateTime.Now.Date, "CBDUJOUR");
+
+            Dictionary<int, PaiementReel> dico = new Dictionary<int, PaiementReel>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                PaiementReel ec = Builders.BuildPaiementReel.Build(r);
+
+
+                if (dico.ContainsKey(ec.Id))
+                {
+                    dico[ec.Id].Patients += " + " + ec.Patients;
+
+                    foreach (int i in ec.lstpatient)
+                        dico[ec.Id].lstpatient.Add(i);
+                }
+                else
+                {
+                    dico.Add(ec.Id, ec);
+                }
+
+
+            }
+
+
+            dt = DAC.GetPaiementReelsDuJour(PaiementReel.TypeEncaissement.AMEX, DateTime.Now.Date.AddDays(-1), DateTime.Now.Date, "CBDUJOUR");
+                       
+            foreach (DataRow r in dt.Rows)
+            {
+                PaiementReel ec = Builders.BuildPaiementReel.Build(r);
+
+
+                if (dico.ContainsKey(ec.Id))
+                {
+                    dico[ec.Id].Patients += " + " + ec.Patients;
+
+                    foreach (int i in ec.lstpatient)
+                        dico[ec.Id].lstpatient.Add(i);
+                }
+                else
+                {
+                    dico.Add(ec.Id, ec);
+                }
+
+
+            }
+
+
+
+            List<PaiementReel> lst = new List<PaiementReel>();
+
+            foreach (KeyValuePair<int, PaiementReel> kv in dico)
+                lst.Add(kv.Value);
+
+            return lst;
+        }
+
+
+
+        public static List<PaiementReel> GetEspecesDuJour()
+        {
+            DataTable dt = DAC.GetPaiementReelsDuJour(PaiementReel.TypeEncaissement.Especes, DateTime.Now.Date, DateTime.Now.Date.AddDays(1),"ESPDUJOUR");
+
+            Dictionary<int, PaiementReel> dico = new Dictionary<int, PaiementReel>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                PaiementReel ec = Builders.BuildPaiementReel.Build(r);
+
+
+                if (dico.ContainsKey(ec.Id))
+                {
+                    dico[ec.Id].Patients += " + " + ec.Patients;
+
+                    foreach (int i in ec.lstpatient)
+                        dico[ec.Id].lstpatient.Add(i);
+                }
+                else
+                {
+                    dico.Add(ec.Id, ec);
+                }
+
+
+            }
+            List<PaiementReel> lst = new List<PaiementReel>();
+
+            foreach (KeyValuePair<int, PaiementReel> kv in dico)
+                lst.Add(kv.Value);
+
+            return lst;
+        }
+
+
+        public static List<PaiementReel> GetChequeDuJour()
+        {
+            DataTable dt = DAC.GetPaiementReelsDuJour(PaiementReel.TypeEncaissement.Cheque,DateTime.Now.Date,DateTime.Now.Date.AddDays(1),"CHQDUJOUR");
+
+            Dictionary<int, PaiementReel> dico = new Dictionary<int, PaiementReel>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                PaiementReel ec = Builders.BuildPaiementReel.Build(r);
+
+
+                if (dico.ContainsKey(ec.Id))
+                {
+                    dico[ec.Id].Patients += " + " + ec.Patients;
+
+                    foreach (int i in ec.lstpatient)
+                        dico[ec.Id].lstpatient.Add(i);
+                }
+                else
+                {
+                    dico.Add(ec.Id, ec);
+                }
+
+
+            }
+            List<PaiementReel> lst = new List<PaiementReel>();
+
+            foreach (KeyValuePair<int, PaiementReel> kv in dico)
+                lst.Add(kv.Value);
+
+            return lst;
+        }
+
+        public static List<PaiementReel> GetPaiementReelsARemettreEnBanque(DateTime dte1, DateTime dte2, PaiementReel.TypeEncaissement type, EntiteJuridique entity)
+        {
+            DataTable dt = DAC.GetPaiementReelsARemettreEnBanque(dte1, dte2, type, entity);
+
+            Dictionary<int, PaiementReel> dico = new Dictionary<int, PaiementReel>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                PaiementReel ec = Builders.BuildPaiementReel.Build(r);
+
+
+                if (dico.ContainsKey(ec.Id))
+                {
+                    dico[ec.Id].Patients += " + " + ec.Patients;
+
+                    foreach (int i in ec.lstpatient)
+                        dico[ec.Id].lstpatient.Add(i);
+                }
+                else
+                {
+                    dico.Add(ec.Id, ec);
+                }
+
+
+            }
+            List<PaiementReel> lst = new List<PaiementReel>();
+
+            foreach (KeyValuePair<int, PaiementReel> kv in dico)
+                lst.Add(kv.Value);
+
+            return lst;
+        }
+
+
+        public static List<PaiementReel> GetPaiementReelsRemisEnBanque(DateTime dte1, DateTime dte2, PaiementReel.TypeEncaissement type, EntiteJuridique entity)
+        {
+
+            DataTable dt = DAC.GetPaiementReelsRemisEnBanque(dte1, dte2, type, entity);
+
+            Dictionary<int, PaiementReel> dico = new Dictionary<int, PaiementReel>();
+
+
+            foreach (DataRow r in dt.Rows)
+            {
+                PaiementReel ec = Builders.BuildPaiementReel.Build(r);
+
+
+                if (dico.ContainsKey(ec.Id))
+                {
+                    dico[ec.Id].Patients += " + " + ec.Patients;
+
+                    foreach (int i in ec.lstpatient)
+                        dico[ec.Id].lstpatient.Add(i);
+                }
+                else
+                {
+                    dico.Add(ec.Id, ec);
+                }
+
+
+            }
+            List<PaiementReel> lst = new List<PaiementReel>();
+
+            foreach (KeyValuePair<int, PaiementReel> kv in dico)
+                lst.Add(kv.Value);
+
+            return lst;
+
+        }
+
+
+        public static PaiementReel GetPaiementReel(int Id)
+        {
+            DataRow dr = DAC.GetPaiementsReel(Id);
+
+            if (dr == null) return null;
+            return Builders.BuildPaiementReel.Build(dr);
+        }
+
+        public static List<PaiementReel> GetPaiementReels(basePatient patient)
+        {
+            DataTable dt = DAC.GetPaiementsReels(patient.Id);
+
+            List<PaiementReel> lst = new List<PaiementReel>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                PaiementReel ec = Builders.BuildPaiementReel.Build(r);
+                lst.Add(ec);
+
+            }
+
+            return lst;
+        }
+
+        public static List<PaiementReel> GetPaiementADiffererDuJour(PaiementReel.TypeEncaissement type, string CodeControl)
+        {
+            DataTable dt = DAC.GetPaiementADiffererDuJour(type, CodeControl);
+
+            List<PaiementReel> lst = new List<PaiementReel>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                PaiementReel ec = Builders.BuildPaiementReel.Build(r);
+                lst.Add(ec);
+
+            }
+
+            return lst;
+        }
+
+
+
+        
+
+        public static double GetTotalEncaissements(basePatient patient)
+        {
+            return DAC.GetTotalEncaissements(patient);
+
+
+        }
+
+        public static List<Encaissement> GetEncaissements(basePatient patient)
+        {
+
+            DataTable dt = DAC.GetEncaissements(patient.Id);
+
+            List<Encaissement> _listEncaissements = new List<Encaissement>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                Encaissement ec = Builders.BuildEncaissement.Build(r);
+                _listEncaissements.Add(ec);
+
+            }
+
+            return _listEncaissements;
+
+        }
+
+        public static List<Encaissement> GetEncaissements(bool IncludeAlreadyREmisEnBanque, DateTime dte1, DateTime dte2, PaiementReel.TypeEncaissement tpeEnc, EntiteJuridique entity)
+        {
+            DataTable dt = DAC.GetEncaissements(IncludeAlreadyREmisEnBanque, dte1, dte2, tpeEnc, entity);
+
+            List<Encaissement> _listEncaissements = new List<Encaissement>();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                Encaissement ec = Builders.BuildEncaissement.Build(r);
+                _listEncaissements.Add(ec);
+
+            }
+
+            return _listEncaissements;
+        }
+    }
+}

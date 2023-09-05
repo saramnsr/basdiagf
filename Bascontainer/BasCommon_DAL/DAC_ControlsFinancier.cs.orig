@@ -1,0 +1,342 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using FirebirdSql.Data.FirebirdClient;
+using System.Configuration;
+using BasCommon_BO;
+
+namespace BasCommon_DAL
+{
+    public static partial class DAC
+    {
+
+        public static DataTable getControlFinancier()
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+               
+
+                string selectQuery = "select id, ";
+                selectQuery += "                            ETAT, ";
+                selectQuery += "                            REMARQUE, ";
+                selectQuery += "                            CODECONTROL,  ";
+                selectQuery += "                            LIBELLE,  ";
+                selectQuery += "                            ID_CONTROLEUR, ";
+                selectQuery += "                            \"DATE\" ";
+                selectQuery += "                            from BAS_CONTROLSFINANCE";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                return dt;
+
+            }
+            catch (System.SystemException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+        }
+
+        public static void DeleteControlFinancier(ControlFinancier ctrl)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+
+
+
+
+
+
+            try
+            {
+
+
+
+                string selectQuery = "Delete from BAS_ERREUR_CTRL";
+                selectQuery += " where ID_CONTROL = @id ";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("@id", ctrl.Id);
+                command.ExecuteNonQuery();
+
+                selectQuery = "Delete from LNK_PAIEMENT_CTRL";
+                selectQuery += " where ID_CONTROL = @id ";
+
+                command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("@id", ctrl.Id);
+                command.ExecuteNonQuery();
+                
+
+                selectQuery = "Delete from BAS_CONTROLSFINANCE";
+                selectQuery += " where id = @id ";
+
+               command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("@id", ctrl.Id);
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+
+
+                
+
+            }
+            catch (System.SystemException ex)
+            {
+                transaction.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+        }
+        
+        public static void UpdateControlFinancier(ControlFinancier ctrl)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+
+
+           
+
+
+
+            try
+            {
+                string selectQuery = "update BAS_CONTROLSFINANCE  set ";
+                selectQuery += "                            ETAT=@ETAT, ";
+                selectQuery += "                            REMARQUE=@REMARQUE, ";
+                selectQuery += "                            CODECONTROL=@CODECONTROL,  ";
+                selectQuery += "                            LIBELLE=@LIBELLE,  ";
+                selectQuery += "                            ID_CONTROLEUR=@ID_CONTROLEUR, ";
+                selectQuery += "                            \"DATE\"=@dte";
+                selectQuery += " where id = @id ";
+
+
+
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                command.Parameters.AddWithValue("@id", ctrl.Id);
+                command.Parameters.AddWithValue("@ETAT", ctrl.Etat);
+                command.Parameters.AddWithValue("@REMARQUE", ctrl.Remarques);
+                command.Parameters.AddWithValue("@CODECONTROL", ctrl.CodeControl);
+                command.Parameters.AddWithValue("@LIBELLE", ctrl.Libelle);
+                command.Parameters.AddWithValue("@ID_CONTROLEUR", ctrl.IdControleur);
+                command.Parameters.AddWithValue("@dte", ctrl.DateControl);
+
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+
+            }
+            catch (System.SystemException ex)
+            {
+                transaction.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+        }
+        
+        public static void InsertControlFinancier(ControlFinancier ctrl)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+
+
+            string selectQueryId = "select max(Id)+1 as ID from BAS_CONTROLSFINANCE";
+            FbCommand commandid = new FbCommand(selectQueryId, connection, transaction);
+            object id = commandid.ExecuteScalar();
+            if (id == DBNull.Value)
+                ctrl.Id = 1;
+            else
+                ctrl.Id = Convert.ToInt32(id);
+
+
+
+            try
+            {
+                string selectQuery = "insert into BAS_CONTROLSFINANCE (id, ";
+                selectQuery += "                            ETAT, ";
+                selectQuery += "                            REMARQUE, ";
+                selectQuery += "                            CODECONTROL,  ";
+                selectQuery += "                            LIBELLE,  ";
+                selectQuery += "                            ID_CONTROLEUR, ";
+                selectQuery += "                            \"DATE\")";
+                selectQuery += " values (@id, ";
+                selectQuery += "                            @ETAT, ";
+                selectQuery += "                            @REMARQUE, ";
+                selectQuery += "                            @CODECONTROL,  ";
+                selectQuery += "                            @LIBELLE,  ";
+                selectQuery += "                            @ID_CONTROLEUR, ";
+                selectQuery += "                            @dte)";
+
+
+
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                command.Parameters.AddWithValue("@id", ctrl.Id);
+                command.Parameters.AddWithValue("@ETAT", ctrl.Etat);
+                command.Parameters.AddWithValue("@REMARQUE", ctrl.Remarques);
+                command.Parameters.AddWithValue("@CODECONTROL", ctrl.CodeControl);
+                command.Parameters.AddWithValue("@LIBELLE", ctrl.Libelle);
+                command.Parameters.AddWithValue("@ID_CONTROLEUR", ctrl.IdControleur);
+                command.Parameters.AddWithValue("@dte", ctrl.DateControl);
+
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+
+            }
+            catch (System.SystemException ex)
+            {
+                transaction.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+        }
+        
+
+
+
+        public static DataTable getlnkControlFinancier()
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+                string selectQuery = "select ID_PAIEMENT, ";
+                selectQuery += "                            ID_CONTROL, ";
+                selectQuery += "                            REMARQUE, ";
+                selectQuery += "                            ETAT, ";
+                selectQuery += "                            UDATEDATE  ";
+                selectQuery += "                            from BAS_LNK_PAIEMENT_CTRL";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                return dt;
+
+            }
+            catch (System.SystemException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+        }
+                
+             
+
+        public static void InsertlnkControlFinancier(lnkControlFinancier ctrl)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+
+
+
+
+            try
+            {
+
+               
+                string selectQuery = "insert into BAS_LNK_PAIEMENT_CTRL (ID_PAIEMENT, ";
+                selectQuery += "                            ID_CONTROL, ";
+                selectQuery += "                            REMARQUE, ";
+                selectQuery += "                            CODE_ERREUR, ";
+                selectQuery += "                            LATEST_FLAG, ";
+                selectQuery += "                            ETAT, ";
+                selectQuery += "                            UDATEDATE)";
+                selectQuery += " values (@ID_PAIEMENT, ";
+                selectQuery += "                            @ID_CONTROL, ";
+                selectQuery += "                            @REMARQUE, ";
+                selectQuery += "                            @CODE_ERREUR, ";
+                selectQuery += "                            'Y', ";
+                selectQuery += "                            @ETAT, ";
+                selectQuery += "                            @UDATEDATE)";
+
+
+
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                command.Parameters.AddWithValue("@ID_PAIEMENT", ctrl.IdPaiementReel);
+                command.Parameters.AddWithValue("@CODE_ERREUR", ctrl.CodeErreur);
+                command.Parameters.AddWithValue("@REMARQUE", ctrl.Remarques);
+                command.Parameters.AddWithValue("@ETAT", (int)ctrl.Etat);
+                command.Parameters.AddWithValue("@ID_CONTROL", ctrl.IdControlFinancier);
+                command.Parameters.AddWithValue("@UDATEDATE", ctrl.UpdateDate);
+
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+
+            }
+            catch (System.SystemException ex)
+            {
+                transaction.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+        }
+
+
+    
+    }
+}

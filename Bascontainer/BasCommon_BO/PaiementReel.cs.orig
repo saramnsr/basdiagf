@@ -1,0 +1,409 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace BasCommon_BO
+{
+    public class PaiementReel
+    {
+
+        public override string ToString()
+        {
+
+            switch (typeencaissement)
+            {
+                case TypeEncaissement.Cheque: return "Cheque n° " + NumCheque + " de " + Montant.ToString("C2") + " pour " + Patients;
+                case TypeEncaissement.AMEX: return "AMEX de " + Montant.ToString("C2") + " pour " + Patients;
+                case TypeEncaissement.CB: return "CB de " + Montant.ToString("C2") + " pour " + Patients;
+                case TypeEncaissement.CCP: return "CCP de " + Montant.ToString("C2") + " pour " + Patients;
+                case TypeEncaissement.Especes: return "Especes de " + Montant.ToString("C2") +" pour "+Patients;
+                case TypeEncaissement.Optalion: return "Optalion de " + Montant.ToString("C2") + " pour " + Patients;
+                case TypeEncaissement.PNF: return "PNF de " + Montant.ToString("C2") + " pour " + Patients;
+                case TypeEncaissement.Prelevement: return "Prelevement de " + Montant.ToString("C2") + " pour " + Patients;
+                case TypeEncaissement.Virement: return "Virement de " + Montant.ToString("C2") + " pour " + Patients;
+                default: return "reglement de " + Montant.ToString("C2") + " pour " + Patients;
+
+            }
+
+            
+        }
+
+        public enum RemisEnBanque
+        {
+            Oui = 1,
+            Non = 0,
+            NA = -1
+        }
+
+        public enum TypeEncaissement
+        {
+            Tous = -1,
+            Cheque = 0,
+            Especes = 1,
+            CCP = 2,
+            CB = 3,
+            Optalion = 4,
+            Autre = 5,
+            Prelevement = 6,
+            Virement = 7,
+            PNF = 8,
+            AMEX = 9
+        }
+
+
+        public enum statusEncaissement
+        {
+            None = -1,
+            Remis = 0,
+            NonSigne = 1,
+
+        }
+
+
+        private EntiteJuridique _EntiteJuridique;
+        public EntiteJuridique EntiteJuridique
+        {
+            get
+            {
+                return _EntiteJuridique;
+            }
+            set
+            {
+                _EntiteJuridique = value;
+            }
+        }
+
+
+        private List<int> _lstpatient = null;
+        public List<int> lstpatient
+        {
+            get
+            {
+                return _lstpatient;
+            }
+            set
+            {
+                _lstpatient = value;
+            }
+        }
+
+        private string _Patients;
+        public string Patients
+        {
+            get
+            {
+                return _Patients;
+            }
+            set
+            {
+                _Patients = value;
+            }
+        }
+
+        private DateTime _DateEcheance;
+        public DateTime DateEcheance
+        {
+            get
+            {
+                return _DateEcheance;
+            }
+            set
+            {
+                _DateEcheance = value;
+            }
+        }
+
+        private DateTime? _DateValeurBqe = null;
+        public DateTime? DateValeurBqe
+        {
+            get
+            {
+                return _DateValeurBqe;
+            }
+            set
+            {
+                _DateValeurBqe = value;
+            }
+        }
+
+        
+
+
+        private Double _MontantEnBanque;
+        public Double MontantEnBanque
+        {
+            get
+            {
+                return _MontantEnBanque;
+            }
+            set
+            {
+                _MontantEnBanque = value;
+            }
+        }
+
+        private double _MontantRemis;
+        public double MontantRemis
+        {
+            get
+            {
+                return _MontantRemis;
+            }
+            set
+            {
+                _MontantRemis = value;
+            }
+        }
+
+        private String _LibelleIncident;
+        public String LibelleIncident
+        {
+            get
+            {
+                return _LibelleIncident;
+            }
+            set
+            {
+                _LibelleIncident = value;
+            }
+        }
+
+        private statusEncaissement _Status = statusEncaissement.None;
+        public statusEncaissement Status
+        {
+            get
+            {
+                return _Status;
+            }
+            set
+            {
+                _Status = value;
+            }
+        }
+
+
+
+
+        private DateTime? _DateRemiseEnBanque;
+        public DateTime? DateRemiseEnBanque
+        {
+            get
+            {
+                return _DateRemiseEnBanque;
+            }
+            set
+            {
+                _DateRemiseEnBanque = value;
+            }
+        }
+
+        private RemisEnBanque _EstRemisEnBanque = RemisEnBanque.NA;
+        public RemisEnBanque EstRemisEnBanque
+        {
+            get
+            {
+                return _EstRemisEnBanque;
+            }
+            set
+            {
+                _EstRemisEnBanque = value;
+            }
+        }
+
+        private BanqueDeRemise _BanqueDeRemise;
+        public BanqueDeRemise BanqueDeRemise
+        {
+            get
+            {
+                return _BanqueDeRemise;
+            }
+            set
+            {
+                _BanqueDeRemise = value;
+            }
+        }
+
+        private Banque _BanqueEmetrice;
+        public Banque BanqueEmetrice
+        {
+            get
+            {
+                return _BanqueEmetrice;
+            }
+            set
+            {
+                _BanqueEmetrice = value;
+            }
+        }
+
+
+
+        private Mutuelle _Mutuelle;
+        public Mutuelle Mutuelle
+        {
+            get
+            {
+                return _Mutuelle;
+            }
+            set
+            {
+                _Mutuelle = value;
+            }
+        }
+
+        private int _IdPayeur = -1;
+        public int IdPayeur
+        {
+            get
+            {
+                return _IdPayeur;
+            }
+            set
+            {
+                _IdPayeur = value;
+            }
+        }
+
+        private string _payeur;
+        public string payeur
+        {
+            get
+            {
+                return _payeur;
+            }
+            set
+            {
+                _payeur = value;
+            }
+        }
+
+
+
+        private DateTime _DateEncaissement;
+        public DateTime DateEncaissement
+        {
+            get
+            {
+                return _DateEncaissement;
+            }
+            set
+            {
+                _DateEncaissement = value;
+            }
+        }
+
+
+
+        private TypeEncaissement _typeencaissement;
+        public TypeEncaissement typeencaissement
+        {
+            get
+            {
+                return _typeencaissement;
+            }
+            set
+            {
+                _typeencaissement = value;
+            }
+        }
+
+
+
+        private double _EspecesMisEncaisse = 0;
+        public double EspecesMisEncaisse
+        {
+            get
+            {
+                return _EspecesMisEncaisse;
+            }
+            set
+            {
+                _EspecesMisEncaisse = value;
+            }
+        }
+
+        private double _EspecesRendus = 0;
+        public double EspecesRendus
+        {
+            get
+            {
+                return _EspecesRendus;
+            }
+            set
+            {
+                _EspecesRendus = value;
+            }
+        }
+
+        private Double _EspecesRecu;
+        public Double EspecesRecu
+        {
+            get
+            {
+                return _EspecesRecu;
+            }
+            set
+            {
+                _EspecesRecu = value;
+            }
+        }
+
+        private Double _Montant;
+        public Double Montant
+        {
+            get
+            {
+                return _Montant;
+            }
+            set
+            {
+                _Montant = value;
+            }
+        }
+
+
+        private int _Id = -1;
+        public int Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                _Id = value;
+            }
+        }
+
+
+        private string _NumCheque;
+        public string NumCheque
+        {
+            get
+            {
+                return _NumCheque;
+            }
+            set
+            {
+                _NumCheque = value;
+            }
+        }
+
+        private string _Commentaires;
+        public string Commentaires
+        {
+            get
+            {
+                return _Commentaires;
+            }
+            set
+            {
+                _Commentaires = value;
+            }
+        }
+
+
+
+    }
+}

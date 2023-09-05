@@ -1,0 +1,131 @@
+CREATE TABLE BASE_RECETTE (
+    ID                  INTEGER NOT NULL,
+    DATE_REMISEENBQUE   TIMESTAMP NOT NULL,
+    DATE_VALEURBQUE     TIMESTAMP NOT NULL,
+    CODE_RECETTE       VARCHAR(10),
+    MONTANT             DOUBLE PRECISION NOT NULL,
+	ID_PAIEMENTREEL     INTEGER,
+	ID_BORDEREAU         INTEGER,
+    ID_BANQUE_REMISE    CHAR(10) NOT NULL,
+	
+    DETAILS             VARCHAR(100)
+);
+
+ALTER TABLE BASE_RECETTE ADD CONSTRAINT PK_BASE_RECETTE PRIMARY KEY (ID);
+
+ALTER TABLE BAS_BORDEREAU_FINANCE
+ADD NUM_BORDEREAU_BQE CHAR(20);
+
+DROP TRIGGER DEPENSE_BI0;
+
+DROP TRIGGER DEPENSE_BU0;
+
+ALTER TABLE BASE_DEPENSE DROP ID_ENTITYJURIDIQUE;
+
+DROP TRIGGER BASE_PAIEMENTREEL_BI0;
+
+DROP TRIGGER BASE_PAIEMENTREEL_BU0;
+
+DROP TABLE BAS_SUIVICOMPTE;
+
+ALTER TABLE BAS_BORDEREAU_FINANCE
+ADD NB_VIREMENT INTEGER;
+
+ALTER TABLE BAS_BORDEREAU_FINANCE
+ADD NB_PRELEVEMENT INTEGER;
+
+
+
+
+
+
+CREATE TABLE BAS_ECRITURES (
+    ID INTEGER NOT NULL,
+    "DATE" TIMESTAMP NOT NULL,
+    NUMECRITURE INTEGER NOT NULL,
+    ID_PIECE INTEGER NOT NULL,
+    ID_BQUE INTEGER NOT NULL,
+    CODE_COMPTA CHAR(10) NOT NULL,
+    LIBELLE VARCHAR(500) NOT NULL,
+    DEBIT DOUBLE PRECISION,
+    CREDIT DOUBLE PRECISION);
+
+ALTER TABLE BAS_ECRITURES
+ADD CONSTRAINT PK_BAS_ECRITURES
+PRIMARY KEY (ID);
+
+
+ALTER TABLE PATIENT
+ADD TITULAIRE CHAR(24);
+
+ALTER TABLE RENDEZ_VOUS
+ADD AAvancer CHAR(5);
+
+ALTER TABLE BASE_ECHEANCE
+ADD ReleveDeCompte TIMESTAMP;
+
+ALTER TABLE BASE_ECHEANCE
+ADD Relance TIMESTAMP;
+
+ALTER TABLE BASE_ECHEANCE
+ADD PreContentieux TIMESTAMP;
+
+ALTER TABLE BASE_ECHEANCE
+ADD Majoration TIMESTAMP;
+
+ALTER TABLE BASE_ECHEANCE
+ADD Contentieux TIMESTAMP;
+
+
+update base_echeance
+set base_echeance.relevedecompte =    (
+        select max(base_relance.date_evenement) from base_relance
+        where base_relance.niveau_relance = 10 and base_relance.id_patient = base_echeance.id_patient
+)
+where base_echeance.dteecheance<=(
+        select max(base_relance.date_evenement) from base_relance
+        where base_relance.niveau_relance = 10 and base_relance.id_patient = base_echeance.id_patient
+) and base_echeance.typepayeur=0 and base_echeance.parprelevement = 'False';
+update base_echeance
+set base_echeance.relance =    (
+        select max(base_relance.date_evenement) from base_relance
+        where base_relance.niveau_relance = 20 and base_relance.id_patient = base_echeance.id_patient
+)
+where base_echeance.dteecheance<=(
+        select max(base_relance.date_evenement) from base_relance
+        where base_relance.niveau_relance = 20 and base_relance.id_patient = base_echeance.id_patient
+) and base_echeance.typepayeur=0 and base_echeance.parprelevement = 'False';
+update base_echeance
+set base_echeance.precontentieux =    (
+        select max(base_relance.date_evenement) from base_relance
+        where base_relance.niveau_relance = 30 and base_relance.id_patient = base_echeance.id_patient
+)
+where base_echeance.dteecheance<=(
+        select max(base_relance.date_evenement) from base_relance
+        where base_relance.niveau_relance = 30 and base_relance.id_patient = base_echeance.id_patient
+) and base_echeance.typepayeur=0 and base_echeance.parprelevement = 'False';
+update base_echeance
+set base_echeance.majoration =    (
+        select max(base_relance.date_evenement) from base_relance
+        where base_relance.niveau_relance = 40 and base_relance.id_patient = base_echeance.id_patient
+)
+where base_echeance.dteecheance<=(
+        select max(base_relance.date_evenement) from base_relance
+        where base_relance.niveau_relance = 40 and base_relance.id_patient = base_echeance.id_patient
+) and base_echeance.typepayeur=0 and base_echeance.parprelevement = 'False';
+update base_echeance
+set base_echeance.contentieux =    (
+        select max(base_relance.date_evenement) from base_relance
+        where base_relance.niveau_relance = 50 and base_relance.id_patient = base_echeance.id_patient
+)
+where base_echeance.dteecheance<=(
+        select max(base_relance.date_evenement) from base_relance
+        where base_relance.niveau_relance = 50 and base_relance.id_patient = base_echeance.id_patient
+) and base_echeance.typepayeur=0 and base_echeance.parprelevement = 'False';
+
+
+ALTER TABLE BASE_PAIEMENTREEL
+ADD ISPNF CHAR(5);
+
+
+--TODO Ajouter les dates de prelevements 10 et 30

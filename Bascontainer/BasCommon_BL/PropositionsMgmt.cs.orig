@@ -1,0 +1,1343 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using BasCommon_BO;
+using System.Data;
+using BasCommon_DAL;
+
+namespace BasCommon_BL
+{
+    public static class PropositionMgmt
+    {
+
+
+
+        public static void CloseTraitement(Traitement traitementToClose, DateTime chooseDate)
+        {
+            foreach (Semestre s in traitementToClose.semestres)
+            {
+                if (s.DateFin == null)
+                {
+                    List<ActePG> actes = ActesPGMgmt.GetActesPG(s);
+
+                    foreach (ActePG a in actes)
+                    {
+                        ActePG oldacte = (ActePG)a.Clone();
+
+                        a.NbMois = 0;
+                        a.NbJours = (int)(chooseDate - a.DateExecution).TotalDays;
+
+                        ActesPGMgmt.UpdateActePG(a, oldacte);
+                        List<Echeance> lst = EcheancesMgmt.GetEcheances(a);
+
+                        foreach (Echeance ech in lst)
+                        {
+                            if ((ech.DateEcheance == null) && (ech.ID_Encaissement < 0))
+                            {
+                                ech.DateEcheance = chooseDate;
+                                EcheancesMgmt.UpdateEcheance(ech);
+                            }
+                        }
+
+                    }
+
+                    s.DateFin = chooseDate;
+                    SemestreMgmt.UpdateSemestre(s);
+                }
+            }
+        }
+
+
+        public static List<ModeleDePropositions> getModeles()
+        {
+            List<ModeleDePropositions> lst = new List<ModeleDePropositions>();
+            DataTable dtmdl = DAC.getModeleDePropositions();
+            foreach (DataRow dr in dtmdl.Rows)
+                lst.Add(Builders.BuildModeleDeProposition.Build(dr));
+
+            return lst;
+        }
+
+
+        public static ModeleDePropositions getModele(int Idmdl)
+        {
+
+            DataRow drmdl = DAC.getModeleDeProposition(Idmdl);
+            ModeleDePropositions mdl = Builders.BuildModeleDeProposition.Build(drmdl);
+
+
+            DataTable dt = DAC.getPropositions(mdl);
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Proposition pr = Builders.BuildProposition.Build(dr);
+                pr.IdModel = mdl.Id;
+
+                pr.traitements = TraitementMgmt.getTraitements(pr);
+
+                //pr.poseAppareils = PoseAppareilMgmt.getPoseAppareils(pr);
+
+
+                mdl.propositions.Add(pr);
+            }
+
+            return mdl;
+        }
+
+
+        private static int GetNbSemestreAlreadyDone(List<Proposition> propositions)
+        {
+            int nbSemAlreadyDone = 0;
+            foreach (Proposition pr in propositions)
+            {
+                if (pr.Etat != Proposition.EtatProposition.Accepté) continue;
+                foreach (Traitement t in pr.traitements)
+                    foreach (Semestre s in t.semestres)
+                        if (s.traitementSecu.Code.Code == "TO")
+                            nbSemAlreadyDone++;
+            }
+
+            return nbSemAlreadyDone;
+        }
+
+
+        public static int GetNbSemestreSecuAlreadyDone(List<Proposition> propositions)
+        {
+            int nbSemAlreadyDone = 0;
+            foreach (Proposition pr in propositions)
+            {
+                if (pr.Etat != Proposition.EtatProposition.Accepté) continue;
+                foreach (Traitement t in pr.traitements)
+                    foreach (Semestre s in t.semestres)
+                        if (s.traitementSecu.Code.Code == "TO")
+                            nbSemAlreadyDone++;
+            }
+
+            return nbSemAlreadyDone;
+        }
+
+        
+        public static void AccepterPropositions(List<Proposition> Allpropositions, List<Proposition> propAcceptees, Devis d, DateTime dteDebut)
+        {
+
+            int SemStartedAt = GetNbSemestreAlreadyDone(Allpropositions);
+
+            if (d.propositions == null) d.propositions = PropositionMgmt.getPropositions(d);
+
+            MgmtDevis.AccepterDevis(d.Id);
+            DateTime dte = dteDebut;
+
+            foreach (Proposition proposition in d.propositions)
+            {
+                if (!propAcceptees.Contains(proposition))
+                {
+                    proposition.Etat = Proposition.EtatProposition.Refusé;
+                    proposition.DateEvenement = DateTime.Now;
+                }
+                else
+                {
+
+                    proposition.Etat = Proposition.EtatProposition.Accepté;
+                    proposition.DateAcceptation = DateTime.Now;
+                    proposition.IdDevis = d.Id;
+
+                    int i = 1;
+                    foreach (Traitement t in proposition.traitements)
+                        foreach (Semestre s in t.semestres)
+                        {
+                            if (s.DateFin == null)
+                            {
+                                s.DateDebut = dte;
+                                s.DateFin = null;
+                                if (!s.CodeSemestre.StartsWith("CONT"))
+                                    s.NumSemestre = SemStartedAt + i;
+                                SemestreMgmt.UpdateSemestre(s);
+                            }
+                            else
+                            {
+                                TimeSpan ts = s.DateDebut == null ? (s.DateFin.Value - DateTime.MinValue) : (s.DateFin.Value - s.DateDebut.Value);
+                                int nbMois = ((int)ts.TotalDays) / 30;
+                                s.DateDebut = dte;
+                                s.DateFin = s.DateDebut.Value.AddMonths(nbMois);
+                                if (!s.CodeSemestre.StartsWith("CONT")) 
+                                    s.NumSemestre = SemStartedAt + i;
+                                dte = s.DateFin.Value;
+                                SemestreMgmt.UpdateSemestre(s);
+                            }
+                            i++;
+                        }
+                }
+                updateProposition(proposition);
+            }
+        }
+
+
+        public static Semestre GetCurrentSemestre(List<Proposition> propositions)
+        {
+            foreach (Proposition p in propositions)
+                if (p.Etat == Proposition.EtatProposition.Accepté)
+                    foreach (Traitement t in p.traitements)
+                        foreach (Semestre s in t.semestres)
+                            if ((s.DateDebut < DateTime.Now) && (s.DateFin > DateTime.Now))
+                                return s;
+
+            return null;
+
+        }
+
+
+        public static int FindSemestreAffecte(Proposition proposition)
+        {
+            int maxSem = 0;
+            foreach (Traitement t in proposition.traitements)
+                foreach (Semestre s in t.semestres)
+                    if (s.NumSemestre > maxSem) maxSem = s.NumSemestre;
+
+            return maxSem;
+
+        }
+
+        public static string CheckValiditeRemboursement(Proposition proposition, DateTime DateDebutTraitement, int NbSemestreEntame)
+        {
+            string Errors = "";
+
+            Semestre[] S = new Semestre[10];
+            int[] numS = new int[10];
+            for (int i = 0; i < S.Length; i++)
+                S[i] = null;
+
+            foreach (Traitement t in proposition.traitements)
+                if ((t.Phase == BasCommon_BO.Traitement.EnumPhase.Orthodontique) || (t.Phase == BasCommon_BO.Traitement.EnumPhase.Orthopedique))
+                    foreach (Semestre s in t.semestres)
+                    {
+                        if (s.NumSemestre == 1) S[1] = s;
+                        if (s.NumSemestre == 2) S[2] = s;
+                        if (s.NumSemestre == 3) S[3] = s;
+                        if (s.NumSemestre == 4) S[4] = s;
+                        if (s.NumSemestre == 5) S[5] = s;
+                        if (s.NumSemestre == 6) S[6] = s;
+                        if (s.NumSemestre == 7) S[7] = s;
+                        if (s.NumSemestre == 8) S[8] = s;
+
+                    }
+            foreach (Traitement t in proposition.traitements)
+                foreach (Semestre s in t.semestres)
+                {
+                    if (s.NumSemestre == 1) numS[1]++;
+                    if (s.NumSemestre == 2) numS[2]++;
+                    if (s.NumSemestre == 3) numS[3]++;
+                    if (s.NumSemestre == 4) numS[4]++;
+                    if (s.NumSemestre == 5) numS[5]++;
+                    if (s.NumSemestre == 6) numS[6]++;
+                    if (s.NumSemestre == 7) numS[7]++;
+                    if (s.NumSemestre == 8) numS[8]++;
+
+                }
+            foreach (int nb in numS)
+                if (nb > 1) Errors = "Des semestres se superposent";
+
+            #region CheckNbSemestre
+            int y;
+            int m;
+            int d;
+            proposition.patient.AgeToDate(DateDebutTraitement, out y, out m, out d);
+
+            bool as16ans = y < 16;
+
+            int NbSemRemb = 0;
+
+            foreach (Semestre s in S)
+                if ((s != null) && (s.traitementSecu.Code.Code != "HN"))
+                    NbSemRemb++;
+
+            if (as16ans && ((NbSemestreEntame + NbSemRemb) > 6))
+            {
+                if (Errors != "") Errors += "\n";
+                Errors += "Il y a plus de 6 semestres remboursés !";
+            }
+
+            if ((!as16ans) && (NbSemRemb > 1))
+            {
+                if (Errors != "") Errors += "\n";
+                Errors += "Le patient à plus de 16 ans au début du traitement\nIl ne peut pas avoir de semestre remboursé !";
+            }
+
+
+            foreach (Semestre s in S)
+                if ((s != null) && (s.traitementSecu.Code.Code != "HN") && (s.surveillances.Count > 1))
+                {
+                    if (Errors != "") Errors += "\n";
+                    Errors += "Un seul semestre de surveillance peut être remboursé (2 seances en TO5)";
+                }
+
+            #endregion
+
+            return Errors;
+        }
+
+        public static List<string> GetRisques(Proposition proposition)
+        {
+            List<string> lst = new List<string>();
+            
+
+            return lst;
+
+        }
+
+        public static Double GetTotal(Proposition proposition)
+        {
+            Double resultat = 0;
+
+            foreach (Traitement t in proposition.traitements)
+                resultat += TraitementMgmt.getTotal(t);
+
+            return resultat;
+
+        }
+
+        public static int GetDuree(Proposition proposition)
+        {
+            int nbjours = 0;
+
+            foreach (Traitement t in proposition.traitements)
+                foreach (Semestre s in t.semestres)
+                    if (s.DateFin != null && s.DateDebut != null)
+                        nbjours += (int)((s.DateFin.Value - s.DateDebut.Value).TotalDays);
+
+            return nbjours;
+
+        }
+
+        public static string GetSmoothedTarif(Proposition proposition)
+        {
+            string Strresultat = "";
+
+            //foreach (Traitement t in proposition.traitements)
+            for (int i = 0; i < proposition.traitements.Count; i++)
+            {
+                Traitement t = proposition.traitements[i];
+                string resT = "";
+                if ((t.Phase == BasCommon_BO.Traitement.EnumPhase.Orthodontique) || (t.Phase == BasCommon_BO.Traitement.EnumPhase.Orthopedique))
+                {
+                    Double Tresultat = TraitementMgmt.getTotal(t);
+                    resT = (Tresultat / t.semestres.Count).ToString("C2") + " pendant " + t.semestres.Count.ToString() + " semestre(s)";
+
+                    if (Strresultat != "")
+                    {
+                        if (i == proposition.traitements.Count - 1)
+                            Strresultat += " puis ";
+                        else
+                            Strresultat += ",";
+                    }
+                }
+                if (t.Phase == BasCommon_BO.Traitement.EnumPhase.Contention)
+                {
+                    Double Tresultat = TraitementMgmt.getTotal(t);
+                    resT = t.semestres.Count + " an(s) de contention à " + Tresultat.ToString("C2");
+
+                    if (Strresultat != "")
+                    {
+                        if (i == proposition.traitements.Count - 1)
+                            Strresultat += " puis ";
+                        else
+                            Strresultat += ",";
+                    }
+                }
+                Strresultat += resT;
+            }
+
+            return Strresultat;
+
+        }
+
+        public static string GetAllSemestres(Proposition proposition)
+        {
+            string resultat = "";
+
+            foreach (Traitement t in proposition.traitements)
+                foreach (Semestre s in t.semestres)
+                {
+                    if (resultat != "") resultat += ",";
+                    resultat += s.CodeSemestre;
+                }
+
+            return resultat;
+
+        }
+
+
+
+        public static Double GetPartSecu(Proposition proposition)
+        {
+            Double resultat = 0;
+
+            foreach (Traitement t in proposition.traitements)
+                resultat += TraitementMgmt.GetPartSecu(t);
+
+            return resultat;
+
+        }
+
+
+        public static void updateProposition(Proposition proposition)
+        {
+            DAC.UpdatePropositions(proposition);
+        }
+
+        public static void SaveProposition(Proposition proposition)
+        {
+            if (proposition.Id == -1)
+            {
+                DAC.InsertPropositions(proposition);
+            }
+            else
+            {
+                DAC.UpdatePropositions(proposition);
+            }
+
+        }
+
+        public static void InsertFullProposition(Proposition proposition)
+        {
+            if (proposition.Id == -1)
+            {
+                DAC.InsertPropositions(proposition);
+
+
+                foreach (Traitement t in proposition.traitements)
+                {
+                    TraitementMgmt.AddTraitements(t);
+                    foreach (Semestre s in t.semestres)
+                        SemestreMgmt.AddSemestre(s);
+                }
+                /*
+                foreach (PoseAppareil pa in proposition.poseAppareils)
+                    PoseAppareilMgmt.AddPoseAppareil(pa);
+                 * */
+            }
+
+
+        }
+
+
+        public static List<Proposition> getSignedPropositions(basePatient patient)
+        {
+            DataTable dt = DAC.getSignedPropositions(patient);
+
+            List<Proposition> lst = new List<Proposition>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Proposition p = Builders.BuildProposition.Build(dr);
+                p.patient = patient;
+
+
+                lst.Add(p);
+            }
+
+
+
+            return lst;
+        }
+
+        public static List<Proposition> getSignedFullPropositions(basePatient patient)
+        {
+            DataTable dt = DAC.getSignedPropositions(patient);
+
+            List<Proposition> lst = new List<Proposition>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Proposition p = Builders.BuildProposition.Build(dr);
+                p.patient = patient;
+                p.traitements = TraitementMgmt.getTraitements(p);
+
+                //p.poseAppareils = PoseAppareilMgmt.getPoseAppareils(p);
+
+                lst.Add(p);
+            }
+
+
+
+            return lst;
+        }
+
+        public static List<Proposition> getPropositions(basePatient patient)
+        {
+            DataTable dt = DAC.getPropositions(patient);
+
+            List<Proposition> lst = new List<Proposition>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Proposition pr = Builders.BuildProposition.Build(dr);
+                pr.patient = patient;
+
+                pr.traitements = TraitementMgmt.getTraitements(pr);
+
+                // pr.poseAppareils = PoseAppareilMgmt.getPoseAppareils(pr);
+
+
+                lst.Add(pr);
+
+            }
+
+            return lst;
+        }
+
+
+        public static List<Proposition> getPropositions(Devis devis)
+        {
+            DataTable dt = DAC.getPropositions(devis);
+
+            List<Proposition> lst = new List<Proposition>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Proposition pr = Builders.BuildProposition.Build(dr);
+                pr.patient = devis.patient;
+
+                pr.traitements = TraitementMgmt.getTraitements(pr);
+
+                //pr.poseAppareils = PoseAppareilMgmt.getPoseAppareils(pr);
+
+
+                lst.Add(pr);
+
+            }
+
+            return lst;
+        }
+
+        public static void AddActFromActePropose(ActePGPropose actepropose, basePatient pat)
+        {
+
+            if ((actepropose.IdTemplateActePG >= 0) && (actepropose.template == null))
+                actepropose.template = TemplateApctePGMgmt.getCodeSecu(actepropose.IdTemplateActePG);
+
+            ActePG acte = new ActePG();
+            acte.Template = actepropose.template;
+            acte.Montant_Honoraire = actepropose.Qte * actepropose.Montant;
+            acte.Coeff = actepropose.template.Coeff;
+            acte.prestation = actepropose.template.Code;
+            acte.Libelle = actepropose.Libelle;
+            acte.Quantite = actepropose.Qte;
+
+            acte.NbJours = actepropose.template.NBJours;
+            acte.NbMois = actepropose.template.NBMois;
+
+            acte.Id_DEP = -1;
+
+
+
+            acte.NeedDEP = actepropose.template.NeedDEP;
+            acte.NeedFSE = actepropose.template.NeedFS;
+            acte.patient = pat;
+            acte.IsDecomposed = actepropose.template.IsDecomposed;
+            acte.CoeffDecompose = actepropose.template.CoeffDecompose;
+            acte.IdSemestrePlanGestionAssocie = -1;
+            acte.IdSurvPlanGestionAssocie = -1;
+            acte.DateExecution = actepropose.DateExecution.Value;
+            ActesPGMgmt.InsertActePGWithEcheance(acte);
+
+        }
+
+
+        public static List<ActePG> AppliquerLePlanPourBaseDiag(DateTime debutTraitement, Proposition proposition, basePatient pat)
+        {
+            List<ActePG> resultat = new List<ActePG>();
+
+            DateTime? currentDte = debutTraitement.Date;
+
+            foreach (Traitement t in proposition.traitements)
+            {
+                foreach (Semestre s in t.semestres)
+                {
+                    ActePG acte = new ActePG();
+                    acte.Template = s.traitementSecu;
+                    acte.Montant_Honoraire = s.Montant_Honoraire;
+                    acte.Coeff = s.traitementSecu.Coeff;
+                    acte.prestation = s.traitementSecu.Code;
+
+
+
+                    if (s.DateFin == null)
+                    {
+                        acte.NbJours = null;
+                        acte.NbMois = null;
+                    }
+                    else
+                    {
+                        acte.NbJours = s.traitementSecu.NBJours;
+                        acte.NbMois = s.traitementSecu.NBMois;
+                    }
+                    acte.Id_DEP = s.IdDEPPreAssocier;
+
+                    if ((s.DateDebut != s.DateFin) && (acte.NbJours == 0) && (acte.NbMois == 0) && (s.DateDebut != null) && (s.DateFin != null))
+                    {
+                        double nbdays = (s.DateFin.Value - s.DateDebut.Value).TotalDays;
+                        acte.NbJours = (int)nbdays;
+                    }
+
+                    acte.NeedDEP = s.traitementSecu.NeedDEP;
+                    acte.NeedFSE = s.traitementSecu.NeedFS;
+                    acte.patient = pat;
+                    acte.IdPatient = pat.Id;
+                    acte.IsDecomposed = s.traitementSecu.IsDecomposed;
+                    acte.CoeffDecompose = s.traitementSecu.CoeffDecompose;
+                    acte.IdSemestrePlanGestionAssocie = s.Id;
+                    acte.IdSurvPlanGestionAssocie = -1;
+
+                    if ((t.Phase == BasCommon_BO.Traitement.EnumPhase.Contention))
+                    {
+                        acte.DateExecution = currentDte.Value;
+                        if (s.CodeSemestre == "A1") acte.NumContention = 1;
+                        if (s.CodeSemestre == "A2") acte.NumContention = 2;
+                        acte.Libelle = t.Phase.ToString() + " " + s.CodeSemestre;
+                        resultat.Add(acte);
+                        currentDte = currentDte.Value.AddMonths(acte.NbMois.Value).AddDays(acte.NbJours.Value);
+                    }
+                    if ((t.Phase == BasCommon_BO.Traitement.EnumPhase.Pédiatrique))
+                    {
+                        acte.DateExecution = currentDte.Value;
+                        acte.NumSemestre = s.NumSemestre;
+                        acte.Libelle = t.Libelle;
+                        resultat.Add(acte);
+                        currentDte = currentDte.Value.AddMonths(acte.NbMois.Value).AddDays(acte.NbJours.Value);
+                    }
+                    if ((t.Phase == BasCommon_BO.Traitement.EnumPhase.Orthodontique) || (t.Phase == BasCommon_BO.Traitement.EnumPhase.Orthopedique))
+                    {
+                        acte.DateExecution = currentDte.Value;
+                        acte.NumSemestre = s.NumSemestre;
+                        acte.Libelle = t.Libelle + " S" + s.NumSemestre.ToString();
+
+                        resultat.Add(acte);
+                        currentDte = currentDte.Value.AddMonths(acte.NbMois.Value).AddDays(acte.NbJours.Value);
+
+
+                    }
+                    if (t.Phase == BasCommon_BO.Traitement.EnumPhase.Adulte)
+                    {
+                        acte.DateExecution = currentDte.Value;
+                        acte.NumSemestre = s.NumSemestre;
+                        acte.Libelle = t.Libelle;
+                        resultat.Add(acte);
+                        currentDte = null;
+
+                    }
+
+                    int i = 1;
+                    foreach (Surveillance su in s.surveillances)
+                    {
+                        ActePG a = new ActePG();
+
+
+                        a.Template = su.traitementSecu;
+                        a.Libelle = t.Libelle + " S" + s.NumSemestre.ToString() + " Surveillance " + i.ToString();
+                        a.Montant_Honoraire = su.Montant_Honoraire;
+                        acte.NumSemestre = s.NumSemestre;
+
+
+                        a.patient = pat;
+                        a.IdPatient = pat.Id;
+
+                        a.DateExecution = currentDte.Value;
+
+                        a.CodePlan = -1;
+                        a.NbJours = a.Template.NBJours;
+                        a.NbMois = a.Template.NBMois;
+                        a.NeedDEP = a.Template.NeedDEP;
+                        a.NeedFSE = a.Template.NeedFS;
+                        a.CoeffDecompose = a.Template.CoeffDecompose;
+                        a.IsDecomposed = a.Template.IsDecomposed;
+
+
+                        resultat.Add(a);
+                        currentDte = currentDte.Value.AddMonths(a.NbMois.Value).AddDays(a.NbJours.Value);
+                        i++;
+                    }
+                }
+            }
+
+
+            foreach (ActePG act in resultat)
+            {
+               
+                    ActesPGMgmt.InsertActePGWithEcheance(act);
+                
+            }
+
+            return resultat;
+        }
+
+
+        
+
+        public static Proposition BuildContention1(basePatient CurrentPatient, DateTime DateFinOrthodontie,  int NbMonth)
+        {
+
+
+            bool isCMU = baseMgmtPatient.IsCMU(CurrentPatient);
+            
+
+            TemplateActePG tmplte = TemplateApctePGMgmt.getCodeSecu(CodesTraitement.CONTENTION1);
+            if (tmplte == null)
+                throw new System.NotSupportedException("L'acte : " + CodesTraitement.CONTENTION1 + " n'existe pas");
+
+
+            Proposition p = new Proposition();
+            p.DateProposition = DateTime.Now;
+            p.patient = CurrentPatient;
+            p.DateEvenement = DateTime.Now;
+            p.DateAcceptation = null;
+            p.Etat = Proposition.EtatProposition.NonImprimé;
+            p.libelle = tmplte.Libelle;
+
+
+            Traitement t = new Traitement();
+            t.Libelle = tmplte.Libelle;
+            t.Phase = BasCommon_BO.Traitement.EnumPhase.Contention;
+            t.Parent = p;
+            t.CodeTraitement = CodesTraitement.CONTENTION1;
+
+            Semestre s = new Semestre();
+            s.CodeSemestre = CodesTraitement.CONTENTION1;
+            s.DateDebut = DateFinOrthodontie;
+            s.DateFin = s.DateDebut.Value.AddMonths(NbMonth);
+            s.Montant_Honoraire = (isCMU?tmplte.ValeurCMU: tmplte.Valeur);
+            s.Montant_AvantRemise = s.Montant_Honoraire;
+            s.traitementSecu = tmplte;
+            s.Parent = t;
+            s.NumSemestre = 1;
+
+            t.semestres.Add(s);
+
+            p.traitements.Add(t);
+
+            return p;
+        }
+
+        public static Proposition BuildContention2(basePatient CurrentPatient, DateTime DateFinCont1, int NbMonth)
+        {
+            bool isCMU = baseMgmtPatient.IsCMU(CurrentPatient);
+            
+            TemplateActePG tmplte = TemplateApctePGMgmt.getCodeSecu(CodesTraitement.CONTENTION2);
+            if (tmplte == null)
+                throw new System.NotSupportedException("L'acte : " + CodesTraitement.CONTENTION2 + " n'existe pas");
+
+            Proposition p = new Proposition();
+            p.DateProposition = DateTime.Now;
+            p.patient = CurrentPatient;
+            p.DateEvenement = DateTime.Now;
+            p.DateAcceptation = null;
+            p.Etat = Proposition.EtatProposition.NonImprimé;
+            p.libelle = tmplte.Libelle;
+
+
+            Traitement t = new Traitement();
+            t.Libelle = tmplte.Libelle;
+            t.Phase = BasCommon_BO.Traitement.EnumPhase.Contention;
+            t.Parent = p;
+            t.CodeTraitement = CodesTraitement.CONTENTION2;
+
+            Semestre s = new Semestre();
+            s.CodeSemestre = CodesTraitement.CONTENTION2;
+            s.DateDebut = DateFinCont1;
+            s.DateFin = s.DateDebut.Value.AddMonths(NbMonth);
+            s.Montant_Honoraire = (isCMU ? tmplte.ValeurCMU : tmplte.Valeur);
+            s.Montant_AvantRemise = s.Montant_Honoraire;
+            s.traitementSecu = tmplte;
+            s.Parent = t;
+            s.NumSemestre = 2;
+
+            t.semestres.Add(s);
+
+            p.traitements.Add(t);
+
+            return p;
+        }
+
+
+        public static Proposition BuildSucette(basePatient CurrentPatient, DateTime DateDEbutTrtmnt, double Montant, int NbSems)
+        {
+            TemplateActePG tmplte = TemplateApctePGMgmt.getCodeSecu(CodesTraitement.SUCETTE);
+
+            if (tmplte == null)
+                throw new System.NotSupportedException("L'acte : " + CodesTraitement.SUCETTE + " n'existe pas");
+
+
+
+            bool isCMU = baseMgmtPatient.IsCMU(CurrentPatient);
+            
+            
+            Proposition p = new Proposition();
+            p.DateProposition = DateTime.Now;
+            p.patient = CurrentPatient;
+            p.DateEvenement = DateTime.Now;
+            p.DateAcceptation = null;
+            p.Etat = Proposition.EtatProposition.NonImprimé;
+            p.libelle = tmplte.Libelle;
+
+
+            Traitement t = new Traitement();
+            t.Libelle = tmplte.Libelle;
+            t.Phase = BasCommon_BO.Traitement.EnumPhase.Pédiatrique;
+            t.Parent = p;
+            t.CodeTraitement = CodesTraitement.SUCETTE;
+
+
+
+            DateTime dte = DateDEbutTrtmnt;
+            for (int i = 0; i < NbSems; i++)
+            {
+
+                Semestre s = new Semestre();
+                s.traitementSecu = tmplte;
+                s.CodeSemestre = CodesTraitement.SUCETTE;
+                s.DateDebut = dte;
+                s.Montant_Honoraire = (isCMU ? tmplte.ValeurCMU : tmplte.Valeur);
+                s.Montant_AvantRemise = s.Montant_Honoraire;
+
+
+
+
+                s.DateFin = dte.AddMonths(s.traitementSecu.NBMois.Value).AddDays(s.traitementSecu.NBJours.Value);
+                s.Parent = t;
+                s.NumSemestre = 0;
+
+                t.semestres.Add(s);
+                dte = s.DateFin.Value;
+            }
+
+            p.traitements.Add(t);
+
+            return p;
+        }
+
+
+        public static Proposition BuildOrthopedie(int NbSemEntameHorCab,  int nbsem, basePatient CurrentPatient, DateTime DateDEbutTrtmnt, int NbSems)
+        {
+
+            bool isCMU = baseMgmtPatient.IsCMU(CurrentPatient);
+            
+            
+            Proposition p = new Proposition();
+            p.DateProposition = DateTime.Now;
+            p.patient = CurrentPatient;
+            p.DateEvenement = DateTime.Now;
+            p.DateAcceptation = null;
+            p.Etat = Proposition.EtatProposition.NonImprimé;
+            p.libelle = "Orthopedie";
+
+
+            Traitement t = new Traitement();
+            t.Libelle = "Orthopedie";
+            t.Phase = BasCommon_BO.Traitement.EnumPhase.Orthopedique;
+            t.Parent = p;
+            t.CodeTraitement = CodesTraitement.ORTHOPEDIE;
+
+            int nbsemEnt = PropositionMgmt.NbSemestreEntames(CurrentPatient.propositions);
+
+
+            DateTime dte = DateDEbutTrtmnt;
+            for (int i = 0; i < NbSems; i++)
+            {
+
+                TemplateActePG tmplte;
+
+                string code = "";
+                if (NbSemEntameHorCab + nbsemEnt + i < 6)
+                {
+                    code = (CodesTraitement.ORTHOPEDIE);
+                }
+                else
+                {
+                    code = (CodesTraitement.ORTHOPEDIEHN);
+                }
+
+                tmplte = TemplateApctePGMgmt.getCodeSecu(code);
+
+                if (tmplte == null)
+                    throw new System.NotSupportedException("L'acte : " + code + " n'existe pas");
+
+                Semestre s = new Semestre();
+                s.traitementSecu = tmplte;
+                s.CodeSemestre = code;
+                s.DateDebut = dte;
+                s.Montant_Honoraire = (isCMU ? tmplte.ValeurCMU : tmplte.Valeur);
+                s.Montant_AvantRemise = s.Montant_Honoraire;
+
+               
+
+                s.DateFin = dte.AddMonths(s.traitementSecu.NBMois.Value).AddDays(s.traitementSecu.NBJours.Value);
+                s.Parent = t;
+                s.NumSemestre = nbsem + i;
+
+                t.semestres.Add(s);
+                dte = s.DateFin.Value;
+            }
+
+            p.traitements.Add(t);
+
+            return p;
+        }
+
+        public static Proposition BuildMBM_Adulte(basePatient CurrentPatient, DateTime DateFinOrthopedie)
+        {
+            bool isCMU = baseMgmtPatient.IsCMU(CurrentPatient);
+            
+            TemplateActePG tmplte = TemplateApctePGMgmt.getCodeSecu(CodesTraitement.ORTHODONTIEADULTEMULTIBAGUEMETAL);
+            if (tmplte == null)
+                throw new System.NotSupportedException("L'acte : " + CodesTraitement.ORTHODONTIEADULTEMULTIBAGUEMETAL + " n'existe pas");
+
+
+            Proposition p = new Proposition();
+            p.DateProposition = DateTime.Now;
+            p.patient = CurrentPatient;
+            p.DateEvenement = DateTime.Now;
+            p.DateAcceptation = null;
+            p.Etat = Proposition.EtatProposition.NonImprimé;
+            p.libelle = tmplte.Libelle;
+
+
+            Traitement t = new Traitement();
+            t.Libelle = tmplte.Libelle;
+            t.Phase = BasCommon_BO.Traitement.EnumPhase.Adulte;
+            t.Parent = p;
+            t.CodeTraitement = CodesTraitement.ORTHODONTIEADULTEMULTIBAGUEMETAL;
+
+
+            DateTime dte = DateFinOrthopedie;
+
+            Semestre s = new Semestre();
+            s.CodeSemestre = CodesTraitement.ORTHODONTIEADULTEMULTIBAGUEMETAL;
+            s.DateDebut = DateFinOrthopedie;
+            s.Montant_Honoraire = (isCMU ? tmplte.ValeurCMU : tmplte.Valeur);
+            s.Montant_AvantRemise = s.Montant_Honoraire;
+            s.traitementSecu = tmplte;
+            s.DateFin = null;
+
+            s.Parent = t;
+            s.NumSemestre = -1;
+
+            t.semestres.Add(s);
+
+
+            p.traitements.Add(t);
+
+            return p;
+        }
+
+        public static Proposition BuildMBC_Adulte(basePatient CurrentPatient, DateTime DateFinOrthopedie)
+        {
+            bool isCMU = baseMgmtPatient.IsCMU(CurrentPatient);
+            
+            TemplateActePG tmplte = TemplateApctePGMgmt.getCodeSecu(CodesTraitement.ORTHODONTIEADULTEMULTIBAGUECERAMIQUE);
+            if (tmplte == null)
+                throw new System.NotSupportedException("L'acte : " + CodesTraitement.ORTHODONTIEADULTEMULTIBAGUECERAMIQUE + " n'existe pas");
+
+            Proposition p = new Proposition();
+            p.DateProposition = DateTime.Now;
+            p.patient = CurrentPatient;
+            p.DateEvenement = DateTime.Now;
+            p.DateAcceptation = null;
+            p.Etat = Proposition.EtatProposition.NonImprimé;
+            p.libelle = tmplte.Libelle;
+
+
+            Traitement t = new Traitement();
+            t.Libelle = tmplte.Libelle;
+            t.Phase = BasCommon_BO.Traitement.EnumPhase.Orthodontique;
+            t.Parent = p;
+            t.CodeTraitement = CodesTraitement.ORTHODONTIEADULTEMULTIBAGUECERAMIQUE;
+
+
+            DateTime dte = DateFinOrthopedie;
+
+
+            Semestre s = new Semestre();
+            s.CodeSemestre = CodesTraitement.ORTHODONTIEADULTEMULTIBAGUECERAMIQUE;
+            s.DateDebut = DateFinOrthopedie;
+            s.Montant_Honoraire = (isCMU ? tmplte.ValeurCMU : tmplte.Valeur);
+            s.Montant_AvantRemise = s.Montant_Honoraire;
+            s.traitementSecu = tmplte;
+            s.DateFin = null;
+            s.Parent = t;
+            s.NumSemestre = -1;
+
+            t.semestres.Add(s);
+
+
+
+            p.traitements.Add(t);
+
+            return p;
+        }
+
+        public static Proposition BuildINV_Adulte(string code, basePatient CurrentPatient, DateTime DateFinOrthopedie)
+        {
+            bool isCMU = baseMgmtPatient.IsCMU(CurrentPatient);
+            
+            TemplateActePG tmplte = TemplateApctePGMgmt.getCodeSecu(code);
+
+            if (tmplte == null)
+                throw new System.NotSupportedException("L'acte : "+code+" n'existe pas");
+
+            Proposition p = new Proposition();
+            p.DateProposition = DateTime.Now;
+            p.patient = CurrentPatient;
+            p.DateEvenement = DateTime.Now;
+            p.DateAcceptation = null;
+            p.Etat = Proposition.EtatProposition.NonImprimé;
+            p.libelle = tmplte.Libelle;
+
+            
+            Traitement t = new Traitement();
+            t.Libelle = tmplte.Libelle;
+
+            
+
+            t.Phase = BasCommon_BO.Traitement.EnumPhase.Adulte;
+            t.Parent = p;
+            t.CodeTraitement = code;
+
+            DateTime dte = DateFinOrthopedie;
+
+
+            Semestre s = new Semestre();
+            s.CodeSemestre = code;
+            s.DateDebut = DateFinOrthopedie;
+            s.Montant_Honoraire = (isCMU ? tmplte.ValeurCMU : tmplte.Valeur);
+            s.Montant_AvantRemise = s.Montant_Honoraire;
+            s.traitementSecu = tmplte;
+            s.DateFin = null;
+
+
+            s.Parent = t;
+            s.NumSemestre = -1;
+
+            t.semestres.Add(s);
+
+
+
+            p.traitements.Add(t);
+
+            return p;
+        }
+
+        public static Proposition BuildMBL_Adulte(basePatient CurrentPatient, DateTime DateFinOrthopedie)
+        {
+            bool isCMU = baseMgmtPatient.IsCMU(CurrentPatient);
+            
+            TemplateActePG tmplte = TemplateApctePGMgmt.getCodeSecu(CodesTraitement.ORTHODONTIEADULTEMULTIBAGUELINGUAL);
+            if (tmplte == null)
+                throw new System.NotSupportedException("L'acte : " + CodesTraitement.ORTHODONTIEADULTEMULTIBAGUELINGUAL + " n'existe pas");
+
+
+            Proposition p = new Proposition();
+            p.DateProposition = DateTime.Now;
+            p.patient = CurrentPatient;
+            p.DateEvenement = DateTime.Now;
+            p.DateAcceptation = null;
+            p.Etat = Proposition.EtatProposition.NonImprimé;
+            p.libelle = tmplte.Libelle;
+
+
+            Traitement t = new Traitement();
+            t.Libelle = tmplte.Libelle;
+            t.Phase = BasCommon_BO.Traitement.EnumPhase.Adulte;
+            t.Parent = p;
+            t.CodeTraitement = CodesTraitement.ORTHODONTIEADULTEMULTIBAGUELINGUAL;
+
+            DateTime dte = DateFinOrthopedie;
+
+            Semestre s = new Semestre();
+            s.CodeSemestre = CodesTraitement.ORTHODONTIEADULTEMULTIBAGUELINGUAL;
+            s.DateDebut = DateFinOrthopedie;
+            s.Montant_Honoraire = (isCMU ? tmplte.ValeurCMU : tmplte.Valeur);
+            s.Montant_AvantRemise = s.Montant_Honoraire;
+            s.traitementSecu = tmplte;
+            s.DateFin = null;
+
+            s.Parent = t;
+            s.NumSemestre = -1;
+
+            t.semestres.Add(s);
+
+            p.traitements.Add(t);
+
+            return p;
+        }
+
+        public static int NbSemestreEntames(List<Proposition> props)
+        {
+            int nbSemestreEntames = 0;
+            foreach (Proposition p in props)
+            {
+                if (p.Etat != Proposition.EtatProposition.Accepté) continue;
+
+
+                foreach (Traitement t in p.traitements)
+                    foreach (Semestre s in t.semestres)
+                        if (s.traitementSecu.Code.Code == "TO")
+                            nbSemestreEntames++;
+
+
+            }
+
+            return nbSemestreEntames;
+        }
+
+        public static Proposition BuildMBM(int NbSemEntameHorCab, int nbsem, basePatient CurrentPatient, DateTime DateFinOrthopedie,  int NbSems)
+        {
+
+            bool isCMU = baseMgmtPatient.IsCMU(CurrentPatient);
+            
+
+            Proposition p = new Proposition();
+            p.DateProposition = DateTime.Now;
+            p.patient = CurrentPatient;
+            p.DateEvenement = DateTime.Now;
+            p.DateAcceptation = null;
+            p.Etat = Proposition.EtatProposition.NonImprimé;
+            p.libelle = "Traitement Orthodontique (MBM)";
+
+
+            Traitement t = new Traitement();
+            t.Libelle = "Orthodontie Multibague Metal";
+            t.Phase = BasCommon_BO.Traitement.EnumPhase.Orthodontique;
+            t.Parent = p;
+            t.CodeTraitement = CodesTraitement.ORTHODONTIEMULTIBAGUEMETAL;
+
+            int nbsemEnt = PropositionMgmt.NbSemestreEntames(CurrentPatient.propositions);
+
+            DateTime dte = DateFinOrthopedie;
+            for (int i = 0; i < NbSems; i++)
+            {
+                string code = "";
+
+                if (NbSemEntameHorCab + nbsemEnt + i < 6)
+                    code = CodesTraitement.ORTHODONTIEMULTIBAGUEMETAL;
+                else
+                    code = CodesTraitement.ORTHODONTIEMULTIBAGUEMETALHN;
+
+
+
+                TemplateActePG tmplte = TemplateApctePGMgmt.getCodeSecu(code);
+                if (tmplte == null)
+                    throw new System.NotSupportedException("L'acte : " + code + " n'existe pas");
+
+           
+                Semestre s = new Semestre();
+                s.CodeSemestre = code;
+                s.DateDebut = DateFinOrthopedie;
+                s.Montant_Honoraire = (isCMU ? tmplte.ValeurCMU : tmplte.Valeur);
+                s.Montant_AvantRemise = s.Montant_Honoraire;
+                s.traitementSecu = tmplte;
+
+                s.Parent = t;
+                s.NumSemestre = nbsem + i;
+
+                s.DateFin = dte.AddMonths(s.traitementSecu.NBMois.Value).AddDays(s.traitementSecu.NBJours.Value);
+
+                t.semestres.Add(s);
+            }
+            p.traitements.Add(t);
+
+            return p;
+        }
+
+        public static Proposition BuildMBC(int NbSemEntameHorCab, int nbsem, basePatient CurrentPatient, DateTime DateFinOrthopedie,  int NbSems)
+        {
+            bool isCMU = baseMgmtPatient.IsCMU(CurrentPatient);
+            
+            Proposition p = new Proposition();
+            p.DateProposition = DateTime.Now;
+            p.patient = CurrentPatient;
+            p.DateEvenement = DateTime.Now;
+            p.DateAcceptation = null;
+            p.Etat = Proposition.EtatProposition.NonImprimé;
+            p.libelle = "Traitement Orthodontique (MBC)";
+
+
+            Traitement t = new Traitement();
+            t.Libelle = "Orthodontie Multibague Céramique";
+            t.Phase = BasCommon_BO.Traitement.EnumPhase.Orthodontique;
+            t.Parent = p;
+            t.CodeTraitement = CodesTraitement.ORTHODONTIEMULTIBAGUECERAMIQUE;
+
+
+            DateTime dte = DateFinOrthopedie;
+            int nbsemEnt = PropositionMgmt.NbSemestreEntames(CurrentPatient.propositions);
+
+            for (int i = 0; i < NbSems; i++)
+            {
+
+
+                string code = "";
+
+                if (NbSemEntameHorCab + nbsemEnt + i < 6)
+                    code = CodesTraitement.ORTHODONTIEMULTIBAGUECERAMIQUE;
+                else
+                    code = CodesTraitement.ORTHODONTIEMULTIBAGUECERAMIQUEHN;
+
+                TemplateActePG tmplte = TemplateApctePGMgmt.getCodeSecu(code);
+                if (tmplte == null)
+                    throw new System.NotSupportedException("L'acte : " + code + " n'existe pas");
+
+                Semestre s = new Semestre();
+                s.DateDebut = DateFinOrthopedie;
+                s.Montant_Honoraire = (isCMU ? tmplte.ValeurCMU : tmplte.Valeur);
+                s.Montant_AvantRemise = s.Montant_Honoraire;
+                s.Parent = t;
+                s.NumSemestre = nbsem + i;
+                
+                    s.CodeSemestre = code;
+                    s.traitementSecu = tmplte;
+                
+                s.DateFin = dte.AddMonths(s.traitementSecu.NBMois.Value).AddDays(s.traitementSecu.NBJours.Value);
+
+                t.semestres.Add(s);
+            }
+
+
+            p.traitements.Add(t);
+
+            return p;
+        }
+
+        public static Proposition BuildMBL(int NbSemEntameHorCab, int nbsem, basePatient CurrentPatient, DateTime DateFinOrthopedie,  int NbSems)
+        {
+
+            bool isCMU = baseMgmtPatient.IsCMU(CurrentPatient);
+            
+
+            Proposition p = new Proposition();
+            p.DateProposition = DateTime.Now;
+            p.patient = CurrentPatient;
+            p.DateEvenement = DateTime.Now;
+            p.DateAcceptation = null;
+            p.Etat = Proposition.EtatProposition.NonImprimé;
+            p.libelle = "Traitement Orthodontique (MBL)";
+
+
+            Traitement t = new Traitement();
+            t.Libelle = "Orthodontie Multibague Lingual";
+            t.Phase = BasCommon_BO.Traitement.EnumPhase.Orthodontique;
+            t.Parent = p;
+            t.CodeTraitement = CodesTraitement.ORTHODONTIEMULTIBAGUELINGUAL;
+
+
+            DateTime dte = DateFinOrthopedie;
+            int nbsemEnt = PropositionMgmt.NbSemestreEntames(CurrentPatient.propositions);
+
+            for (int i = 0; i < NbSems; i++)
+            {
+
+                string code = "";
+
+                if (NbSemEntameHorCab + nbsemEnt + i < 6)
+                    code = CodesTraitement.ORTHODONTIEMULTIBAGUELINGUAL;
+                else
+                    code = CodesTraitement.ORTHODONTIEMULTIBAGUELINGUALHN;
+
+                TemplateActePG tmplte = TemplateApctePGMgmt.getCodeSecu(code);
+
+                if (tmplte == null)
+                    throw new System.NotSupportedException("L'acte : " + code + " n'existe pas");
+
+
+                Semestre s = new Semestre();
+                s.DateDebut = DateFinOrthopedie;
+                s.Montant_Honoraire = (isCMU ? tmplte.ValeurCMU : tmplte.Valeur);
+                s.Montant_AvantRemise = s.Montant_Honoraire;
+
+
+              
+                    s.CodeSemestre = code;
+                    s.traitementSecu = tmplte;
+                
+
+                s.DateFin = dte.AddMonths(s.traitementSecu.NBMois.Value).AddDays(s.traitementSecu.NBJours.Value);
+
+                s.Parent = t;
+                s.NumSemestre = nbsem + i;
+
+                t.semestres.Add(s);
+            }
+
+            p.traitements.Add(t);
+
+            return p;
+        }
+
+        public static Proposition BuildINVTEEN(int NbSemEntameHorCab, int nbsem, basePatient CurrentPatient, DateTime DateFinOrthopedie,  int NbSems)
+        {
+
+            bool isCMU = baseMgmtPatient.IsCMU(CurrentPatient);
+            
+
+            Proposition p = new Proposition();
+            p.DateProposition = DateTime.Now;
+            p.patient = CurrentPatient;
+            p.DateEvenement = DateTime.Now;
+            p.DateAcceptation = null;
+            p.Etat = Proposition.EtatProposition.NonImprimé;
+            p.libelle = "Traitement Orthodontique (INVTEEN)";
+
+
+            Traitement t = new Traitement();
+            t.Libelle = "Orthodontie Invisalign Teen";
+            t.Phase = BasCommon_BO.Traitement.EnumPhase.Orthodontique;
+            t.Parent = p;
+            t.CodeTraitement = CodesTraitement.ORTHODONTIEINVISALIGN;
+
+            int nbsemEnt = PropositionMgmt.NbSemestreEntames(CurrentPatient.propositions);
+
+            DateTime dte = DateFinOrthopedie;
+
+            for (int i = 0; i < NbSems; i++)
+            {
+
+                string code = "";
+
+                if (NbSemEntameHorCab + nbsemEnt + i < 6)
+                    code = CodesTraitement.ORTHODONTIEINVISALIGN;
+                else
+                    code = CodesTraitement.ORTHODONTIEINVISALIGNHN;
+
+                TemplateActePG tmplte = TemplateApctePGMgmt.getCodeSecu(code);
+                if (tmplte == null)
+                    throw new System.NotSupportedException("L'acte : " + code + " n'existe pas");
+
+
+
+                Semestre s = new Semestre();
+                s.DateDebut = DateFinOrthopedie;
+                s.Montant_Honoraire = (isCMU ? tmplte.ValeurCMU : tmplte.Valeur);
+                s.Montant_AvantRemise = s.Montant_Honoraire;
+                s.Parent = t;
+                s.NumSemestre = nbsem + i;
+
+
+              
+                    s.CodeSemestre = code;
+                    s.traitementSecu = tmplte;
+                
+                s.DateFin = dte.AddMonths(s.traitementSecu.NBMois.Value).AddDays(s.traitementSecu.NBJours.Value);
+
+                t.semestres.Add(s);
+
+
+            }
+            p.traitements.Add(t);
+
+            return p;
+        }
+
+
+
+
+    }
+}

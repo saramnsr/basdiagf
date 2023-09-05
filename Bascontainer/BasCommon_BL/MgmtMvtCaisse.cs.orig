@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using BasCommon_BO;
+using BasCommon_DAL;
+
+namespace BasCommon_BL
+{
+    public static class MgmtMvtCaisse
+    {
+
+
+        public static double getMontantEnCaisse()
+        {
+            return DAC.getMontantEnCaisse();
+        }
+
+        public static void AddMvtCaisse(double Montant, Utilisateur utilisateur)
+        {
+            if (Montant!=0)
+                DAC.InsertMvtCaisse(Montant, utilisateur);
+        }
+    }
+}

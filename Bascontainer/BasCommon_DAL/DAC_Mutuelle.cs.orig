@@ -1,0 +1,79 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using FirebirdSql.Data.FirebirdClient;
+using System.Configuration;
+using BasCommon_BO;
+
+namespace BasCommon_DAL
+{
+    public static partial class DAC
+    {
+
+        public static DataTable getMutuelles()
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+
+
+                string selectQuery = "select";
+                selectQuery += " ID_MUTUELLE,";
+                selectQuery += " a.ID_ADRESSE,";
+                selectQuery += " MUTUELLE_NOM,";
+                selectQuery += " MUTUELLE_TEL,";
+                selectQuery += " NUM_MUTUELLE,";
+
+                selectQuery += " ISCMU,";
+                selectQuery += " ISTIERPAYANT,";
+                selectQuery += " TAUXREMBPARDEFAUT,";
+
+
+                selectQuery += " a.ID_Ville,";
+                selectQuery += " a.ID_ADRESSE,";
+                selectQuery += " a.adr_numero||' '||a.ADR_TYPEVOIE||' '||a.ADR_NOMVOIE ADRESSE1,";
+                selectQuery += " a.ADR_COMPLEMENT ADRESSE2,";
+                selectQuery += " v.VILLE_NOM VILLE,";
+                selectQuery += " v.VILLE_CPOSTAL CODEPOSTAL";
+                selectQuery += " from MUTUELLE";
+                selectQuery += " LEFT OUTER JOIN ADRESSE a on MUTUELLE.id_adresse=a.id_adresse";
+                selectQuery += " LEFT OUTER JOIN VILLE v ON v.id_ville=a.id_ville";
+
+
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+                return dt;
+
+            }
+            catch (System.IndexOutOfRangeException e)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+        }
+    }
+}

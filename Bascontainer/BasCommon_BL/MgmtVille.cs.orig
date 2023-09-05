@@ -1,0 +1,86 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using BasCommon_BO;
+using BasCommon_DAL;
+
+namespace BasCommon_BL
+{
+    public static class MgmtVilles
+    {
+
+
+
+        private static List<Ville> _villes = null;
+        public static List<Ville> villes
+        {
+            get
+            {
+                if (_villes == null) _villes = getVilles();
+                return _villes;
+            }
+            set
+            {
+                _villes = value;
+            }
+        }
+
+
+        public static List<Ville> getVillesFromParam(string param)
+        {
+            List<Ville> lst = new List<Ville>();
+            DataTable dt = DAC.getVillesFromParam(param);
+
+            foreach (DataRow r in dt.Rows)
+            {
+                lst.Add(Builders.BuildVille.Build(r));
+            }
+            return lst;
+        }
+
+
+        private static List<Ville> getVilles()
+        {
+            List<Ville> lst = new List<Ville>();
+            DataTable dt = DAC.getVilles();
+
+            foreach (DataRow r in dt.Rows)
+            {
+                lst.Add(Builders.BuildVille.Build(r));
+            }
+            return lst;
+        }
+
+        public static List<Ville> getVilles(string param)
+        {
+            List<Ville> lst = new List<Ville>();
+            foreach (Ville v in villes)
+            {
+                if ((v.CodePostal.StartsWith(param.ToUpper())) ||
+                    (v.NomVille.ToLower().StartsWith(param.ToLower())))
+                    lst.Add(v);
+
+            }
+            return lst;
+        }
+
+
+        public static void AddVille(Ville v)
+        {
+            int i = MgmtVilles.isInDb(v);
+            if (i == 0)
+                DAC.addVille(v);
+        }
+
+        private static int isInDb(Ville v)
+        {
+            DataRow r = DAC.isInDb(v);
+
+            return Convert.ToInt32(r["Nb"]);
+        }
+
+        
+    }
+}

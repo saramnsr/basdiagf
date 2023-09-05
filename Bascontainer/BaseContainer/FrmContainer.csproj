@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{82D7DE41-60E6-4A3E-94DC-8A4A5CAD5C7B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WindowsFormsApplication1</RootNamespace>
+    <AssemblyName>FrmContainer</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publier\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WizardBase">
+      <HintPath>..\..\BasePractice\BASEPractice\Ctrls\WizardBase\bin\x86\Debug\WizardBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationMngr.cs" />
+    <Compile Include="Attributs.cs" />
+    <Compile Include="FrmChoixBanque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChoixBanque.designer.cs">
+      <DependentUpon>FrmChoixBanque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmContainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmContainer.Designer.cs">
+      <DependentUpon>FrmContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRecontactMgmt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRecontactMgmt.Designer.cs">
+      <DependentUpon>FrmRecontactMgmt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmScreenChild.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmScreenChild.Designer.cs">
+      <DependentUpon>FrmScreenChild.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listes\FrmAdminGestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listes\FrmAdminGestion.Designer.cs">
+      <DependentUpon>FrmAdminGestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listes\FrmListesAssistante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listes\FrmListesAssistante.Designer.cs">
+      <DependentUpon>FrmListesAssistante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessBAS.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmChoixBanque.resx">
+      <DependentUpon>FrmChoixBanque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmContainer.resx">
+      <DependentUpon>FrmContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRecontactMgmt.resx">
+      <DependentUpon>FrmRecontactMgmt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmScreenChild.resx">
+      <DependentUpon>FrmScreenChild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listes\FrmAdminGestion.resx">
+      <DependentUpon>FrmAdminGestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listes\FrmListesAssistante.resx">
+      <DependentUpon>FrmListesAssistante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FondEcran2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FondEcran.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ancien log.jpg" />
+    <Content Include="Resources\bas letter.jpg" />
+    <Content Include="Resources\bas stats.jpg" />
+    <Content Include="Resources\bas-contact.jpg" />
+    <Content Include="Resources\bas-diag.jpg" />
+    <Content Include="Resources\bas-practice.jpg" />
+    <Content Include="Resources\BASEdiapo.png" />
+    <Content Include="Resources\BASEview.png" />
+    <Content Include="Resources\commande.png" />
+    <Content Include="Resources\dossier.png" />
+    <Content Include="Resources\labo.jpg" />
+    <Content Include="Resources\premier.png" />
+    <Content Include="Resources\q1cs.png" />
+    <Content Include="Resources\rhBase.png" />
+    <Content Include="Resources\sites.png" />
+    <Content Include="Resources\suivi.jpg" />
+    <Content Include="Resources\urgence.jpg" />
+    <Content Include="Resources\view.png" />
+    <Content Include="scripts\structure\TextFile1.txt" />
+    <Content Include="scripts\structure\TextFile2.txt" />
+    <Content Include="scripts\structure\TextFile3.txt" />
+    <Content Include="scripts\structure\TextFile4.txt" />
+    <Content Include="scripts\structure\TextFile5_T.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+    <Folder Include="scripts\datas\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BasCommon_BL\BasCommon_BL.csproj">
+      <Project>{582662F6-833C-46B9-8236-4ED765A707EC}</Project>
+      <Name>BasCommon_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BasCommon_BO\BasCommon_BO.csproj">
+      <Project>{763B2981-511B-447D-84F4-55916B5DB254}</Project>
+      <Name>BasCommon_BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BaseCommonControls\BaseCommonControls.csproj">
+      <Project>{8CB2A63C-249C-4DEA-BFE1-E60AA116725E}</Project>
+      <Name>BaseCommonControls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

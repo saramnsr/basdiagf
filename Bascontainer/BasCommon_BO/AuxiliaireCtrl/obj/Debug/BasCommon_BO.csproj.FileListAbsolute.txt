@@ -1,0 +1,5 @@
+C:\Dev\Bascontainer_v14\BasCommon_BO\bin\Debug\BasCommon_BO.dll
+C:\Dev\Bascontainer_v14\BasCommon_BO\bin\Debug\BasCommon_BO.pdb
+C:\Dev\Bascontainer_v14\BasCommon_BO\obj\Debug\ResolveAssemblyReference.cache
+C:\Dev\Bascontainer_v14\BasCommon_BO\obj\Debug\BasCommon_BO.dll
+C:\Dev\Bascontainer_v14\BasCommon_BO\obj\Debug\BasCommon_BO.pdb

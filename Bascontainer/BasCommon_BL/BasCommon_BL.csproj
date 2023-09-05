@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{582662F6-833C-46B9-8236-4ED765A707EC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BasCommon_BL</RootNamespace>
+    <AssemblyName>BasCommon_BL</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\BasCommon_BL.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\BasCommon_BL.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BasCommon_BL">
+      <HintPath>bin\x86\Release\BasCommon_BL.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\externals\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="mysql.data">
+      <HintPath>bin\x86\Release\mysql.data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>bin\x86\Release\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccesMgmt.cs" />
+    <Compile Include="ActePGMgmt.cs" />
+    <Compile Include="ActePGProposeMgmt.cs" />
+    <Compile Include="ApplicationMgmt.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AppointementsMgmt.cs" />
+    <Compile Include="ArchivageMgmt.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BackupMgmt.cs" />
+    <Compile Include="BanqueMgmt.cs" />
+    <Compile Include="BuildDiag.cs" />
+    <Compile Include="Builders\BuildAppointement.cs" />
+    <Compile Include="Builders\BuildAccessObject.cs" />
+    <Compile Include="Builders\BuildActeHorTraitmnt.cs" />
+    <Compile Include="Builders\BuildActePG.cs" />
+    <Compile Include="Builders\BuildAppareil.cs" />
+    <Compile Include="Builders\BuildAssurance.cs" />
+    <Compile Include="Builders\BuildAttributs.cs" />
+    <Compile Include="Builders\BuildBanque.cs" />
+    <Compile Include="Builders\BuildBaseMaterielCabinet.cs" />
+    <Compile Include="Builders\BuildBordereauFinance.cs" />
+    <Compile Include="Builders\BuildCabinet.cs" />
+    <Compile Include="Builders\BuildCaisse.cs" />
+    <Compile Include="Builders\BuildCodePrestation.cs" />
+    <Compile Include="Builders\BuildComClinique.cs" />
+    <Compile Include="Builders\BuildCommentHisto.cs" />
+    <Compile Include="Builders\BuildCommFaitAFaire.cs" />
+    <Compile Include="Builders\BuildControlFinance.cs" />
+    <Compile Include="Builders\BuildCorrespondant.cs" />
+    <Compile Include="Builders\BuildCustomStatusClinique.cs" />
+    <Compile Include="Builders\BuildActe.cs" />
+    <Compile Include="Builders\BuildCategories.cs" />
+    <Compile Include="Builders\BuildContact.cs" />
+    <Compile Include="Builders\BuildCorrespondantType.cs" />
+    <Compile Include="Builders\BuildDebiteurs.cs" />
+    <Compile Include="Builders\BuildDevis.cs" />
+    <Compile Include="Builders\BuildDevise.cs" />
+    <Compile Include="Builders\BuildEcheance.cs" />
+    <Compile Include="Builders\BuildEcriture.cs" />
+    <Compile Include="Builders\BuildEnBouche.cs" />
+    <Compile Include="Builders\BuildEncaissement.cs" />
+    <Compile Include="Builders\BuildEntentePrealable.cs" />
+    <Compile Include="Builders\BuildEntiteJuridique.cs" />
+    <Compile Include="Builders\BuildersAutre.cs" />
+    <Compile Include="Builders\BuildFacture.cs" />
+    <Compile Include="Builders\BuildFauteuil.cs" />
+    <Compile Include="Builders\BuildFeuilleDeSoin.cs" />
+    <Compile Include="Builders\buildFullPatient.cs" />
+    <Compile Include="Builders\BuildGroupedPre.cs" />
+    <Compile Include="Builders\BuildHoraire.cs" />
+    <Compile Include="Builders\BuildInfoComplementaire.cs" />
+    <Compile Include="Builders\BuildInvisalignEnBouche.cs" />
+    <Compile Include="Builders\BuildJourneaux.cs" />
+    <Compile Include="Builders\BuildLaboratoire.cs" />
+    <Compile Include="Builders\BuildLienCorrespondant.cs" />
+    <Compile Include="Builders\BuildLnkControl.cs" />
+    <Compile Include="Builders\BuildLog.cs" />
+    <Compile Include="Builders\BuildMateriel.cs" />
+    <Compile Include="Builders\BuildMaterielCabinet.cs" />
+    <Compile Include="Builders\BuildModeleDeProposition.cs" />
+    <Compile Include="Builders\BuildMutuelle.cs" />
+    <Compile Include="Builders\BuildMvtCaisse.cs" />
+    <Compile Include="Builders\BuildNewTraitement.cs" />
+    <Compile Include="Builders\BuildObjImage.cs" />
+    <Compile Include="Builders\BuildObjSuivi.cs" />
+    <Compile Include="Builders\BuildPaiementREel.cs" />
+    <Compile Include="Builders\BuildPatient.cs" />
+    <Compile Include="Builders\BuildPays.cs" />
+    <Compile Include="Builders\BuildPieceComptable.cs" />
+    <Compile Include="Builders\BuildPlanTraitement_DEP.cs" />
+    <Compile Include="Builders\BuildPnFCheck.cs" />
+    <Compile Include="Builders\BuildPointage.cs" />
+    <Compile Include="Builders\BuildPresence.cs" />
+    <Compile Include="Builders\BuildProfileApplique.cs" />
+    <Compile Include="Builders\BuildProposition.cs" />
+    <Compile Include="Builders\BuildRecontact.cs" />
+    <Compile Include="Builders\BuildRecontactLib.cs" />
+    <Compile Include="Builders\BuildRendement.cs" />
+    <Compile Include="Builders\BuildScenarCommclinique.cs" />
+    <Compile Include="Builders\BuildSemestre.cs" />
+    <Compile Include="Builders\BuildSmallPersonne.cs" />
+    <Compile Include="Builders\BuildSmilers.cs" />
+    <Compile Include="Builders\BuildStatus.cs" />
+    <Compile Include="Builders\BuildStatusCliniqueManuel.cs" />
+    <Compile Include="Builders\BuildSurveillance.cs" />
+    <Compile Include="Builders\BuildTaxeValeurAjoutee.cs" />
+    <Compile Include="Builders\BuildTempEcheance.cs" />
+    <Compile Include="Builders\BuildtemplateActePG.cs" />
+    <Compile Include="Builders\BuildTraitement.cs" />
+    <Compile Include="Builders\BuildTypeDeDepense.cs" />
+    <Compile Include="Builders\BuildTypePersonne.cs" />
+    <Compile Include="Builders\BuildUtilisateur.cs" />
+    <Compile Include="Builders\BuildVille.cs" />
+    <Compile Include="Builders\Contact.cs" />
+    <Compile Include="Builders\BuildVirement.cs" />
+    <Compile Include="Builders\BuildCodeComptable.cs" />
+    <Compile Include="Builders\BuildSuiviSpecialiste.cs" />
+    <Compile Include="Builders\BuildHistoResponsable.cs" />
+    <Compile Include="Builders\SysTools.cs" />
+    <Compile Include="CabinetMgmt.cs" />
+    <Compile Include="CategoriesMgmt.cs" />
+    <Compile Include="Compta\DeviseMgmt.cs" />
+    <Compile Include="Compta\EcrituresMgmt.cs" />
+    <Compile Include="Compta\PieceComptableMgmt.cs" />
+    <Compile Include="CS1504\BarCode.cs" />
+    <Compile Include="CS1504\Csp2_Dll_Call.cs" />
+    <Compile Include="CS1504\LecteurMgmt.cs" />
+    <Compile Include="CustomXMLSerializer.cs" />
+    <Compile Include="DebiteursMgmt.cs" />
+    <Compile Include="Delegates.cs" />
+    <Compile Include="DemandeEntenteMgmt.cs" />
+    <Compile Include="ECheancesMgmt.cs" />
+    <Compile Include="ExportExcel.cs" />
+    <Compile Include="FauteuilMgmt.cs" />
+    <Compile Include="FileAssociation.cs" />
+    <Compile Include="FtpCasMgmt.cs" />
+    <Compile Include="ftpsimple.cs" />
+    <Compile Include="ImageMgmt.cs" />
+    <Compile Include="InfoCabinetMgmt.cs" />
+    <Compile Include="Compta\JournalMgmt.cs" />
+    <Compile Include="Invisalign.cs" />
+    <Compile Include="LogMgmt.cs" />
+    <Compile Include="MailMgmt.cs" />
+    <Compile Include="MgmtActes.cs" />
+    <Compile Include="MgmtAppareil.cs" />
+    <Compile Include="MgmtAssurance.cs" />
+    <Compile Include="MgmtBaseLabo.cs" />
+    <Compile Include="MgmtBaseLaboratoire.cs" />
+    <Compile Include="MgmtBordereauFinance.cs" />
+    <Compile Include="MgmtCache.cs" />
+    <Compile Include="MgmtCaisse.cs" />
+    <Compile Include="Compta\MgmtCodeComptable.cs" />
+    <Compile Include="MgmtCommentaireFaitAFaire.cs" />
+    <Compile Include="MgmtCommentairesHisto.cs" />
+    <Compile Include="MgmtContact.cs" />
+    <Compile Include="MgmtContactLib.cs" />
+    <Compile Include="MgmtControlFinance.cs" />
+    <Compile Include="MgmtCorrespondants.cs" />
+    <Compile Include="MgmtCredits.cs" />
+    <Compile Include="MgmtDemandeEntente.cs" />
+    <Compile Include="MgmtDevis.cs" />
+    <Compile Include="MgmtDiags.cs" />
+    <Compile Include="MgmtEcheance.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MgmtEnBouche.cs" />
+    <Compile Include="MgmtEncaissement.cs" />
+    <Compile Include="MgmtEntiteJuridique.cs" />
+    <Compile Include="MgmtFacture.cs" />
+    <Compile Include="MgmtFeuillesDeSoin.cs" />
+    <Compile Include="MgmtFichierCFONB.cs" />
+    <Compile Include="MgmtFinanceFacture.cs" />
+    <Compile Include="MgmtHistoResponsable.cs" />
+    <Compile Include="MgmtHoraire.cs" />
+    <Compile Include="MgmtInvisalignEnBouche.cs" />
+    <Compile Include="MgmtLienCorrespondant.cs" />
+    <Compile Include="MgmtMaterielCabinet.cs" />
+    <Compile Include="MgmtMateriels.cs" />
+    <Compile Include="MgmtMotifRecontact.cs" />
+    <Compile Include="MgmtMvtCaisse.cs" />
+    <Compile Include="MgmtNotes.cs" />
+    <Compile Include="MgmtPatient.cs" />
+    <Compile Include="MgmtPays.cs" />
+    <Compile Include="MgmtProfileApplique.cs" />
+    <Compile Include="MgmtRecontact.cs" />
+    <Compile Include="MgmtScenarioCommClinique.cs" />
+    <Compile Include="MgmtStatusClinique.cs" />
+    <Compile Include="OLEAccess\CEFSharp.cs" />
+    <Compile Include="SmilersMgmt.cs" />
+    <Compile Include="SuiviSpecialisteMgmt.cs" />
+    <Compile Include="MgmtTypePersonne.cs" />
+    <Compile Include="MgmtUtilisateurs.cs" />
+    <Compile Include="MgmtVille.cs" />
+    <Compile Include="MutuelleMgmt.cs" />
+    <Compile Include="OLEAccess\Base1er.cs" />
+    <Compile Include="OLEAccess\BASECONTACT.cs" />
+    <Compile Include="OLEAccess\BASEDiag.cs" />
+    <Compile Include="OLEAccess\BaseLAbo.cs" />
+    <Compile Include="OLEAccess\BaseLEtter.cs" />
+    <Compile Include="OLEAccess\BASEPRACTICE.cs" />
+    <Compile Include="OLEAccess\BaseStat.cs" />
+    <Compile Include="OLEAccess\BASEVIEW.cs" />
+    <Compile Include="OLEAccess\BPTransfert.cs" />
+    <Compile Include="OLEAccess\BASEDiagAdulte.cs" />
+    <Compile Include="OLEAccess\OrqualCeph.cs" />
+    <Compile Include="OLEAccess\Orthalis.cs" />
+    <Compile Include="OLEAccess\RHBASE.cs" />
+    <Compile Include="PlanTraitementDEPMgmt.cs" />
+    <Compile Include="PresenceMgt.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropositionsMgmt.cs" />
+    <Compile Include="Q1CSMgmt.cs" />
+    <Compile Include="SemestreMgmt.cs" />
+    <Compile Include="StatusMgt.cs" />
+    <Compile Include="SurveillanceMgmt.cs" />
+    <Compile Include="Compta\TaxeValeurAjouteeMgmt.cs" />
+    <Compile Include="SwitchCabinet\ApplicationMngr.cs" />
+    <Compile Include="TemplateActePGMgmt.cs" />
+    <Compile Include="Tools.cs" />
+    <Compile Include="AutreMgmt.cs" />
+    <Compile Include="TraitementMgmt.cs" />
+    <Compile Include="TraitementsMgmt.cs" />
+    <Compile Include="TypeDeDepenseMgmt.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="SHDocVw">
+      <Guid>{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BasCommon_BO\BasCommon_BO.csproj">
+      <Project>{763b2981-511b-447d-84f4-55916b5db254}</Project>
+      <Name>BasCommon_BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BasCommon_DAL\BasCommon_DAL.csproj">
+      <Project>{b415fa34-6bda-4404-bded-2cf312c9c01e}</Project>
+      <Name>BasCommon_DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

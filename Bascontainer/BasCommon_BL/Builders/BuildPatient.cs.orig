@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using BasCommon_BO;
+
+namespace BasCommon_BL.Builders
+{
+    public static class BuildPatient
+    {
+
+        public static basePatient Build(DataRow r)
+        {
+            basePatient Pat = new basePatient();
+            Pat.Id = Convert.ToInt32(r["ID_PERSONNE"]);
+            Pat.Civilite = Convert.ToString(r["PERS_TITRE"]);
+            Pat.Genre = (Convert.ToString(r["PER_GENRE"]) == "M") ? basePatient.Sexe.Masculin : basePatient.Sexe.Feminin;
+            Pat.Nom = Convert.ToString(r["PER_NOM"]).Trim();
+            Pat.NomJF = Convert.ToString(r["PER_NOMJF"]).Trim();
+
+            Pat.IOlogin = r["OI_LOGIN"] is DBNull ?"": Convert.ToString(r["OI_LOGIN"]).Trim();
+            Pat.password = r["OI_MDP"] is DBNull ?"": Convert.ToString(r["OI_MDP"]).Trim();
+            Pat.publication = r["OI_AUTORISATION"] is DBNull ? true : Convert.ToBoolean(r["OI_AUTORISATION"]);
+            Pat.Idprofile = r["OI_PROFIL"] is DBNull?-1: Convert.ToInt32(r["OI_PROFIL"]);
+
+
+            Pat.Prenom = Convert.ToString(r["PER_PRENOM"]).Trim();
+            Pat.DateNaissance = (r["per_datnaiss"].GetType().Name != "DBNull") ? Convert.ToDateTime(r["per_datnaiss"]) : DateTime.MinValue;
+            Pat.Dossier = Convert.ToInt32(r["PAT_NUMDOSSIER"]);
+            Pat.Moulage = Convert.ToString(r["NUM_MOULAGE"]);
+            Pat.NumSecu = Convert.ToString(r["PER_SECU"]);
+
+
+
+            Pat.Profession = Convert.ToString(r["PROFESSION"]).Trim();
+            Pat.Tutoiement = Convert.ToString(r["TUVOUS"]) == "TU";
+
+            if (!(r["ALLERGIE"] is DBNull))
+            {
+                System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding();
+                Pat.Allergie = enc.GetString((byte[])r["ALLERGIE"]);
+            }
+            Pat.CasierInvisalign = Convert.ToString(r["PAT_REFDOSSIER"]).Trim();
+            Pat.numMoulage = Convert.ToString(r["NUM_MOULAGE"]).Trim();
+
+            Pat.Diagnostic = Convert.ToString(r["PAT_DIAG"]);
+            Pat.Traitement = Convert.ToString(r["PAT_PLAN"]);
+            Pat.Objectif = Convert.ToString(r["PAT_OBJECTIF_TRAIT"]);
+            Pat.CommentApparreil = Convert.ToString(r["PAT_APPAREIL"]);
+            Pat.PourcentageMutuelle = r["PERCENTAGEMUTUELLE"] is DBNull?null: (int?)Convert.ToInt32(r["PERCENTAGEMUTUELLE"]);
+            
+
+            Pat.Notes = Convert.ToString(r["per_notes"]);
+            Pat.PrefCom = r["PREF_COM"] is DBNull ? Correspondant.EnumPrefCom.Courrier : (Correspondant.EnumPrefCom)Convert.ToString(r["PREF_COM"])[0];
+            Pat.statusClinique = r["STATUSCLINIQUE"] is DBNull ? basePatient.StatusClinique.Inconnue : (basePatient.StatusClinique)Convert.ToInt32(r["STATUSCLINIQUE"]);
+            Pat.DateAbandon = r["DATEABANDON"] is DBNull ? null : (DateTime?)Convert.ToDateTime(r["DATEABANDON"]);
+
+
+            Pat.statusManuel = r["ID_STATUT"] is DBNull ? null : StatusCliniqueManuelMgmt.GetStatus(Convert.ToInt32(r["ID_STATUT"]));
+
+            return Pat;
+        }
+    }
+}

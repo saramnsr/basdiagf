@@ -1,0 +1,368 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace BasCommon_BO
+{
+    public class Echeance : IComparable, ICloneable
+    {
+        public enum typepayeur
+        {
+            inconnu = -1,
+            patient = 0,
+            Mutuelle = 1,
+            Secu = 2,
+            Banque = 3 //Pour les credits : Optalion,PNF...
+        }
+
+
+
+        private typepayeur _payeur = typepayeur.patient;
+        public typepayeur payeur
+        {
+            get
+            {
+                return _payeur;
+            }
+            set
+            {
+                _payeur = value;
+            }
+        }
+
+        private bool _ParPrelevement = false;
+        public bool ParPrelevement
+        {
+            get
+            {
+                return _ParPrelevement;
+            }
+            set
+            {
+                _ParPrelevement = value;
+            }
+        }
+
+        private Encaissement _encaissement = null;
+        public Encaissement encaissement
+        {
+            get
+            {
+                return _encaissement;
+            }
+            set
+            {
+                _encaissement = value;
+            }
+        }
+
+        private Mutuelle _mutuelle;
+        public Mutuelle mutuelle
+        {
+            get
+            {
+                return _mutuelle;
+            }
+            set
+            {
+                _mutuelle = value;
+            }
+        }
+
+        private int _ID_Encaissement = -1;
+        public int ID_Encaissement
+        {
+            get
+            {
+                if (encaissement != null) _ID_Encaissement = encaissement.Id;
+                return _ID_Encaissement;
+            }
+            set
+            {
+                _ID_Encaissement = value;
+            }
+        }
+
+        private int _Id = -1;
+        public int Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                _Id = value;
+            }
+        }
+
+        private ActePG _acte = null;
+        public ActePG acte
+        {
+            get
+            {
+                return _acte;
+            }
+            set
+            {
+                _acte = value;
+                if (value == null) IdActe = -1;
+                else IdActe = value.Id;
+            }
+        }
+
+        private int _IdActe = -1;
+        public int IdActe
+        {
+            get
+            {
+                if (acte != null) return acte.Id;
+                return _IdActe;
+            }
+            set
+            {
+                _IdActe = value;
+            }
+        }
+
+        private int _IdPatient;
+        public int IdPatient
+        {
+            get
+            {
+                if (patient != null) _IdPatient = patient.Id;
+                return _IdPatient;
+            }
+            set
+            {
+                _IdPatient = value;
+            }
+        }
+
+        private double _Montant;
+        public double Montant
+        {
+            get
+            {
+                return _Montant;
+            }
+            set
+            {
+                _Montant = value;
+            }
+        }
+
+        private string _Libelle;
+        public string Libelle
+        {
+            get
+            {
+                return _Libelle;
+            }
+            set
+            {
+                _Libelle = value;
+            }
+        }
+
+        private DateTime? _DateEcheance;
+        public DateTime? DateEcheance
+        {
+            get
+            {
+                return _DateEcheance;
+            }
+            set
+            {
+                _DateEcheance = value;
+            }
+        }
+
+        private basePatient _patient;
+        public basePatient patient
+        {
+            get
+            {
+                return _patient;
+            }
+            set
+            {
+                _patient = value;
+            }
+        }
+
+        #region IComparable Members
+
+        public int CompareTo(object obj)
+        {
+            if (!(obj is Echeance)) return 0;
+
+            Echeance ech = (Echeance)obj;
+            return ech.DateEcheance < DateEcheance ? 1 : -1;
+
+        }
+
+        #endregion
+
+        #region ICloneable Members
+
+        public object Clone()
+        {
+            Echeance ec = new Echeance();
+
+            ec.acte = acte;
+            ec.DateEcheance = DateEcheance;
+            ec.encaissement = encaissement;
+            ec.Id = Id;
+            ec.ID_Encaissement = ID_Encaissement;
+            ec.IdActe = IdActe;
+            ec.IdPatient = IdPatient;
+            ec.Libelle = ec.Libelle;
+            ec.Montant = ec.Montant;
+            ec.mutuelle = ec.mutuelle;
+            ec.ParPrelevement = ParPrelevement;
+            ec.patient = patient;
+            ec.payeur = this.payeur;
+
+            return ec;
+        }
+
+        #endregion
+    }
+
+
+    public class TempEcheanceDefinition : IComparable
+    {
+
+       
+
+        private Echeance.typepayeur _payeur = Echeance.typepayeur.patient;
+        public Echeance.typepayeur payeur
+        {
+            get
+            {
+                return _payeur;
+            }
+            set
+            {
+                _payeur = value;
+            }
+        }
+
+        private bool _AlreadyPayed;
+        public bool AlreadyPayed
+        {
+            get
+            {
+                return _AlreadyPayed;
+            }
+            set
+            {
+                _AlreadyPayed = value;
+            }
+        }
+
+        private bool _CanRecalculate = true;
+        public bool CanRecalculate
+        {
+            get
+            {
+                if (_AlreadyPayed)
+                    return false;
+                return _CanRecalculate;
+            }
+            set
+            {
+                _CanRecalculate = value;
+            }
+        }
+
+        private ActePG _acte;
+        public ActePG acte
+        {
+            get
+            {
+                return _acte;
+            }
+            set
+            {
+                _acte = value;
+            }
+        }
+
+        private bool _ParPrelevement = false;
+        public bool ParPrelevement
+        {
+            get
+            {
+                return _ParPrelevement;
+            }
+            set
+            {
+                _ParPrelevement = value;
+            }
+        }
+
+        private string _Libelle;
+        public string Libelle
+        {
+            get
+            {
+                return _Libelle;
+            }
+            set
+            {
+                _Libelle = value;
+            }
+        }
+
+        private Double _Montant;
+        public Double Montant
+        {
+            get
+            {
+                return _Montant;
+            }
+            set
+            {
+                _Montant = value;
+            }
+        }
+
+        private DateTime? _DAteEcheance;
+        public DateTime? DAteEcheance
+        {
+            get
+            {
+                return _DAteEcheance;
+            }
+            set
+            {
+                _DAteEcheance = value;
+            }
+        }
+
+
+        public int CompareTo(object obj)
+        {
+            if (obj is TempEcheanceDefinition)
+            {
+                if ((DAteEcheance != null) && (((TempEcheanceDefinition)obj).DAteEcheance != null))
+                    return (int)(DAteEcheance.Value - ((TempEcheanceDefinition)obj).DAteEcheance.Value).TotalDays;
+
+                if ((DAteEcheance == null) && (((TempEcheanceDefinition)obj).DAteEcheance != null))
+                    return -1;
+
+                if ((DAteEcheance != null) && (((TempEcheanceDefinition)obj).DAteEcheance == null))
+                    return 1;
+
+                if ((DAteEcheance == null) && (((TempEcheanceDefinition)obj).DAteEcheance == null))
+                    return 0;
+            }
+
+            return 0;
+        }
+    }
+
+}

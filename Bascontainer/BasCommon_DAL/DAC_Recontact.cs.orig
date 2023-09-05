@@ -1,0 +1,269 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using FirebirdSql.Data.FirebirdClient;
+using System.Configuration;
+using BasCommon_BO;
+
+namespace BasCommon_DAL
+{
+    public static partial class DAC
+    {
+
+        public static DataRow getCurrentRecontactPatient(int IdPatient)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+
+
+                string selectQuery = "select";
+                selectQuery += " ID,";
+                selectQuery += " ID_PATIENT,";
+                selectQuery += " MOTIF,";
+                selectQuery += " ARECONTACTERDEPUISLE,";
+                selectQuery += " NUMTENTATIVE,";
+                selectQuery += " ID_USERTENTATIVE,";
+                selectQuery += " DATETENTATIVE,";
+                selectQuery += " LATEST_FLAG,";
+                selectQuery += " DATEPROCHAINETENTATIVE,";
+                selectQuery += " CREATOR,";
+                selectQuery += " NUMRECORD";
+                selectQuery += " from BASE_RECONTACT";
+                selectQuery += " where LATEST_FLAG='Y' and ID_PATIENT = @Id";
+
+
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("@Id", IdPatient);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                return (dt.Rows[0]);
+
+            }
+            catch (System.IndexOutOfRangeException e)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+        }
+
+        public static void AddRecontact(Recontact rec)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery;
+                FbCommand command;
+                if (rec.NumRecord > 0)
+                {
+                    selectQuery = "update base_recontact set LATEST_FLAG='N' where NUMRECORD=@NUMRECORD";
+
+                    command = new FbCommand(selectQuery, connection, transaction);
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.AddWithValue("@NUMRECORD", rec.NumRecord);
+
+                    command.ExecuteNonQuery();
+                }
+
+
+
+                selectQuery = "select max(base_recontact.numrecord)+1 as num,max(base_recontact.id)+1 as id from base_recontact";
+
+
+
+
+                command = new FbCommand(selectQuery, connection, transaction);
+                command.CommandType = CommandType.Text;
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+
+                DataTable dt = ds.Tables[0];
+
+                if (rec.NumRecord < 0)
+                    rec.NumRecord = dt.Rows[0]["num"] is DBNull ? 1 : Convert.ToInt32(dt.Rows[0]["num"]);
+
+                rec.Id = dt.Rows[0]["id"] is DBNull ? 1 : Convert.ToInt32(dt.Rows[0]["id"]);
+
+
+
+
+
+                selectQuery = "insert into base_recontact (id, ";
+                selectQuery += " id_patient, ";
+                selectQuery += " motif, ";
+                selectQuery += " arecontacterdepuisle, ";
+                selectQuery += " numtentative, ";
+                selectQuery += " id_usertentative,";
+                selectQuery += " datetentative, ";
+                selectQuery += " latest_flag, ";
+                selectQuery += " dateprochainetentative, ";
+                selectQuery += " creator, ";
+                selectQuery += " numrecord)";
+                selectQuery += " values (@id, ";
+                selectQuery += " @id_patient, ";
+                selectQuery += " @motif, ";
+                selectQuery += " @arecontacterdepuisle, ";
+                selectQuery += " @numtentative, ";
+                selectQuery += " @id_usertentative,";
+                selectQuery += " @datetentative, ";
+                selectQuery += " 'Y', ";
+                selectQuery += " @dateprochainetentative, ";
+                selectQuery += " @creator, ";
+                selectQuery += " @numrecord)";
+
+                command.CommandText = selectQuery;
+
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@id", rec.Id);
+                command.Parameters.AddWithValue("@id_patient", rec.IdPatient);
+                command.Parameters.AddWithValue("@motif", rec.Motif);
+                command.Parameters.AddWithValue("@arecontacterdepuisle", rec.ARecontacterDepuisLe);
+
+                if (rec.NumTentative <= 0)
+                {
+                    command.Parameters.AddWithValue("@numtentative", DBNull.Value);
+                    command.Parameters.AddWithValue("@id_usertentative", DBNull.Value);
+                    command.Parameters.AddWithValue("@datetentative", DBNull.Value);
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@numtentative", rec.NumTentative);
+                    command.Parameters.AddWithValue("@id_usertentative", rec.IdUserTentative);
+                    command.Parameters.AddWithValue("@datetentative", rec.DateTentative == null ? DBNull.Value : (object)rec.DateTentative.Value);
+                }
+                command.Parameters.AddWithValue("@dateprochainetentative", rec.DateProchaineTentative == null ? DBNull.Value : (object)rec.DateProchaineTentative.Value);
+                command.Parameters.AddWithValue("@creator", rec.Creator);
+                command.Parameters.AddWithValue("@numrecord", rec.NumRecord);
+
+
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+        }
+
+
+        public static void ValidateRecontact(Recontact rec)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "";
+                FbCommand command = new FbCommand("", connection, transaction);
+                command.CommandType = CommandType.Text;
+
+                selectQuery = "update BASE_RECONTACT  set";
+                selectQuery += " LATEST_FLAG= 'C'";
+                selectQuery += " where NUMRECORD= @NUMRECORD";
+
+                command.CommandText = selectQuery;
+
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@NUMRECORD", rec.NumRecord);
+
+
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+        }
+
+
+        public static DataTable getRecontactLib()
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+                string selectQuery = "select CODE_RECO,LIB_RECO from RECONTACT order by CODE_RECO";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                return dt;
+
+            }
+            catch (System.SystemException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+        }
+
+
+
+    }
+}

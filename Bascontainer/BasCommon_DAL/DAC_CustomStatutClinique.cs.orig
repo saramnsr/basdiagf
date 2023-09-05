@@ -1,0 +1,261 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using FirebirdSql.Data.FirebirdClient;
+using System.Configuration;
+using BasCommon_BO;
+
+namespace BasCommon_DAL
+{
+    public static partial class DAC
+    {
+
+        public static void updateCustomStatusCliniqueBeToWas(CustomStatusClinique custo)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "update BASE_HISTO_STATUS set ";
+                selectQuery += "DATEFIN = @DATEFIN";
+                selectQuery += " where (id = @id)";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.CommandType = CommandType.Text;
+                command.CommandText = selectQuery;
+
+                command.Parameters.AddWithValue("@id", custo.Id);
+                command.Parameters.AddWithValue("@DATEFIN", DateTime.Now);
+
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+        }
+
+        public static void updateCustomStatusCliniqueWasToBe(CustomStatusClinique custo)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+                string selectQuery = "select MAX(ID)+1 as NEWID from BASE_HISTO_STATUS";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.CommandType = CommandType.Text;
+
+
+                object obj = command.ExecuteScalar();
+
+                if (obj is DBNull)
+                    custo.Id = 1;
+                else
+                    custo.Id = Convert.ToInt32(obj);
+
+                selectQuery = "insert into BASE_HISTO_STATUS (";
+                selectQuery += "ID,";
+                selectQuery += "ID_PATIENT,";
+                selectQuery += "ID_STATUS,";
+                selectQuery += "DATEDEBUT,";
+                selectQuery += "DATEFIN";
+                selectQuery += ") values ( ";
+                selectQuery += "@ID,";
+                selectQuery += "@ID_PATIENT,";
+                selectQuery += "@ID_STATUS,";
+                selectQuery += "@DATEDEBUT,";
+                selectQuery += "@DATEFIN)";
+
+                command.CommandText = selectQuery;
+
+
+                command.CommandText = selectQuery;
+                command.Parameters.AddWithValue("@ID", custo.Id);
+                command.Parameters.AddWithValue("@ID_PATIENT", custo.IdPersonne);
+                command.Parameters.AddWithValue("@ID_STATUS", custo.status.Id);
+                command.Parameters.AddWithValue("@DATEDEBUT", DateTime.Now);
+                command.Parameters.AddWithValue("@DATEFIN", DBNull.Value);
+
+                command.ExecuteNonQuery();
+
+
+
+
+
+
+                selectQuery = "update PATIENT set ID_STATUT=@IdStatus where ID_PERSONNE = @ID_PATIENT";
+
+                command.CommandText = selectQuery;
+
+
+                command.CommandText = selectQuery;
+                command.Parameters.AddWithValue("@ID_PATIENT", custo.IdPersonne);
+                command.Parameters.AddWithValue("@IdStatus", custo.status.Id);
+
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+        }
+
+    
+
+
+        public static DataTable getStatus()
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+                string selectQuery = "select ID_STATUT,LIBELLE,COULEUR,ORGANISATION from STATUTS";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+
+                return dt;
+
+            }
+            catch (System.SystemException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+        }
+
+
+        public static DataTable getCustomStatusCliniqueFromIdPersonne(int id_personne)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "SELECT ID,BASE_HISTO_STATUS.ID_PATIENT, ";
+                selectQuery += "BASE_HISTO_STATUS.ID_STATUS, ";
+                selectQuery += "BASE_HISTO_STATUS.DATEDEBUT, ";
+                selectQuery += "BASE_HISTO_STATUS.DATEFIN ";
+                selectQuery += "FROM BASE_HISTO_STATUS ";
+                selectQuery += "WHERE BASE_HISTO_STATUS.ID_PATIENT = @id_personne ";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("id_personne", id_personne);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                return ds.Tables[0];
+
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+        }
+
+
+        public static DataTable getCurrentCustomStatusCliniqueFromIdPersonne(int id_personne)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "SELECT ID,BASE_HISTO_STATUS.ID_PATIENT, ";
+                selectQuery += "BASE_HISTO_STATUS.ID_STATUS, ";
+                selectQuery += "BASE_HISTO_STATUS.DATEDEBUT, ";
+                selectQuery += "BASE_HISTO_STATUS.DATEFIN ";
+                selectQuery += "FROM BASE_HISTO_STATUS ";
+                selectQuery += "WHERE BASE_HISTO_STATUS.ID_PATIENT = @id_personne ";
+                selectQuery += "and BASE_HISTO_STATUS.DATEFIN is null";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("id_personne", id_personne);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                return ds.Tables[0];
+
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+        }
+
+    }
+}

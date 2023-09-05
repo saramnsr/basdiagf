@@ -1,0 +1,311 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using FirebirdSql.Data.FirebirdClient;
+using System.Configuration;
+using BasCommon_BO;
+
+namespace BasCommon_DAL
+{
+    public static partial class DAC
+    {
+
+        public static DataRow getCaisse(basePatient pat)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+
+
+                string selectQuery = "select";
+                selectQuery += " ID_CAISSE,";
+                selectQuery += " CAISSE_NOM,";
+                selectQuery += " CAISSE_TEL,";
+                selectQuery += " ISCMU,";
+                selectQuery += " v.ville_nom,";
+                selectQuery += " v.ville_cpostal,";
+                selectQuery += " a.ID_Ville,";
+                selectQuery += " a.ID_ADRESSE,";
+                selectQuery += " a.adr_numero,";
+                selectQuery += " a.adr_typevoie,";
+                selectQuery += " a.adr_nomvoie,";
+                selectQuery += " a.adr_complement";
+                selectQuery += " from CAISSE  c";
+                selectQuery += " LEFT OUTER JOIN ADRESSE a on c.id_adresse=a.id_adresse";
+                selectQuery += " LEFT OUTER JOIN VILLE v ON v.id_ville=a.id_ville";
+
+                selectQuery += " inner join lienpers on lienpers.id_personne=c.id_caisse and lienpers.relation = 'Ca'";
+
+                selectQuery += " where lienpers.id_patient = @idpatient";
+
+
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("@idpatient", pat.Id);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                return (dt.Rows[0]);
+
+            }
+            catch (System.IndexOutOfRangeException e)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+        }
+
+
+        public static DataTable getCaisses()
+        {
+            List<Caisse> lst = new List<Caisse>();
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+
+
+                string selectQuery = "select";
+                selectQuery += " ID_CAISSE,";
+                selectQuery += " CAISSE_NOM,";
+                selectQuery += " CAISSE_TEL,";
+                selectQuery += " v.ville_nom,";
+                selectQuery += " v.ville_cpostal,";
+                selectQuery += " a.ID_Ville,";
+                selectQuery += " ISCMU,";
+                selectQuery += " a.ID_ADRESSE,";
+                selectQuery += " a.adr_numero,";
+                selectQuery += " a.adr_typevoie,";
+                selectQuery += " a.adr_nomvoie,";
+                selectQuery += " a.adr_complement";
+                selectQuery += " from CAISSE  c";
+                selectQuery += " LEFT OUTER JOIN ADRESSE a on c.id_adresse=a.id_adresse";
+                selectQuery += " LEFT OUTER JOIN VILLE v ON v.id_ville=a.id_ville";
+                selectQuery += " order by CAISSE_NOM desc";
+
+
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+                return dt;
+
+            }
+            catch (System.IndexOutOfRangeException e)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+        }
+
+        public static void UpdateCaisse(Caisse p_caisse)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectedQuery = "update adresse ";
+                selectedQuery += " set id_ville = (select first 1 ID_VILLE from ville where VILLE_NOM = @ville),";
+                selectedQuery += " adr_nomvoie = @adr1,";
+                selectedQuery += " adr_complement = @adr2";
+                selectedQuery += " where (id_adresse = @id_adresse)";
+
+                FbCommand command = new FbCommand(selectedQuery, connection, transaction);
+                command.CommandType = CommandType.Text;
+                command.Parameters.AddWithValue("@adr1", p_caisse.Adresse_Nom_Voie);
+                command.Parameters.AddWithValue("@ville", p_caisse.Ville);
+                command.Parameters.AddWithValue("@adr2", p_caisse.Adresse2);
+                command.Parameters.AddWithValue("@id_adresse", p_caisse.IdAdresse);
+                command.ExecuteNonQuery();
+
+
+                selectedQuery = "update caisse ";
+                selectedQuery += " set caisse_nom = @caisse_nom,";
+                selectedQuery += " caisse_tel = @caisse_tel,";
+                selectedQuery += " ISCMU = @ISCMU,";
+                selectedQuery += " where (id_caisse = @id_caisse)";
+
+                command.CommandText = selectedQuery;
+
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@caisse_nom", p_caisse.Nom);
+                command.Parameters.AddWithValue("@caisse_tel", p_caisse.TelFixe);
+                command.Parameters.AddWithValue("@id_caisse", p_caisse.Id);
+                command.Parameters.AddWithValue("@ISCMU", p_caisse.IsCMU);
+
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+        }
+
+
+        public static int InsertCaisse(Caisse p_caisse)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "select MAX(ID_CAISSE)+1 as NEWID from CAISSE";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.CommandType = CommandType.Text;
+                int id = Convert.ToInt32(command.ExecuteScalar());
+
+                selectQuery = "select MAX(id_adresse)+1 as NEWID from ADRESSE";
+
+                command = new FbCommand(selectQuery, connection, transaction);
+                command.CommandType = CommandType.Text;
+                int idadresse = Convert.ToInt32(command.ExecuteScalar());
+
+                selectQuery = "select MAX(id_VILLE)+1 as NEWID from VILLE";
+
+                command = new FbCommand(selectQuery, connection, transaction);
+                command.CommandType = CommandType.Text;
+                int idVille = Convert.ToInt32(command.ExecuteScalar());
+
+                if (p_caisse.IdVille == -1)
+                {
+                    try
+                    {
+                        selectQuery = "select id_ville as ID from VILLE where upper(ville_nom)='" + p_caisse.Ville.ToUpper() + "'";
+                        command = new FbCommand(selectQuery, connection, transaction);
+                        command.CommandType = CommandType.Text;
+                        object ret = command.ExecuteScalar();
+                        if (ret != null)
+                            p_caisse.IdVille = Convert.ToInt32(ret);
+                    }
+                    catch (System.Exception)
+                    {
+                        p_caisse.IdVille = -1;
+                    }
+                }
+
+
+
+
+                selectQuery = "INSERT INTO  CAISSE (ID_CAISSE,id_adresse,CAISSE_NOM,CAISSE_TEL,ISCMU) VALUES ";
+                selectQuery += "(@ID_CAISSE,@id_adresse,@CAISSE_NOM,@CAISSE_TEL,@ISCMU)";
+                command.CommandText = selectQuery;
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@ID_CAISSE", id);
+                if (p_caisse.IdAdresse != -1)
+                    command.Parameters.AddWithValue("@id_adresse", p_caisse.IdAdresse);
+                else
+                    command.Parameters.AddWithValue("@id_adresse", idadresse);
+
+                command.Parameters.AddWithValue("@CAISSE_NOM", p_caisse.Nom);
+                command.Parameters.AddWithValue("@CAISSE_TEL", p_caisse.TelFixe);
+
+                command.Parameters.AddWithValue("@ISCMU", p_caisse.IsCMU);
+
+                command.ExecuteNonQuery();
+
+                if (p_caisse.IdAdresse == -1)
+                {
+                    selectQuery = "INSERT INTO  ADRESSE (ID_ADRESSE,ID_VILLE,ADR_NUMERO,ADR_TYPEVOIE,ADR_NOMVOIE,ADR_COMPLEMENT) VALUES ";
+                    selectQuery += "(@ID_ADRESSE,@ID_VILLE,@ADR_NUMERO,@ADR_TYPEVOIE,@ADR_NOMVOIE,@ADR_COMPLEMENT)";
+
+                    command.Parameters.AddWithValue("@ID_ADRESSE", idadresse);
+                    if (p_caisse.IdVille != -1)
+                        command.Parameters.AddWithValue("@ID_VILLE", p_caisse.IdVille);
+                    else
+                        command.Parameters.AddWithValue("@ID_VILLE", idVille);
+                    command.Parameters.AddWithValue("@ADR_NUMERO", p_caisse.Adresse_Num);
+                    command.Parameters.AddWithValue("@ADR_TYPEVOIE", p_caisse.Adresse_Type_Voie);
+                    command.Parameters.AddWithValue("@ADR_NOMVOIE", p_caisse.Adresse_Nom_Voie);
+                    command.Parameters.AddWithValue("@ADR_COMPLEMENT", p_caisse.Adresse2);
+                    command.CommandText = selectQuery;
+                    command.ExecuteNonQuery();
+                }
+
+                if (p_caisse.IdVille == -1)
+                {
+                    selectQuery = "INSERT INTO  VILLE (ID_VILLE,VILLE_NOM,VILLE_CPOSTAL) VALUES ";
+                    selectQuery += "(@ID_VILLE,@VILLE_NOM,@VILLE_CPOSTAL)";
+                    command.Parameters.AddWithValue("@ID_VILLE", idVille);
+                    command.Parameters.AddWithValue("@VILLE_NOM", p_caisse.Ville);
+                    command.Parameters.AddWithValue("@VILLE_CPOSTAL", p_caisse.CodePostal);
+                    command.CommandText = selectQuery;
+                    command.ExecuteNonQuery();
+                }
+
+                transaction.Commit();
+                return id;
+
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+        }
+    }
+}

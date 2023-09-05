@@ -1,0 +1,162 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using FirebirdSql.Data.FirebirdClient;
+using System.Configuration;
+using BasCommon_BO;
+
+namespace BasCommon_DAL
+{
+    public static partial class DAC
+    {
+        public static DataTable GetBanquesEmetrices()
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = " select ID_BANQUENOM, ";
+                selectQuery += "        NOM ";
+                selectQuery += " from BANQUENOM";
+                selectQuery += " order by NOM";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+
+                return dt;
+
+            }
+            catch (System.SystemException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+
+
+        }
+
+
+
+        public static List<string> GetBanquesDeRemise(EntiteJuridique ej)
+        {
+
+
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = " select COD_BAN ";
+                selectQuery += " from BASE_LNKENTITYBQUE";
+                selectQuery += " where ID_ENTITY = @ID_ENTITY";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("@ID_ENTITY",ej.Id);
+
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                List<string> lst = new List<string>();
+                foreach (DataRow dr in dt.Rows)
+                    lst.Add(Convert.ToString(dr["COD_BAN"]));
+
+
+                    return lst;
+
+            }
+            catch (System.SystemException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+
+
+        }
+       
+
+        public static DataTable GetBanquesDeRemise()
+        {
+
+
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = " select COD_BAN, ";
+                selectQuery += "        LIB_BAN, ";
+                selectQuery += "        ADR1_BAN, ";
+                selectQuery += "        ADR2_BAN, ";
+                selectQuery += "        CP_BAN, ";
+                selectQuery += "        VIL_BAN, ";
+                selectQuery += "        NUMA_BAN, ";
+                selectQuery += "        NUMCPT_BAN, ";
+                selectQuery += "        NUMGUI_BAN, ";
+                selectQuery += "        NUMCLE_BAN, ";
+                selectQuery += "        TITULAIRE ";                
+                selectQuery += " from BANQUE";
+                selectQuery += " order by LIB_BAN";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+
+                return dt;
+
+            }
+            catch (System.SystemException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+
+
+        }
+       
+    }
+}

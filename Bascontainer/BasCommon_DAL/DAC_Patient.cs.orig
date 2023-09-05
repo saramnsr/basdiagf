@@ -1,0 +1,1470 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using FirebirdSql.Data.FirebirdClient;
+using System.Configuration;
+using BasCommon_BO;
+using MySql.Data.MySqlClient;
+
+namespace BasCommon_DAL
+{
+    public static partial class DAC
+    {
+
+        public static int GetNextNumDossier()
+        {
+            if (connection == null) getConnection();
+
+            try
+            {
+                if (connection.State == ConnectionState.Closed) connection.Open();
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
+
+            FbTransaction transaction = connection.BeginTransaction();
+
+            try
+            {
+
+                string selectQuery = "select min(l.pat_numdossier)-1";
+                selectQuery += " from patient as l";
+                selectQuery += " left outer join patient as r on r.pat_numdossier = l.pat_numdossier - 1";
+                selectQuery += " where r.pat_numdossier is null and l.pat_numdossier>0;";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.CommandType = CommandType.Text;
+                object o = command.ExecuteScalar();
+                int res = o is DBNull?1:Convert.ToInt32(o);
+
+                transaction.Commit();
+
+                return res;
+
+            }
+            catch (System.SystemException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+        }
+
+
+        public static DataTable getPatientsInAttente()
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+
+                string selectQuery = "select personne.id_personne,";
+                //selectQuery += " personne.id_adresse,"; 
+                //selectQuery += " personne.id_util,"; 
+                //selectQuery += " personne.id_caisse,"; 
+                //selectQuery += " personne.adr_id_adresse,"; 
+                selectQuery += " personne.per_nom,";
+                //selectQuery += " personne.per_nomjf,"; 
+                selectQuery += " personne.per_prenom,";
+                selectQuery += " rendez_vous.ID_FAUTEUIL";
+
+
+                selectQuery += " from rendez_vous";
+                selectQuery += " inner join personne on personne.id_personne = rendez_vous.id_personne";
+                selectQuery += " inner join patient p on personne.id_personne=p.id_personne";
+                selectQuery += " where rdv_date between @date1 and @date2";
+                selectQuery += " and rendez_vous.rdv_arrivee between @date1 and @date2";
+                selectQuery += " and rdv_statut = 1 and (localisation = 1 or localisation = 2)";
+
+                //Patients sur fauteuil exclus
+                //selectQuery += " and (coalesce(rendez_vous.heure_fauteuil, '01/01/01') < coalesce(rendez_vous.rdv_arrivee, '01/01/01'))";
+
+                // selectQuery += " and (coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.rdv_arrivee, '01/01/01') ";
+                //selectQuery += " or coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.heure_salleattente, '01/01/01')";
+                //selectQuery += " or coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.heure_fauteuil, '01/01/01') ";
+                //selectQuery += " or coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.heure_secretariat, '01/01/01')) ";
+                selectQuery += " order by localisation,rendez_vous.rdv_arrivee";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                command.Parameters.AddWithValue("@date1", DateTime.Now.Date);
+                command.Parameters.AddWithValue("@date2", DateTime.Now.Date.AddHours(24));
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                return dt;
+
+            }
+            catch (System.IndexOutOfRangeException e)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+
+
+        }
+
+
+        public static DataTable getPatients(string param)
+        {
+
+            if (param == "") return null;
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+
+                string selectQuery = "select personne.id_personne,";
+                //selectQuery += " personne.id_adresse,"; 
+                //selectQuery += " personne.id_util,"; 
+                //selectQuery += " personne.id_caisse,"; 
+                //selectQuery += " personne.adr_id_adresse,"; 
+                selectQuery += " personne.per_nom,";
+                //selectQuery += " personne.per_nomjf,"; 
+                selectQuery += " personne.per_prenom";
+
+
+                selectQuery += " from personne";
+                selectQuery += " inner join patient p on personne.id_personne=p.id_personne and p.TEST_BP=1";
+                selectQuery += " where UPPER(per_nom) Like '" + param.Replace("'", "''").ToUpper() + "%'";
+
+                //Patients sur fauteuil exclus
+                //selectQuery += " and (coalesce(rendez_vous.heure_fauteuil, '01/01/01') < coalesce(rendez_vous.rdv_arrivee, '01/01/01'))";
+
+                // selectQuery += " and (coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.rdv_arrivee, '01/01/01') ";
+                //selectQuery += " or coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.heure_salleattente, '01/01/01')";
+                //selectQuery += " or coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.heure_fauteuil, '01/01/01') ";
+                //selectQuery += " or coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.heure_secretariat, '01/01/01')) ";
+                selectQuery += " order by personne.per_nom,personne.per_prenom";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                command.Parameters.AddWithValue("@date1", DateTime.Now.Date);
+                command.Parameters.AddWithValue("@date2", DateTime.Now.Date.AddHours(24));
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                return dt;
+
+            }
+            catch (System.IndexOutOfRangeException e)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+
+
+        }
+
+
+
+        public static DataTable getPatientsInAttenteFor(Fauteuil faut)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+
+                string selectQuery = "select personne.id_personne,";
+                //selectQuery += " personne.id_adresse,"; 
+                //selectQuery += " personne.id_util,"; 
+                //selectQuery += " personne.id_caisse,"; 
+                //selectQuery += " personne.adr_id_adresse,"; 
+                selectQuery += " personne.per_nom,";
+                //selectQuery += " personne.per_nomjf,"; 
+                selectQuery += " personne.per_prenom,";
+                selectQuery += " rendez_vous.ID_FAUTEUIL";
+
+
+                selectQuery += " from rendez_vous";
+                selectQuery += " inner join personne on personne.id_personne = rendez_vous.id_personne";
+                selectQuery += " inner join patient p on personne.id_personne=p.id_personne";
+                selectQuery += " where rdv_date between @date1 and @date2";
+                selectQuery += " and rendez_vous.rdv_arrivee between @date1 and @date2";
+                selectQuery += " and rdv_statut = 1 and (localisation = 1)";
+                selectQuery += " and rendez_vous.ID_FAUTEUIL = @idfaut";
+
+                //Patients sur fauteuil exclus
+                //selectQuery += " and (coalesce(rendez_vous.heure_fauteuil, '01/01/01') < coalesce(rendez_vous.rdv_arrivee, '01/01/01'))";
+
+                // selectQuery += " and (coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.rdv_arrivee, '01/01/01') ";
+                //selectQuery += " or coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.heure_salleattente, '01/01/01')";
+                //selectQuery += " or coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.heure_fauteuil, '01/01/01') ";
+                //selectQuery += " or coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.heure_secretariat, '01/01/01')) ";
+                selectQuery += " order by rendez_vous.rdv_arrivee";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                command.Parameters.AddWithValue("@date1", DateTime.Now.Date);
+                command.Parameters.AddWithValue("@date2", DateTime.Now.Date.AddHours(24));
+                command.Parameters.AddWithValue("@idfaut", faut.Id);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                return dt;
+
+            }
+            catch (System.IndexOutOfRangeException e)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+
+
+        }
+        
+
+        
+        /*
+        public static DataTable getPatientsEnAttenteOuSurFauteuil()
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+
+                string selectQuery = "select personne.id_personne,";
+                //selectQuery += " personne.id_adresse,"; 
+                //selectQuery += " personne.id_util,"; 
+                //selectQuery += " personne.id_caisse,"; 
+                //selectQuery += " personne.adr_id_adresse,"; 
+                selectQuery += " personne.per_nom,";
+                //selectQuery += " personne.per_nomjf,"; 
+                selectQuery += " personne.per_prenom,";
+                selectQuery += " rendez_vous.ID_FAUTEUIL";
+
+
+                selectQuery += " from rendez_vous";
+                selectQuery += " inner join personne on personne.id_personne = rendez_vous.id_personne";
+                selectQuery += " inner join patient p on personne.id_personne=p.id_personne";
+                selectQuery += " where rdv_date between @date1 and @date2";
+                selectQuery += " and rendez_vous.rdv_arrivee between @date1 and @date2";
+
+                //Patients sur fauteuil exclus
+                //selectQuery += " and (coalesce(rendez_vous.heure_fauteuil, '01/01/01') < coalesce(rendez_vous.rdv_arrivee, '01/01/01'))";
+
+                selectQuery += " and (coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.rdv_arrivee, '01/01/01') ";
+                selectQuery += " or coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.heure_salleattente, '01/01/01')";
+                selectQuery += " or coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.heure_fauteuil, '01/01/01') ";
+                selectQuery += " or coalesce(rendez_vous.heure_sorti, '01/01/01') <= coalesce(rendez_vous.heure_secretariat, '01/01/01')) ";
+                selectQuery += " order by personne.per_nom,personne.per_prenom";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                command.Parameters.AddWithValue("@date1", DateTime.Now.Date);
+                command.Parameters.AddWithValue("@date2", DateTime.Now.Date.AddHours(24));
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                return dt;
+
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+
+
+        }
+        */
+
+
+        public static DataTable getPatientsFamillyMembers(basePatient pat)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+
+                string selectQuery = "select linkedpers.id_personne,";
+                selectQuery += " linkedpers.per_nom,";
+                selectQuery += " linkedpers.per_prenom";                
+                selectQuery += " from personne linkedpers";
+                selectQuery += " inner join patient p on linkedpers.id_personne=p.id_personne";
+                selectQuery += " inner join lienpers lp1 on lp1.id_patient=linkedpers.id_personne and lp1.relation = 'Rs'";
+                selectQuery += " inner join lienpers lp2 on lp2.id_personne=lp1.id_personne and lp2.relation = 'Rs'";
+                selectQuery += " where lp2.id_patient =  @id_patient and linkedpers.id_personne<>@id_patient ";
+                selectQuery += " order by linkedpers.PER_NOM, linkedpers.PER_PRENOM";
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("@id_patient", pat.Id);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                return dt;
+
+            }
+            catch (System.IndexOutOfRangeException e)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+
+
+        }
+        
+
+        public static DataTable getPersonnesAContacter(basePatient patient)
+        {
+
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+
+
+                string selectQuery = "SELECT PERSONNE.ID_PERSONNE,";
+                selectQuery += "PER_NOM,";
+                selectQuery += "PER_PRENOM,";
+                selectQuery += "PER_EMAIL,";
+                selectQuery += "PER_TELPRINC,";
+                selectQuery += "PER_TELTRAV1,";
+                selectQuery += "PER_GENRE,";
+                selectQuery += "PER_TELECOPIE,";
+                selectQuery += "PER_ADR1_prof,";
+                selectQuery += "PER_ADR2_prof,";
+                selectQuery += "PER_VILLE_prof,";
+                selectQuery += "PER_CPOSTAL_prof,";
+                selectQuery += "PER_ADR1,";
+                selectQuery += "PER_ADR2,";
+                selectQuery += "PER_VILLE,";
+                selectQuery += "PER_CPOSTAL,";
+                selectQuery += "PER_NOTES,";
+                selectQuery += "PERS_TITRE,";
+                selectQuery += "per_secu,";
+                selectQuery += "TUVOUS,";
+                selectQuery += "OI_LOGIN,";
+                selectQuery += "OI_MDP,";
+                selectQuery += "PREF_COM,";
+                selectQuery += "CATEGORIES,";
+                selectQuery += "lnk.RELATION, ";
+                selectQuery += "lnk.TYPELIEN, ";
+                selectQuery += "lnk.ID_PATIENT, ";
+                selectQuery += "TYPE_PERS.NOM as PROFESSION, ";
+                selectQuery += "TYPE_PERS.ID_TYPE as TYPE ";
+                selectQuery += "FROM PERSONNE ";
+                selectQuery += "INNER JOIN TYPE_PERS on TYPE_PERS.ID_TYPE=PERSONNE.PER_TYPE ";
+                selectQuery += "INNER JOIN lienpers lnk on lnk.ID_PERSONNE=PERSONNE.ID_PERSONNE ";
+
+                selectQuery += " Where lnk.id_patient = @IdPatient and lnk.Relation = 'Ac'";
+                selectQuery += " order by PER_NOM,PER_PRENOM";
+
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                command.Parameters.AddWithValue("@IdPatient", patient.Id);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+
+                return ds.Tables[0];
+
+
+
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+
+
+        }
+
+
+      
+
+        public static DataRow getinfocomplementaire(int IdPat)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+
+                string selectQuery = "select idpatient, ";
+
+                selectQuery += " assistante_resp, ";
+                selectQuery += " SEMESTRESENTAMES, ";
+
+                selectQuery += " AMELIORATIONS, ";
+                selectQuery += " DEBUTTRAITEMENTENVISAGE, ";
+                selectQuery += " PRATICIEN_UNIQUE, ";
+                
+                selectQuery += " praticien_resp ";
+                selectQuery += " from basediag_infocomplementaire";
+                selectQuery += " where idpatient = @idpatient";
+
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("@idpatient", IdPat);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                if (dt.Rows.Count == 0) return null;
+
+                return dt.Rows[0];
+
+            }
+            catch (System.SystemException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+
+
+        }
+
+        public static void setinfocomplementaire(InfoPatientComplementaire infocompl)
+        {
+            lock (lockobj)
+            {
+                if (connection == null) getConnection();
+
+                if (connection.State == ConnectionState.Closed) connection.Open();
+                FbTransaction transaction = connection.BeginTransaction();
+                try
+                {
+                    string selectQuery = "UPDATE OR INSERT INTO basediag_infocomplementaire (idpatient, ";
+                    selectQuery += "                                      assistante_resp, ";
+                    selectQuery += "                                      SEMESTRESENTAMES, ";
+                    selectQuery += "                                      AMELIORATIONS, ";
+                    selectQuery += "                                      PRATICIEN_UNIQUE, ";
+                    selectQuery += "                                      DEBUTTRAITEMENTENVISAGE, ";
+                    selectQuery += "                                          praticien_resp)";
+                    selectQuery += " values (@idpatient, ";
+                    selectQuery += "         @assistante_resp, ";
+                    selectQuery += "         @SEMESTRESENTAMES,";
+                    selectQuery += "         @AMELIORATIONS,";
+                    selectQuery += "         @PRATICIEN_UNIQUE,";
+                    selectQuery += "         @DEBUTTRAITEMENTENVISAGE,";
+                    selectQuery += "         @praticien_resp)";
+                    selectQuery += "        MATCHING (idpatient)";
+
+                    FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                    command.Parameters.AddWithValue("@idpatient", infocompl.IdPatient);
+                    command.Parameters.AddWithValue("@assistante_resp", infocompl.AssistanteResponsable == null ? DBNull.Value : (object)infocompl.AssistanteResponsable.Id);
+                    command.Parameters.AddWithValue("@praticien_resp", infocompl.PraticienResponsable == null ? DBNull.Value : (object)infocompl.PraticienResponsable.Id);
+                    command.Parameters.AddWithValue("@PRATICIEN_UNIQUE", infocompl.PraticienUnique);
+
+
+
+                    command.Parameters.AddWithValue("@SEMESTRESENTAMES", infocompl.NbSemestresEntame);
+                    command.Parameters.AddWithValue("@AMELIORATIONS", infocompl.Ameliorations);
+                    command.Parameters.AddWithValue("@DEBUTTRAITEMENTENVISAGE", infocompl.DateDebutTraitement);
+
+
+                    DataSet ds = new DataSet();
+                    FbDataAdapter adapt = new FbDataAdapter(command);
+                    adapt.Fill(ds);
+                    transaction.Commit();
+
+                }
+                catch (System.SystemException ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    connection.Close();
+
+                }
+
+            }
+
+
+
+        }
+        
+
+        public static List<String> getRisques(basePatient pat)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+
+                string selectQuery = "select ";
+                selectQuery += " RISQUES ";
+                selectQuery += " from basediag_infocomplementaire";
+                selectQuery += " where idpatient = @idpatient";
+
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("@idpatient", pat.Id);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                List<String> lst = new List<string>();
+
+                if (dt.Rows.Count == 0) return lst;
+
+                lst = Convert.ToString(dt.Rows[0]["RISQUES"]).Split('\n').ToList();
+
+                return lst;
+
+            }
+            catch (System.SystemException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+
+
+        }
+
+        public static void setRisques(basePatient pat)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "UPDATE OR INSERT INTO basediag_infocomplementaire (idpatient,";
+                selectQuery += "                                      RISQUES)";
+                selectQuery += " values (@idpatient, ";
+                selectQuery += "         @RISQUES)";
+                selectQuery += "        MATCHING (idpatient)";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("@idpatient", pat.Id);
+                command.Parameters.AddWithValue("@RISQUES", pat.Risques.Count > 0 ? pat.Risques.Aggregate((i, j) => i + "\n" + j) : "");
+
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+            }
+            catch (System.SystemException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+
+
+        }
+
+
+
+        public static DataRow getPatient(int Id)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+
+                string selectQuery = "select personne.id_personne,";
+                //selectQuery += " personne.id_adresse,"; 
+                //selectQuery += " personne.id_util,"; 
+                //selectQuery += " personne.id_caisse,"; 
+                //selectQuery += " personne.adr_id_adresse,"; 
+                selectQuery += " personne.per_nom,";
+                selectQuery += " personne.per_nomjf,";
+                selectQuery += " personne.per_prenom";
+
+
+                selectQuery += ", personne.per_genre,";
+                selectQuery += " personne.per_secu,";
+                selectQuery += " personne.per_type,";
+                //selectQuery += " personne.per_telprinc,";
+                //selectQuery += " personne.per_teltrav1,";
+                //selectQuery += " personne.per_teltrav2,"; 
+                //selectQuery += " personne.per_telecopie,";
+                //selectQuery += " personne.per_email,";
+                // selectQuery += " personne.per_reception,"; 
+                selectQuery += " personne.per_notes,";
+                //selectQuery += " personne.per_poste,"; 
+                selectQuery += " personne.pcom,";
+                //selectQuery += " personne.per_adr1,";
+                //selectQuery += " personne.per_adr2,";
+                //selectQuery += " personne.per_ville,";
+                //selectQuery += " personne.per_cpostal,";
+                //selectQuery += " personne.per_adr1_prof,"; 
+                //selectQuery += " personne.per_adr2_prof,"; 
+                //selectQuery += " personne.per_cpostal_prof,"; 
+                //selectQuery += " personne.per_ville_prof,"; 
+                selectQuery += " personne.profession,";
+                // selectQuery += " personne.mutuelle,"; 
+                selectQuery += " personne.per_datnaiss,";
+                selectQuery += " personne.tuvous,";
+                //selectQuery += " personne.poid,"; 
+                //selectQuery += " personne.email2,"; 
+                //selectQuery += " personne.gsm,"; 
+                //selectQuery += " personne.icq,"; 
+                //selectQuery += " personne.im1,"; 
+                // selectQuery += " personne.im2,"; 
+                //selectQuery += " personne.lastmodif,"; 
+                // selectQuery += " personne.telsup0,"; 
+                // selectQuery += " personne.telsup3,"; 
+                // selectQuery += " personne.telsup4,"; 
+                // selectQuery += " personne.telsup5,"; 
+                // selectQuery += " personne.telsup6,"; 
+                //selectQuery += " personne.telsup8,"; 
+                // selectQuery += " personne.telsup10,"; 
+                //selectQuery += " personne.telsup11,"; 
+                //selectQuery += " personne.telsup12,"; 
+                //selectQuery += " personne.telsup13,"; 
+                //selectQuery += " personne.telsup14,"; 
+                //selectQuery += " personne.telsup15,"; 
+                //selectQuery += " personne.telsup16,"; 
+                //selectQuery += " personne.telsup17,"; 
+                //selectQuery += " personne.telsup18,"; 
+                //selectQuery += " personne.indicetel1,"; 
+                //selectQuery += " personne.indicetel2,"; 
+                //selectQuery += " personne.indicetel3,"; 
+                //selectQuery += " personne.indicetel4,"; 
+                //selectQuery += " personne.email3,"; 
+                //selectQuery += " personne.indiceemail,"; 
+                //selectQuery += " personne.indiceadr,"; 
+                //selectQuery += " personne.pays_dom,"; 
+                //selectQuery += " personne.pays_trav,"; 
+                selectQuery += " personne.pers_titre,";
+                //selectQuery += " personne.pers_siteweb,"; 
+                //selectQuery += " personne.per_ville_naissance,"; 
+                selectQuery += " personne.per_pays_naissance,";
+                //selectQuery += " personne.per_langue_parle,"; 
+                //selectQuery += " personne.per_population_ref,"; 
+                //selectQuery += " personne.nom_rep_image,"; 
+                selectQuery += "        personne.oi_login,"; 
+                selectQuery += "        personne.oi_mdp,"; 
+                selectQuery += "        personne.oi_profil,"; 
+                selectQuery += "        personne.oi_autorisation,"; 
+                selectQuery += "        personne.categories,";
+                selectQuery += "        personne.pref_com,";
+                selectQuery += " PAT_DIAG,";
+                selectQuery += " PAT_PLAN,";
+                selectQuery += " ID_STATUT,";
+
+                selectQuery += " PAT_REFDOSSIER,";
+                selectQuery += " PERCENTAGEMUTUELLE,";
+                
+
+                selectQuery += " PAT_OBJECTIF_TRAIT,";
+                selectQuery += " p.ALLERGIE,";
+                selectQuery += " p.StatusClinique,";
+                selectQuery += " p.NUM_MOULAGE,";
+                selectQuery += " p.DATEABANDON,";
+                selectQuery += " p.PAT_APPAREIL,";
+
+
+                selectQuery += " p.PAT_NUMDOSSIER,";
+                selectQuery += "(select First 1 rdv_date from rendez_vous where personne.ID_PERSONNE  = rendez_vous.ID_PERSONNE and RDV_ARRIVEE is null and RDV_DATE>current_timestamp  order by rdv_date) as NextRDV";
+
+
+                selectQuery += " from personne";
+                selectQuery += " inner join patient p on personne.id_personne=p.id_personne";
+                selectQuery += " where personne.id_personne=@Id ";
+
+
+
+                selectQuery += " order by personne.PER_NOM, personne.PER_PRENOM";
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("@Id", Id);
+
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                return dt.Rows[0];
+
+            }
+            catch (System.IndexOutOfRangeException e)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+        }
+
+
+
+
+        public static void UpdatePercentageMutuelle(basePatient p_patient)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+                
+
+                string selectQuery = "update patient set ";
+                selectQuery += "     PERCENTAGEMUTUELLE =@PERCENTAGEMUTUELLE ";
+                selectQuery += "     where id_personne =@id_personne";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("@id_personne", p_patient.Id);
+                command.Parameters.AddWithValue("@PERCENTAGEMUTUELLE", p_patient.PourcentageMutuelle);
+                
+                command.ExecuteNonQuery();
+
+
+
+                transaction.Commit();
+
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+        }
+
+
+        public static void UpdatePatient(basePatient p_patient)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+
+                string selectQuery = "update personne set ";
+                //selectQuery += " id_adresse = @id_adresse,";
+                //selectQuery += " id_util = @id_util,";
+                //selectQuery += "     id_caisse = @id_caisse,";
+                //selectQuery += "     adr_id_adresse = @adr_id_adresse,";
+                selectQuery += "     per_nom = @per_nom,";
+                selectQuery += "     per_nomjf = @per_nomjf,";
+                selectQuery += "     per_prenom = @per_prenom,";
+                //selectQuery += "     per_genre = @per_genre,";
+                //selectQuery += "     per_secu = @per_secu,";
+                //selectQuery += "     per_type = 1,";
+                //selectQuery += "     per_telprinc = @per_telprinc,";
+                //selectQuery += "     per_teltrav1 = @per_teltrav1,";
+                //selectQuery += "     per_teltrav2 = @per_teltrav2,";
+                //selectQuery += "     per_telecopie = @per_telecopie,";
+                //selectQuery += "     per_email = @per_email,";
+                //selectQuery += "     per_reception = @per_reception,";
+                selectQuery += "     per_notes = @per_notes,";
+                //selectQuery += "     per_poste = @per_poste,";
+                //selectQuery += "     pcom = @pcom,";
+                //selectQuery += "     per_adr1 = @per_adr1,";
+                //selectQuery += "     per_adr2 = @per_adr2,";
+                //selectQuery += "     per_ville = @per_ville,";
+                //selectQuery += "     per_cpostal = @per_cpostal,";
+                //selectQuery += "     per_adr1_prof = @per_adr1_prof,";
+                //selectQuery += "     per_adr2_prof = @per_adr2_prof,";
+                //selectQuery += "     per_cpostal_prof = @per_cpostal_prof,";
+                //selectQuery += "     per_ville_prof = @per_ville_prof,";
+                selectQuery += "     profession = @profession,";
+                //selectQuery += "     mutuelle = @mutuelle,";
+                selectQuery += "     per_datnaiss = @per_datnaiss,";
+                selectQuery += "     tuvous = @tuvous,";
+                //selectQuery += "     poid = @poid,";
+                //selectQuery += "     email2 = @email2,";
+                //selectQuery += "     gsm = @gsm,";
+                //selectQuery += "     icq = @icq,";
+                //selectQuery += "     im1 = @im1,";
+                //selectQuery += "     im2 = @im2,";
+                //selectQuery += "     lastmodif = @lastmodif,";
+                //selectQuery += "     telsup0 = @telsup0,";
+                //selectQuery += "     telsup3 = @telsup3,";
+                //selectQuery += "     telsup4 = @telsup4,";
+                //selectQuery += "     telsup5 = @telsup5,";
+                //selectQuery += "     telsup6 = @telsup6,";
+                //selectQuery += "     telsup8 = @telsup8,";
+                //selectQuery += "     telsup10 = @telsup10,";
+                //selectQuery += "     telsup11 = @telsup11,";
+                //selectQuery += "     telsup12 = @telsup12,";
+                //selectQuery += "     telsup13 = @telsup13,";
+                //selectQuery += "     telsup14 = @telsup14,";
+                //selectQuery += "     telsup15 = @telsup15,";
+                //selectQuery += "     telsup16 = @telsup16,";
+                //selectQuery += "     telsup17 = @telsup17,";
+                //selectQuery += "     telsup18 = @telsup18,";
+                //selectQuery += "     indicetel1 = @indicetel1,";
+                //selectQuery += "     indicetel2 = @indicetel2,";
+                //selectQuery += "     indicetel3 = @indicetel3,";
+                //selectQuery += "     indicetel4 = @indicetel4,";
+                //selectQuery += "     email3 = @email3,";
+                //selectQuery += "     indiceemail = @indiceemail,";
+                //selectQuery += "     indiceadr = @indiceadr,";
+                //selectQuery += "     pays_dom = @pays_dom,";
+                //selectQuery += "     pays_trav = @pays_trav,";
+                selectQuery += "     pers_titre = @pers_titre, ";
+
+                //selectQuery += "     pers_siteweb = @pers_siteweb,";
+                //selectQuery += "     per_ville_naissance = @per_ville_naissance,";
+                //selectQuery += "     per_pays_naissance = @per_pays_naissance,";
+                //selectQuery += "     per_langue_parle = @per_langue_parle,";
+                //selectQuery += "     per_population_ref = @per_population_ref,";
+                //selectQuery += "     nom_rep_image = @nom_rep_image,";
+                selectQuery += "     oi_login = @oi_login,";
+                selectQuery += "     oi_mdp = @oi_mdp,";
+                selectQuery += "     oi_profil = @oi_profil,";
+                selectQuery += "     oi_autorisation = @oi_autorisation ";
+                // selectQuery += "     categories = @categories,";
+                // selectQuery += "     pref_com = @pref_com";
+                selectQuery += " where (id_personne = @id_personne)";
+
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                command.Parameters.AddWithValue("@id_personne", p_patient.Id);
+                command.Parameters.AddWithValue("@per_nom", p_patient.Nom);
+                command.Parameters.AddWithValue("@per_nomjf", p_patient.NomJF);
+                command.Parameters.AddWithValue("@per_datnaiss", p_patient.DateNaissance);
+                command.Parameters.AddWithValue("@per_prenom", p_patient.Prenom);
+                command.Parameters.AddWithValue("@profession", p_patient.Profession);
+
+                command.Parameters.AddWithValue("@oi_login", p_patient.IOlogin);
+                command.Parameters.AddWithValue("@oi_mdp", p_patient.password);
+                command.Parameters.AddWithValue("@oi_profil", p_patient.Idprofile);
+                command.Parameters.AddWithValue("@oi_autorisation", p_patient.publication);
+
+
+                command.Parameters.AddWithValue("@per_notes", p_patient.Notes);
+
+
+                if (p_patient.Tutoiement)
+                    command.Parameters.AddWithValue("@tuvous", 0);
+                else
+                    command.Parameters.AddWithValue("@tuvous", 1);
+
+
+                command.Parameters.AddWithValue("@pref_com", ((char)p_patient.PrefCom).ToString());
+
+                command.Parameters.AddWithValue("@pers_titre", p_patient.Civilite);
+
+
+                command.ExecuteNonQuery();
+
+
+                selectQuery = "update patient set ";
+
+                // selectQuery += "     per_id_personne =@per_id_personne ,";
+                //selectQuery += "     per2_id_personne =@per2_id_personne ,";
+                //selectQuery += "     per3_id_personne =@per3_id_personne ,";
+                //selectQuery += "     per4_id_personne =@per4_id_personne ,";
+                //selectQuery += "     per5_id_personne =@per5_id_personne ,";
+                selectQuery += "     id_statut =@id_statut ,";
+                selectQuery += "     pat_numdossier =@pat_numdossier ,";
+                selectQuery += "     num_moulage =@nummoulage ,";
+                selectQuery += "     pat_refdossier = @pat_refdossier,";
+                //selectQuery += "     pat_datecreation =@pat_datecreation ,";
+                //selectQuery += "     pat_classdiag =@pat_classdiag ,";
+                //selectQuery += "     pat_divisiondiag =@pat_divisiondiag ,";
+                //selectQuery += "     pat_daterelance =@pat_daterelance ,";
+                //selectQuery += "     pat_remarques =@pat_remarques ,";
+                //selectQuery += "     pat_plan =@pat_plan ,";
+                //selectQuery += "     pat_accord =@pat_accord ,";
+                //selectQuery += "     lien_payeur =@lien_payeur ,";
+                //selectQuery += "     lien_assure =@lien_assure ,";
+                //selectQuery += "     pat_cd =@pat_cd ,";
+                //selectQuery += "     pat_refdossier =@pat_refdossier ,";
+                //selectQuery += "     date_reco =@date_reco ,";
+                //selectQuery += "     num_reco =@num_reco ,";
+                //selectQuery += "     pat_diag =@pat_diag ,";
+                //selectQuery += "     pcom =@pcom ,";
+                //selectQuery += "     tydossier =@tydossier ,";
+                //selectQuery += "     phase_trait =@phase_trait ,";
+                //selectQuery += "     pat_daterdv =@pat_daterdv ,";
+                //selectQuery += "     pat_solde =@pat_solde ,";
+                //selectQuery += "     pat_statlastrdv =@pat_statlastrdv ,";
+                //selectQuery += "     pat_lastrdv =@pat_lastrdv ,";
+                //selectQuery += "     pat_dureerdv =@pat_dureerdv ,";
+                //selectQuery += "     pat_msgaudio =@pat_msgaudio ,";
+                //selectQuery += "     rem_visible =@rem_visible ,";
+                //selectQuery += "     debut_trait =@debut_trait ,";
+                //selectQuery += "     pat_solde_euro =@pat_solde_euro ,";
+                //selectQuery += "     cmu =@cmu ,";
+                //selectQuery += "     tierspayant =@tierspayant ,";
+                //selectQuery += "     securite =@securite ,";
+                selectQuery += "     allergie =@allergie ,";
+                //selectQuery += "     NUM_MOULAGE =@NUM_MOULAGE, ";
+                //selectQuery += "     rep =@rep ,";
+                //selectQuery += "     libelle_rdv =@libelle_rdv ,";
+                //selectQuery += "     pat_premierrdv =@pat_premierrdv ,";
+                //selectQuery += "     semestre_encours =@semestre_encours ,";
+                //selectQuery += "     dateprop =@dateprop ,";
+                //selectQuery += "     dateaccord =@dateaccord ,";
+                //selectQuery += "     nextpaiement =@nextpaiement ,";
+                //selectQuery += "     nextpaiementeuro =@nextpaiementeuro ,";
+                //selectQuery += "     datenextpaiement =@datenextpaiement ,";
+                //selectQuery += "     semestre_encours_dep =@semestre_encours_dep ,";
+                //selectQuery += "     pat_objectif_trait =@pat_objectif_trait ,";
+                //selectQuery += "     nom_plan =@nom_plan ,";
+                //selectQuery += "     comm_next_rdv =@comm_next_rdv ,";
+                //selectQuery += "     id_radio =@id_radio ,";
+                //selectQuery += "     moulage =@moulage ,";
+                //selectQuery += "     derniertypepaiement =@derniertypepaiement ,";
+                //selectQuery += "     datenextdep =@datenextdep ,";
+                //selectQuery += "     semestre_next_dep =@semestre_next_dep ,";
+                //selectQuery += "     pat_rem_plg =@pat_rem_plg ,";
+                //selectQuery += "     lastrdv_heure_arrive =@lastrdv_heure_arrive ,";
+                //selectQuery += "     pat_open_bnotes=@pat_open_bnotes";
+                selectQuery += "     DATEABANDON=@DATEABANDON,";
+                selectQuery += "     StatusClinique=@StatusClinique";
+
+
+                selectQuery += "     where id_personne =@id_personne";
+
+                command.CommandText = selectQuery;
+
+                command.Parameters.AddWithValue("@id_personne", p_patient.Id);
+                //command.Parameters.AddWithValue("@per_id_personne", p_patient.per_id_personne);
+                //command.Parameters.AddWithValue("@per2_id_personne", p_patient.per2_id_personne);
+                //command.Parameters.AddWithValue("@per3_id_personne", p_patient.per3_id_personne);
+                //command.Parameters.AddWithValue("@per4_id_personne", p_patient.per4_id_personne);
+                //command.Parameters.AddWithValue("@per5_id_personne", p_patient.per5_id_personne);
+                //command.Parameters.AddWithValue("@id_statut", p_patient.id_statut);
+                command.Parameters.AddWithValue("@pat_numdossier", p_patient.Dossier);
+                command.Parameters.AddWithValue("@pat_refdossier", p_patient.CasierInvisalign);
+                command.Parameters.AddWithValue("@nummoulage", p_patient.numMoulage);
+                //command.Parameters.AddWithValue("@pat_datecreation", p_patient.pat_datecreation);
+                //command.Parameters.AddWithValue("@pat_classdiag", p_patient.pat_classdiag);
+                //command.Parameters.AddWithValue("@pat_divisiondiag", p_patient.pat_divisiondiag);
+                //command.Parameters.AddWithValue("@pat_daterelance", p_patient.pat_daterelance);
+                //command.Parameters.AddWithValue("@pat_remarques", p_patient.pat_remarques);
+                //command.Parameters.AddWithValue("@pat_plan", p_patient.pat_plan);
+                //command.Parameters.AddWithValue("@pat_accord", p_patient.pat_accord);
+                //command.Parameters.AddWithValue("@lien_payeur", p_patient.lien_payeur);
+                //command.Parameters.AddWithValue("@lien_assure", p_patient.lien_assure);
+                //command.Parameters.AddWithValue("@pat_cd", p_patient.pat_cd);
+                //command.Parameters.AddWithValue("@pat_refdossier", p_patient.pat_refdossier);
+                //command.Parameters.AddWithValue("@date_reco", p_patient.date_reco);
+                //command.Parameters.AddWithValue("@num_reco", p_patient.num_reco);
+                //command.Parameters.AddWithValue("@pat_diag", p_patient.pat_diag);
+                //command.Parameters.AddWithValue("@pcom", p_patient.pcom);
+                //command.Parameters.AddWithValue("@tydossier", p_patient.tydossier);
+                //command.Parameters.AddWithValue("@phase_trait", p_patient.phase_trait);
+                //command.Parameters.AddWithValue("@pat_daterdv", p_patient.pat_daterdv);
+                //command.Parameters.AddWithValue("@pat_solde", p_patient.pat_solde);
+                //command.Parameters.AddWithValue("@pat_statlastrdv", p_patient.pat_statlastrdv);
+                //command.Parameters.AddWithValue("@pat_lastrdv", p_patient.pat_lastrdv);
+                //command.Parameters.AddWithValue("@pat_dureerdv", p_patient.pat_dureerdv);
+                //command.Parameters.AddWithValue("@pat_msgaudio", p_patient.pat_msgaudio);
+                //command.Parameters.AddWithValue("@rem_visible", p_patient.rem_visible);
+                //command.Parameters.AddWithValue("@debut_trait", p_patient.debut_trait);
+                //command.Parameters.AddWithValue("@pat_solde_euro", p_patient.pat_solde_euro);
+                //command.Parameters.AddWithValue("@cmu", p_patient.cmu);
+                //command.Parameters.AddWithValue("@tierspayant", p_patient.tierspayant);
+                //command.Parameters.AddWithValue("@securite", p_patient.securite);
+
+                System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
+                byte[] array = encoding.GetBytes(p_patient.Allergie);
+
+                command.Parameters.AddWithValue("@allergie", array);
+                command.Parameters.AddWithValue("@NUM_MOULAGE", p_patient.Moulage);
+                command.Parameters.AddWithValue("@DATEABANDON", p_patient.DateAbandon);
+                command.Parameters.AddWithValue("@StatusClinique", p_patient.statusClinique);
+                command.Parameters.AddWithValue("@id_statut", p_patient.statusManuel == null ? DBNull.Value : (object)p_patient.statusManuel.Id);
+
+                //command.Parameters.AddWithValue("@rep", p_patient.rep);
+                //command.Parameters.AddWithValue("@libelle_rdv", p_patient.libelle_rdv);
+                //command.Parameters.AddWithValue("@pat_premierrdv", p_patient.pat_premierrdv);
+                //command.Parameters.AddWithValue("@semestre_encours", p_patient.semestre_encours);
+                //command.Parameters.AddWithValue("@dateprop", p_patient.dateprop);
+                //command.Parameters.AddWithValue("@dateaccord", p_patient.dateaccord);
+                //command.Parameters.AddWithValue("@nextpaiement", p_patient.nextpaiement);
+                //command.Parameters.AddWithValue("@nextpaiementeuro", p_patient.nextpaiementeuro);
+                //command.Parameters.AddWithValue("@datenextpaiement", p_patient.datenextpaiement);
+                //command.Parameters.AddWithValue("@semestre_encours_dep", p_patient.semestre_encours_dep);
+                //command.Parameters.AddWithValue("@pat_objectif_trait", p_patient.pat_objectif_trait);
+                //command.Parameters.AddWithValue("@nom_plan", p_patient.nom_plan);
+                //command.Parameters.AddWithValue("@comm_next_rdv", p_patient.comm_next_rdv);
+                //command.Parameters.AddWithValue("@id_radio", p_patient.id_radio);
+                //command.Parameters.AddWithValue("@moulage", p_patient.moulage);
+                //command.Parameters.AddWithValue("@derniertypepaiement", p_patient.derniertypepaiement);
+                //command.Parameters.AddWithValue("@datenextdep", p_patient.datenextdep);
+                //command.Parameters.AddWithValue("@semestre_next_dep", p_patient.semestre_next_dep);
+                //command.Parameters.AddWithValue("@pat_rem_plg", p_patient.pat_rem_plg);
+                //command.Parameters.AddWithValue("@lastrdv_heure_arrive", p_patient.lastrdv_heure_arrive);
+                //command.Parameters.AddWithValue("@pat_open_bnotes", p_patient.pat_open_bnotes);
+
+
+
+                command.ExecuteNonQuery();
+
+
+
+                transaction.Commit();
+
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+        }
+
+        public static void InsertPatient(basePatient patient)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "select MAX(ID_PERSONNE)+1 as NEWID from PERSONNE";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.CommandType = CommandType.Text;
+                object o = command.ExecuteScalar();
+                patient.Id = (o is DBNull)?1: Convert.ToInt32(o);
+
+                selectQuery = "INSERT INTO PERSONNE (";
+                selectQuery += "ID_PERSONNE,";
+                selectQuery += "PER_NOM,";
+                selectQuery += "PER_PRENOM,";
+                selectQuery += "PER_TELPRINC,";
+                selectQuery += "PER_EMAIL,";
+                selectQuery += "PER_ADR1,";
+                selectQuery += "PER_ADR2,";
+                selectQuery += "PER_CPOSTAL,";
+                selectQuery += "PER_VILLE,";
+                selectQuery += "PER_DATNAISS,";
+                selectQuery += "PER_GENRE,";
+                selectQuery += "PERS_TITRE,";
+                selectQuery += "PREF_COM,";
+
+                selectQuery += "oi_login,";
+                selectQuery += "oi_mdp,";
+                selectQuery += "oi_profil,";
+                selectQuery += "oi_autorisation,";
+
+
+                selectQuery += "PER_TYPE";
+                selectQuery += ") values (";
+                selectQuery += "@ID_PERSONNE,";
+                selectQuery += "@PER_NOM,";
+                selectQuery += "@PER_PRENOM,";
+                selectQuery += "@PER_TELPRINC,";
+                selectQuery += "@PER_EMAIL,";
+                selectQuery += "@PER_ADR1,";
+                selectQuery += "@PER_ADR2,";
+                selectQuery += "@PER_CPOSTAL,";
+                selectQuery += "@PER_VILLE,";
+                selectQuery += "@PER_DATNAISS,";
+                selectQuery += "@PER_GENRE,";
+                selectQuery += "@PERS_TITRE,";
+                selectQuery += "@PREF_COM,";
+
+                selectQuery += "@oi_login,";
+                selectQuery += "@oi_mdp,";
+                selectQuery += "@oi_profil,";
+                selectQuery += "@oi_autorisation,";
+
+                selectQuery += "@PER_TYPE)";
+
+                command.CommandText = selectQuery;
+                command.Parameters.AddWithValue("@ID_PERSONNE", patient.Id);
+                command.Parameters.AddWithValue("@PER_NOM", patient.Nom);
+                command.Parameters.AddWithValue("@PER_PRENOM", patient.Prenom);
+                command.Parameters.AddWithValue("@PER_TELPRINC", patient.Tel);
+                command.Parameters.AddWithValue("@PER_EMAIL", patient.Mail);
+
+                command.Parameters.AddWithValue("@PER_EMAIL", patient.Mail);
+                command.Parameters.AddWithValue("@PER_EMAIL", patient.Mail);
+                command.Parameters.AddWithValue("@PER_EMAIL", patient.Mail);
+                command.Parameters.AddWithValue("@PER_EMAIL", patient.Mail);
+
+
+                command.Parameters.AddWithValue("@PER_ADR1", patient.Adresse1);
+                command.Parameters.AddWithValue("@PER_ADR2", patient.Adresse2);
+                command.Parameters.AddWithValue("@PER_CPOSTAL", patient.CodePostal);
+                command.Parameters.AddWithValue("@PER_VILLE", patient.Ville);
+
+
+                command.Parameters.AddWithValue("@oi_login", patient.IOlogin);
+                command.Parameters.AddWithValue("@oi_mdp", patient.password);
+                command.Parameters.AddWithValue("@oi_profil", patient.Idprofile);
+                command.Parameters.AddWithValue("@oi_autorisation", patient.publication);
+
+
+                command.Parameters.AddWithValue("@PER_DATNAISS", patient.DateNaissance);
+                command.Parameters.AddWithValue("@PER_GENRE", patient.Genre == basePatient.Sexe.Feminin ? 'F' : 'M');
+                command.Parameters.AddWithValue("@PERS_TITRE", patient.Civilite);
+                command.Parameters.AddWithValue("@PREF_COM", ((char)patient.PrefCom).ToString());
+                command.Parameters.AddWithValue("@PER_TYPE", 1);
+
+
+                command.ExecuteNonQuery();
+
+
+                selectQuery = "insert into patient (id_personne,per5_id_personne, per_id_personne, id_statut, pat_numdossier, pat_datecreation, pat_refdossier,TEST_BP)";
+                selectQuery += "values (@id_personne,2, @per_id_personne,  0, @pat_numdossier, @pat_datecreation, @pat_refdossier,1)";
+
+                command.CommandText = selectQuery;
+
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@id_personne", patient.Id);
+                command.Parameters.AddWithValue("@per_id_personne", patient.Id);
+                command.Parameters.AddWithValue("@pat_numdossier", patient.Dossier);
+                command.Parameters.AddWithValue("@pat_refdossier", patient.Dossier);
+                command.Parameters.AddWithValue("@pat_datecreation", DateTime.Now);
+
+                command.ExecuteNonQuery();
+
+
+                transaction.Commit();
+
+
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+
+        }
+
+
+        public static DataTable getPatientsOf(Correspondant corres, DateTime dteValue)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+
+                string selectQuery = "select ";
+                selectQuery += " lienpers.Relation,";
+                selectQuery += " lienpers.typelien,";
+                selectQuery += " lienpers.id_patient,";
+                selectQuery += " lienpers.id_personne";
+                selectQuery += " from lienpers";
+                selectQuery += " INNER JOIN patient p on p.id_personne=lienpers.id_patient";
+                selectQuery += " where lienpers.id_personne = @ID";
+                selectQuery += " and p.PAT_DATECREATION>=@creaDate";
+                selectQuery += " order by p.PAT_DATECREATION";
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                command.Parameters.AddWithValue("@ID", corres.Id);
+                command.Parameters.AddWithValue("@creaDate", dteValue);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                return dt;
+
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                return null;
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+        }
+
+        public static DataTable getAllPatients()
+        {
+            return getAllPatients(false);
+        }
+
+        public static DataTable getAllPatients(bool includeOrthalis)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "select personne.id_personne,";
+                selectQuery += " per_nom,";
+                selectQuery += " per_prenom";
+                selectQuery += " from personne";
+                selectQuery += " inner join patient on personne.id_personne=patient.id_personne";
+                selectQuery += " where per_type=1";
+                if (!includeOrthalis)
+                    selectQuery += " and patient.test_bp=1";
+                selectQuery += " order by per_nom, per_prenom";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                return dt;
+
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+
+        public static DataTable getPatientsFromName(string name)
+        {
+            if (connection == null) getConnection();
+
+            if (connection.State == ConnectionState.Closed) connection.Open();
+            FbTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string selectQuery = "select personne.id_personne,";
+                selectQuery += " per_nom,";
+                selectQuery += " per_prenom,";
+                selectQuery += " per_type";
+                selectQuery += " from personne";
+                selectQuery += " inner join patient on personne.id_personne=patient.id_personne";
+                selectQuery += " where per_type=1";
+                selectQuery += " and lower(personne.per_nom) LIKE '%" + @name + "%' OR upper(personne.per_nom) LIKE '%" + @name + "%'";
+                selectQuery += " order by personne.per_nom";
+
+                FbCommand command = new FbCommand(selectQuery, connection, transaction);
+                command.Parameters.AddWithValue("@name", name);
+
+                DataSet ds = new DataSet();
+                FbDataAdapter adapt = new FbDataAdapter(command);
+                adapt.Fill(ds);
+                transaction.Commit();
+
+                DataTable dt = ds.Tables[0];
+
+                return dt;
+
+            }
+            catch (System.Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        
+    }
+}

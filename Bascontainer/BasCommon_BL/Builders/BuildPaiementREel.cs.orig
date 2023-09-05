@@ -1,0 +1,59 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using BasCommon_BO;
+using BasCommon_BL;
+
+namespace BasCommon_BL.Builders
+{
+
+    public static class BuildPaiementReel
+    {
+
+        public static PaiementReel Build(DataRow r)
+        {
+            PaiementReel cs = new PaiementReel();
+            cs.Id = Convert.ToInt32(r["ID"]);
+            cs.Montant = Convert.ToDouble(r["MONTANT"]);
+            cs.typeencaissement = (PaiementReel.TypeEncaissement)Convert.ToInt32(r["MOYENPAIEMENT"]);
+            cs.DateEncaissement = Convert.ToDateTime(r["DATEENCAISSEMENT"]);
+            cs.NumCheque = Convert.ToString(r["NUMCHEQUE"]);
+            cs.BanqueEmetrice = r["ID_BANQUE_EMETRICE"] is DBNull ? null : BanqueMgmt.getBanque(Convert.ToInt32(r["ID_BANQUE_EMETRICE"]));
+            cs.EstRemisEnBanque = r["REMISENBANQUE"] is DBNull ? PaiementReel.RemisEnBanque.NA : (PaiementReel.RemisEnBanque)Convert.ToInt16(r["REMISENBANQUE"]);
+            cs.DateRemiseEnBanque = r["DATEREMISEENBANQUE"] is DBNull ? null : (DateTime?)Convert.ToDateTime(r["DATEREMISEENBANQUE"]);
+            cs.EntiteJuridique = r["ID_ENTITYJURIDIQUE"] is DBNull ? null : EntiteJuridiqueMgmt.getentite(Convert.ToInt32(r["ID_ENTITYJURIDIQUE"]));
+            cs.IdPayeur = r["Idpayeur"] is DBNull ? -1 : Convert.ToInt32(r["Idpayeur"]);
+            cs.payeur = r["payeur"] is DBNull ? null : Convert.ToString(r["payeur"]);
+            cs.MontantEnBanque = r["MONTANT_EN_BANQUE"] is DBNull ? 0 : Convert.ToDouble(r["MONTANT_EN_BANQUE"]);
+            cs.BanqueDeRemise = r["ID_BANQUE_REMISE"] is DBNull ? null : BanqueMgmt.getBanqueDeRemise(Convert.ToString(r["ID_BANQUE_REMISE"]));
+            cs.DateEcheance = r["DATEECHEANCE"] is DBNull ? cs.DateEncaissement : Convert.ToDateTime(r["DATEECHEANCE"]);
+            cs.Mutuelle = r["ID_MUTUELLE"] is DBNull ? null : MutuelleMgmt.getMutuelle(Convert.ToInt32(r["ID_MUTUELLE"]));
+            cs.Status = r["STATUS"] == DBNull.Value ? PaiementReel.statusEncaissement.None : (PaiementReel.statusEncaissement)Convert.ToInt32(r["STATUS"]);
+            cs.DateValeurBqe = (r["DATEVALEURBANQUE"] == DBNull.Value ? null : (DateTime?)Convert.ToDateTime(r["DATEVALEURBANQUE"]));
+
+            cs.EspecesRecu = r["EspecesRecu"] == DBNull.Value ? 0 : Convert.ToDouble(r["EspecesRecu"]);
+            cs.EspecesRendus = r["EspecesRendus"] == DBNull.Value ? 0 : Convert.ToDouble(r["EspecesRendus"]);
+            cs.EspecesMisEncaisse = r["EspecesMisEncaisse"] == DBNull.Value ? 0 : Convert.ToDouble(r["EspecesMisEncaisse"]);
+            
+            cs.LibelleIncident = Convert.ToString(r["LIBELLEIncident"]);
+            cs.MontantRemis = r["MONTANTREMIS"] is DBNull ? 0 : Convert.ToDouble(r["MONTANTREMIS"]);
+
+            if ((r.Table.Columns.Contains("IDPATIENT")) && (!(r["IDPATIENT"] is DBNull)))
+            {
+                cs.lstpatient = new List<int>();
+                cs.lstpatient.Add(Convert.ToInt32(r["IDPATIENT"]));
+                cs.Patients += Convert.ToString(r["PATIENT"]);
+            }
+
+
+
+
+
+
+            return cs;
+        }
+
+    }
+}
